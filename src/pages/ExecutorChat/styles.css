@@ -1,0 +1,12 @@
+.executorChat-container {
+    width: fit-content;
+    margin: 20px auto;
+}
+.executorChat-container button {
+  margin: 20px auto;
+  display: block;
+}
+.executorChat-container h1 {
+  text-align: center;
+}
+

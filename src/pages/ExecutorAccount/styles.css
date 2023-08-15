@@ -1,0 +1,12 @@
+.executorAccount-container {
+    width: fit-content;
+    margin: 20px auto;
+}
+.executorAccount-container button {
+  margin: 20px auto;
+  display: block;
+}
+.executorAccount-container h1 {
+  text-align: center;
+}
+

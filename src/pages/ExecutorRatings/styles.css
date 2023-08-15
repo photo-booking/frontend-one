@@ -1,0 +1,12 @@
+.executorRatings-container {
+    width: fit-content;
+    margin: 20px auto;
+}
+.executorRatings-container button {
+  margin: 20px auto;
+  display: block;
+}
+.executorRatings-container h1 {
+  text-align: center;
+}
+
