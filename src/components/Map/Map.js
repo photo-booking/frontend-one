@@ -1,6 +1,7 @@
 import React from 'react';
 import './Map.css';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
+import balloon from '../../images/balloon.jpg'
 
 function Maps() {
 
@@ -41,7 +42,8 @@ function Maps() {
       balloonContentHeader: 'Hay!',
       hint: 'подсказка 4'
     }
-  ]
+  ];
+
  
   return (
     <YMaps>
@@ -53,16 +55,28 @@ function Maps() {
             properties={{
               iconCaption: item.name,
               iconContent: item.number,
-              balloonContent: item.balloonContent,
-              balloonContentHeader: item.balloonContentHeader,   
+              balloonContentBody: 
+              `<div class='balloon'>
+                <h3>${item.balloonContentHeader}</h3>
+                <p>${item.balloonContent}</p>
+                <img class='balloon-photo' src=${balloon} alt="Фотография места" />
+                <ul>
+                  <li>Детали 1</li>
+                  <li>Детали 2</li>
+                  <li>Детали 3</li>
+                </ul>
+              <div>`,
               hintContent: item.hint, 
             }}
             options={{
               preset :  'islands#dotIcon',
               iconColor: 'green',
-              balloonPanelMaxMapArea: 0,
+              // balloonPanelMaxMapArea: 0,
+              balloonMaxHeight : 200,
+              balloonMaxWidth : 200,
               hideIconOnBalloonOpen: false,
               balloonOffset: [0, -25],
+              // balloonContentLayout: ,
             }}
           />
         )
