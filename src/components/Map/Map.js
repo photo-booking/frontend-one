@@ -6,7 +6,7 @@ import balloon from '../../images/balloon.jpg'
 function Maps() {
 
   // переменная с основными параметрами карты
-  const mapState = { center: [55.76, 37.64], zoom: 12 };
+  const mapState = { center: [55.75, 37.62], zoom: 12, controls: ["zoomControl", "fullscreenControl"] };
 
   // Допустим, пришли нам данные
   const plasePoints = [
@@ -47,7 +47,7 @@ function Maps() {
  
   return (
     <YMaps>
-      <Map state={mapState} width={500} height={350}>
+      <Map state={mapState} width={500} height={350} modules={["control.ZoomControl", "control.FullscreenControl"]}>
       {plasePoints.map((item) => (
           <Placemark 
             geometry={item.geometry} 
