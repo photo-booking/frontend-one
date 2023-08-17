@@ -1,12 +1,12 @@
-.executorRatings-container {
+.expertChat-container {
     width: fit-content;
     margin: 20px auto;
 }
-.executorRatings-container button {
+.expertChat-container button {
   margin: 20px auto;
   display: block;
 }
-.executorRatings-container h1 {
+.expertChat-container h1 {
   text-align: center;
 }
 

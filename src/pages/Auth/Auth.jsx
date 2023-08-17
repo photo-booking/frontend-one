@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './styles.css';
+import './Auth.css';
 import { useState } from 'react';
 export const Auth = () => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export const Auth = () => {
       </button>
       <button
         onClick={() =>
-          navigate(`/executor/${executorId}`, { state: { name: executorName, id: executorId } })
+          navigate(`/expert/${executorId}`, { state: { name: executorName, id: executorId } })
         }
       >
         Личный кабинет исполнителя

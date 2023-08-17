@@ -1,21 +1,21 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { Login } from '../pages/Login';
-import { Auth } from '../pages/Auth';
-import { ResetPassword } from '../pages/ResetPassword/index';
-import { CatalogExecutors } from '../pages/CatalogExecutors';
-import { Profile } from '../pages/Profile';
-import { Landing } from '../pages/Landing';
-import { ClientAccount } from '../pages/ClientAccount';
-import { ClientOrders } from '../pages/ClientOrders';
-import { ExecutorAccount } from '../pages/ExecutorAccount';
-import { ExecutorOrders } from '../pages/ExecutorOrders';
-import { ExecutorRatings } from '../pages/ExecutorRatings';
-import { OrderServices } from '../pages/OrderServices';
-import { ClientChat } from '../pages/ClientChat';
-import { ExecutorChat } from '../pages/ExecutorChat';
-import { Page404 } from '../pages/404';
+import { Login } from '../../pages/Login/Login';
+import { Auth } from '../../pages/Auth/Auth';
+import { ResetPassword } from '../../pages/ResetPassword/ResetPassword';
+import { CatalogExecutors } from '../../pages/CatalogExperts/CatalogExperts';
+import { Profile } from '../../pages/Profile/Profile';
+import { Landing } from '../../pages/Landing/Landing';
+import { ClientAccount } from '../../pages/ClientAccount/ClientAccount';
+import { ClientOrders } from '../../pages/ClientOrders/ClientOrders';
+import { ExecutorAccount } from '../../pages/ExpertAccount/ExpertAccount';
+import { ExecutorOrders } from '../../pages/ExpertOrders/ExpertOrders';
+import { ExecutorRatings } from '../../pages/ExpertRatings/ExpertRatings';
+import { OrderServices } from '../../pages/OrderServices/OrderServices';
+import { ClientChat } from '../../pages/ClientChat/ClientChat';
+import { ExecutorChat } from '../../pages/ExpertChat/ExpertChat';
+import { Page404 } from '../../pages/404/404';
 
 export function App() {
   return (
@@ -53,15 +53,15 @@ export function App() {
         element={<ClientOrders />}
       />
       <Route
-        path="/executor/:id"
+        path="/expert/:id"
         element={<ExecutorAccount />}
       />
       <Route
-        path="/executor/:id/orders"
+        path="/expert/:id/orders"
         element={<ExecutorOrders />}
       />
       <Route
-        path="/executor/:id/ratings"
+        path="/expert/:id/ratings"
         element={<ExecutorRatings />}
       />
       <Route
@@ -73,11 +73,11 @@ export function App() {
         element={<ClientChat />}
       />
       <Route
-        path="/executor/:id/chat"
+        path="/expert/:id/chat"
         element={<ExecutorChat />}
       />
       <Route
-        path="/404"
+        path="*"
         element={<Page404 />}
       />
     </Routes>

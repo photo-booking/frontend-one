@@ -1,12 +1,12 @@
-.executorAccount-container {
+.expertOrders-container {
     width: fit-content;
     margin: 20px auto;
 }
-.executorAccount-container button {
+.expertOrders-container button {
   margin: 20px auto;
   display: block;
 }
-.executorAccount-container h1 {
+.expertOrders-container h1 {
   text-align: center;
 }
 

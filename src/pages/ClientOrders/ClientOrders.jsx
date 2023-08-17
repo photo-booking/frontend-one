@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import './styles.css';
+import './ClientOrders.css';
 export const ClientOrders = () => {
   const navigate = useNavigate();
   const { state } = useLocation();

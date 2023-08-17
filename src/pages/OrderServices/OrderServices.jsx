@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './styles.css';
+import './OrderServices.css';
 
 export const OrderServices = () => {
   const navigate = useNavigate();

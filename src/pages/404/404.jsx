@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './styles.css';
+import './404.css';
 export const Page404 = () => {
   const navigate = useNavigate();
   return (
