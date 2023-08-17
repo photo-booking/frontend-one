@@ -51,6 +51,7 @@ function Maps() {
       {plasePoints.map((item) => (
           <Placemark 
             geometry={item.geometry} 
+            key={item.number}
             modules={['geoObject.addon.balloon', 'geoObject.addon.hint']} //важная штука. без нее не работает всплывающее окно baloon и подсказка
             properties={{
               iconCaption: item.name,

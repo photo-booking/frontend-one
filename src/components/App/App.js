@@ -1,6 +1,6 @@
 import logo from '../../images/logo.svg';
 import './App.css';
-import Maps from '../Map/Map.js'
+import Maps from '../Map/Map.jsx'
 
 function App() {
   return (
