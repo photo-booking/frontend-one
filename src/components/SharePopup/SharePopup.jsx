@@ -38,7 +38,7 @@ export const SharePopup = () => {
         >
           <img
             src={vk_logo_share}
-            alt="google sign-in"
+            alt="vk logo"
             className="sharePopup__logo-image"
           />
         </Link>
@@ -50,7 +50,7 @@ export const SharePopup = () => {
         >
           <img
             src={telegram_logo}
-            alt="google sign-in"
+            alt="telegram  logo"
             className="sharePopup__logo-image"
           />
         </Link>

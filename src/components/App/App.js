@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { Login } from '../../pages/Login/Login';
-import { Auth } from '../../pages/Auth/Auth';
+import { Signin } from '../../pages/Signin/Signin';
+import { Signup } from '../../pages/Signup/Signup';
 import { ResetPassword } from '../../pages/ResetPassword/ResetPassword';
 import { CatalogExecutors } from '../../pages/CatalogExperts/CatalogExperts';
 import { Profile } from '../../pages/Profile/Profile';
@@ -26,11 +26,11 @@ export function App() {
       />
       <Route
         path="/sign-up"
-        element={<Auth />}
+        element={<Signup />}
       />
       <Route
         path="/sign-in"
-        element={<Login />}
+        element={<Signin />}
       />
       <Route
         path="/reset-password"
