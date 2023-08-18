@@ -1,16 +1,63 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Signin.css';
 import { AuthIntegration } from '../../components/AuthIntegration/AuthIntegration';
+import { FormAuth } from '../../components/FormAuth/FormAuth';
+import useValidation from '../../hooks/useValidation';
+
 export const Signin = () => {
   const navigate = useNavigate();
+  const { values, errors, onChange, resetValidation, isFormValid } =
+  useValidation();
+
+  React.useEffect(()=> {
+    resetValidation({email: '', password: ''})
+  },[])
 
   return (
     <div className={'loginPage-container'}>
       <h1>Войти в аккаунт</h1>
-      <AuthIntegration/>
+      <AuthIntegration />
+      <FormAuth
+        child={<>
+        <label
+          htmlFor="reg-email"
+          className=""
+        >
+          Email
+          <input
+            className=""
+            id="reg-email"
+            name="email"
+            type="email"
+            onChange={onChange}
+            value={values.email || ''}
+          />
+          <span className="">{errors.email || ''}</span>
+        </label>
+        <label
+          htmlFor="reg-pass"
+          className=""
+        >
+          Пароль
+          <input
+            className=""
+            id="reg-pass"
+            name="password"
+            type="password"
+            onChange={onChange}
+            value={values.password || ''}
+            required
+          />
+          <span className="">{errors.password || ''}</span>
+        </label>
+        </>}
+        buttonTitle={'Войти'}
+        isFormValid={isFormValid}
+      />
+      {/* передать пропсы */}
       <button onClick={() => navigate('/reset-password')}>Забыли пароль?</button>
       <button onClick={() => navigate('/sign-up')}>Регистрация</button>
-      <button onClick={() => navigate(`/catalog`)}>Перейти в каталог</button>
     </div>
   );
 };
