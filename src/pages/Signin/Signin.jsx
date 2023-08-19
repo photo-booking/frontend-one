@@ -5,14 +5,20 @@ import { AuthIntegration } from '../../components/AuthIntegration/AuthIntegratio
 import { FormAuth } from '../../components/FormAuth/FormAuth';
 import useValidation from '../../hooks/useValidation';
 
-export const Signin = () => {
+export const Signin = (props) => {
   const navigate = useNavigate();
+  const { onSubmit } = props;
   const { values, errors, onChange, resetValidation, isFormValid } =
   useValidation();
 
   React.useEffect(()=> {
     resetValidation({email: '', password: ''})
   },[])
+
+  const handleSubmitSignin = (evt) => {
+    evt.preventDefault();
+    onSubmit(values);
+  }
 
   return (
     <div className={'loginPage-container'}>
@@ -53,6 +59,7 @@ export const Signin = () => {
         </label>
         </>}
         buttonTitle={'Войти'}
+        onSubmit={handleSubmitSignin}
         isFormValid={isFormValid}
       />
       {/* передать пропсы */}

@@ -17,6 +17,14 @@ import { ClientChat } from '../../pages/ClientChat/ClientChat';
 import { ExecutorChat } from '../../pages/ExpertChat/ExpertChat';
 import { Page404 } from '../../pages/404/404';
 
+const onSubmitSignup = (values) => {
+  console.log(values);
+};
+
+const onSubmitSignin = (values) => {
+  console.log(values);
+};
+
 export function App() {
   return (
     <Routes>
@@ -26,11 +34,11 @@ export function App() {
       />
       <Route
         path="/sign-up"
-        element={<Signup />}
+        element={<Signup onSubmit={onSubmitSignup} />}
       />
       <Route
         path="/sign-in"
-        element={<Signin />}
+        element={<Signin onSubmit={onSubmitSignin} />}
       />
       <Route
         path="/reset-password"

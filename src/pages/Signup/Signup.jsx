@@ -5,16 +5,25 @@ import { AuthIntegration } from '../../components/AuthIntegration/AuthIntegratio
 import { FormAuth } from '../../components/FormAuth/FormAuth';
 import useValidation from '../../hooks/useValidation';
 
-export const Signup = () => {
+export const Signup = (props) => {
   const navigate = useNavigate();
-  const { values, errors, onChange, resetValidation, isFormValid } =
-  useValidation();
+  const { onSubmit } = props;
+  const { values, errors, onChange, resetValidation, isFormValid } = useValidation();
 
-  React.useEffect(()=> {
-    resetValidation({name: '', surname: '', email: '', password: ''})
-  },[])
+  React.useEffect(() => {
+    resetValidation({ name: '', surname: '', email: '', password: '' });
+  }, []);
+
+  // const [isClient, setIsClient] = React.useState("true");
+  // const [isExpert, setIsExpert] = React.useState("false");
 
   const title = `Присоединиться как ${true ? 'заказчик' : 'специалист'}`;
+
+  const handleSubmitSignup = (evt) => {
+    evt.preventDefault();
+    onSubmit(values);
+  }
+
   return (
     <div className="">
       <h1>{title}</h1>
@@ -22,7 +31,10 @@ export const Signup = () => {
       <FormAuth
         child={
           <>
-            <label htmlFor="reg-name" className="">
+            <label
+              htmlFor="reg-name"
+              className=""
+            >
               Имя
               <input
                 className=""
@@ -30,14 +42,17 @@ export const Signup = () => {
                 name="name"
                 type="text"
                 onChange={onChange}
-                value={values.name || ""}
+                value={values.name || ''}
                 minLength="2"
                 maxLength="30"
                 required
               />
-              <span className="">{errors.name || ""}</span>
+              <span className="">{errors.name || ''}</span>
             </label>
-            <label htmlFor="reg-surname" className="">
+            <label
+              htmlFor="reg-surname"
+              className=""
+            >
               Фамилия
               <input
                 className=""
@@ -45,47 +60,48 @@ export const Signup = () => {
                 name="surname"
                 type="text"
                 onChange={onChange}
-                value={values.surname || ""}
+                value={values.surname || ''}
                 minLength="2"
                 maxLength="30"
                 required
               />
-              <span className="">{errors.surname || ""}</span>
+              <span className="">{errors.surname || ''}</span>
             </label>
             <label
-          htmlFor="reg-email"
-          className=""
-        >
-          Email
-          <input
-            className=""
-            id="reg-email"
-            name="email"
-            type="email"
-            onChange={onChange}
-            value={values.email || ''}
-          />
-          <span className="">{errors.email || ''}</span>
-        </label>
-        <label
-          htmlFor="reg-pass"
-          className=""
-        >
-          Пароль
-          <input
-            className=""
-            id="reg-pass"
-            name="password"
-            type="password"
-            onChange={onChange}
-            value={values.password || ''}
-            required
-          />
-          <span className="">{errors.password || ''}</span>
-        </label>
+              htmlFor="reg-email"
+              className=""
+            >
+              Email
+              <input
+                className=""
+                id="reg-email"
+                name="email"
+                type="email"
+                onChange={onChange}
+                value={values.email || ''}
+              />
+              <span className="">{errors.email || ''}</span>
+            </label>
+            <label
+              htmlFor="reg-pass"
+              className=""
+            >
+              Пароль
+              <input
+                className=""
+                id="reg-pass"
+                name="password"
+                type="password"
+                onChange={onChange}
+                value={values.password || ''}
+                required
+              />
+              <span className="">{errors.password || ''}</span>
+            </label>
           </>
         }
         buttonTitle={'Присоединиться'}
+        onSubmit={handleSubmitSignup}
         isFormValid={isFormValid}
       />
 
