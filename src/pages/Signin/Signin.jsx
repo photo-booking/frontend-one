@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Signin.css';
 import { AuthIntegration } from '../../components/AuthIntegration/AuthIntegration';
 import { FormAuth } from '../../components/FormAuth/FormAuth';
@@ -7,12 +7,15 @@ import useValidation from '../../hooks/useValidation';
 
 export const Signin = (props) => {
   const navigate = useNavigate();
-  const { onSubmit } = props;
+  const location = useLocation();
+  const { onSubmit, signinGoogle, signinVk } = props;
   const { values, errors, onChange, resetValidation, isFormValid } =
   useValidation();
 
   React.useEffect(()=> {
-    resetValidation({email: '', password: ''})
+    resetValidation({email: '', password: ''});
+    // signinGoogle(new URLSearchParams(location.hash).get("access_token"));
+    // signinVk(new URLSearchParams(location.search).get("code"));
   },[])
 
   const handleSubmitSignin = (evt) => {

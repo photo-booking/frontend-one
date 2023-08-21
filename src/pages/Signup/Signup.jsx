@@ -14,9 +14,6 @@ export const Signup = (props) => {
     resetValidation({ name: '', surname: '', email: '', password: '' });
   }, []);
 
-  // const [isClient, setIsClient] = React.useState("true");
-  // const [isExpert, setIsExpert] = React.useState("false");
-
   const title = `Присоединиться как ${true ? 'заказчик' : 'специалист'}`;
 
   const handleSubmitSignup = (evt) => {
