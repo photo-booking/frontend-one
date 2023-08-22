@@ -33,7 +33,7 @@ export const ResetPassword = (props) => {
             className=""
             id="reset"
             name="reset"
-            type="email"
+            type="password"
             onChange={onChange}
             value={values.reset || ''}
             required

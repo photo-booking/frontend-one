@@ -24,7 +24,7 @@ export const Signin = (props) => {
   }
 
   return (
-    <div className="">
+    <div className="signin">
       <h1>Войти в аккаунт</h1>
       <AuthIntegration />
       <FormAuth

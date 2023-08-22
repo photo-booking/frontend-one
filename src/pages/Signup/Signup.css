@@ -1,0 +1,68 @@
+.signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup__fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.signup__title {
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: -1.5px;
+    max-width: 437px;
+}
+
+.signup__input-container {
+    display: flex;
+    width: 307px;
+    padding: 20px 32px;
+    align-items: center;
+    margin: 20px auto;
+    border-radius: 8px;
+    background: #CCE2FF;
+    box-sizing: border-box;
+}
+
+.signup__input-checkbox {
+    position: relative;
+    cursor: pointer;
+}
+
+.signup__input-checkbox::after,
+.signup__input-checkbox:checked:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: -3px;
+    left: -3px;
+    border-radius: 50%;
+    border: 1.5px solid #0F77FF;
+    background-color: #CCE2FF;
+}
+
+.signup__input-checkbox:checked:after {
+    background-color: #0F77FF;
+}
+
+.signup__input-label {
+    color: #0F77FF;
+    font-family: Open Sans;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: -0.2px;
+    margin: 0 20px;
+}

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { register, login, loginGoogle, loginVk, resetPassword, checkToken } from '../../utils/auth';
@@ -24,7 +24,7 @@ export function App() {
   const [regedIn, setRegedIn] = useState(false);
 
   const [isClient, setIsClient] = useState(false);
-  // const [isExpert, setIsExpert] = useState(false);
+  const [isExpert, setIsExpert] = useState(false);
 
   const [isLoader, setIsLoader] = useState(false);
 
@@ -37,6 +37,11 @@ export function App() {
         console.log(err);
       });
   };
+
+  const onSubmitJoin = () => {
+    setIsClient(true);
+    setIsExpert(true);
+  }
 
   const onSubmitSignin = values => {
     login(values)
@@ -121,7 +126,16 @@ export function App() {
       />
       <Route
         path="/sign-up"
-        element={<Signup onSubmit={onSubmitSignup} isClient={isClient}/>}
+        element={
+          <Signup
+            onSubmit={onSubmitSignup}
+            onSubmitJoin={onSubmitJoin}
+            isClient={isClient}
+            setIsClient={setIsClient}
+            isExpert={isExpert}
+            setIsExpert={setIsExpert}
+          />
+        }
       />
       <Route
         path="/sign-in"

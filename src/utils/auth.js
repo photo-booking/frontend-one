@@ -7,6 +7,8 @@ function getResponseData(res) {
   }
   return res.json();
 }
+
+//Зарегистрировать пользователя
 export function register(values, status) {
   return fetch(`${BASE_URL}/users`, {
     method: 'POST',
@@ -21,11 +23,15 @@ export function register(values, status) {
   }).then(res => getResponseData(res));
 }
 
+//Войти в аккаунт
 export function login(values) {
   return fetch(`${BASE_URL}/auth/token/login`, {
     method: 'POST',
     headers: HEADERS,
-    body: JSON.stringify({ email: values.email, password: values.password })
+    body: JSON.stringify({ 
+      email: values.email, 
+      password: values.password 
+    })
   })
     .then(res => getResponseData(res))
     .then(res => {
@@ -33,6 +39,7 @@ export function login(values) {
     });
 }
 
+//Войти в аккаунт через гугл
 export function loginGoogle(param) {
   return fetch(`${BASE_URL}/auth_google`, {
     method: 'POST',
@@ -45,6 +52,7 @@ export function loginGoogle(param) {
     });
 }
 
+//Войти в аккаунт через ВК
 export function loginVk(param) {
   return fetch(`${BASE_URL}/auth_vk`, {
     method: 'POST',
@@ -57,6 +65,7 @@ export function loginVk(param) {
     });
 }
 
+//Сбросить пароль: отправить письмо 
 export function resetPassword(email) {
   return fetch(`${BASE_URL}/users/reset_password`, {
     method: 'POST',
@@ -69,6 +78,12 @@ export function resetPassword(email) {
     });
 }
 
+
+//Сбросить пароль: отправить новый пароль
+
+
+
+//Проверить токен на валидность
 export function checkToken(jwt) {
   return fetch(`${BASE_URL}/???`, {
     method: 'GET',
