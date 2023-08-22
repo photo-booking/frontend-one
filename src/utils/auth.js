@@ -22,7 +22,7 @@ export function register(values, status) {
 }
 
 export function login(values) {
-  return fetch(`${BASE_URL}/signin`, {
+  return fetch(`${BASE_URL}/auth/token/login`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({ email: values.email, password: values.password })
@@ -34,7 +34,7 @@ export function login(values) {
 }
 
 export function loginGoogle(param) {
-  return fetch(`${BASE_URL}/signin/google`, {
+  return fetch(`${BASE_URL}/auth_google`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({ eccses_token: param })
@@ -46,7 +46,7 @@ export function loginGoogle(param) {
 }
 
 export function loginVk(param) {
-  return fetch(`${BASE_URL}/signin/vk`, {
+  return fetch(`${BASE_URL}/auth_vk`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({ code: param })
@@ -58,7 +58,7 @@ export function loginVk(param) {
 }
 
 export function resetPassword(email) {
-  return fetch(`${BASE_URL}////???`, {
+  return fetch(`${BASE_URL}/users/reset_password`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({ email: email })
@@ -70,7 +70,7 @@ export function resetPassword(email) {
 }
 
 export function checkToken(jwt) {
-  return fetch(`${BASE_URL}/users/me`, {
+  return fetch(`${BASE_URL}/???`, {
     method: 'GET',
     headers: { ...HEADERS, Authorization: `Bearer ${jwt}` }
   }).then(res => getResponseData(res));
