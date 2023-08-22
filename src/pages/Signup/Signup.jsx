@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Signup.css';
 import { AuthIntegration } from '../../components/AuthIntegration/AuthIntegration';
@@ -10,7 +10,7 @@ export const Signup = (props) => {
   const { onSubmit } = props;
   const { values, errors, onChange, resetValidation, isFormValid } = useValidation();
 
-  React.useEffect(() => {
+  useEffect(() => {
     resetValidation({ name: '', surname: '', email: '', password: '' });
   }, []);
 
