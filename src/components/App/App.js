@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { register, login, loginGoogle, loginVk, resetPassword, checkToken } from '../../utils/auth';
@@ -20,16 +20,16 @@ import { ExecutorChat } from '../../pages/ExpertChat/ExpertChat';
 import { Page404 } from '../../pages/404/404';
 
 export function App() {
-  const [loggedIn, setLoggedIn] = React.useState(false);
-  const [regedIn, setRegedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [regedIn, setRegedIn] = useState(false);
 
-  // const [isClient, setIsClient] = React.useState("true");
-  // const [isExpert, setIsExpert] = React.useState("false");
+  const [isClient, setIsClient] = useState(false);
+  // const [isExpert, setIsExpert] = useState(false);
 
-  const [isLoader, setIsLoader] = React.useState(false);
+  const [isLoader, setIsLoader] = useState(false);
 
-  const onSubmitSignup = values => {
-    register(values)
+  const onSubmitSignup = (values, status) => {
+    register(values, status)
       .then(res => {
         console.log(res);
       })
@@ -97,7 +97,7 @@ export function App() {
   //       .finally(() => setIsLoader(false));
   //   }
   // }
-  // React.useEffect(() => {
+  // useEffect(() => {
   //   tokenCheck();
   //   if (loggedIn) {
   //     setIsLoader(true);
@@ -121,7 +121,7 @@ export function App() {
       />
       <Route
         path="/sign-up"
-        element={<Signup onSubmit={onSubmitSignup} />}
+        element={<Signup onSubmit={onSubmitSignup} isClient={isClient}/>}
       />
       <Route
         path="/sign-in"

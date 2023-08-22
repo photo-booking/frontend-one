@@ -1,14 +1,15 @@
+import React, {useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ResetPassword.css';
 import useValidation from '../../hooks/useValidation';
 import { FormAuth } from '../../components/FormAuth/FormAuth';
-import React from 'react';
 
 export const ResetPassword = (props) => {
   const navigate = useNavigate();
   const {onChange, values, errors, resetValidation, isFormValid} = useValidation();
   const {onSubmit} = props;
-  React.useEffect(()=> {
+  
+  useEffect(()=> {
     resetValidation({email: ''});
   }, []);
 

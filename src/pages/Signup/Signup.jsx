@@ -7,18 +7,18 @@ import useValidation from '../../hooks/useValidation';
 
 export const Signup = (props) => {
   const navigate = useNavigate();
-  const { onSubmit } = props;
+  const { onSubmit, isClient } = props;
   const { values, errors, onChange, resetValidation, isFormValid } = useValidation();
 
   useEffect(() => {
     resetValidation({ name: '', surname: '', email: '', password: '' });
   }, []);
 
-  const title = `Присоединиться как ${true ? 'заказчик' : 'специалист'}`;
+  const title = `Присоединиться как ${isClient ? 'заказчик' : 'специалист'}`;
 
   const handleSubmitSignup = (evt) => {
     evt.preventDefault();
-    onSubmit(values);
+    onSubmit(values, isClient);
   }
 
   return (
