@@ -51,7 +51,7 @@ export const ResetPassword = props => {
             </>
           }
           buttonTitle={'Отправить письмо'}
-          onSubmit={handleSubmitResetPassword}
+          onSubmit={handleSubmitSendEmailToResetPassword}
           isFormValid={isFormValid}
         />
         <button onClick={() => navigate('/sign-in')}>Вернуться назад</button>
@@ -59,7 +59,7 @@ export const ResetPassword = props => {
     );
   } else if (isEmailSend) {
     return (
-      <div>
+      <div className={'resetPassword-container'}>
         <img
           src={ok_image}
           alt="ok"
@@ -104,7 +104,7 @@ export const ResetPassword = props => {
     )
   } else if (isPasswordReset) {
     return (
-      <div>
+      <div className={'resetPassword-container'}>
         <img
           src={ok_image}
           alt="ok"
