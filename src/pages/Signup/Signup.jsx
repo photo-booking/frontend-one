@@ -6,11 +6,10 @@ import { FormAuth } from '../../components/FormAuth/FormAuth';
 import useValidation from '../../hooks/useValidation';
 
 export const Signup = props => {
-
-  const { onSubmit, onSubmitJoin, isClient, isExpert } = props;
+  const { onSubmit, onSubmitJoin, isClient } = props;
   const { values, errors, onChange, resetValidation, isFormValid } = useValidation();
   const title = `Присоединиться как ${isClient ? 'заказчик' : 'специалист'}`;
-  
+
   const handleSubmitSignup = evt => {
     evt.preventDefault();
     onSubmit(values, isClient);
@@ -18,15 +17,14 @@ export const Signup = props => {
 
   const handleSubmitJoin = evt => {
     evt.preventDefault();
-    onSubmitJoin();
-  }
+    onSubmitJoin(values);
+  };
 
   useEffect(() => {
-    resetValidation({ name: '', surname: '', email: '', password: '' });
+    resetValidation({ name: '', surname: '', email: '', password: '',client: '', expert: '', type: '' });
   }, []);
 
-
-  if (isClient || isExpert) {
+  if (isClient !== undefined) {
     return (
       <div className="signup">
         <h1>{title}</h1>
@@ -122,10 +120,12 @@ export const Signup = props => {
 
             <div className="signup__input-container">
               <input
-                type="checkbox"
+                type="radio"
                 id="client"
-                name="client"
-                className="signup__input-checkbox"
+                name="type"
+                value="client"
+                onChange={onChange}
+                className="signup__input-radio"
               />
               <label
                 htmlFor="client"
@@ -137,10 +137,12 @@ export const Signup = props => {
 
             <div className="signup__input-container">
               <input
-                type="checkbox"
+                type="radio"
                 id="expert"
-                name="expert"
-                className="signup__input-checkbox"
+                name="type"
+                value="expert"
+                onChange={onChange}
+                className="signup__input-radio"
               />
               <label
                 htmlFor="expert"
@@ -156,6 +158,5 @@ export const Signup = props => {
         isFormValid={isFormValid}
       />
     );
-  }      
-   
+  }
 };

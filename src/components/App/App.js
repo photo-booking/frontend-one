@@ -23,8 +23,7 @@ export function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [regedIn, setRegedIn] = useState(false);
 
-  const [isClient, setIsClient] = useState(false);
-  const [isExpert, setIsExpert] = useState(false);
+  const [isClient, setIsClient] = useState(undefined);
 
   const [isLoader, setIsLoader] = useState(false);
 
@@ -38,9 +37,10 @@ export function App() {
       });
   };
 
-  const onSubmitJoin = () => {
-    setIsClient(true);
-    setIsExpert(true);
+  const onSubmitJoin = (values) => {
+    if (values.type === 'client') {
+      setIsClient(true);
+    } else { setIsClient(false); }
   }
 
   const onSubmitSignin = values => {
@@ -132,8 +132,6 @@ export function App() {
             onSubmitJoin={onSubmitJoin}
             isClient={isClient}
             setIsClient={setIsClient}
-            isExpert={isExpert}
-            setIsExpert={setIsExpert}
           />
         }
       />
