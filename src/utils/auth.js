@@ -66,8 +66,8 @@ export function loginVk(param) {
 }
 
 //Сбросить пароль: отправить письмо 
-export function resetPassword(email) {
-  return fetch(`${BASE_URL}/users/reset_password`, {
+export function sendEmailToResetPassword(email) {
+  return fetch(`${BASE_URL}/users/reset_password/`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({ email: email })
@@ -80,7 +80,17 @@ export function resetPassword(email) {
 
 
 //Сбросить пароль: отправить новый пароль
-
+export function resetPassword(password) {
+  return fetch(`${BASE_URL}/users/reset_password_confirm/`, {
+    method: 'POST',
+    headers: HEADERS,
+    body: JSON.stringify({ password: password })
+  })
+    .then(res => getResponseData(res))
+    .then(res => {
+      console.log(res);
+    });
+}
 
 
 //Проверить токен на валидность

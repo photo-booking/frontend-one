@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { register, login, loginGoogle, loginVk, resetPassword, checkToken } from '../../utils/auth';
+import {
+  register,
+  login,
+  loginGoogle,
+  loginVk,
+  resetPassword,
+  sendEmailToResetPassword,
+  checkToken
+} from '../../utils/auth';
 
 import { Signin } from '../../pages/Signin/Signin';
 import { Signup } from '../../pages/Signup/Signup';
@@ -24,6 +32,8 @@ export function App() {
   const [regedIn, setRegedIn] = useState(false);
 
   const [isClient, setIsClient] = useState(undefined);
+  const [isEmailSend, setIsEmailSend] = useState(false);
+  const [isPasswordReset, setIsPasswordReset] = useState(false);
 
   const [isLoader, setIsLoader] = useState(false);
 
@@ -37,11 +47,13 @@ export function App() {
       });
   };
 
-  const onSubmitJoin = (values) => {
+  const onSubmitJoin = values => {
     if (values.type === 'client') {
       setIsClient(true);
-    } else { setIsClient(false); }
-  }
+    } else {
+      setIsClient(false);
+    }
+  };
 
   const onSubmitSignin = values => {
     login(values)
@@ -53,10 +65,22 @@ export function App() {
       });
   };
 
+  const onSubmitSendEmailToResetPassword = values => {
+    sendEmailToResetPassword(values)
+      .then(res => {
+        console.log(res);
+        setIsEmailSend(true);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   const onSubmitResetPassword = values => {
     resetPassword(values)
       .then(res => {
         console.log(res);
+        setIsPasswordReset(true);
       })
       .catch(err => {
         console.log(err);
@@ -147,7 +171,14 @@ export function App() {
       />
       <Route
         path="/reset-password"
-        element={<ResetPassword onSubmit={onSubmitResetPassword} />}
+        element={
+          <ResetPassword
+            isEmailSend={isEmailSend}
+            isPasswordReset={isPasswordReset}
+            onSubmitResetPassword={onSubmitResetPassword}
+            onSubmitSendEmailToResetPassword={onSubmitSendEmailToResetPassword}
+          />
+        }
       />
       <Route
         path="/catalog"
