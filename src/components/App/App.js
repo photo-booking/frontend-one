@@ -41,6 +41,7 @@ export function App() {
     register(values, status)
       .then(res => {
         console.log(res);
+        //redirect to signin!!!
       })
       .catch(err => {
         console.log(err);
