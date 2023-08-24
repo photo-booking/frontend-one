@@ -1,69 +1,90 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import './Signin.css';
 import { AuthIntegration } from '../../components/AuthIntegration/AuthIntegration';
 import { FormAuth } from '../../components/FormAuth/FormAuth';
-import useValidation from '../../hooks/useValidation';
+import {
+  REG_EMAIL,
+  REG_PASSWORD,
+  ERR_MESSAGE_INVALIDEMAIL,
+  ERR_MESSAGE_INVALIDPASSWORD,
+  ERR_MESSAGE_REQUIRED
+} from '../../const/RegexConst';
 
-export const Signin = (props) => {
+export const Signin = props => {
   const navigate = useNavigate();
   const location = useLocation();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isValid }
+  } = useForm({ mode: 'onChange' });
   const { onSubmit, signinGoogle, signinVk } = props;
-  const { values, errors, onChange, resetValidation, isFormValid } =
-  useValidation();
 
-  useEffect(()=> {
-    resetValidation({email: '', password: ''});
+  useEffect(() => {
     // signinGoogle(new URLSearchParams(location.hash).get("access_token"));
     // signinVk(new URLSearchParams(location.search).get("code"));
-  },[])
+  }, []);
 
-  const handleSubmitSignin = (evt) => {
-    evt.preventDefault();
+  const handleSubmitSignin = values => {
     onSubmit(values);
-  }
+    reset();
+  };
 
   return (
     <div className="signin">
       <h1>Войти в аккаунт</h1>
       <AuthIntegration />
       <FormAuth
-        child={<>
-        <label
-          htmlFor="reg-email"
-          className=""
-        >
-          Email
-          <input
-            className=""
-            id="reg-email"
-            name="email"
-            type="email"
-            onChange={onChange}
-            value={values.email || ''}
-          />
-          <span className="">{errors.email || ''}</span>
-        </label>
-        <label
-          htmlFor="reg-pass"
-          className=""
-        >
-          Пароль
-          <input
-            className=""
-            id="reg-pass"
-            name="password"
-            type="password"
-            onChange={onChange}
-            value={values.password || ''}
-            required
-          />
-          <span className="">{errors.password || ''}</span>
-        </label>
-        </>}
+        child={
+          <>
+            <label
+              htmlFor="email"
+              className="form-auth__label"
+            >
+              Email
+              <input
+                className=""
+                id="email"
+                type="email"
+                {...register('email', {
+                  required: ERR_MESSAGE_REQUIRED,
+                  pattern: {
+                    value: REG_EMAIL,
+                    message: ERR_MESSAGE_INVALIDEMAIL
+                  }
+                })}
+              />
+              <span className="form-auth__err">{errors?.email && errors.email.message}</span>
+            </label>
+            <label
+              htmlFor="password"
+              className="form-auth__label"
+            >
+              Пароль
+              <input
+                className=""
+                id="password"
+                type="password"
+                minLength="8"
+                maxLength="50"
+                {...register('password', {
+                  required: ERR_MESSAGE_REQUIRED,
+                  pattern: {
+                    value: REG_PASSWORD,
+                    message: ERR_MESSAGE_INVALIDPASSWORD
+                  }
+                })}
+              />
+              <span className="form-auth__err">{errors?.password && errors.password.message}</span>
+            </label>
+          </>
+        }
         buttonTitle={'Войти'}
-        onSubmit={handleSubmitSignin}
-        isFormValid={isFormValid}
+        onSubmit={handleSubmit(handleSubmitSignin)}
+        isFormValid={isValid}
       />
       {/* передать пропсы */}
       <button onClick={() => navigate('/reset-password')}>Забыли пароль?</button>

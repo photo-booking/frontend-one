@@ -1,27 +1,36 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import './ResetPassword.css';
-import useValidation from '../../hooks/useValidation';
 import { FormAuth } from '../../components/FormAuth/FormAuth';
 import ok_image from '../../images/Ok.svg';
+import {
+  REG_EMAIL,
+  REG_PASSWORD,
+  ERR_MESSAGE_INVALIDEMAIL,
+  ERR_MESSAGE_INVALIDPASSWORD,
+  ERR_MESSAGE_REQUIRED
+} from '../../const/RegexConst';
 
 export const ResetPassword = props => {
   const navigate = useNavigate();
-  const { onChange, values, errors, resetValidation, isFormValid } = useValidation();
-  const { isEmailSend, isPasswordReset, onSubmitResetPassword, onSubmitSendEmailToResetPassword } = props;
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isValid }
+  } = useForm({ mode: 'onChange' });
+  const { isEmailSend, isPasswordReset, onSubmitResetPassword, onSubmitSendEmailToResetPassword } =
+    props;
 
-  useEffect(() => {
-    resetValidation({ email: '', password: '' });
-  }, []);
-
-  const handleSubmitSendEmailToResetPassword = evt => {
-    evt.preventDefault();
+  const handleSubmitSendEmailToResetPassword = values => {
     onSubmitSendEmailToResetPassword(values);
+    reset();
   };
 
-  const handleSubmitResetPassword = evt => {
-    evt.preventDefault();
+  const handleSubmitResetPassword = values => {
     onSubmitResetPassword(values);
+    reset();
   };
 
   if (!isEmailSend) {
@@ -34,25 +43,30 @@ export const ResetPassword = props => {
             <>
               <label
                 htmlFor="sendEmail"
-                className=""
+                className="form-auth__label"
               >
                 Email
                 <input
                   className=""
-                  id="sendEmail"
-                  name="sendEmail"
                   type="email"
-                  onChange={onChange}
-                  value={values.sendEmail || ''}
-                  required
+                  id="sendEmail"
+                  {...register('sendEmail', {
+                    required: ERR_MESSAGE_REQUIRED,
+                    pattern: {
+                      value: REG_EMAIL,
+                      message: ERR_MESSAGE_INVALIDEMAIL
+                    }
+                  })}
                 />
-                <span className="">{errors.sendEmail || ''}</span>
+                <span className="form-auth__err">
+                  {errors?.sendEmail && errors.sendEmail.message}
+                </span>
               </label>
             </>
           }
           buttonTitle={'Отправить письмо'}
-          onSubmit={handleSubmitSendEmailToResetPassword}
-          isFormValid={isFormValid}
+          onSubmit={handleSubmit(handleSubmitSendEmailToResetPassword)}
+          isFormValid={isValid}
         />
         <button onClick={() => navigate('/sign-in')}>Вернуться назад</button>
       </div>
@@ -80,37 +94,31 @@ export const ResetPassword = props => {
             <>
               <label
                 htmlFor="resetPassword"
-                className=""
+                className="form-auth__label"
               >
                 Новый пароль
                 <input
                   className=""
-                  id="resetPassword"
-                  name="resetPassword"
                   type="password"
-                  onChange={onChange}
-                  value={values.resetPassword || ''}
-                  required
+                  id="resetPassword"
+                  {...register('resetPassword', {
+                    required: ERR_MESSAGE_REQUIRED,
+                    pattern: {
+                      value: REG_PASSWORD,
+                      message: ERR_MESSAGE_INVALIDPASSWORD
+                    }
+                  })}
                 />
-                <span className="">{errors.resetPassword || ''}</span>
+                <span className="form-auth__err">
+                  {errors?.resetPassword && errors.resetPassword.message}
+                </span>
               </label>
             </>
           }
           buttonTitle={'Сбросить пароль'}
-          onSubmit={handleSubmitResetPassword}
-          isFormValid={isFormValid}
+          onSubmit={handleSubmit(handleSubmitResetPassword)}
+          isFormValid={isValid}
         />
-      </div>
-    )
-  } else if (isPasswordReset) {
-    return (
-      <div className={'resetPassword-container'}>
-        <img
-          src={ok_image}
-          alt="ok"
-        />
-        <h1>Пароль успешно сброшен</h1>
-        <button onClick={() => navigate('/sign-in')}>Войти в аккаунт</button>
       </div>
     );
   }

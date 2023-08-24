@@ -1,28 +1,38 @@
-import React, { useEffect } from 'react';
-
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import './Signup.css';
 import { AuthIntegration } from '../../components/AuthIntegration/AuthIntegration';
 import { FormAuth } from '../../components/FormAuth/FormAuth';
-import useValidation from '../../hooks/useValidation';
+import {
+  REG_NAME,
+  REG_SURNAME,
+  REG_EMAIL,
+  REG_PASSWORD,
+  ERR_MESSAGE_INVALIDTEXT,
+  ERR_MESSAGE_INVALIDEMAIL,
+  ERR_MESSAGE_INVALIDPASSWORD,
+  ERR_MESSAGE_REQUIRED
+} from '../../const/RegexConst';
 
 export const Signup = props => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isValid }
+  } = useForm({ mode: 'onChange' });
   const { onSubmit, onSubmitJoin, isClient } = props;
-  const { values, errors, onChange, resetValidation, isFormValid } = useValidation();
   const title = `Присоединиться как ${isClient ? 'заказчик' : 'специалист'}`;
 
-  const handleSubmitSignup = evt => {
-    evt.preventDefault();
+  const handleSubmitSignup = values => {
     onSubmit(values, isClient);
+    reset();
   };
 
-  const handleSubmitJoin = evt => {
-    evt.preventDefault();
+  const handleSubmitJoin = values => {
     onSubmitJoin(values);
+    reset();
   };
-
-  useEffect(() => {
-    resetValidation({ name: '', surname: '', email: '', password: '',client: '', expert: '', type: '' });
-  }, []);
 
   if (isClient !== undefined) {
     return (
@@ -33,77 +43,94 @@ export const Signup = props => {
           child={
             <>
               <label
-                htmlFor="reg-name"
-                className=""
+                htmlFor="name"
+                className="form-auth__label"
               >
                 Имя
                 <input
                   className=""
-                  id="reg-name"
-                  name="name"
                   type="text"
-                  onChange={onChange}
-                  value={values.name || ''}
-                  minLength="2"
-                  maxLength="30"
-                  required
+                  id="name"
+                  minLength="1"
+                  maxLength="50"
+                  {...register('name', {
+                    required: ERR_MESSAGE_REQUIRED,
+                    pattern: {
+                      value: REG_NAME,
+                      message: ERR_MESSAGE_INVALIDTEXT
+                    }
+                  })}
                 />
-                <span className="">{errors.name || ''}</span>
+                <span className="form-auth__err">{errors?.name && errors.name.message}</span>
               </label>
               <label
                 htmlFor="reg-surname"
-                className=""
+                className="form-auth__label"
               >
                 Фамилия
                 <input
                   className=""
-                  id="reg-surname"
-                  name="surname"
                   type="text"
-                  onChange={onChange}
-                  value={values.surname || ''}
-                  minLength="2"
-                  maxLength="30"
-                  required
+                  id="surname"
+                  minLength="1"
+                  maxLength="50"
+                  {...register('surname', {
+                    required: ERR_MESSAGE_REQUIRED,
+                    pattern: {
+                      value: REG_SURNAME,
+                      message: ERR_MESSAGE_INVALIDTEXT
+                    }
+                  })}
                 />
-                <span className="">{errors.surname || ''}</span>
+                <span className="form-auth__err">{errors?.surname && errors.surname.message}</span>
               </label>
               <label
-                htmlFor="reg-email"
-                className=""
+                htmlFor="email"
+                className="form-auth__label"
               >
                 Email
                 <input
                   className=""
-                  id="reg-email"
-                  name="email"
                   type="email"
-                  onChange={onChange}
-                  value={values.email || ''}
+                  id="email"
+                  {...register('email', {
+                    required: ERR_MESSAGE_REQUIRED,
+                    pattern: {
+                      value: REG_EMAIL,
+                      message: ERR_MESSAGE_INVALIDEMAIL
+                    }
+                  })}
                 />
-                <span className="">{errors.email || ''}</span>
+                <span className="form-auth__err">{errors?.email && errors.email.message}</span>
               </label>
               <label
-                htmlFor="reg-pass"
-                className=""
+                htmlFor="password"
+                className="form-auth__label"
               >
                 Пароль
                 <input
                   className=""
-                  id="reg-pass"
-                  name="password"
                   type="password"
-                  onChange={onChange}
-                  value={values.password || ''}
-                  required
+                  id="password"
+                  minLength="8"
+                  maxLength="50"
+                  {...register('password', {
+                    required: ERR_MESSAGE_REQUIRED,
+                    pattern: {
+                      value: REG_PASSWORD,
+                      message: ERR_MESSAGE_INVALIDPASSWORD
+                    }
+                  })}
                 />
-                <span className="">{errors.password || ''}</span>
+                <span className="form-auth__err">
+                  {errors?.password && errors.password.message}
+                </span>
               </label>
             </>
           }
           buttonTitle={'Присоединиться'}
-          onSubmit={handleSubmitSignup}
-          isFormValid={isFormValid}
+          onSubmit={handleSubmit(handleSubmitSignup)}
+          isFormValid={isValid}
         />
       </div>
     );
@@ -124,7 +151,6 @@ export const Signup = props => {
                 id="client"
                 name="type"
                 value="client"
-                onChange={onChange}
                 className="signup__input-radio"
               />
               <label
@@ -141,7 +167,6 @@ export const Signup = props => {
                 id="expert"
                 name="type"
                 value="expert"
-                onChange={onChange}
                 className="signup__input-radio"
               />
               <label
@@ -155,7 +180,7 @@ export const Signup = props => {
         }
         buttonTitle={'Присоединиться'}
         onSubmit={handleSubmitJoin}
-        isFormValid={isFormValid}
+        isFormValid={isValid}
       />
     );
   }
