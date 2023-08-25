@@ -18,7 +18,7 @@ export const ResetPassword = props => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isValid }
+    formState: { errors }
   } = useForm({ mode: 'onChange' });
   const { isEmailSend, isPasswordReset, onSubmitResetPassword, onSubmitSendEmailToResetPassword } =
     props;
@@ -79,7 +79,7 @@ export const ResetPassword = props => {
             }
             buttonTitle={'Отправить письмо'}
             onSubmit={handleSubmit(handleSubmitSendEmailToResetPassword)}
-            isFormValid={isValid}
+            err={errors}
           />
           <button onClick={() => navigate('/sign-in')}>Вернуться назад</button>
         </div>
@@ -117,7 +117,7 @@ export const ResetPassword = props => {
             }
             buttonTitle={'Сбросить пароль'}
             onSubmit={handleSubmit(handleSubmitResetPassword)}
-            isFormValid={isValid}
+            err={errors}
           />
         </div>
       )}

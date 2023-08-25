@@ -19,7 +19,7 @@ export const Signin = props => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isValid }
+    formState: { errors }
   } = useForm({ mode: 'onChange' });
   const { onSubmit, signinGoogle, signinVk } = props;
 
@@ -84,7 +84,7 @@ export const Signin = props => {
         }
         buttonTitle={'Войти'}
         onSubmit={handleSubmit(handleSubmitSignin)}
-        isFormValid={isValid}
+        err={errors}
       />
       {/* передать пропсы */}
       <button onClick={() => navigate('/reset-password')}>Забыли пароль?</button>

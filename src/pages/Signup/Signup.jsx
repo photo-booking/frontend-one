@@ -133,7 +133,7 @@ export const Signup = props => {
             }
             buttonTitle={'Присоединиться'}
             onSubmit={handleSubmit(handleSubmitSignup)}
-            isFormValid={isValid}
+            err={errors}
           />
         </div>
       ) : (
@@ -153,6 +153,7 @@ export const Signup = props => {
                   name="type"
                   value="client"
                   className="signup__input-radio"
+                  required
                 />
                 <label
                   htmlFor="client"
@@ -181,7 +182,7 @@ export const Signup = props => {
           }
           buttonTitle={'Присоединиться'}
           onSubmit={handleSubmitJoin}
-          isFormValid={isValid}
+          err={''}
         />
       )}
     </>
