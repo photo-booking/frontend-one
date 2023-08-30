@@ -23,6 +23,7 @@
     line-height: 36px;
     letter-spacing: -1.5px;
     max-width: 437px;
+    margin-bottom: 52px;
 }
 
 .signup__input-container {
@@ -35,13 +36,7 @@
     border: 1px solid #E0E0E0;
     background: none;
     box-sizing: border-box;
-}
-
-.signup__input-container:first-of-type{
-    margin-top: 52px;
-}
-.signup__input-container:last-of-type {
-    margin-bottom: 52px;
+    cursor: pointer;
 }
 
 .signup__input-container_check {

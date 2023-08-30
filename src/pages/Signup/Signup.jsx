@@ -23,7 +23,7 @@ export const Signup = props => {
     formState: { errors, isValid }
   } = useForm({ mode: 'onChange' });
   const { onSubmit, onSubmitJoin, isClient } = props;
-  const title = `Присоединиться как ${isClient ? 'заказчик' : 'специалист'}`;
+  const title = `Зарегистрироваться как ${isClient ? 'заказчик' : 'специалист'}`;
 
   const watchType = watch('type', undefined);
 
@@ -73,8 +73,9 @@ export const Signup = props => {
                 >
                   Имя
                   <input
-                    className=""
+                    className="form-auth__input"
                     type="text"
+                    placeholder="Дмитрий"
                     id="name"
                     minLength="1"
                     maxLength="50"
@@ -94,8 +95,9 @@ export const Signup = props => {
                 >
                   Фамилия
                   <input
-                    className=""
+                    className="form-auth__input"
                     type="text"
+                    placeholder="Иванов"
                     id="surname"
                     minLength="1"
                     maxLength="50"
@@ -117,8 +119,9 @@ export const Signup = props => {
                 >
                   Email
                   <input
-                    className=""
+                    className="form-auth__input"
                     type="email"
+                    placeholder="dmitrii.ivanov@example.com"
                     id="email"
                     {...register('email', {
                       required: ERR_MESSAGE_REQUIRED,
@@ -136,7 +139,7 @@ export const Signup = props => {
                 >
                   Пароль
                   <input
-                    className=""
+                    className="form-auth__input"
                     type="password"
                     id="password"
                     minLength="8"
@@ -155,7 +158,7 @@ export const Signup = props => {
                 </label>
               </>
             }
-            buttonTitle={'Присоединиться'}
+            buttonTitle={'Создать аккаунт'}
             onSubmit={handleSubmit(handleSubmitSignup)}
             err={errors}
           />
@@ -165,7 +168,7 @@ export const Signup = props => {
           <FormAuth
             child={
               <fieldset className="signup__fieldset">
-                <legend className="signup__title">Какая у вас цель?</legend>
+                <legend className="form-auth__title">Какая у вас цель?</legend>
                 <div className={inputContainerExpertClassName}>
                   <input
                     type="radio"
