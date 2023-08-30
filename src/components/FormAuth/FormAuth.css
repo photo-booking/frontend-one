@@ -57,16 +57,10 @@
   background-color: #E0E0E0;
   color: #808080;
   cursor: default;
-  cursor: default;
 }
 
 .form-auth__button_sign {
   background: none;
-<<<<<<< HEAD
-  cursor: pointer;
-  border: none;
-=======
->>>>>>> fcf02fa (fix)
   cursor: pointer;
   border: none;
   border-bottom: 1px solid #0C1200;

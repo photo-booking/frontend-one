@@ -18,7 +18,6 @@ export const Signin = props => {
   const location = useLocation();
   const {
     watch,
-    watch,
     register,
     handleSubmit,
     reset,
