@@ -1,3 +1,6 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
 .filter-form {
   max-width: 208px;
 }
@@ -37,6 +40,8 @@
   font-size: 13px;
   line-height: 20px;
   color:#757575;
+
+  /* position: relative; */
 }
 
 
@@ -194,3 +199,51 @@
     color: #000000;
   }
   
+
+
+
+
+
+
+
+
+
+
+.fild {
+  /* display: flex; */
+  width: 157px;
+  /* flex-wrap: wrap; */
+}
+
+
+.checkbox{
+    display: none;
+}
+ 
+
+   .checkbox-label {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 12px;
+    display: block;
+    width: max-content;
+   }
+
+   .checkbox-label::before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin-right: 8px;
+    padding: 0;
+   }
+
+
+   .checkbox:checked + .checkbox-label::before{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../../images/checkbox_hecked.svg);
+   }
