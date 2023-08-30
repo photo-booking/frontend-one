@@ -16,12 +16,22 @@ export const Signin = props => {
   const navigate = useNavigate();
   const location = useLocation();
   const {
+    watch,
     register,
     handleSubmit,
     reset,
     formState: { errors }
   } = useForm({ mode: 'onChange' });
   const { onSubmit, signinGoogle, signinVk } = props;
+  const watchAllFields = watch();
+
+  const formAuthInputClassName = name => {
+    return `form-auth__input ${errors[name]?.message ? 'form-auth__input_err' : ''} ${
+      watchAllFields[name]?.length > 0 && errors[name]?.message === undefined
+        ? 'form-auth__input_ok'
+        : ''
+    }`;
+  };
 
   useEffect(() => {
     // signinGoogle(new URLSearchParams(location.hash).get("access_token"));

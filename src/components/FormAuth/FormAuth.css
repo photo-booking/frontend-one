@@ -48,10 +48,14 @@
 .form-auth__button_submit_disabled {
   background-color: #E0E0E0;
   color: #808080;
+  cursor: default;
 }
 
-.form-auth__button_signin {
+.form-auth__button_sign {
   background: none;
+  align-self: flex-end;
+  cursor: pointer;
+  border: none;
   border-bottom: 1px solid #0C1200;
 }
 
@@ -63,17 +67,25 @@
   font-style: normal;
   font-weight: 600;
   line-height: 20px;
-  margin-bottom: 4px;
+  margin-bottom: 7px;
 }
 
 .form-auth__input {
   width: 360px;
+  height: 44px;
   padding: 12px 16px;
   box-sizing: border-box;
   border-radius: 4px;
   border: 1px solid #E0E0E0;
   background: #FFF;
+}
 
+.form-auth__input_err {
+  border: 1px solid #FA3A19;
+}
+
+.form-auth__input_ok {
+  border: 1px solid #14C714;
 }
 
 .form-auth__title {
@@ -90,7 +102,7 @@
 }
 
 .form-auth__err {
-  height: 30px;
+  height: 16px;
   width: 359px;
-  border: 1px solid red;
+  color: #BA1B00;
 }
