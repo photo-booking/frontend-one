@@ -3,6 +3,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+}
+
+.form-auth__container {
+  background-color: #FFF;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 512px;
+  padding: 44px 0px 52px 0px;
+  margin: 48px auto;
+  font-family: 'Aneliza';
 }
 
 .form-auth__button_submit,
@@ -12,9 +26,9 @@
 }
 
 .form-auth__button_submit {
-  background-color: #0F77FF;
+  background-color: #AFFA00;
   border-radius: 4px;
-  color: white;
+  color: #0C1200;
   display: flex;
   width: 359px;
   padding: 12px 28px;
@@ -22,9 +36,14 @@
   align-items: center;
 }
 
+.form-auth__button_submit_disabled {
+  background-color: #E0E0E0;
+  color: #808080;
+}
+
 .form-auth__button_signin {
   background: none;
-  color: #0F77FF;
+  border-bottom: 1px solid #0C1200;
 }
 
 .form-auth__label {
@@ -32,8 +51,13 @@
   flex-direction: column;
 }
 
+.form-auth__title {
+  text-align: center;
+}
+
 .form-auth__err {
   height: 30px;
   width: 359px;
   border: 1px solid red;
 }
+
