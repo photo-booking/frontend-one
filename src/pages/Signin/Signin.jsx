@@ -34,8 +34,8 @@ export const Signin = props => {
   };
 
   return (
-    <div className="signin">
-      <h1>Войти в аккаунт</h1>
+    <div className="signin form-auth__container">
+      <h1 className="form-auth__title">Войти в аккаунт</h1>
       <AuthIntegration />
       <FormAuth
         child={
@@ -86,7 +86,6 @@ export const Signin = props => {
         onSubmit={handleSubmit(handleSubmitSignin)}
         err={errors}
       />
-      {/* передать пропсы */}
       <button onClick={() => navigate('/reset-password')}>Забыли пароль?</button>
       <button onClick={() => navigate('/sign-up')}>Регистрация</button>
     </div>
