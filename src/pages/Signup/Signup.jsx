@@ -39,10 +39,14 @@ export const Signup = props => {
   };
 
   const inputContainerClientClassName = `signup__input-container ${
-    watchAllFields !== undefined && watchAllFields.type === 'client' ? 'signup__input-container_check' : ''
+    watchAllFields !== undefined && watchAllFields.type === 'client'
+      ? 'signup__input-container_check'
+      : ''
   } `;
   const inputContainerExpertClassName = `signup__input-container ${
-    watchAllFields !== undefined && watchAllFields.type === 'expert' ? 'signup__input-container_check' : ''
+    watchAllFields !== undefined && watchAllFields.type === 'expert'
+      ? 'signup__input-container_check'
+      : ''
   } `;
 
   const buttonTitle = () => {
@@ -173,6 +177,18 @@ export const Signup = props => {
             onSubmit={handleSubmit(handleSubmitSignup)}
             err={errors}
           />
+          <p>
+            Уже есть аккаунт?
+            <button
+              className="form-auth__button_sign"
+              onClick={evt => {
+                evt.preventDefault();
+                navigate('/sign-in');
+              }}
+            >
+              Войдите
+            </button>
+          </p>
         </div>
       ) : (
         <div className="form-auth__container">
