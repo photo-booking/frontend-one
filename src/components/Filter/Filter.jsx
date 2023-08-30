@@ -8,31 +8,29 @@ function Filter() {
       <form className="filter-form" >
       <p className="filter__type">Сортировка</p>
       <fieldset className="fild">
-      <label className="input">
-          <input type="radio" name="cost" />
-          Низкая стоимость
-        </label>
-        <label className="input">
-          <input type="radio" name="cost" />
-          Высокая стоимость
-        </label>
+      
+          <input type="radio" name="cost" id="expensive" className="ratio"/>
+          <label className="ratio-label" for="expensive">Низкая стоимость</label>
+       
+          <input type="radio" name="cost" id="cheap" className="ratio"/>
+          <label className="ratio-label" for="cheap">Высокая стоимость</label>
+        
       </fieldset>
 
       <p className="filter__type">Фильтры</p>
       <fieldset className="fild">
         <p className="filter__category">специалисты</p>
-        <label className="input">
-          <input type="radio" name="filter" />
-          Все
-        </label>
-        <label className="input">
-          <input type="radio" name="filter" />
-          Фотографы
-        </label>
-        <label className="input">
-          <input type="radio" name="filter" />
-          Видеографы
-        </label>
+       
+          <input type="radio" name="expert" id="all" className="ratio" />
+          <label className="ratio-label" for="all">Все</label>
+        
+          <input type="radio" name="expert" id="photographer" className="ratio"/>
+          <label className="ratio-label" for="photographer">Фотографы</label>
+        
+        
+          <input type="radio" name="expert" id="videographer" className="ratio"/>
+          <label className="ratio-label" for="videographer">Видеографы</label>
+        
       </fieldset>
 
       <fieldset className="fild">

@@ -10,13 +10,6 @@
   padding: 0;
 }
 
-.input {
-  display: block;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 20px;
-  margin-bottom: 12px;
-}
 .input:last-child {
   margin-bottom: 0;
 }
@@ -208,42 +201,73 @@
 
 
 
+/* чекбоксы */
 
 .fild {
   /* display: flex; */
-  width: 157px;
+  width: 100%;
   /* flex-wrap: wrap; */
 }
-
-
 .checkbox{
-    display: none;
+  display: none;
 }
- 
+.checkbox-label {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 12px;
+  display: block;
+  width: max-content;
+}
+.checkbox-label::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin-right: 8px;
+  padding: 0;
+}
+.checkbox:checked + .checkbox-label::before{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(../../images/checkbox_hecked.svg);
+}
 
-   .checkbox-label {
+
+
+
+
+/* радиокнопки */
+
+.ratio {
+  display: none;
+}
+
+.ratio-label {
+    display: block;
+    width: max-content;
     font-weight: 600;
     font-size: 16px;
     line-height: 20px;
     margin-bottom: 12px;
-    display: block;
-    width: max-content;
-   }
+}
 
-   .checkbox-label::before {
-    content: "";
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    margin-right: 8px;
-    padding: 0;
-   }
+.ratio-label::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  margin-right: 8px;
+  padding: 0;
+}
 
-
-   .checkbox:checked + .checkbox-label::before{
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url(../../images/checkbox_hecked.svg);
-   }
+.ratio:checked + .ratio-label::before{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(../../images/ratio-checked.svg);
+  border-color: #91E500;
+}
