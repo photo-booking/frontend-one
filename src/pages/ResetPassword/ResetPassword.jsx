@@ -15,6 +15,7 @@ import {
 export const ResetPassword = props => {
   const navigate = useNavigate();
   const {
+    watch,
     register,
     handleSubmit,
     reset,
@@ -22,6 +23,15 @@ export const ResetPassword = props => {
   } = useForm({ mode: 'onChange' });
   const { isEmailSend, isPasswordReset, onSubmitResetPassword, onSubmitSendEmailToResetPassword } =
     props;
+  const watchAllFields = watch();
+
+  const formAuthInputClassName = name => {
+    return `form-auth__input ${errors[name]?.message ? 'form-auth__input_err' : ''} ${
+      watchAllFields[name]?.length > 0 && errors[name]?.message === undefined
+        ? 'form-auth__input_ok'
+        : ''
+    }`;
+  };
 
   const handleSubmitSendEmailToResetPassword = values => {
     onSubmitSendEmailToResetPassword(values);
@@ -50,7 +60,9 @@ export const ResetPassword = props => {
       ) : (
         <div className="reset-password form-auth__container">
           <h1 className="form-auth__title">Сброс пароля</h1>
-          <h2>Введите email и мы отправим вам ссылку для сброса пароля</h2>
+          <h2 className="form-auth__subtitle">
+            Введите email и мы отправим письмо с ссылкой для создания нового пароля
+          </h2>
           <FormAuth
             child={
               <>
@@ -60,7 +72,7 @@ export const ResetPassword = props => {
                 >
                   Email
                   <input
-                    className=""
+                    className={formAuthInputClassName('sendEmail')}
                     type="email"
                     id="sendEmail"
                     {...register('sendEmail', {
@@ -81,7 +93,12 @@ export const ResetPassword = props => {
             onSubmit={handleSubmit(handleSubmitSendEmailToResetPassword)}
             err={errors}
           />
-          <button onClick={() => navigate('/sign-in')}>Вернуться назад</button>
+          <button
+            className="form-auth__button_sign"
+            onClick={() => navigate('/sign-in')}
+          >
+            Вернуться на страницу входа
+          </button>
         </div>
       )}
       {isPasswordReset ? (

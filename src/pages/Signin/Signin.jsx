@@ -46,7 +46,7 @@ export const Signin = props => {
   return (
     <>
       <div className="signin form-auth__container">
-        <h1 className="form-auth__title">Войти в аккаунт</h1>
+        <h1 className="form-auth__title">Вход в аккаунт</h1>
         <AuthIntegration />
         <FormAuth
           child={
@@ -57,7 +57,7 @@ export const Signin = props => {
               >
                 Email
                 <input
-                  className=""
+                  className={formAuthInputClassName('email')}
                   id="email"
                   type="email"
                   {...register('email', {
@@ -76,7 +76,7 @@ export const Signin = props => {
               >
                 Пароль
                 <input
-                  className=""
+                  className={formAuthInputClassName('password')}
                   id="password"
                   type="password"
                   minLength="8"
@@ -89,16 +89,34 @@ export const Signin = props => {
                     }
                   })}
                 />
-                <span className="form-auth__err">{errors?.password && errors.password.message}</span>
+                <span className="form-auth__err">
+                  {errors?.password && errors.password.message}
+                </span>
               </label>
+              <button
+                className="form-auth__button_sign form-auth__button_sign_left"
+                onClick={() => navigate('/reset-password')}
+              >
+                Забыли пароль?
+              </button>
             </>
           }
-          buttonTitle={'Войти'}
+          buttonTitle={'Войти в аккаунт'}
           onSubmit={handleSubmit(handleSubmitSignin)}
           err={errors}
         />
-        <button onClick={() => navigate('/reset-password')}>Забыли пароль?</button>
-        <button onClick={() => navigate('/sign-up')}>Регистрация</button>
+        <p className="form-auth__caption">
+          Нет аккаунта?
+          <button
+            className="form-auth__button_sign"
+            onClick={evt => {
+              evt.preventDefault();
+              navigate('/sign-up');
+            }}
+          >
+            Зарегистрируйтесь
+          </button>
+        </p>
       </div>
     </>
   );

@@ -33,7 +33,7 @@ export function App() {
   const [regedIn, setRegedIn] = useState(false);
 
   const [isClient, setIsClient] = useState(undefined);
-  const [isEmailSend, setIsEmailSend] = useState(true);//false
+  const [isEmailSend, setIsEmailSend] = useState(false);//false
   const [isPasswordReset, setIsPasswordReset] = useState(true);//false
 
   const [isLoader, setIsLoader] = useState(false);
