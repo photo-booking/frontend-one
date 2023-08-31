@@ -177,7 +177,7 @@ export const Signup = props => {
             onSubmit={handleSubmit(handleSubmitSignup)}
             err={errors}
           />
-          <p>
+          <p className="form-auth__caption">
             Уже есть аккаунт?
             <button
               className="form-auth__button_sign"
@@ -233,7 +233,7 @@ export const Signup = props => {
             onSubmit={handleSubmit(handleSubmitJoin)}
             err={''} //?????????
           />
-          <p>
+          <p className="form-auth__caption">
             Уже есть аккаунт?
             <button
               className="form-auth__button_sign"

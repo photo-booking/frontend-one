@@ -91,7 +91,7 @@ export const Signin = props => {
               <span className="form-auth__err">{errors?.password && errors.password.message}</span>
             </label>
             <button
-              className="form-auth__button_sign"
+              className="form-auth__button_sign form-auth__button_sign_left"
               onClick={() => navigate('/reset-password')}
             >
               Забыли пароль?
@@ -102,7 +102,7 @@ export const Signin = props => {
         onSubmit={handleSubmit(handleSubmitSignin)}
         err={errors}
       />
-      <p>
+      <p className="form-auth__caption">
         Нет аккаунта?
         <button
           className="form-auth__button_sign"
