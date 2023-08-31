@@ -51,13 +51,17 @@ export const ResetPassword = props => {
     }`;
   };
 
+  const compareInputValues = (firstInput, secondInput) => {
+    return (watchAllFields[firstInput] === watchAllFields[secondInput])
+  }
+
   const handleSubmitSendEmailToResetPassword = values => {
     onSubmitSendEmailToResetPassword(values);
     reset();
   };
 
   const handleSubmitResetPassword = values => {
-    onSubmitResetPassword(values);
+    onSubmitResetPassword(values, searchParam);
     reset();
   };
 
@@ -150,7 +154,7 @@ export const ResetPassword = props => {
               >
                 Новый пароль
                 <input
-                  className=""
+                  className={formAuthInputClassName('resetPassword')}
                   type="password"
                   id="resetPassword"
                   {...register('resetPassword', {
@@ -163,6 +167,29 @@ export const ResetPassword = props => {
                 />
                 <span className="form-auth__err">
                   {errors?.resetPassword && errors.resetPassword.message}
+                </span>
+              </label>
+
+              <label
+                htmlFor="repeatResetPassword"
+                className="form-auth__label"
+              >
+                Повторите пароль
+                <input
+                  className={formAuthInputClassName('repeatResetPassword')}
+                  type="password"
+                  id="repeatResetPassword"
+                  onChange={compareInputValues('resetPassword', 'repeatResetPassword')}
+                  {...register('repeatResetPassword', {
+                    required: ERR_MESSAGE_REQUIRED,
+                    pattern: {
+                      value: REG_PASSWORD,
+                      message: ERR_MESSAGE_INVALIDPASSWORD
+                    }
+                  })}
+                />
+                <span className="form-auth__err">
+                  {errors?.repeatResetPassword && errors.repeatResetPassword.message}
                 </span>
               </label>
             </>
