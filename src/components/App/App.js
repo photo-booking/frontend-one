@@ -80,8 +80,8 @@ export function App() {
       })
   };
 
-  const onSubmitResetPassword = values => {
-    resetPassword(values)
+  const onSubmitResetPassword = (values, param) => {
+    resetPassword(values, param)
       .then(res => {
         console.log(res);
         setIsPasswordReset(true);
