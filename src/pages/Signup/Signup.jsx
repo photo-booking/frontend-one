@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import './Signup.css';
+import showPassImage from '../../images/Show.svg';
 import { AuthIntegration } from '../../components/AuthIntegration/AuthIntegration';
 import { FormAuth } from '../../components/FormAuth/FormAuth';
 import {
@@ -25,6 +26,7 @@ export const Signup = props => {
     formState: { errors, isValid }
   } = useForm({ mode: 'onChange' });
   const navigate = useNavigate();
+  const [showPass, setShowPass] = useState(false);
   const { onSubmit, onSubmitJoin, isClient } = props;
   const title = `Зарегистрироваться как ${isClient ? 'заказчик' : 'специалист'}`;
 
@@ -71,6 +73,11 @@ export const Signup = props => {
   const handleSubmitJoin = values => {
     onSubmitJoin(values);
     reset();
+  };
+
+  const handleShowPassword = evt => {
+    evt.preventDefault();
+    setShowPass(!showPass);
   };
 
   return (
@@ -155,20 +162,32 @@ export const Signup = props => {
                   className="form-auth__label"
                 >
                   Пароль
-                  <input
-                    className={formAuthInputClassName('password')}
-                    type="password"
-                    id="password"
-                    minLength="8"
-                    maxLength="50"
-                    {...register('password', {
-                      required: ERR_MESSAGE_REQUIRED,
-                      pattern: {
-                        value: REG_PASSWORD,
-                        message: ERR_MESSAGE_INVALIDPASSWORD
-                      }
-                    })}
-                  />
+                  <div className="form-auth__input-container">
+                    <input
+                      className={formAuthInputClassName('password')}
+                      type={showPass ? 'text' : 'password'}
+                      id="password"
+                      minLength="8"
+                      maxLength="50"
+                      {...register('password', {
+                        required: ERR_MESSAGE_REQUIRED,
+                        pattern: {
+                          value: REG_PASSWORD,
+                          message: ERR_MESSAGE_INVALIDPASSWORD
+                        }
+                      })}
+                    />
+                    <button
+                      className="form-auth__button_show-pass"
+                      onClick={handleShowPassword}
+                    >
+                      <img
+                        src={showPassImage}
+                        alt="show password"
+                        className="form-auth__"
+                      />
+                    </button>
+                  </div>
                   <span className="form-auth__err">
                     {errors?.password && errors.password.message}
                   </span>
