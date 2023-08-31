@@ -53,10 +53,13 @@
 
 .form-auth__button_sign {
   background: none;
-  align-self: flex-end;
   cursor: pointer;
   border: none;
   border-bottom: 1px solid #0C1200;
+}
+
+.form-auth__button_sign_left {
+  align-self: flex-end;
 }
 
 .form-auth__label {
@@ -99,6 +102,21 @@
   line-height: 36px;
   /* 102.857% */
   letter-spacing: -1.4px;
+}
+
+.form-auth__subtitle {
+  font-family: Aneliza;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  width: 302px;
+  margin: 0 0 40px;
+}
+
+.form-auth__caption {
+  margin: 12px 0 0;
 }
 
 .form-auth__err {
