@@ -20,9 +20,17 @@
 }
 
 .form-auth__button_submit,
-.form-auth__button_signin {
+.form-auth__button_signin,
+.form-auth__button_show-pass {
   cursor: pointer;
   border: none;
+}
+
+.form-auth__button_show-pass{
+  background: none;
+  position: absolute;
+  top: 10px;
+  right: 16px;
 }
 
 .form-auth__button_submit {
@@ -129,4 +137,8 @@
   height: 16px;
   width: 359px;
   color: #BA1B00;
+}
+
+.form-auth__input-container{
+  position: relative;
 }

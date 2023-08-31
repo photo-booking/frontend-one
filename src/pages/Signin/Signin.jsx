@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import './Signin.css';
+import showPassImage from '../../images/Show.svg';
 import { AuthIntegration } from '../../components/AuthIntegration/AuthIntegration';
 import { FormAuth } from '../../components/FormAuth/FormAuth';
 import {
@@ -24,6 +25,7 @@ export const Signin = props => {
     formState: { errors }
   } = useForm({ mode: 'onChange' });
   const { onSubmit, signinGoogle, signinVk } = props;
+  const [showPass, setShowPass] = useState(false);
   const watchAllFields = watch();
 
   const formAuthInputClassName = name => {
@@ -42,6 +44,11 @@ export const Signin = props => {
   const handleSubmitSignin = values => {
     onSubmit(values);
     reset();
+  };
+
+  const handleShowPassword = evt => {
+    evt.preventDefault();
+    setShowPass(!showPass);
   };
 
   return (
@@ -75,20 +82,31 @@ export const Signin = props => {
               className="form-auth__label"
             >
               Пароль
-              <input
-                className={formAuthInputClassName('password')}
-                id="password"
-                type="password"
-                minLength="8"
-                maxLength="50"
-                {...register('password', {
-                  required: ERR_MESSAGE_REQUIRED,
-                  pattern: {
-                    value: REG_PASSWORD,
-                    message: ERR_MESSAGE_INVALIDPASSWORD
-                  }
-                })}
-              />
+              <div className="form-auth__input-container">
+                <input
+                  className={formAuthInputClassName('password')}
+                  id="password"
+                  type={showPass ? 'text' : 'password'}
+                  minLength="8"
+                  maxLength="50"
+                  {...register('password', {
+                    required: ERR_MESSAGE_REQUIRED,
+                    pattern: {
+                      value: REG_PASSWORD,
+                      message: ERR_MESSAGE_INVALIDPASSWORD
+                    }
+                  })}
+                />
+                <button
+                  className="form-auth__button_show-pass"
+                  onClick={handleShowPassword}
+                >
+                  <img
+                    src={showPassImage}
+                    alt="show password"
+                  />
+                </button>
+              </div>
               <span className="form-auth__err">{errors?.password && errors.password.message}</span>
             </label>
             <button
