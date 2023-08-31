@@ -80,11 +80,15 @@ export function sendEmailToResetPassword(email) {
 
 
 //Сбросить пароль: отправить новый пароль
-export function resetPassword(password) {
+export function resetPassword(values, param) {
   return fetch(`${BASE_URL}/users/reset_password_confirm/`, {
     method: 'POST',
     headers: HEADERS,
-    body: JSON.stringify({ password: password })
+    body: JSON.stringify({ newpassword: values.resetPassword,
+                           repeatnewpassword: values.repeatResetPassword,
+                           uid: param.uid,
+                           token: param.token
+                        })   
   })
     .then(res => getResponseData(res))
     .then(res => {
