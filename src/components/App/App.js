@@ -34,7 +34,7 @@ export function App() {
 
   const [isClient, setIsClient] = useState(undefined);
   const [isEmailSend, setIsEmailSend] = useState(false);//false
-  const [isPasswordReset, setIsPasswordReset] = useState(true);//false
+  const [isPasswordReset, setIsPasswordReset] = useState(false);//false
 
   const [isLoader, setIsLoader] = useState(false);
 
@@ -75,7 +75,10 @@ export function App() {
       })
       .catch(err => {
         console.log(err);
-      });
+      })
+      .finally(()=> {
+        setIsEmailSend(false)
+      })
   };
 
   const onSubmitResetPassword = values => {
@@ -86,7 +89,10 @@ export function App() {
       })
       .catch(err => {
         console.log(err);
-      });
+      })
+      .finally(()=> {
+        setIsPasswordReset(false)
+      })
   };
 
   const signinGoogle = param => {
