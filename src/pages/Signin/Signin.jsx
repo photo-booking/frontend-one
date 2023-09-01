@@ -11,6 +11,8 @@ import {
   ERR_MESSAGE_INVALIDPASSWORD,
   ERR_MESSAGE_REQUIRED
 } from '../../const/RegexConst';
+import { HeaderRegistration } from '../../components/Header-registration/header-registration';
+import { HeaderStart } from '../../components/Header-start/header-start';
 
 export const Signin = props => {
   const navigate = useNavigate();
@@ -34,60 +36,63 @@ export const Signin = props => {
   };
 
   return (
-    <div className="signin form-auth__container">
-      <h1 className="form-auth__title">Войти в аккаунт</h1>
-      <AuthIntegration />
-      <FormAuth
-        child={
-          <>
-            <label
-              htmlFor="email"
-              className="form-auth__label"
-            >
-              Email
-              <input
-                className=""
-                id="email"
-                type="email"
-                {...register('email', {
-                  required: ERR_MESSAGE_REQUIRED,
-                  pattern: {
-                    value: REG_EMAIL,
-                    message: ERR_MESSAGE_INVALIDEMAIL
-                  }
-                })}
-              />
-              <span className="form-auth__err">{errors?.email && errors.email.message}</span>
-            </label>
-            <label
-              htmlFor="password"
-              className="form-auth__label"
-            >
-              Пароль
-              <input
-                className=""
-                id="password"
-                type="password"
-                minLength="8"
-                maxLength="50"
-                {...register('password', {
-                  required: ERR_MESSAGE_REQUIRED,
-                  pattern: {
-                    value: REG_PASSWORD,
-                    message: ERR_MESSAGE_INVALIDPASSWORD
-                  }
-                })}
-              />
-              <span className="form-auth__err">{errors?.password && errors.password.message}</span>
-            </label>
-          </>
-        }
-        buttonTitle={'Войти'}
-        onSubmit={handleSubmit(handleSubmitSignin)}
-        err={errors}
-      />
-      <button onClick={() => navigate('/reset-password')}>Забыли пароль?</button>
-      <button onClick={() => navigate('/sign-up')}>Регистрация</button>
-    </div>
+    <>
+      <HeaderStart></HeaderStart>
+      <div className="signin form-auth__container">
+        <h1 className="form-auth__title">Войти в аккаунт</h1>
+        <AuthIntegration />
+        <FormAuth
+          child={
+            <>
+              <label
+                htmlFor="email"
+                className="form-auth__label"
+              >
+                Email
+                <input
+                  className=""
+                  id="email"
+                  type="email"
+                  {...register('email', {
+                    required: ERR_MESSAGE_REQUIRED,
+                    pattern: {
+                      value: REG_EMAIL,
+                      message: ERR_MESSAGE_INVALIDEMAIL
+                    }
+                  })}
+                />
+                <span className="form-auth__err">{errors?.email && errors.email.message}</span>
+              </label>
+              <label
+                htmlFor="password"
+                className="form-auth__label"
+              >
+                Пароль
+                <input
+                  className=""
+                  id="password"
+                  type="password"
+                  minLength="8"
+                  maxLength="50"
+                  {...register('password', {
+                    required: ERR_MESSAGE_REQUIRED,
+                    pattern: {
+                      value: REG_PASSWORD,
+                      message: ERR_MESSAGE_INVALIDPASSWORD
+                    }
+                  })}
+                />
+                <span className="form-auth__err">{errors?.password && errors.password.message}</span>
+              </label>
+            </>
+          }
+          buttonTitle={'Войти'}
+          onSubmit={handleSubmit(handleSubmitSignin)}
+          err={errors}
+        />
+        <button onClick={() => navigate('/reset-password')}>Забыли пароль?</button>
+        <button onClick={() => navigate('/sign-up')}>Регистрация</button>
+      </div>
+    </>
   );
 };

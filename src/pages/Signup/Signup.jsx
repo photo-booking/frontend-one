@@ -13,6 +13,7 @@ import {
   ERR_MESSAGE_INVALIDPASSWORD,
   ERR_MESSAGE_REQUIRED
 } from '../../const/RegexConst';
+import { HeaderStart } from '../../components/Header-start/header-start';
 
 export const Signup = props => {
   const {
@@ -59,8 +60,10 @@ export const Signup = props => {
 
   return (
     <>
+      <HeaderStart></HeaderStart>
       {/* когда выбрал чекбокс клиент/заказчик */}
       {isClient !== undefined ? (
+        
         <div className="signup form-auth__container">
           <h1 className="form-auth__title">{title}</h1>
           <AuthIntegration />
