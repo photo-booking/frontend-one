@@ -3,8 +3,11 @@ import './Profile.css';
 export const Profile = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { name, id } = state;
+  // const { name, id } = state;
+  const name = 'hh'
+  const id = 1
   return (
+    <>
     <div className={'profile-container'}>
       <h1>{name}</h1>
       <button onClick={() => navigate(`/catalog`)}>Вернуться в каталог</button>
@@ -12,5 +15,6 @@ export const Profile = () => {
         Отзывы и рейтинги
       </button>
     </div>
+    </>
   );
 };

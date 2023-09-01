@@ -14,6 +14,7 @@ import {
   ERR_MESSAGE_REQUIRED
 } from '../../const/RegexConst';
 
+
 export const Signup = props => {
   const {
     watch,
@@ -61,6 +62,7 @@ export const Signup = props => {
     <>
       {/* когда выбрал чекбокс клиент/заказчик */}
       {isClient !== undefined ? (
+        
         <div className="signup form-auth__container">
           <h1 className="form-auth__title">{title}</h1>
           <AuthIntegration />

@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import './Landing.css';
 import Skeleton from '../../components/Skeleton/Skeleton';
 
+
 export const Landing = () => {
   const navigate = useNavigate();
   return (
