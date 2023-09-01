@@ -26,6 +26,7 @@ import { OrderServices } from '../../pages/OrderServices/OrderServices';
 import { ClientChat } from '../../pages/ClientChat/ClientChat';
 import { ExecutorChat } from '../../pages/ExpertChat/ExpertChat';
 import { Page404 } from '../../pages/404/404';
+import { HeaderMain } from '../Header-main/header-main';
 
 export function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -145,87 +146,90 @@ export function App() {
 
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={<Landing />}
-      />
-      <Route
-        path="/sign-up"
-        element={
-          <Signup
-            onSubmit={onSubmitSignup}
-            onSubmitJoin={onSubmitJoin}
-            isClient={isClient}
-            setIsClient={setIsClient}
-          />
-        }
-      />
-      <Route
-        path="/sign-in"
-        element={
-          <Signin
-            onSubmit={onSubmitSignin}
-            signinGoogle={signinGoogle}
-            signinVk={signinVk}
-          />
-        }
-      />
-      <Route
-        path="/reset-password"
-        element={
-          <ResetPassword
-            isEmailSend={isEmailSend}
-            isPasswordReset={isPasswordReset}
-            onSubmitResetPassword={onSubmitResetPassword}
-            onSubmitSendEmailToResetPassword={onSubmitSendEmailToResetPassword}
-          />
-        }
-      />
-      <Route
-        path="/catalog"
-        element={<CatalogExecutors />}
-      />
-      <Route
-        path="/card/:id"
-        element={<Profile />}
-      />
-      <Route
-        path="/client/:id"
-        element={<ClientAccount />}
-      />
-      <Route
-        path="/client/:id/orders"
-        element={<ClientOrders />}
-      />
-      <Route
-        path="/expert/:id"
-        element={<ExecutorAccount />}
-      />
-      <Route
-        path="/expert/:id/orders"
-        element={<ExecutorOrders />}
-      />
-      <Route
-        path="/expert/:id/ratings"
-        element={<ExecutorRatings />}
-      />
-      <Route
-        path="/order-service"
-        element={<OrderServices />}
-      />
-      <Route
-        path="/client/:id/chat"
-        element={<ClientChat />}
-      />
-      <Route
-        path="/expert/:id/chat"
-        element={<ExecutorChat />}
-      />
-      <Route
-        path="*"
-        element={<Page404 />}
-      />
-    </Routes>
+    <>
+      <HeaderMain isClient={isClient} setIsClient={setIsClient}></HeaderMain>
+      <Routes>
+        <Route
+          path="/"
+          element={<Landing />}
+        />
+        <Route
+          path="/sign-up"
+          element={
+            <Signup
+              onSubmit={onSubmitSignup}
+              onSubmitJoin={onSubmitJoin}
+              isClient={isClient}
+              setIsClient={setIsClient}
+            />
+          }
+        />
+        <Route
+          path="/sign-in"
+          element={
+            <Signin
+              onSubmit={onSubmitSignin}
+              signinGoogle={signinGoogle}
+              signinVk={signinVk}
+            />
+          }
+        />
+        <Route
+          path="/reset-password"
+          element={
+            <ResetPassword
+              isEmailSend={isEmailSend}
+              isPasswordReset={isPasswordReset}
+              onSubmitResetPassword={onSubmitResetPassword}
+              onSubmitSendEmailToResetPassword={onSubmitSendEmailToResetPassword}
+            />
+          }
+        />
+        <Route
+          path="/catalog"
+          element={<CatalogExecutors />}
+        />
+        <Route
+          path="/card/:id"
+          element={<Profile />}
+        />
+        <Route
+          path="/client/:id"
+          element={<ClientAccount />}
+        />
+        <Route
+          path="/client/:id/orders"
+          element={<ClientOrders />}
+        />
+        <Route
+          path="/expert/:id"
+          element={<ExecutorAccount />}
+        />
+        <Route
+          path="/expert/:id/orders"
+          element={<ExecutorOrders />}
+        />
+        <Route
+          path="/expert/:id/ratings"
+          element={<ExecutorRatings />}
+        />
+        <Route
+          path="/order-service"
+          element={<OrderServices />}
+        />
+        <Route
+          path="/client/:id/chat"
+          element={<ClientChat />}
+        />
+        <Route
+          path="/expert/:id/chat"
+          element={<ExecutorChat />}
+        />
+        <Route
+          path="*"
+          element={<Page404 />}
+        />
+      </Routes>
+    </>
   );
 }

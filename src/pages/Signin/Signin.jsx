@@ -11,8 +11,6 @@ import {
   ERR_MESSAGE_INVALIDPASSWORD,
   ERR_MESSAGE_REQUIRED
 } from '../../const/RegexConst';
-import { HeaderRegistration } from '../../components/Header-registration/header-registration';
-import { HeaderStart } from '../../components/Header-start/header-start';
 
 export const Signin = props => {
   const navigate = useNavigate();
@@ -37,7 +35,6 @@ export const Signin = props => {
 
   return (
     <>
-      <HeaderStart></HeaderStart>
       <div className="signin form-auth__container">
         <h1 className="form-auth__title">Войти в аккаунт</h1>
         <AuthIntegration />

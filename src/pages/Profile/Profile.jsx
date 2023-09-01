@@ -7,6 +7,7 @@ export const Profile = () => {
   const name = 'hh'
   const id = 1
   return (
+    <>
     <div className={'profile-container'}>
       <h1>{name}</h1>
       <button onClick={() => navigate(`/catalog`)}>Вернуться в каталог</button>
@@ -14,5 +15,6 @@ export const Profile = () => {
         Отзывы и рейтинги
       </button>
     </div>
+    </>
   );
 };
