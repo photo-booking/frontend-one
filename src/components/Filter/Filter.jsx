@@ -6,7 +6,6 @@ function Filter() {
 const [minCost, setMinCost] = React.useState('350');
 const [maxCost, setMaxCost] = React.useState('2500');
 const [info, setInfo] = React.useState({})
-const [isChecked, setIsChecked] = React.useState(false);
 
 const form = document.getElementById('form')
 
@@ -53,7 +52,23 @@ function submitClick() {
 
 function submit(e) {
   e.preventDefault(); 
+  filterCards()
+}
+
+// эта штука потом передет в app
+function filterCards() {
   console.log("info")
+//  // тут запустить загрузку
+//   api.getCards()
+//     .then((res) => {
+//       setCards(res)
+//     }) 
+//     .catch((error) => {
+//       console.log(error)
+//     })
+//     .finally(() => {
+//     //  выключаем загрузку
+//     })
 }
 
   return (
@@ -136,6 +151,7 @@ function submit(e) {
             <div className="slider-range__track"></div>
             <input 
               type="range" 
+              name="min-cost"
               min="350" max="2500" step="50"
               value={minCost} 
               id="slider-1" 
@@ -143,8 +159,10 @@ function submit(e) {
               onClick={(e) => submit(e)}
               className="slider__input"
               />
+
             <input 
               type="range" 
+              name="max-cost"
               min="350" max="2500" step="50"
               value={maxCost} 
               id="slider-2" 

@@ -6,21 +6,30 @@
     height: 40px;
     border: 1px solid #E6E6E6;
     border-radius: 4px;
-    position: relative;
     text-decoration: none;
     color: black;
+    margin-bottom: 8px;
+  }
+
+  .link-signin:last-of-type {
+    margin-bottom: 40px;
   }
   
   .link-signin:hover {
-    opacity: 0.8;
+    border: 1px solid #0C1200;
   }
   
+  .link-signin:focus {
+    border: 1px solid #757575;
+    color: #757575;
+  }
+
   .link-signin__logo {
-    position: absolute;
-    top: 8px;
-    left: 12px;
     width: 24px;
     height: 24px;
+    margin: 0 8px;
+    padding: 3px 2.7px 3px 3.3px;
+    box-sizing: border-box;
   }
   
   .link-signin__title {

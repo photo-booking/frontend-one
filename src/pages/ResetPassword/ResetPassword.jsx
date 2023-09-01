@@ -36,20 +36,20 @@ export const ResetPassword = props => {
   return (
     <>
       {isEmailSend ? (
-        <div className={'resetPassword-container'}>
+        <div className="reset-password form-auth__container">
           <img
             src={ok_image}
             alt="ok"
           />
-          <h1>Письмо отправлено</h1>
+          <h1 className="form-auth__title">Письмо отправлено</h1>
           <p>
             Проверьте свой email и&nbsp;перейдите по&nbsp;ссылке в&nbsp;письме, чтобы продолжить
             сброс пароля
           </p>
         </div>
       ) : (
-        <div className={'resetPassword-container'}>
-          <h1>Сброс пароля</h1>
+        <div className="reset-password form-auth__container">
+          <h1 className="form-auth__title">Сброс пароля</h1>
           <h2>Введите email и мы отправим вам ссылку для сброса пароля</h2>
           <FormAuth
             child={
@@ -87,8 +87,8 @@ export const ResetPassword = props => {
       {isPasswordReset ? (
         <></>
       ) : (
-        <div className={'resetPassword-container'}>
-          <h1>Сброс пароля</h1>
+        <div className="reset-password form-auth__container">
+          <h1 className="form-auth__title">Сброс пароля</h1>
           <FormAuth
             child={
               <>
