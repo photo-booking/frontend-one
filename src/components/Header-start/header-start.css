@@ -8,6 +8,14 @@
     height: 80px;
     padding-left: 56px;
     padding-right: 56px;
+    position: relative;
+    justify-content: center;
+}
+
+.header-start__logo_contsiner {
+    position: absolute;
+    top: 30px;
+    left: 56px;
 }
 
 .header-start__logo {
@@ -16,12 +24,9 @@
 }
 
 .header-start__text {
-    width: 100%;
     color: black;
     display: flex;
-    justify-content: center;
     column-gap: 32px;
-    margin-right: 108px;
 }
 
 .header-start__title {
