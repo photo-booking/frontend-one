@@ -32,7 +32,6 @@ import { HeaderMain } from '../Header-main/header-main';
 
 export function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [regedIn, setRegedIn] = useState(false);
 
   const [currentUser, setCurrentUser] = React.useState({});
 
@@ -51,6 +50,7 @@ export function App() {
           .then((res) => {
             setCurrentUser(res.results);
             setLoggedIn(true);
+            navigate('/')
           })
           .catch((err) => {
             console.log(err);
@@ -73,12 +73,12 @@ export function App() {
       });
   };
 
-  function signOut() {
-    setLoggedIn(false);
-    localStorage.removeItem("token");
-    setCurrentUser({});
-    navigate("/");
-  }
+  // function signOut() {
+  //   setLoggedIn(false);
+  //   localStorage.removeItem("token");
+  //   setCurrentUser({});
+  //   navigate("/");
+  // }
 
   const onSubmitJoin = values => {
     if (values.type === 'client') {
