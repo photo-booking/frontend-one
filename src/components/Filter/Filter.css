@@ -1,5 +1,5 @@
-* {
-  font-family: "Aneliza";
+.filter-form * {
+  font-family: "Aneliza", "Arial", sans-serif;
 }
 
 .filter-form {
@@ -125,7 +125,6 @@
   background: #2a6495;
   border: 0.2px solid #010101;
   border-radius: 2.6px;
-
 } 
 
 .values__container { 
@@ -229,12 +228,12 @@
 }
 
 .ratio-label {
-    display: block;
-    width: max-content;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
-    margin-bottom: 12px;
+  display: block;
+  width: max-content;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 12px;
 }
 
 .ratio-label:last-child {
