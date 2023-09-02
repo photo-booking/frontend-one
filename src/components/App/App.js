@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { CurrentUserContext } from "../context/CurrentUserContext";
 
 import {
   register,
@@ -8,6 +9,7 @@ import {
   loginVk,
   resetPassword,
   sendEmailToResetPassword,
+  getUserInfo,
   checkToken
 } from '../../utils/auth';
 
@@ -26,27 +28,57 @@ import { OrderServices } from '../../pages/OrderServices/OrderServices';
 import { ClientChat } from '../../pages/ClientChat/ClientChat';
 import { ExecutorChat } from '../../pages/ExpertChat/ExpertChat';
 import { Page404 } from '../../pages/404/404';
+import { HeaderMain } from '../Header-main/header-main';
 
 export function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [regedIn, setRegedIn] = useState(false);
+
+  const [currentUser, setCurrentUser] = React.useState({});
 
   const [isClient, setIsClient] = useState(undefined);
-  const [isEmailSend, setIsEmailSend] = useState(true);//false
-  const [isPasswordReset, setIsPasswordReset] = useState(true);//false
+  const [isEmailSend, setIsEmailSend] = useState(false);//false
+  const [isPasswordReset, setIsPasswordReset] = useState(false);//false
 
   const [isLoader, setIsLoader] = useState(false);
+  const navigate = useNavigate();
+
+  const onSubmitSignin = values => {
+    login(values)
+      .then(res => {
+        const jwt = localStorage.getItem("token");
+        getUserInfo(jwt)
+          .then((res) => {
+            setCurrentUser(res.results);
+            setLoggedIn(true);
+            navigate('/')
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        err.then((e) => console.log(e));
+        setLoggedIn(false);
+      });
+  }
 
   const onSubmitSignup = (values, status) => {
     register(values, status)
-      .then(res => {
-        console.log(res);
-        //redirect to signin!!!
+      .then(() => {
+        onSubmitSignin(values);
       })
       .catch(err => {
         console.log(err);
+        setLoggedIn(false);
       });
   };
+
+  // function signOut() {
+  //   setLoggedIn(false);
+  //   localStorage.removeItem("token");
+  //   setCurrentUser({});
+  //   navigate("/");
+  // }
 
   const onSubmitJoin = values => {
     if (values.type === 'client') {
@@ -54,16 +86,6 @@ export function App() {
     } else {
       setIsClient(false);
     }
-  };
-
-  const onSubmitSignin = values => {
-    login(values)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
   };
 
   const onSubmitSendEmailToResetPassword = values => {
@@ -74,18 +96,24 @@ export function App() {
       })
       .catch(err => {
         console.log(err);
-      });
+      })
+      .finally(()=> {
+        setIsEmailSend(false)
+      })
   };
 
-  const onSubmitResetPassword = values => {
-    resetPassword(values)
+  const onSubmitResetPassword = (values, param) => {
+    resetPassword(values, param)
       .then(res => {
         console.log(res);
         setIsPasswordReset(true);
       })
       .catch(err => {
         console.log(err);
-      });
+      })
+      .finally(()=> {
+        setIsPasswordReset(false)
+      })
   };
 
   const signinGoogle = param => {
@@ -145,87 +173,90 @@ export function App() {
 
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={<Landing />}
-      />
-      <Route
-        path="/sign-up"
-        element={
-          <Signup
-            onSubmit={onSubmitSignup}
-            onSubmitJoin={onSubmitJoin}
-            isClient={isClient}
-            setIsClient={setIsClient}
-          />
-        }
-      />
-      <Route
-        path="/sign-in"
-        element={
-          <Signin
-            onSubmit={onSubmitSignin}
-            signinGoogle={signinGoogle}
-            signinVk={signinVk}
-          />
-        }
-      />
-      <Route
-        path="/reset-password"
-        element={
-          <ResetPassword
-            isEmailSend={isEmailSend}
-            isPasswordReset={isPasswordReset}
-            onSubmitResetPassword={onSubmitResetPassword}
-            onSubmitSendEmailToResetPassword={onSubmitSendEmailToResetPassword}
-          />
-        }
-      />
-      <Route
-        path="/catalog"
-        element={<CatalogExecutors />}
-      />
-      <Route
-        path="/card/:id"
-        element={<Profile />}
-      />
-      <Route
-        path="/client/:id"
-        element={<ClientAccount />}
-      />
-      <Route
-        path="/client/:id/orders"
-        element={<ClientOrders />}
-      />
-      <Route
-        path="/expert/:id"
-        element={<ExecutorAccount />}
-      />
-      <Route
-        path="/expert/:id/orders"
-        element={<ExecutorOrders />}
-      />
-      <Route
-        path="/expert/:id/ratings"
-        element={<ExecutorRatings />}
-      />
-      <Route
-        path="/order-service"
-        element={<OrderServices />}
-      />
-      <Route
-        path="/client/:id/chat"
-        element={<ClientChat />}
-      />
-      <Route
-        path="/expert/:id/chat"
-        element={<ExecutorChat />}
-      />
-      <Route
-        path="*"
-        element={<Page404 />}
-      />
-    </Routes>
+    <CurrentUserContext.Provider value={currentUser}>
+      <HeaderMain isClient={isClient} setIsClient={setIsClient}></HeaderMain>
+      <Routes>
+        <Route
+          path="/"
+          element={<Landing />}
+        />
+        <Route
+          path="/sign-up"
+          element={
+            <Signup
+              onSubmit={onSubmitSignup}
+              onSubmitJoin={onSubmitJoin}
+              isClient={isClient}
+              setIsClient={setIsClient}
+            />
+          }
+        />
+        <Route
+          path="/sign-in"
+          element={
+            <Signin
+              onSubmit={onSubmitSignin}
+              signinGoogle={signinGoogle}
+              signinVk={signinVk}
+            />
+          }
+        />
+        <Route
+          path="/reset-password"
+          element={
+            <ResetPassword
+              isEmailSend={isEmailSend}
+              isPasswordReset={isPasswordReset}
+              onSubmitResetPassword={onSubmitResetPassword}
+              onSubmitSendEmailToResetPassword={onSubmitSendEmailToResetPassword}
+            />
+          }
+        />
+        <Route
+          path="/catalog"
+          element={<CatalogExecutors />}
+        />
+        <Route
+          path="/card/:id"
+          element={<Profile />}
+        />
+        <Route
+          path="/client/:id"
+          element={<ClientAccount />}
+        />
+        <Route
+          path="/client/:id/orders"
+          element={<ClientOrders />}
+        />
+        <Route
+          path="/expert/:id"
+          element={<ExecutorAccount />}
+        />
+        <Route
+          path="/expert/:id/orders"
+          element={<ExecutorOrders />}
+        />
+        <Route
+          path="/expert/:id/ratings"
+          element={<ExecutorRatings />}
+        />
+        <Route
+          path="/order-service"
+          element={<OrderServices />}
+        />
+        <Route
+          path="/client/:id/chat"
+          element={<ClientChat />}
+        />
+        <Route
+          path="/expert/:id/chat"
+          element={<ExecutorChat />}
+        />
+        <Route
+          path="*"
+          element={<Page404 />}
+        />
+      </Routes>
+    </CurrentUserContext.Provider>
   );
 }

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import './Signup.css';
+import showPassImage from '../../images/Show.svg';
 import { AuthIntegration } from '../../components/AuthIntegration/AuthIntegration';
 import { FormAuth } from '../../components/FormAuth/FormAuth';
 import {
@@ -14,6 +16,7 @@ import {
   ERR_MESSAGE_REQUIRED
 } from '../../const/RegexConst';
 
+
 export const Signup = props => {
   const {
     watch,
@@ -22,25 +25,40 @@ export const Signup = props => {
     reset,
     formState: { errors, isValid }
   } = useForm({ mode: 'onChange' });
+  const navigate = useNavigate();
+  const [showPass, setShowPass] = useState(false);
   const { onSubmit, onSubmitJoin, isClient } = props;
   const title = `Зарегистрироваться как ${isClient ? 'заказчик' : 'специалист'}`;
 
-  const watchType = watch('type', undefined);
+  // const watchType = watch('type', undefined);
+  const watchAllFields = watch();
+
+  const formAuthInputClassName = name => {
+    return `form-auth__input ${errors[name]?.message ? 'form-auth__input_err' : ''} ${
+      watchAllFields[name]?.length > 0 && errors[name]?.message === undefined
+        ? 'form-auth__input_ok'
+        : ''
+    }`;
+  };
 
   const inputContainerClientClassName = `signup__input-container ${
-    watchType !== undefined && watchType === 'client' ? 'signup__input-container_check' : ''
+    watchAllFields !== undefined && watchAllFields.type === 'client'
+      ? 'signup__input-container_check'
+      : ''
   } `;
   const inputContainerExpertClassName = `signup__input-container ${
-    watchType !== undefined && watchType === 'expert' ? 'signup__input-container_check' : ''
+    watchAllFields !== undefined && watchAllFields.type === 'expert'
+      ? 'signup__input-container_check'
+      : ''
   } `;
 
   const buttonTitle = () => {
     let buttonTitle;
-    if (!watchType) {
+    if (!watchAllFields?.type) {
       buttonTitle = 'Создать аккаунт';
-    } else if (watchType !== undefined && watchType === 'client') {
+    } else if (watchAllFields?.type !== undefined && watchAllFields?.type === 'client') {
       buttonTitle = 'Зарегистрироваться как клиент';
-    } else if (watchType !== undefined && watchType === 'expert') {
+    } else if (watchAllFields?.type !== undefined && watchAllFields?.type === 'expert') {
       buttonTitle = 'Зарегистрироваться как специалист';
     }
     return buttonTitle;
@@ -57,10 +75,16 @@ export const Signup = props => {
     reset();
   };
 
+  const handleShowPassword = evt => {
+    evt.preventDefault();
+    setShowPass(!showPass);
+  };
+
   return (
     <>
       {/* когда выбрал чекбокс клиент/заказчик */}
       {isClient !== undefined ? (
+        
         <div className="signup form-auth__container">
           <h1 className="form-auth__title">{title}</h1>
           <AuthIntegration />
@@ -73,7 +97,7 @@ export const Signup = props => {
                 >
                   Имя
                   <input
-                    className="form-auth__input"
+                    className={formAuthInputClassName('name')}
                     type="text"
                     placeholder="Дмитрий"
                     id="name"
@@ -95,7 +119,7 @@ export const Signup = props => {
                 >
                   Фамилия
                   <input
-                    className="form-auth__input"
+                    className={formAuthInputClassName('surname')}
                     type="text"
                     placeholder="Иванов"
                     id="surname"
@@ -119,7 +143,7 @@ export const Signup = props => {
                 >
                   Email
                   <input
-                    className="form-auth__input"
+                    className={formAuthInputClassName('email')}
                     type="email"
                     placeholder="dmitrii.ivanov@example.com"
                     id="email"
@@ -138,20 +162,32 @@ export const Signup = props => {
                   className="form-auth__label"
                 >
                   Пароль
-                  <input
-                    className="form-auth__input"
-                    type="password"
-                    id="password"
-                    minLength="8"
-                    maxLength="50"
-                    {...register('password', {
-                      required: ERR_MESSAGE_REQUIRED,
-                      pattern: {
-                        value: REG_PASSWORD,
-                        message: ERR_MESSAGE_INVALIDPASSWORD
-                      }
-                    })}
-                  />
+                  <div className="form-auth__input-container">
+                    <input
+                      className={formAuthInputClassName('password')}
+                      type={showPass ? 'text' : 'password'}
+                      id="password"
+                      minLength="8"
+                      maxLength="50"
+                      {...register('password', {
+                        required: ERR_MESSAGE_REQUIRED,
+                        pattern: {
+                          value: REG_PASSWORD,
+                          message: ERR_MESSAGE_INVALIDPASSWORD
+                        }
+                      })}
+                    />
+                    <button
+                      className="form-auth__button_show-pass"
+                      onClick={handleShowPassword}
+                    >
+                      <img
+                        src={showPassImage}
+                        alt="show password"
+                        className="form-auth__"
+                      />
+                    </button>
+                  </div>
                   <span className="form-auth__err">
                     {errors?.password && errors.password.message}
                   </span>
@@ -162,6 +198,18 @@ export const Signup = props => {
             onSubmit={handleSubmit(handleSubmitSignup)}
             err={errors}
           />
+          <p className="form-auth__caption">
+            Уже есть аккаунт?
+            <button
+              className="form-auth__button_sign"
+              onClick={evt => {
+                evt.preventDefault();
+                navigate('/sign-in');
+              }}
+            >
+              Войдите
+            </button>
+          </p>
         </div>
       ) : (
         <div className="form-auth__container">
@@ -206,6 +254,18 @@ export const Signup = props => {
             onSubmit={handleSubmit(handleSubmitJoin)}
             err={''} //?????????
           />
+          <p className="form-auth__caption">
+            Уже есть аккаунт?
+            <button
+              className="form-auth__button_sign"
+              onClick={evt => {
+                evt.preventDefault();
+                navigate('/sign-in');
+              }}
+            >
+              Войдите
+            </button>
+          </p>
         </div>
       )}
     </>
