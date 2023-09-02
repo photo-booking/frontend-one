@@ -1,4 +1,4 @@
-const BASE_URL = 'http://127.0.0.1:8080/https://photo-market.acceleratorpracticum.ru/api'; //my adress
+const BASE_URL = 'https://photo-market.acceleratorpracticum.ru/api'; //my adress
 const HEADERS = { 'Content-Type': 'application/json' };
 
 function getResponseData(res) {
