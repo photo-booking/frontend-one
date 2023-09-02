@@ -34,7 +34,6 @@ export const ResetPassword = props => {
 
   const {
     watch,
-    watch,
     register,
     handleSubmit,
     reset,

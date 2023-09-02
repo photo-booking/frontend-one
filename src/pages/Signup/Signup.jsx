@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import './Signup.css';
 import showPassImage from '../../images/Show.svg';
 import { AuthIntegration } from '../../components/AuthIntegration/AuthIntegration';
@@ -31,16 +30,6 @@ export const Signup = props => {
   const { onSubmit, onSubmitJoin, isClient } = props;
   const title = `Зарегистрироваться как ${isClient ? 'заказчик' : 'специалист'}`;
 
-  // const watchType = watch('type', undefined);
-  const watchAllFields = watch();
-
-  const formAuthInputClassName = name => {
-    return `form-auth__input ${errors[name]?.message ? 'form-auth__input_err' : ''} ${
-      watchAllFields[name]?.length > 0 && errors[name]?.message === undefined
-        ? 'form-auth__input_ok'
-        : ''
-    }`;
-  };
   // const watchType = watch('type', undefined);
   const watchAllFields = watch();
 
