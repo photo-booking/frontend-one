@@ -24,7 +24,10 @@ export const CatalogExecutors = () => {
       <button onClick={() => navigate(`/expert/${1}`, { state: { name: 'Исполнитель 1', id: 1 } })}>
         Личный кабинет исполнителя
       </button>
-        <Filter />
+        <Filter 
+          photo = 'Фотографы'
+          video = 'Видеооператоры'
+        />
     </div>
   );
 };

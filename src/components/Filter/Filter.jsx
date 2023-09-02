@@ -1,7 +1,7 @@
 import React from "react";
 import "./Filter.css"
 
-function Filter() {
+function Filter({photo, video}) {
 
 const [minCost, setMinCost] = React.useState('350');
 const [maxCost, setMaxCost] = React.useState('2500');
@@ -112,19 +112,35 @@ function triggeredSubmit() {
   document.getElementById('form').requestSubmit()
 }
 
+
+//!!!!!!!!!!АЛЯРМА если активн чекбокс ,который задисблеится при переключении expertValue, то форма отправится сначала по переключению, потом по чекбоксу(((
+
   // вызывает отправку формы при монтировании, а так же при изменении любого параметра
 React.useEffect(() => {
   // сделаем неактивными те чекбоксы, которые нельзя использовать для фотографа или видеографа
   if (expertValue === 'photographer') {
     setPhotoTypeDisabled(false);
-    setVideoTypeDisabled(!videoTypeDisabled)
+    setVideoTypeDisabled(true)
+
+    // setInterviewIsChecked(false);
+    // setAerialIsChecked(false);
+    // setStockIsChecked(false);
+    // setClipsIsChecked(false);
   } else if (expertValue === 'videographer'){
-    setPhotoTypeDisabled(!photoTypeDisabled)
+    setPhotoTypeDisabled(true)
     setVideoTypeDisabled(false);
+
+    // setWeddingIsChecked(false);
+    // setLoveStoryIsChecked(false);
+    // setIndividualIsChecked(false);
+    // setFamilyIsChecked(false);
+    // setFashionIsChecked(false);
+    // setPetsIsChecked(false);
   } else {
     setVideoTypeDisabled(false);
     setPhotoTypeDisabled(false);
   }
+
   triggeredSubmit()
 }, [
   costValue,
@@ -173,22 +189,11 @@ const chengeCostValue =(e) => {
   setCostValue(e.target.value);
 }
 
-// React.useEffect(() => {
-//   if (expertValue === 'photographer') {
-//     setVideoTypeDisabled(!videoTypeDisabled)
-//   } else if (expertValue === 'videographer') {
-//     setPhotoTypeDisabled(!photoTypeDisabled)
-//   } else if (expertValue === 'all'){
-//     setVideoTypeDisabled(true);
-//     setPhotoTypeDisabled(true);
-//   }
-// }, [expertValue])
-
   return (
       <form className="filter-form" id='form' onSubmit={(e)=> {submit(e)}} >
-      <p className="filter__type">Сортировка</p> 
+     
       <fieldset className="fild">
-      
+       <p className="filter__type">Сортировка</p> 
           <input type="radio" name="cost" id="cheap" 
             value="cheap" 
             className="ratio" 
@@ -205,8 +210,9 @@ const chengeCostValue =(e) => {
         
       </fieldset>
 
-      <p className="filter__type">Фильтры</p>
+    
       <fieldset className="fild">
+          <p className="filter__type">Фильтры</p>
         <p className="filter__category">специалисты</p>
        
           <input type="radio" id="all" 
@@ -224,7 +230,7 @@ const chengeCostValue =(e) => {
             checked={expertValue === 'photographer' ? true : false}
             onChange={chengeExpertValue}
             />
-          <label className="ratio-label" for="photographer">Фотографы</label>
+          <label className="ratio-label" for="photographer">{photo}</label>
         
         
           <input type="radio" name="expert" id="videographer" 
@@ -233,7 +239,7 @@ const chengeCostValue =(e) => {
             checked={expertValue === 'videographer' ? true : false}
             onChange={chengeExpertValue}
             />
-          <label className="ratio-label" for="videographer">Видеографы</label>
+          <label className="ratio-label" for="videographer">{video}</label>
         
       </fieldset>
 
@@ -282,7 +288,7 @@ const chengeCostValue =(e) => {
             <input 
               type="range" 
               name="min-cost"
-              min="350" max="2500" step="50"
+              min="50" max="2500" step="50"
               value={minCost} 
               id="slider-1" 
               onChange= {(e)=>sliderOne(e)}
@@ -293,7 +299,7 @@ const chengeCostValue =(e) => {
             <input 
               type="range" 
               name="max-cost"
-              min="350" max="2500" step="50"
+              min="50" max="2500" step="50"
               value={maxCost} 
               id="slider-2" 
               onChange= {(e)=>sliderTwo(e)}
@@ -305,10 +311,10 @@ const chengeCostValue =(e) => {
               <p className="values__info">от</p>
               <input 
                 type="number" 
-                min="350" max="2500" 
+                min="50" max="2500" 
                 value={minCost} 
                 onChange= {inputMinValue} 
-                onBlur={(e) => blurInput}
+                onBlur={(e) => blurInput(e)}
                 id="slider-1-meaning" 
                 className="meaning__input"/>
               <p className="values__info">&#8381;</p>
@@ -320,7 +326,7 @@ const chengeCostValue =(e) => {
                 min="350" max="2500" 
                 value={maxCost} 
                 onChange= {inputMaxValue} 
-                onBlur={(e) => blurInput}
+                onBlur={(e) => blurInput(e)}
                 id="slider-2-meaning" 
                 className="meaning__input"/>
               <p className="values__info">&#8381;</p>
