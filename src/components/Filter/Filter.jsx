@@ -21,6 +21,8 @@ const [clipsIsChecked, setClipsIsChecked] = React.useState(false)
 const [videoTypeDisabled, setVideoTypeDisabled] = React.useState(false)
 const [photoTypeDisabled, setPhotoTypeDisabled] = React.useState(false)
 
+const [checkboxIsClick, setCheckboxIsClick] = React.useState(false)
+
 // это слайдеры
 function sliderOne(e) {
   if (minCost > +maxCost) {
@@ -60,51 +62,61 @@ function blurInput() {
   // wedding
 function submitWeddingClick() {
   setWeddingIsChecked(!weddingIsChecked)
+  setCheckboxIsClick(!checkboxIsClick)
 }
 
   // loveStory
 function submitLoveStoryClick() {
   setLoveStoryIsChecked(!loveStoryIsChecked)
+  setCheckboxIsClick(!checkboxIsClick)
   }
 
   // individual
 function submitIndividualClick() {
   setIndividualIsChecked(!individualIsChecked)
+  setCheckboxIsClick(!checkboxIsClick)
   }
 
   // family
 function submitFamilyClick() {
   setFamilyIsChecked(!familyIsChecked)
+  setCheckboxIsClick(!checkboxIsClick)
   }
 
   // fashion
 function submitFashionClick() {
   setFashionIsChecked(!fashionIsChecked)
+  setCheckboxIsClick(!checkboxIsClick)
   }
 
   // pets
 function submitPetsClick() {
   setPetsIsChecked(!petsIsChecked)
+  setCheckboxIsClick(!checkboxIsClick)
   }
 
   // interview
 function submitInterviewClick() {
   setInterviewIsChecked(!interviewIsChecked)
+  setCheckboxIsClick(!checkboxIsClick)
   }
 
   // aerial
 function submitAerialClick() {
   setAerialIsChecked(!aerialIsChecked)
+  setCheckboxIsClick(!checkboxIsClick)
   }
 
   // stock
 function submitStockClick() {
   setStockIsChecked(!stockIsChecked)
+  setCheckboxIsClick(!checkboxIsClick)
   }
   
   // clips
 function submitClipsClick() {
   setClipsIsChecked(!clipsIsChecked)
+  setCheckboxIsClick(!checkboxIsClick)
   }
 
   // дергает событие формы onSubmit
@@ -122,20 +134,20 @@ React.useEffect(() => {
     setPhotoTypeDisabled(false);
     setVideoTypeDisabled(true)
 
-    // setInterviewIsChecked(false);
-    // setAerialIsChecked(false);
-    // setStockIsChecked(false);
-    // setClipsIsChecked(false);
+    setInterviewIsChecked(false);
+    setAerialIsChecked(false);
+    setStockIsChecked(false);
+    setClipsIsChecked(false);
   } else if (expertValue === 'videographer'){
     setPhotoTypeDisabled(true)
     setVideoTypeDisabled(false);
 
-    // setWeddingIsChecked(false);
-    // setLoveStoryIsChecked(false);
-    // setIndividualIsChecked(false);
-    // setFamilyIsChecked(false);
-    // setFashionIsChecked(false);
-    // setPetsIsChecked(false);
+    setWeddingIsChecked(false);
+    setLoveStoryIsChecked(false);
+    setIndividualIsChecked(false);
+    setFamilyIsChecked(false);
+    setFashionIsChecked(false);
+    setPetsIsChecked(false);
   } else {
     setVideoTypeDisabled(false);
     setPhotoTypeDisabled(false);
@@ -145,16 +157,17 @@ React.useEffect(() => {
 }, [
   costValue,
   expertValue,
-  weddingIsChecked,
-  loveStoryIsChecked,
-  individualIsChecked,
-  familyIsChecked,
-  fashionIsChecked,
-  petsIsChecked,
-  interviewIsChecked,
-  aerialIsChecked,
-  stockIsChecked,
-  clipsIsChecked,
+  checkboxIsClick
+  // weddingIsChecked,
+  // loveStoryIsChecked,
+  // individualIsChecked,
+  // familyIsChecked,
+  // fashionIsChecked,
+  // petsIsChecked,
+  // interviewIsChecked,
+  // aerialIsChecked,
+  // stockIsChecked,
+  // clipsIsChecked,
 ])
 
 function submit(e) {

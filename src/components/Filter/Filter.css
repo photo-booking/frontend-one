@@ -198,11 +198,11 @@
 }
 
 /* временное решение */
-.checkbox:checked:disabled + .checkbox-label::before{
+/* .checkbox:checked:disabled + .checkbox-label::before{
   background-repeat: no-repeat;
   background-position: center;
   background: #A1A1A1;
-}
+} */
 /*  */
 
 .checkbox-label::before {
