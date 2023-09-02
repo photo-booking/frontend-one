@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:2999'; //my adress
+const BASE_URL = 'http://127.0.0.1:8080/https://photo-market.acceleratorpracticum.ru/api'; //my adress
 const HEADERS = { 'Content-Type': 'application/json' };
 
 function getResponseData(res) {
@@ -10,7 +10,7 @@ function getResponseData(res) {
 
 //Зарегистрировать пользователя
 export function register(values, status) {
-  return fetch(`${BASE_URL}/users`, {
+  return fetch(`${BASE_URL}/users/`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({
@@ -35,7 +35,7 @@ export function login(values) {
   })
     .then(res => getResponseData(res))
     .then(res => {
-      localStorage.setItem('token', res.token);
+      localStorage.setItem('token', res.auth_token);
     });
 }
 
@@ -67,7 +67,7 @@ export function loginVk(param) {
 
 //Сбросить пароль: отправить письмо 
 export function sendEmailToResetPassword(email) {
-  return fetch(`${BASE_URL}/users/reset_password/`, {
+  return fetch(`${BASE_URL}/api/users/reset_password/`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({ email: email })
@@ -78,14 +78,12 @@ export function sendEmailToResetPassword(email) {
     });
 }
 
-
 //Сбросить пароль: отправить новый пароль
 export function resetPassword(values, param) {
-  return fetch(`${BASE_URL}/users/reset_password_confirm/`, {
+  return fetch(`${BASE_URL}/api/users/reset_password_confirm/`, {
     method: 'POST',
     headers: HEADERS,
-    body: JSON.stringify({ newpassword: values.resetPassword,
-                           repeatnewpassword: values.repeatResetPassword,
+    body: JSON.stringify({ new_password: values.resetPassword,
                            uid: param.uid,
                            token: param.token
                         })   
@@ -96,6 +94,14 @@ export function resetPassword(values, param) {
     });
 }
 
+// Получить информацию о пользователе
+export function getUserInfo(jwt) {
+  return fetch (`${BASE_URL}/users/me/`, {
+    method: 'GET',
+    headers: {...HEADERS, 'Authorization': `token ${jwt}`}
+  })
+  .then(res=> getResponseData(res))
+}
 
 //Проверить токен на валидность
 export function checkToken(jwt) {

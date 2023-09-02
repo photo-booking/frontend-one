@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { CurrentUserContext } from "../context/CurrentUserContext";
 
 import {
   register,
@@ -8,6 +9,7 @@ import {
   loginVk,
   resetPassword,
   sendEmailToResetPassword,
+  getUserInfo,
   checkToken
 } from '../../utils/auth';
 
@@ -32,22 +34,51 @@ export function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [regedIn, setRegedIn] = useState(false);
 
+  const [currentUser, setCurrentUser] = React.useState({});
+
   const [isClient, setIsClient] = useState(undefined);
   const [isEmailSend, setIsEmailSend] = useState(false);//false
   const [isPasswordReset, setIsPasswordReset] = useState(false);//false
 
   const [isLoader, setIsLoader] = useState(false);
+  const navigate = useNavigate();
+
+  const onSubmitSignin = values => {
+    login(values)
+      .then(res => {
+        const jwt = localStorage.getItem("token");
+        getUserInfo(jwt)
+          .then((res) => {
+            setCurrentUser(res.results);
+            setLoggedIn(true);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        err.then((e) => console.log(e));
+        setLoggedIn(false);
+      });
+  }
 
   const onSubmitSignup = (values, status) => {
     register(values, status)
-      .then(res => {
-        console.log(res);
-        //redirect to signin!!!
+      .then(() => {
+        onSubmitSignin(values);
       })
       .catch(err => {
         console.log(err);
+        setLoggedIn(false);
       });
   };
+
+  function signOut() {
+    setLoggedIn(false);
+    localStorage.removeItem("token");
+    setCurrentUser({});
+    navigate("/");
+  }
 
   const onSubmitJoin = values => {
     if (values.type === 'client') {
@@ -55,16 +86,6 @@ export function App() {
     } else {
       setIsClient(false);
     }
-  };
-
-  const onSubmitSignin = values => {
-    login(values)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
   };
 
   const onSubmitSendEmailToResetPassword = values => {
@@ -152,7 +173,7 @@ export function App() {
 
 
   return (
-    <>
+    <CurrentUserContext.Provider value={currentUser}>
       <HeaderMain isClient={isClient} setIsClient={setIsClient}></HeaderMain>
       <Routes>
         <Route
@@ -236,6 +257,6 @@ export function App() {
           element={<Page404 />}
         />
       </Routes>
-    </>
+    </CurrentUserContext.Provider>
   );
 }
