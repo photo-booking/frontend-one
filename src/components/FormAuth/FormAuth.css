@@ -20,9 +20,17 @@
 }
 
 .form-auth__button_submit,
-.form-auth__button_signin {
+.form-auth__button_signin,
+.form-auth__button_show-pass {
   cursor: pointer;
   border: none;
+}
+
+.form-auth__button_show-pass{
+  background: none;
+  position: absolute;
+  top: 10px;
+  right: 16px;
 }
 
 .form-auth__button_submit {
@@ -48,11 +56,18 @@
 .form-auth__button_submit_disabled {
   background-color: #E0E0E0;
   color: #808080;
+  cursor: default;
 }
 
-.form-auth__button_signin {
+.form-auth__button_sign {
   background: none;
+  cursor: pointer;
+  border: none;
   border-bottom: 1px solid #0C1200;
+}
+
+.form-auth__button_sign_left {
+  align-self: flex-end;
 }
 
 .form-auth__label {
@@ -63,17 +78,25 @@
   font-style: normal;
   font-weight: 600;
   line-height: 20px;
-  margin-bottom: 4px;
+  margin-bottom: 7px;
 }
 
 .form-auth__input {
   width: 360px;
+  height: 44px;
   padding: 12px 16px;
   box-sizing: border-box;
   border-radius: 4px;
   border: 1px solid #E0E0E0;
   background: #FFF;
+}
 
+.form-auth__input_err {
+  border: 1px solid #FA3A19;
+}
+
+.form-auth__input_ok {
+  border: 1px solid #14C714;
 }
 
 .form-auth__title {
@@ -89,8 +112,27 @@
   letter-spacing: -1.4px;
 }
 
+.form-auth__subtitle {
+  font-family: Aneliza;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  width: 302px;
+  margin: 0 0 40px;
+}
+
+.form-auth__caption {
+  margin: 12px 0 0;
+}
+
 .form-auth__err {
-  height: 30px;
+  height: 16px;
   width: 359px;
-  border: 1px solid red;
+  color: #BA1B00;
+}
+
+.form-auth__input-container{
+  position: relative;
 }
