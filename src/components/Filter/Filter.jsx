@@ -5,17 +5,29 @@ function Filter() {
 
 const [minCost, setMinCost] = React.useState('350');
 const [maxCost, setMaxCost] = React.useState('2500');
-const [info, setInfo] = React.useState({})
+const [costValue, setCostValue] = React.useState('cheap')
+const [expertValue, setExpertValue] = React.useState('photographer');
+const [weddingIsChecked, setWeddingIsChecked] = React.useState(false)
+const [loveStoryIsChecked, setLoveStoryIsChecked] = React.useState(false)
+const [individualIsChecked, setIndividualIsChecked] = React.useState(false)
+const [familyIsChecked, setFamilyIsChecked] = React.useState(false)
+const [fashionIsChecked, setFashionIsChecked] = React.useState(false)
+const [petsIsChecked, setPetsIsChecked] = React.useState(false)
+const [interviewIsChecked, setInterviewIsChecked] = React.useState(false)
+const [aerialIsChecked, setAerialIsChecked] = React.useState(false)
+const [stockIsChecked, setStockIsChecked] = React.useState(false)
+const [clipsIsChecked, setClipsIsChecked] = React.useState(false)
 
-const form = document.getElementById('form')
+const [videoTypeDisabled, setVideoTypeDisabled] = React.useState(false)
+const [photoTypeDisabled, setPhotoTypeDisabled] = React.useState(false)
 
+// это слайдеры
 function sliderOne(e) {
   if (minCost > +maxCost) {
     setMinCost(e.target.value) 
     setMaxCost(e.target.value)
   } 
      setMinCost(e.target.value)
-    //  document.getElementById('slider-1').addEventListener('mouseup', (e) => {submit(e)})
 }
 
 function sliderTwo(e) {
@@ -25,7 +37,6 @@ function sliderTwo(e) {
   } else {
      setMaxCost(e.target.value) 
   }
-   
 }
 
 function inputMinValue(e) {  // здесь нет ограничителя вниз... я хз, как его сделать
@@ -40,48 +51,157 @@ function inputMaxValue(e) {
   }
 }
 
-function blurInput(e) {
-  submit(e)
+  // это инпуты 
+function blurInput() {
+  triggeredSubmit()
 }
 
-// отправка по изменению чекбокса
-function submitClick() {
-
-  document.getElementById('form').requestSubmit()  //форму оно отправляет. осталось отменить стандартную отправку
+  // изменение состояний чекбоксов
+  // wedding
+function submitWeddingClick() {
+setWeddingIsChecked(!weddingIsChecked)
 }
+
+  // loveStory
+function submitLoveStoryClick() {
+  setLoveStoryIsChecked(!loveStoryIsChecked)
+  }
+
+  // individual
+function submitIndividualClick() {
+  setIndividualIsChecked(!individualIsChecked)
+  }
+
+  // family
+function submitFamilyClick() {
+  setFamilyIsChecked(!familyIsChecked)
+  }
+
+  // fashion
+function submitFashionClick() {
+  setFashionIsChecked(!fashionIsChecked)
+  }
+
+  // pets
+function submitPetsClick() {
+  setPetsIsChecked(!petsIsChecked)
+  }
+
+  // interview
+function submitInterviewClick() {
+  setInterviewIsChecked(!interviewIsChecked)
+  }
+
+  // aerial
+function submitAerialClick() {
+  setAerialIsChecked(!aerialIsChecked)
+  }
+
+  // stock
+function submitStockClick() {
+  setStockIsChecked(!stockIsChecked)
+  }
+  
+  // clips
+function submitClipsClick() {
+  setClipsIsChecked(!clipsIsChecked)
+  }
+
+  // дергает событие формы onSubmit
+function triggeredSubmit() {
+  document.getElementById('form').requestSubmit()
+}
+
+  // вызывает отправку формы при монтировании, а так же при изменении любого параметра
+React.useEffect(() => {
+  // сделаем неактивными те чекбоксы, которые нельзя использовать для фотографа или видеографа
+  if (expertValue === 'photographer') {
+    setPhotoTypeDisabled(false);
+    setVideoTypeDisabled(!videoTypeDisabled)
+  } else if (expertValue === 'videographer'){
+    setPhotoTypeDisabled(!photoTypeDisabled)
+    setVideoTypeDisabled(false);
+  } else {
+    setVideoTypeDisabled(false);
+    setPhotoTypeDisabled(false);
+  }
+  triggeredSubmit()
+}, [
+  costValue,
+  expertValue,
+  weddingIsChecked,
+  loveStoryIsChecked,
+  individualIsChecked,
+  familyIsChecked,
+  fashionIsChecked,
+  petsIsChecked,
+  interviewIsChecked,
+  aerialIsChecked,
+  stockIsChecked,
+  clipsIsChecked,
+])
 
 function submit(e) {
-  e.preventDefault(); 
-  filterCards()
+  e.preventDefault();
+  const formValue = {
+    cost: costValue,
+    minCost: minCost,
+    maxCost: maxCost,
+    expert: expertValue,
+    typeOfShooting: {
+      wedding: weddingIsChecked,
+      loveStory: loveStoryIsChecked,
+      individual: individualIsChecked,
+      family: familyIsChecked,
+      fashion: fashionIsChecked,
+      pets: petsIsChecked,
+      interview: interviewIsChecked,
+      aerial: aerialIsChecked,
+      stock: stockIsChecked,
+      clips: clipsIsChecked,
+    }
+  }
+  console.log(formValue)
 }
 
-// эта штука потом передет в app
-function filterCards() {
-  console.log("info")
-//  // тут запустить загрузку
-//   api.getCards()
-//     .then((res) => {
-//       setCards(res)
-//     }) 
-//     .catch((error) => {
-//       console.log(error)
-//     })
-//     .finally(() => {
-//     //  выключаем загрузку
-//     })
+// Присвятые РАДИОКНОПКИ!
+function chengeExpertValue(e) {
+  setExpertValue(e.target.value);
 }
+
+const chengeCostValue =(e) => {
+  setCostValue(e.target.value);
+}
+
+// React.useEffect(() => {
+//   if (expertValue === 'photographer') {
+//     setVideoTypeDisabled(!videoTypeDisabled)
+//   } else if (expertValue === 'videographer') {
+//     setPhotoTypeDisabled(!photoTypeDisabled)
+//   } else if (expertValue === 'all'){
+//     setVideoTypeDisabled(true);
+//     setPhotoTypeDisabled(true);
+//   }
+// }, [expertValue])
 
   return (
-
-      <form className="filter-form" id='form' onSubmit={(e)=> submit(e)} >
-      <p className="filter__type">Сортировка</p>
+      <form className="filter-form" id='form' onSubmit={(e)=> {submit(e)}} >
+      <p className="filter__type">Сортировка</p> 
       <fieldset className="fild">
       
-          <input type="radio" name="cost" id="expensive" className="ratio" onChange={submitClick} />
-          <label className="ratio-label" for="expensive">Низкая стоимость</label>
+          <input type="radio" name="cost" id="cheap" 
+            value="cheap" 
+            className="ratio" 
+            checked={costValue === 'cheap' ? true : false}
+            onChange={(e) => {chengeCostValue(e)}}/>
+          <label className="ratio-label" for="cheap">Низкая стоимость</label>
        
-          <input type="radio" name="cost" id="cheap" className="ratio" onChange={submitClick}/>
-          <label className="ratio-label" for="cheap">Высокая стоимость</label>
+          <input type="radio" name="cost" id="expensive" 
+            value="expensive" 
+            className="ratio" 
+            checked={costValue === 'expensive' ? true : false}
+            onChange={(e) => {chengeCostValue(e)}}/>
+          <label className="ratio-label" for="expensive">Высокая стоимость</label>
         
       </fieldset>
 
@@ -89,14 +209,30 @@ function filterCards() {
       <fieldset className="fild">
         <p className="filter__category">специалисты</p>
        
-          <input type="radio" name="expert" id="all" className="ratio" onChange={submitClick}/>
-          <label className="ratio-label" for="all">Все</label>
+          <input type="radio" id="all" 
+            name="expert"
+            value="all" 
+            className="ratio"
+            checked={expertValue === 'all' ? true : false}
+            onChange={chengeExpertValue}
+           />
+          <label className="ratio-label" for="all" >Все</label>
         
-          <input type="radio" name="expert" id="photographer" className="ratio" onChange={submitClick}/>
+          <input type="radio" name="expert" id="photographer" 
+            value="photographer" 
+            className="ratio" 
+            checked={expertValue === 'photographer' ? true : false}
+            onChange={chengeExpertValue}
+            />
           <label className="ratio-label" for="photographer">Фотографы</label>
         
         
-          <input type="radio" name="expert" id="videographer" className="ratio" onChange={submitClick}/>
+          <input type="radio" name="expert" id="videographer" 
+            value="videographer" 
+            className="ratio" 
+            checked={expertValue === 'videographer' ? true : false}
+            onChange={chengeExpertValue}
+            />
           <label className="ratio-label" for="videographer">Видеографы</label>
         
       </fieldset>
@@ -104,41 +240,35 @@ function filterCards() {
       <fieldset className="fild">
         <p className="filter__category">вид съемки</p>
         
-          <input type="checkbox" name="type-of-shooting" id="wedding" className="checkbox" onChange={submitClick}/>
-          <label className="checkbox-label" for="wedding">Свадебная</label>
+        <input type="checkbox" name="type-of-shooting" id="wedding" className="checkbox checkbox_photo-only" disabled={photoTypeDisabled} checked={weddingIsChecked} onChange={submitWeddingClick}/>
+        <label className="checkbox-label" for="wedding">Свадебная</label>
 
-          <input type="checkbox" name="type-of-shooting" id="love-story" className="checkbox" onChange={submitClick} />
-          <label className="checkbox-label" for="love-story"> Love Story</label>
-       
-          <input type="checkbox" name="type-of-shooting" id="individual" className="checkbox" onChange={submitClick}/>
-          <label className="checkbox-label" for="individual"> Индивидуальная</label>
+        <input type="checkbox" name="type-of-shooting" id="love-story" className="checkbox checkbox_photo-only" disabled={photoTypeDisabled} checked={loveStoryIsChecked} onChange={submitLoveStoryClick} />
+        <label className="checkbox-label" for="love-story"> Love Story</label>
+      
+        <input type="checkbox" name="type-of-shooting" id="individual" className="checkbox checkbox_photo-only" disabled={photoTypeDisabled} checked={individualIsChecked} onChange={submitIndividualClick}/>
+        <label className="checkbox-label" for="individual"> Индивидуальная</label>
+      
+        <input type="checkbox" name="type-of-shooting" id="family" className="checkbox checkbox_photo-only" disabled={photoTypeDisabled} checked={familyIsChecked} onChange={submitFamilyClick}/>
+        <label className="checkbox-label" for="family"> Семейная</label>
+      
+        <input type="checkbox" name="type-of-shooting" id="fashion" className="checkbox checkbox_photo-only" disabled={photoTypeDisabled} checked={fashionIsChecked} onChange={submitFashionClick}/>
+        <label className="checkbox-label" for="fashion"> Fashion </label>
+      
+        <input type="checkbox" name="type-of-shooting" id="pets" className="checkbox checkbox_photo-only" disabled={photoTypeDisabled} checked={petsIsChecked} onChange={submitPetsClick}/>
+        <label className="checkbox-label" for="pets">Питомцы</label>
+      
+        <input type="checkbox" name="type-of-shooting" id="interview" className="checkbox checkbox_video-only" disabled={videoTypeDisabled} checked={interviewIsChecked} onChange={submitInterviewClick}/>
+        <label className="checkbox-label" for="interview"> Интервью </label>
         
-          <input type="checkbox" name="type-of-shooting" id="family" className="checkbox" onChange={submitClick}/>
-         <label className="checkbox-label" for="family"> Семейная</label>
-        
-    
-          <input type="checkbox" name="type-of-shooting" id="fashion" className="checkbox" onChange={submitClick}/>
-             <label className="checkbox-label" for="fashion"> Fashion </label>
-       
-        
-          <input type="checkbox" name="type-of-shooting" id="pets" className="checkbox" onChange={submitClick}/>
-          <label className="checkbox-label" for="pets">Питомцы</label>
-        
-        
-          <input type="checkbox" name="type-of-shooting" id="interview" className="checkbox" onChange={submitClick}/>
-         <label className="checkbox-label" for="interview"> Интервью </label>
-       
-        
-          <input type="checkbox" name="type-of-shooting" id="aerial" className="checkbox" onChange={submitClick}/>
-         <label className="checkbox-label" for="aerial"> Аэросъемка </label>
-       
-        
-          <input type="checkbox" name="type-of-shooting" id="stock" className="checkbox" onChange={submitClick}/>
-         <label className="checkbox-label" for="stock"> Стоковая</label>
-        
-        
-          <input type="checkbox" name="type-of-shooting" id="clips" className="checkbox" onChange={submitClick}/>
-         <label className="checkbox-label" for="clips"> Клипы</label>
+        <input type="checkbox" name="type-of-shooting" id="aerial" className="checkbox checkbox_video-only" disabled={videoTypeDisabled} checked={aerialIsChecked} onChange={submitAerialClick}/>
+        <label className="checkbox-label" for="aerial"> Аэросъемка </label>
+      
+        <input type="checkbox" name="type-of-shooting" id="stock" className="checkbox checkbox_video-only" disabled={videoTypeDisabled} checked={stockIsChecked} onChange={submitStockClick}/>
+        <label className="checkbox-label" for="stock"> Стоковая</label>
+      
+        <input type="checkbox" name="type-of-shooting" id="clips" className="checkbox checkbox_video-only" disabled={videoTypeDisabled} checked={clipsIsChecked} onChange={submitClipsClick}/>
+        <label className="checkbox-label" for="clips"> Клипы</label>
         
       </fieldset>
 
@@ -156,7 +286,7 @@ function filterCards() {
               value={minCost} 
               id="slider-1" 
               onChange= {(e)=>sliderOne(e)}
-              onClick={(e) => submit(e)}
+              onClick={(e) => triggeredSubmit()}
               className="slider__input"
               />
 
@@ -167,18 +297,18 @@ function filterCards() {
               value={maxCost} 
               id="slider-2" 
               onChange= {(e)=>sliderTwo(e)}
-              onClick={(e) => submit(e)}
+              onClick={(e) => triggeredSubmit()}
               className="slider__input"/>
           </div>
           <div className="slider__values">
             <div className="values__container">
               <p className="values__info">от</p>
               <input 
-                type="text" 
+                type="number" 
                 min="350" max="2500" 
                 value={minCost} 
                 onChange= {inputMinValue} 
-                onBlur={(e) => blurInput(e)}
+                onBlur={(e) => blurInput}
                 id="slider-1-meaning" 
                 className="meaning__input"/>
               <p className="values__info">&#8381;</p>
@@ -186,11 +316,11 @@ function filterCards() {
             <div className="values__container">
               <p className="values__info">до</p>
               <input 
-                type="text" 
+                type="number" 
                 min="350" max="2500" 
                 value={maxCost} 
                 onChange= {inputMaxValue} 
-                onBlur={(e) => blurInput(e)}
+                onBlur={(e) => blurInput}
                 id="slider-2-meaning" 
                 className="meaning__input"/>
               <p className="values__info">&#8381;</p>

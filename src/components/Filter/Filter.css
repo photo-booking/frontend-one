@@ -185,6 +185,12 @@
   width: max-content;
 }
 
+.checkbox:disabled +  .checkbox-label{
+  color: #A1A1A1;
+}
+.checkbox:disabled +  .checkbox-label::before{
+  border: 1px solid #A1A1A1;
+}
 .checkbox-label::before {
   content: "";
   display: inline-block;
