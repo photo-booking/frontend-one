@@ -59,7 +59,7 @@ function blurInput() {
   // изменение состояний чекбоксов
   // wedding
 function submitWeddingClick() {
-setWeddingIsChecked(!weddingIsChecked)
+  setWeddingIsChecked(!weddingIsChecked)
 }
 
   // loveStory
@@ -177,7 +177,8 @@ function submit(e) {
       clips: clipsIsChecked,
     }
   }
-  console.log(formValue)
+  // пока с данными нечего делать, будут выводиться в консоль
+  // console.log(formValue)
 }
 
 // Присвятые РАДИОКНОПКИ!
@@ -190,99 +191,191 @@ const chengeCostValue =(e) => {
 }
 
   return (
-      <form className="filter-form" id='form' onSubmit={(e)=> {submit(e)}} >
+    <form className="filter-form" id='form' onSubmit={(e)=> {submit(e)}} >
      
       <fieldset className="fild">
        <p className="filter__type">Сортировка</p> 
-          <input type="radio" name="cost" id="cheap" 
-            value="cheap" 
-            className="ratio" 
-            checked={costValue === 'cheap' ? true : false}
-            onChange={(e) => {chengeCostValue(e)}}/>
-          <label className="ratio-label" for="cheap">Низкая стоимость</label>
-       
-          <input type="radio" name="cost" id="expensive" 
-            value="expensive" 
-            className="ratio" 
-            checked={costValue === 'expensive' ? true : false}
-            onChange={(e) => {chengeCostValue(e)}}/>
-          <label className="ratio-label" for="expensive">Высокая стоимость</label>
-        
+        <input 
+          type="radio" 
+          name="cost" 
+          id="cheap" 
+          value="cheap"
+          className="ratio" 
+          checked={costValue === 'cheap' ? true : false}
+          onChange={(e) => {chengeCostValue(e)}}
+          />
+        <label className="ratio-label" for="cheap">Низкая стоимость</label>
+
+        <input 
+          type="radio" 
+          name="cost" 
+          id="expensive" 
+          value="expensive" 
+          className="ratio" 
+          checked={costValue === 'expensive' ? true : false}
+          onChange={(e) => {chengeCostValue(e)}}
+        />
+        <label className="ratio-label" for="expensive">Высокая стоимость</label>
       </fieldset>
 
     
       <fieldset className="fild">
-          <p className="filter__type">Фильтры</p>
+        <p className="filter__type">Фильтры</p>
         <p className="filter__category">специалисты</p>
-       
-          <input type="radio" id="all" 
-            name="expert"
-            value="all" 
-            className="ratio"
-            checked={expertValue === 'all' ? true : false}
-            onChange={chengeExpertValue}
-           />
-          <label className="ratio-label" for="all" >Все</label>
-        
-          <input type="radio" name="expert" id="photographer" 
-            value="photographer" 
-            className="ratio" 
-            checked={expertValue === 'photographer' ? true : false}
-            onChange={chengeExpertValue}
-            />
-          <label className="ratio-label" for="photographer">{photo}</label>
-        
-        
-          <input type="radio" name="expert" id="videographer" 
-            value="videographer" 
-            className="ratio" 
-            checked={expertValue === 'videographer' ? true : false}
-            onChange={chengeExpertValue}
-            />
-          <label className="ratio-label" for="videographer">{video}</label>
+        <input 
+          type="radio" 
+          id="all" 
+          name="expert"
+          value="all" 
+          className="ratio"
+          checked={expertValue === 'all' ? true : false}
+          onChange={chengeExpertValue}
+        />
+        <label className="ratio-label" for="all" >Все</label>
+      
+        <input 
+          type="radio" 
+          name="expert" 
+          id="photographer" 
+          value="photographer" 
+          className="ratio" 
+          checked={expertValue === 'photographer' ? true : false}
+          onChange={chengeExpertValue}
+        />
+        <label className="ratio-label" for="photographer">{photo}</label>
+      
+        <input 
+          type="radio" 
+          name="expert" 
+          id="videographer" 
+          value="videographer" 
+          className="ratio" 
+          checked={expertValue === 'videographer' ? true : false}
+          onChange={chengeExpertValue}
+        />
+        <label className="ratio-label" for="videographer">{video}</label>
         
       </fieldset>
 
       <fieldset className="fild">
         <p className="filter__category">вид съемки</p>
         
-        <input type="checkbox" name="type-of-shooting" id="wedding" className="checkbox checkbox_photo-only" disabled={photoTypeDisabled} checked={weddingIsChecked} onChange={submitWeddingClick}/>
+        <input 
+          type="checkbox" 
+          name="type-of-shooting" 
+          id="wedding" 
+          className="checkbox" 
+          disabled={photoTypeDisabled} 
+          checked={weddingIsChecked} 
+          onChange={submitWeddingClick}
+        />
         <label className="checkbox-label" for="wedding">Свадебная</label>
 
-        <input type="checkbox" name="type-of-shooting" id="love-story" className="checkbox checkbox_photo-only" disabled={photoTypeDisabled} checked={loveStoryIsChecked} onChange={submitLoveStoryClick} />
+        <input 
+          type="checkbox" 
+          name="type-of-shooting" 
+          id="love-story" 
+          className="checkbox" 
+          disabled={photoTypeDisabled} 
+          checked={loveStoryIsChecked} 
+          onChange={submitLoveStoryClick}
+        />
         <label className="checkbox-label" for="love-story"> Love Story</label>
       
-        <input type="checkbox" name="type-of-shooting" id="individual" className="checkbox checkbox_photo-only" disabled={photoTypeDisabled} checked={individualIsChecked} onChange={submitIndividualClick}/>
+        <input 
+          type="checkbox" 
+          name="type-of-shooting" 
+          id="individual" 
+          className="checkbox" 
+          disabled={photoTypeDisabled} 
+          checked={individualIsChecked} 
+          onChange={submitIndividualClick}
+        />
         <label className="checkbox-label" for="individual"> Индивидуальная</label>
       
-        <input type="checkbox" name="type-of-shooting" id="family" className="checkbox checkbox_photo-only" disabled={photoTypeDisabled} checked={familyIsChecked} onChange={submitFamilyClick}/>
+        <input 
+          type="checkbox" 
+          name="type-of-shooting" 
+          id="family" 
+          className="checkbox" 
+          disabled={photoTypeDisabled} 
+          checked={familyIsChecked} 
+          onChange={submitFamilyClick}
+        />
         <label className="checkbox-label" for="family"> Семейная</label>
       
-        <input type="checkbox" name="type-of-shooting" id="fashion" className="checkbox checkbox_photo-only" disabled={photoTypeDisabled} checked={fashionIsChecked} onChange={submitFashionClick}/>
+        <input 
+          type="checkbox" 
+          name="type-of-shooting" 
+          id="fashion" 
+          className="checkbox" 
+          disabled={photoTypeDisabled} 
+          checked={fashionIsChecked} 
+          onChange={submitFashionClick}
+        />
         <label className="checkbox-label" for="fashion"> Fashion </label>
       
-        <input type="checkbox" name="type-of-shooting" id="pets" className="checkbox checkbox_photo-only" disabled={photoTypeDisabled} checked={petsIsChecked} onChange={submitPetsClick}/>
+        <input 
+          type="checkbox" 
+          name="type-of-shooting" 
+          id="pets" 
+          className="checkbox" 
+          disabled={photoTypeDisabled} 
+          checked={petsIsChecked} 
+          onChange={submitPetsClick}
+        />
         <label className="checkbox-label" for="pets">Питомцы</label>
       
-        <input type="checkbox" name="type-of-shooting" id="interview" className="checkbox checkbox_video-only" disabled={videoTypeDisabled} checked={interviewIsChecked} onChange={submitInterviewClick}/>
+        <input 
+          type="checkbox" 
+          name="type-of-shooting" 
+          id="interview" 
+          className="checkbox" 
+          disabled={videoTypeDisabled} 
+          checked={interviewIsChecked} 
+          onChange={submitInterviewClick}
+        />
         <label className="checkbox-label" for="interview"> Интервью </label>
         
-        <input type="checkbox" name="type-of-shooting" id="aerial" className="checkbox checkbox_video-only" disabled={videoTypeDisabled} checked={aerialIsChecked} onChange={submitAerialClick}/>
+        <input 
+          type="checkbox" 
+          name="type-of-shooting" 
+          id="aerial" 
+          className="checkbox" 
+          disabled={videoTypeDisabled} 
+          checked={aerialIsChecked} 
+          onChange={submitAerialClick}
+        />
         <label className="checkbox-label" for="aerial"> Аэросъемка </label>
       
-        <input type="checkbox" name="type-of-shooting" id="stock" className="checkbox checkbox_video-only" disabled={videoTypeDisabled} checked={stockIsChecked} onChange={submitStockClick}/>
+        <input 
+          type="checkbox" 
+          name="type-of-shooting" 
+          id="stock" 
+          className="checkbox" 
+          disabled={videoTypeDisabled} 
+          checked={stockIsChecked} 
+          onChange={submitStockClick}
+        />
         <label className="checkbox-label" for="stock"> Стоковая</label>
       
-        <input type="checkbox" name="type-of-shooting" id="clips" className="checkbox checkbox_video-only" disabled={videoTypeDisabled} checked={clipsIsChecked} onChange={submitClipsClick}/>
+        <input 
+          type="checkbox" 
+          name="type-of-shooting" 
+          id="clips" 
+          className="checkbox" 
+          disabled={videoTypeDisabled} 
+          checked={clipsIsChecked} 
+          onChange={submitClipsClick}
+        />
         <label className="checkbox-label" for="clips"> Клипы</label>
         
       </fieldset>
 
-  <p className="filter__category">стоимость</p> 
+      <p className="filter__category">стоимость</p> 
      
       <div className="slider">
         <div className="slider__container">
-
           <div className="slider-range"> 
             <div className="slider-range__track"></div>
             <input 
@@ -294,7 +387,7 @@ const chengeCostValue =(e) => {
               onChange= {(e)=>sliderOne(e)}
               onClick={(e) => triggeredSubmit()}
               className="slider__input"
-              />
+            />
 
             <input 
               type="range" 
@@ -304,7 +397,8 @@ const chengeCostValue =(e) => {
               id="slider-2" 
               onChange= {(e)=>sliderTwo(e)}
               onClick={(e) => triggeredSubmit()}
-              className="slider__input"/>
+              className="slider__input"
+            />
           </div>
           <div className="slider__values">
             <div className="values__container">
@@ -316,7 +410,8 @@ const chengeCostValue =(e) => {
                 onChange= {inputMinValue} 
                 onBlur={(e) => blurInput(e)}
                 id="slider-1-meaning" 
-                className="meaning__input"/>
+                className="meaning__input"
+              />
               <p className="values__info">&#8381;</p>
             </div>
             <div className="values__container">
@@ -328,12 +423,13 @@ const chengeCostValue =(e) => {
                 onChange= {inputMaxValue} 
                 onBlur={(e) => blurInput(e)}
                 id="slider-2-meaning" 
-                className="meaning__input"/>
+                className="meaning__input"
+              />
               <p className="values__info">&#8381;</p>
             </div>
+          </div>
         </div>
       </div>
-    </div>
     </form>
   )
 }
