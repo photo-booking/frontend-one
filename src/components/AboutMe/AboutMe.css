@@ -98,7 +98,8 @@
   margin: 0;
 }
 
-.about-me__article {
+.about-me__article-contact,
+.about-me__article-share {
   position: relative;
 }
 .about-me__button-contact {
@@ -136,10 +137,28 @@
   left: 0;
 }
 
+.about-me__share-container {
+  border-radius: 4px;
+  border: 1px solid #0C1200;
+  background: none;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 72px;
+  top: 40px;
+  height: 44px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
 .about-me__contact-container_visible {
   visibility: visible;
 }
 
+.about-me__share-container_visible {
+  visibility: visible;
+}
 .about-me__contact-span {
   display: flex;
   align-items: center;
@@ -171,4 +190,25 @@
   background-image: url(../../images/share.svg);
   background-repeat: no-repeat;
   background-position: center;
+  padding: 0;
+}
+
+.about-me__button-close {
+  background-image: url(../../images/icon_close.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+}
+
+.about-me__button-copy {
+  background-image: url(../../images/icon_copy.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  width: 28px;
+  height: 28px;
+  padding: 0;
 }

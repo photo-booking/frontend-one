@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import './AboutMe.css';
 import photo from '../../images/Rectangle 11.jpg';
 import icon_photo from '../../images/worker icon_photo.svg';
@@ -7,9 +7,13 @@ import icon_video from '../../images/worker icon_video.svg';
 import icon_telephone from '../../images/contact icons_telephone.svg';
 import icon_telegram from '../../images/contact icons _telegram.svg';
 import icon_email from '../../images/contact icons_email.svg';
+import icon_vk_share from '../../images/icon_vk_share.svg';
+import icon_telegram_share from '../../images/icon_telegram_share.svg';
 
 export const AboutMe = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const baseUrl = 'http://localhost:3000';
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
   const handleContactOpen = () => {
@@ -18,9 +22,19 @@ export const AboutMe = () => {
   const handleShareOpen = () => {
     setIsShareOpen(!isShareOpen);
   };
+  function sharePostInVk(url) {
+    return `https://vk.com/share.php?url=${url}?title='Title'`; //Надо добавить заголовки в метаданные
+  }
+  function shareInTelegram(url) {
+    return `https://telegram.me/share/url?url=${url}&text=ТЕКСТ`; //Надо добавить заголовки в метаданные
+  }
 
-const contactMenuClassName = `about-me__contact-container ${isContactOpen ? 'about-me__contact-container_visible' : ''}`
-
+  const contactMenuClassName = `about-me__contact-container ${
+    isContactOpen ? 'about-me__contact-container_visible' : ''
+  }`;
+  const shareMenuClassName = `about-me__share-container ${
+    isShareOpen ? 'about-me__share-container_visible' : ''
+  }`;
   return (
     <article className="about-me">
       <button
@@ -59,8 +73,9 @@ const contactMenuClassName = `about-me__contact-container ${isContactOpen ? 'abo
               430EX III-RT, свет Raylab Axio III 400 Basic Kit
             </p>
           </div>
+          {/* Кнопка и менюшка с контактами */}
           <div className="about-me__container about-me__container_aling_start">
-            <article className="about-me__article">
+            <article className="about-me__article-contact">
               <button
                 className="about-me__button-contact"
                 onClick={handleContactOpen}
@@ -94,10 +109,47 @@ const contactMenuClassName = `about-me__contact-container ${isContactOpen ? 'abo
                 </span>
               </div>
             </article>
-            <button
-              className="about-me__button-share"
-              onClick={handleShareOpen}
-            />
+            {/* Кнопка и менюшка поделиться */}
+            <article className="about-me__article-share">
+              <button
+                className="about-me__button-share"
+                onClick={handleShareOpen}
+              />
+              <div className={shareMenuClassName}>
+                <button
+                  className="about-me__button-close"
+                  onClick={handleShareOpen}
+                />
+                <Link
+                  to={sharePostInVk(`${baseUrl}${location.pathname}`)}
+                  target="_blank"
+                  className=""
+                >
+                  <img
+                    src={icon_vk_share}
+                    alt="vk logo"
+                    className=""
+                  />
+                </Link>
+
+                <Link
+                  to={shareInTelegram(`${baseUrl}${location.pathname}`)}
+                  target="_blank"
+                  className=""
+                >
+                  <img
+                    src={icon_telegram_share}
+                    alt="telegram  logo"
+                    className=""
+                  />
+                </Link>
+
+                <button
+                  className="about-me__button-copy"
+                  onClick={handleShareOpen}
+                />
+              </div>
+            </article>
           </div>
         </div>
         <figure className="about-me__avatar">
