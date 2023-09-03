@@ -146,7 +146,12 @@ export const AboutMe = () => {
 
                 <button
                   className="about-me__button-copy"
-                  onClick={()=> {}}
+                  onClick={()=> {
+                    const url = `${baseUrl}${location.pathname}`;
+                    navigator.clipboard.writeText(url)
+                      .then(()=>{console.log('copy')})
+                      .catch(()=> {console.log('copy error')})
+                  }}
                 />
               </div>
             </article>
