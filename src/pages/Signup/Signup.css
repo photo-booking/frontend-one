@@ -31,7 +31,7 @@
     flex-direction: row;
     align-items: flex-start;
     width: 360px;
-    padding: 16px 20px 20px 20px;
+    padding: 21px 24px 24px 24px;
     border-radius: 8px;
     border: 1px solid #E0E0E0;
     background: none;
@@ -64,6 +64,6 @@
     font-style: normal;
     font-weight: 600;
     line-height: 20px;
-    margin: 0 0 0 40px;
-    width: 300px;
+    margin: 0 0 0 16px;
+    width: 264px;
 }

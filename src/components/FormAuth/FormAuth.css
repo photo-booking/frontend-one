@@ -26,7 +26,7 @@
   border: none;
 }
 
-.form-auth__button_show-pass{
+.form-auth__button_show-pass {
   background: none;
   position: absolute;
   top: 10px;
@@ -63,11 +63,13 @@
   background: none;
   cursor: pointer;
   border: none;
-  border-bottom: 1px solid #0C1200;
+  text-decoration: underline;
+  /* border-bottom: 1px solid #0C1200; */
+  margin-top: 12px;
 }
 
 .form-auth__button_sign_left {
-  align-self: flex-end;
+  align-self: flex-start;
 }
 
 .form-auth__label {
@@ -124,15 +126,24 @@
 }
 
 .form-auth__caption {
-  margin: 12px 0 0;
+  /* margin: 12px 0 0; */
+  margin: 0;
 }
 
 .form-auth__err {
-  height: 16px;
+  height: 12px;
   width: 359px;
   color: #BA1B00;
+  font-family: Aneliza;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px;
+  /* 133.333% */
+  letter-spacing: 0.24px;
+  margin-bottom: 6px;
 }
 
-.form-auth__input-container{
+.form-auth__input-container {
   position: relative;
 }

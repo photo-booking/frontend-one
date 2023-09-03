@@ -16,7 +16,6 @@ import {
   ERR_MESSAGE_REQUIRED
 } from '../../const/RegexConst';
 
-
 export const Signup = props => {
   const {
     watch,
@@ -84,7 +83,6 @@ export const Signup = props => {
     <>
       {/* когда выбрал чекбокс клиент/заказчик */}
       {isClient !== undefined ? (
-        
         <div className="signup form-auth__container">
           <h1 className="form-auth__title">{title}</h1>
           <AuthIntegration />
@@ -96,10 +94,10 @@ export const Signup = props => {
                   className="form-auth__label"
                 >
                   Имя
+                  <span className="form-auth__err">{errors?.name && errors.name.message}</span>
                   <input
                     className={formAuthInputClassName('name')}
                     type="text"
-                    placeholder="Дмитрий"
                     id="name"
                     minLength="1"
                     maxLength="50"
@@ -111,17 +109,18 @@ export const Signup = props => {
                       }
                     })}
                   />
-                  <span className="form-auth__err">{errors?.name && errors.name.message}</span>
                 </label>
                 <label
                   htmlFor="reg-surname"
                   className="form-auth__label"
                 >
                   Фамилия
+                  <span className="form-auth__err">
+                    {errors?.surname && errors.surname.message}
+                  </span>
                   <input
                     className={formAuthInputClassName('surname')}
                     type="text"
-                    placeholder="Иванов"
                     id="surname"
                     minLength="1"
                     maxLength="50"
@@ -133,19 +132,16 @@ export const Signup = props => {
                       }
                     })}
                   />
-                  <span className="form-auth__err">
-                    {errors?.surname && errors.surname.message}
-                  </span>
                 </label>
                 <label
                   htmlFor="email"
                   className="form-auth__label"
                 >
                   Email
+                  <span className="form-auth__err">{errors?.email && errors.email.message}</span>
                   <input
                     className={formAuthInputClassName('email')}
                     type="email"
-                    placeholder="dmitrii.ivanov@example.com"
                     id="email"
                     {...register('email', {
                       required: ERR_MESSAGE_REQUIRED,
@@ -155,13 +151,15 @@ export const Signup = props => {
                       }
                     })}
                   />
-                  <span className="form-auth__err">{errors?.email && errors.email.message}</span>
                 </label>
                 <label
                   htmlFor="password"
                   className="form-auth__label"
                 >
                   Пароль
+                  <span className="form-auth__err">
+                    {errors?.password && errors.password.message}
+                  </span>
                   <div className="form-auth__input-container">
                     <input
                       className={formAuthInputClassName('password')}
@@ -188,9 +186,6 @@ export const Signup = props => {
                       />
                     </button>
                   </div>
-                  <span className="form-auth__err">
-                    {errors?.password && errors.password.message}
-                  </span>
                 </label>
               </>
             }
