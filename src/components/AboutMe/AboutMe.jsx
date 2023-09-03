@@ -97,7 +97,7 @@ export const AboutMe = () => {
                     src={icon_telegram}
                     alt=""
                   />
-                  <p className="about-me__contact">@photo_grapher</p>
+                  <p className="about-me__contact">@photo_graplkkdfnjkvgfnjkbdngvjkbd ngvjkbnjkgvnjkher</p>
                 </span>
                 <span className="about-me__contact-span">
                   <img
@@ -105,7 +105,7 @@ export const AboutMe = () => {
                     src={icon_email}
                     alt=""
                   />
-                  <p className="about-me__contact">photo@example.com</p>
+                  <p className="about-me__contact">phfsnkfnvsklfnvloto@example.com</p>
                 </span>
               </div>
             </article>

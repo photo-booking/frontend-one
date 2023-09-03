@@ -46,7 +46,7 @@
 
 .about-me__container_aling_start {
   justify-content: flex-start;
-  align-items: center;
+  gap: 32px;
 }
 
 .about-me__avatar {
@@ -98,12 +98,17 @@
   margin: 0;
 }
 
-.about-me__article-contact,
 .about-me__article-share {
   position: relative;
 }
+.about-me__article-contact {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
 .about-me__button-contact {
-  margin: 40px 32px 0 0;
+  margin: 40px 0 0;
   border-radius: 4px;
   background: none;
   font-family: Aneliza;
@@ -114,27 +119,26 @@
   cursor: pointer;
   border: none;
   background-color: #91E500;
-  width: 204px;
   padding: 12px 32px;
+  width: 100%;
 }
 
 .about-me__contact-container {
   visibility: hidden;
-  width: 204px;
+
   box-sizing: border-box;
   background-color: white;
   border-radius: 0px 0px 12px 12px;
   display: flex;
-  width: 204px;
   padding: 24px 16px 20px 12px;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 4px;
   box-shadow: 0px 8px 25px 0px rgba(0, 0, 0, 0.04);
-  position: absolute;
+  /* position: absolute;
   top: 85px;
-  left: 0;
+  left: 0; */
 }
 
 .about-me__share-container {
@@ -201,6 +205,7 @@
   width: 28px;
   height: 28px;
   padding: 0;
+  cursor: pointer;
 }
 
 .about-me__button-copy {
@@ -211,6 +216,7 @@
   width: 28px;
   height: 28px;
   padding: 0;
+  cursor: pointer;
 }
 
 .about-me__share-link {
