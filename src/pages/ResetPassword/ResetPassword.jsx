@@ -56,7 +56,7 @@ export const ResetPassword = props => {
   };
 
   const handleSubmitSendEmailToResetPassword = values => {
-    onSubmitSendEmailToResetPassword(values);
+    onSubmitSendEmailToResetPassword({email: values.email});
     reset();
   };
 
@@ -90,18 +90,18 @@ export const ResetPassword = props => {
           child={
             <>
               <label
-                htmlFor="sendEmail"
+                htmlFor="email"
                 className="form-auth__label"
               >
                 Email
                 <span className="form-auth__err">
-                  {errors?.sendEmail && errors.sendEmail.message}
+                  {errors?.email && errors.email.message}
                 </span>
                 <input
-                  className={formAuthInputClassName('sendEmail')}
+                  className={formAuthInputClassName('email')}
                   type="email"
-                  id="sendEmail"
-                  {...register('sendEmail', {
+                  id="email"
+                  {...register('email', {
                     required: ERR_MESSAGE_REQUIRED,
                     pattern: {
                       value: REG_EMAIL,

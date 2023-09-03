@@ -123,7 +123,7 @@ export const AboutMe = () => {
                 <Link
                   to={sharePostInVk(`${baseUrl}${location.pathname}`)}
                   target="_blank"
-                  className=""
+                  className="about-me__share-link"
                 >
                   <img
                     src={icon_vk_share}
@@ -135,7 +135,7 @@ export const AboutMe = () => {
                 <Link
                   to={shareInTelegram(`${baseUrl}${location.pathname}`)}
                   target="_blank"
-                  className=""
+                  className="about-me__share-link"
                 >
                   <img
                     src={icon_telegram_share}

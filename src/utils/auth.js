@@ -1,4 +1,4 @@
-const BASE_URL = 'https://photo-market.acceleratorpracticum.ru/api'; //my adress
+const BASE_URL = 'http://127.0.0.1:8080/https://photo-market.acceleratorpracticum.ru/api'; //my adress
 const HEADERS = { 'Content-Type': 'application/json' };
 
 function getResponseData(res) {
@@ -67,20 +67,18 @@ export function loginVk(param) {
 
 //Сбросить пароль: отправить письмо 
 export function sendEmailToResetPassword(email) {
-  return fetch(`${BASE_URL}/api/users/reset_password/`, {
+  return fetch(`${BASE_URL}/users/reset_password/`, {
     method: 'POST',
     headers: HEADERS,
-    body: JSON.stringify({ email: email })
+    body: JSON.stringify(email)
   })
     .then(res => getResponseData(res))
-    .then(res => {
-      console.log(res);
-    });
+    ;
 }
 
 //Сбросить пароль: отправить новый пароль
 export function resetPassword(values, param) {
-  return fetch(`${BASE_URL}/api/users/reset_password_confirm/`, {
+  return fetch(`${BASE_URL}/users/reset_password_confirm/`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({ new_password: values.resetPassword,

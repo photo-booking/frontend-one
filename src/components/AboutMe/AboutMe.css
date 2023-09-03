@@ -212,3 +212,7 @@
   height: 28px;
   padding: 0;
 }
+
+.about-me__share-link {
+  margin: 5px 0 0;
+}
