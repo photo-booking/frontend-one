@@ -1,0 +1,54 @@
+.photoCardContainer {
+    position: relative;
+    width: 501px;
+    height: 300px;
+    margin-bottom: 32px;
+}
+.photoCardContainer__card {
+    border-radius: 12px;
+    width: 100%;
+    aspect-ratio: 501/300;
+    object-fit: cover;
+}
+.photoCardContainer__info {
+    position: absolute;
+    display: none;
+    top: 300px;
+    z-index: 2;
+    width: 501px;
+    height: 81px;
+    background-color: #FFFFFF;
+    border-radius: 0 0 12px 12px;
+    align-items: center;
+    justify-content: space-between;
+}
+.photoCardContainer__info__title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 0 24px;
+}
+.photoCardContainer__info__title {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    margin-left: 10px;
+    padding: 0 24px 0 0 ;
+}
+.photoCardContainer__info__img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #0C1200;
+}
+.photoCardContainer:hover  {
+    cursor: pointer;
+    background-color: #FFFFFF;
+}
+.photoCardContainer:hover  .photoCardContainer__info {
+    display: flex;
+}

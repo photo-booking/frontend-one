@@ -2,24 +2,6 @@
   width: 1376px;
   margin: 0 auto 180px;
 }
-
-.pricelist__title span {
-  margin: 40px 0 32px;
-  font-size: 28px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 41px;
-}
-
-.pricelist__title span:first-child {
-  color: #a1a1a1;
-  padding-right: 8px;
-}
-
-.pricelist__title span:last-child {
-  color: #0c1200;
-}
-
 .pricelist__headlines {
   margin-bottom: 24px;
   margin-left: 76px;

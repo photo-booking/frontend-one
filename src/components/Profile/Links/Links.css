@@ -1,0 +1,24 @@
+.linksContainer {
+    display: flex;
+    border-top: 2px solid #E0E0E0;
+    padding-top: 42px;
+    margin: 48px 27px 32px 56px;
+}
+.linksContainer__profile-button {
+    font-size: 28px;
+    padding: 0;
+    border: none;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 41px;
+    letter-spacing: -0.14px;
+    color: #A1A1A1;
+    margin-right: 8px;
+    background-color: transparent;
+}
+.linksContainer__profile-button:hover {
+    cursor: pointer;
+}
+.active {
+    color: #0C1200;
+}
