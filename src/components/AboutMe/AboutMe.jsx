@@ -146,7 +146,7 @@ export const AboutMe = () => {
 
                 <button
                   className="about-me__button-copy"
-                  onClick={handleShareOpen}
+                  onClick={()=> {}}
                 />
               </div>
             </article>
