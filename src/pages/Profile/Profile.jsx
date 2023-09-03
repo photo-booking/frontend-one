@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import './Profile.css';
+import { AboutMe } from '../../components/AboutMe/AboutMe';
 export const Profile = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -8,13 +9,11 @@ export const Profile = () => {
   const id = 1
   return (
     <>
-    <div className={'profile-container'}>
-      <h1>{name}</h1>
+      <AboutMe />
       <button onClick={() => navigate(`/catalog`)}>Вернуться в каталог</button>
       <button onClick={() => navigate(`/expert/${id}/ratings`, { state: { name, id } })}>
         Отзывы и рейтинги
       </button>
-    </div>
     </>
   );
 };
