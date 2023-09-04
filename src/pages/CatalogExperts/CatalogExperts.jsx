@@ -2,7 +2,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 import { Preview } from '../../components/Preview/Preview';
 import { useNavigate } from 'react-router-dom';
-import Filter from '../../components/Filter/Filter'
+import  Filter  from '../../components/Filter/Filter';
+import { Footer } from '../../components/Footer/footer';
 import './CatalogExperts.css';
 import { Card } from '../../components/Card/card';
 
@@ -77,5 +78,6 @@ export const CatalogExecutors = () => {
         </button>
       </div> */}
     </section>
+    <Footer />
   );
 };

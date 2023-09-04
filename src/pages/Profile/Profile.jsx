@@ -6,6 +6,7 @@ import { LinksPortfolio } from '../../components/Profile/Links/Links';
 import { Sorting } from '../../components/Profile/Sorting/Sorting';
 import PricesPage from '../PricesPage/PricesPage';
 import { CardInfoProfile } from '../../components/Profile/PhotoCard/CardInfo/CardInfo';
+import { Footer } from '../../components/Footer/footer';
 
 export const Profile = () => {
   useEffect(() => {
@@ -148,7 +149,8 @@ export const Profile = () => {
         </>
       ) : (
         <PricesPage />
-      )}
+      )}      
+      <Footer />
     </>
   );
 };

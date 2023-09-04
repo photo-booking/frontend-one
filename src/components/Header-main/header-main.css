@@ -1,5 +1,6 @@
 
 .header-main {
+    margin: 0 auto;
     border-bottom: 1px solid rgb(226, 223, 223);
     display: flex;
     align-items: center;

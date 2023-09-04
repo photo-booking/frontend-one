@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0 0 48px;
-    margin: 0 36px 46px 56px;
+    margin: 0 32px 46px 56px;
     height: max-content;
 }
 .profileContainer__cardsContainer {
