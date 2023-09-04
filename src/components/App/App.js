@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from "../context/CurrentUserContext";
+import "./App.css"
 
 import {
   register,
@@ -175,6 +176,7 @@ export function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
+      <div className='page'>
       <HeaderMain isClient={isClient} setIsClient={setIsClient}></HeaderMain>
       <Routes>
         <Route
@@ -259,6 +261,7 @@ export function App() {
         />
       </Routes>
       <Footer></Footer>
+      </div>
     </CurrentUserContext.Provider>
   );
 }
