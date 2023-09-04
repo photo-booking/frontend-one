@@ -103,7 +103,7 @@ export const Profile = () => {
 
   return (
     <>
-
+      <AboutMe />
       <div id="overlayProfile" />
       <LinksPortfolio
         onPrice={onPrice}
