@@ -41,7 +41,7 @@ export function login(values) {
 
 //Войти в аккаунт через гугл
 export function loginGoogle(param) {
-  return fetch(`${BASE_URL}/auth_google`, {
+  return fetch(`${BASE_URL}/social/login/google-oauth2`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({ eccses_token: param })
@@ -49,20 +49,22 @@ export function loginGoogle(param) {
     .then(res => getResponseData(res))
     .then(res => {
       localStorage.setItem('token', res.token);
-      
+      return res;
     });
 }
 
 //Войти в аккаунт через ВК
 export function loginVk(param) {
-  return fetch(`${BASE_URL}/auth_vk`, {
+  return fetch(`${BASE_URL}/social/login/vk-oauth2`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({ code: param })
   })
     .then(res => getResponseData(res))
     .then(res => {
+      console.log(res);
       localStorage.setItem('token', res.token);
+      return res;
     });
 }
 

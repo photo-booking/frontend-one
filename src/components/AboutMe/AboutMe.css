@@ -64,7 +64,7 @@
 }
 
 .about-me__title {
-  font-family: Aneliza;
+  font-family: 'Aneliza';
   font-size: 76px;
   font-style: normal;
   font-weight: 700;
@@ -74,7 +74,7 @@
 }
 
 .about-me__subtitle {
-  font-family: Aneliza;
+  font-family: 'Aneliza';
   font-size: 22px;
   font-style: normal;
   font-weight: 700;
@@ -88,7 +88,7 @@
 }
 
 .about-me__text {
-  font-family: Fira Sans;
+  font-family: 'Fira Sans';
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
@@ -101,17 +101,18 @@
 .about-me__article-share {
   position: relative;
 }
+
 .about-me__article-contact {
-display: flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .about-me__button-contact {
   margin: 40px 0 0;
   border-radius: 4px;
   background: none;
-  font-family: Aneliza;
+  font-family: 'Aneliza';
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -125,7 +126,11 @@ align-items: center;
 
 .about-me__contact-container {
   visibility: hidden;
-
+  font-family: 'Fira Sans';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
   box-sizing: border-box;
   background-color: white;
   border-radius: 0px 0px 12px 12px;
@@ -148,12 +153,17 @@ align-items: center;
   visibility: hidden;
   display: flex;
   align-items: center;
+  column-gap: 11px;
   position: absolute;
-  left: 72px;
+  left: 0;
   top: 40px;
   height: 44px;
   padding: 0 20px;
   box-sizing: border-box;
+}
+
+.about-me__share-container:hover {
+  background-color: #0C1200;
 }
 
 .about-me__contact-container_visible {
@@ -163,6 +173,7 @@ align-items: center;
 .about-me__share-container_visible {
   visibility: visible;
 }
+
 .about-me__contact-span {
   display: flex;
   align-items: center;
@@ -175,13 +186,12 @@ align-items: center;
 }
 
 .about-me__contact {
-  font-family: Fira Sans;
+  font-family: 'Fira Sans';
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 19px;
 }
-
 
 .about-me__button-share {
   margin: 40px 32px 0 0;
@@ -195,9 +205,20 @@ align-items: center;
   background-repeat: no-repeat;
   background-position: center;
   padding: 0;
+  visibility: visible;
+}
+
+.about-me__button-share_hidden {
+  visibility: hidden;
+}
+
+.about-me__button-share:hover {
+  background-color: #0C1200;
+  background-image: url(../../images/share_white.svg);
 }
 
 .about-me__button-close {
+  background: none;
   background-image: url(../../images/icon_close.svg);
   background-repeat: no-repeat;
   background-position: center;
@@ -208,7 +229,12 @@ align-items: center;
   cursor: pointer;
 }
 
+.about-me__share-container:hover .about-me__button-close {
+  background-image: url(../../images/icon_close_white.svg);
+}
+
 .about-me__button-copy {
+  background: none;
   background-image: url(../../images/icon_copy.svg);
   background-repeat: no-repeat;
   background-position: center;
@@ -217,8 +243,38 @@ align-items: center;
   height: 28px;
   padding: 0;
   cursor: pointer;
+  margin-right: 5px;
+  margin-left: 4px;
+}
+
+.about-me__share-container:hover .about-me__button-copy {
+  background-image: url(../../images/icon_copy_white.svg);
 }
 
 .about-me__share-link {
-  margin: 5px 0 0;
+  background: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  height: 28px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.about-me__share-link_vk {
+  background-image: url(../../images/icon_vk_share.svg);
+  width: 40px;
+}
+
+.about-me__share-link_telegram {
+  background-image: url(../../images/icon_telegram_share.svg);
+  width: 36px;
+}
+
+.about-me__share-container:hover .about-me__share-link_vk {
+  background-image: url(../../images/icon_vk_white.svg);
+}
+
+.about-me__share-container:hover .about-me__share-link_telegram {
+  background-image: url(../../images/icon_telegram_white.svg);
 }

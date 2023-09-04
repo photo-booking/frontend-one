@@ -7,8 +7,6 @@ import icon_video from '../../images/worker icon_video.svg';
 import icon_telephone from '../../images/contact icons_telephone.svg';
 import icon_telegram from '../../images/contact icons _telegram.svg';
 import icon_email from '../../images/contact icons_email.svg';
-import icon_vk_share from '../../images/icon_vk_share.svg';
-import icon_telegram_share from '../../images/icon_telegram_share.svg';
 
 export const AboutMe = () => {
   const navigate = useNavigate();
@@ -32,6 +30,9 @@ export const AboutMe = () => {
   const contactMenuClassName = `about-me__contact-container ${
     isContactOpen ? 'about-me__contact-container_visible' : ''
   }`;
+
+  const shareButtonClassname = `${isShareOpen ? 'about-me__button-share_hidden' : 'about-me__button-share'} `
+
   const shareMenuClassName = `about-me__share-container ${
     isShareOpen ? 'about-me__share-container_visible' : ''
   }`;
@@ -112,7 +113,7 @@ export const AboutMe = () => {
             {/* Кнопка и менюшка поделиться */}
             <article className="about-me__article-share">
               <button
-                className="about-me__button-share"
+                className={shareButtonClassname}
                 onClick={handleShareOpen}
               />
               <div className={shareMenuClassName}>
@@ -123,25 +124,25 @@ export const AboutMe = () => {
                 <Link
                   to={sharePostInVk(`${baseUrl}${location.pathname}`)}
                   target="_blank"
-                  className="about-me__share-link"
+                  className="about-me__share-link about-me__share-link_vk"
                 >
-                  <img
+                  {/* <img
                     src={icon_vk_share}
                     alt="vk logo"
                     className=""
-                  />
+                  /> */}
                 </Link>
 
                 <Link
                   to={shareInTelegram(`${baseUrl}${location.pathname}`)}
                   target="_blank"
-                  className="about-me__share-link"
+                  className="about-me__share-link about-me__share-link_telegram"
                 >
-                  <img
+                  {/* <img
                     src={icon_telegram_share}
                     alt="telegram  logo"
                     className=""
-                  />
+                  /> */}
                 </Link>
 
                 <button
