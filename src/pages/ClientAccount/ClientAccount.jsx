@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Footer } from '../../components/Footer/footer'
 import './ClientAccount.css';
 export const ClientAccount = () => {
   const navigate = useNavigate();
@@ -11,6 +12,8 @@ export const ClientAccount = () => {
       <button onClick={() => navigate(`/client/${id}/orders`, { state: { name, id } })}>
         Заказы
       </button>
+      <Footer />
     </div>
+    
   );
 };

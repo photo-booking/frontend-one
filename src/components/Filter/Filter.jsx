@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./Filter.css"
-import { react } from "@babel/types";
 
 function Filter({photo, video}) {
 

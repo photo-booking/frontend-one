@@ -30,7 +30,6 @@ import { ClientChat } from '../../pages/ClientChat/ClientChat';
 import { ExecutorChat } from '../../pages/ExpertChat/ExpertChat';
 import { Page404 } from '../../pages/404/404';
 import { HeaderMain } from '../Header-main/header-main';
-import { Footer } from '../Footer/footer';
 
 export function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -257,7 +256,7 @@ export function App() {
           element={<Page404 />}
         />
       </Routes>
-      <Footer></Footer>
+     
       </div>
     </CurrentUserContext.Provider>
   );
