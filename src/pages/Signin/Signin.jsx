@@ -121,7 +121,7 @@ export const Signin = props => {
         err={errors}
       />
       <p className="form-auth__caption">
-        Нет аккаунта?
+        Нет аккаунта? 
         <button
           className="form-auth__button_sign"
           onClick={evt => {
@@ -129,7 +129,7 @@ export const Signin = props => {
             navigate('/sign-up');
           }}
         >
-          Зарегистрируйтесь
+           Зарегистрируйтесь
         </button>
       </p>
     </div>

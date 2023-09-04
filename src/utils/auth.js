@@ -3,7 +3,7 @@ const HEADERS = { 'Content-Type': 'application/json' };
 
 function getResponseData(res) {
   if (!res.ok) {
-    return Promise.reject(res.json());
+    return res.json().then(err => Promise.reject(err));
   }
   return res.json();
 }
@@ -49,6 +49,7 @@ export function loginGoogle(param) {
     .then(res => getResponseData(res))
     .then(res => {
       localStorage.setItem('token', res.token);
+      
     });
 }
 
@@ -86,10 +87,7 @@ export function resetPassword(values, param) {
                            token: param.token
                         })   
   })
-    .then(res => getResponseData(res))
-    .then(res => {
-      console.log(res);
-    });
+    .then(res => getResponseData(res));
 }
 
 // Получить информацию о пользователе

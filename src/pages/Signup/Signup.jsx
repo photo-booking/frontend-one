@@ -81,7 +81,7 @@ export const Signup = props => {
 
   return (
     <>
-      {/* когда выбрал чекбокс клиент/заказчик */}
+      {/* когда выбрал чекбокс клиент/специалист */}
       {isClient !== undefined ? (
         <div className="signup form-auth__container">
           <h1 className="form-auth__title">{title}</h1>

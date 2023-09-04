@@ -57,7 +57,7 @@ export function App() {
           });
       })
       .catch((err) => {
-        err.then((e) => console.log(e));
+        console.log(err);
         setLoggedIn(false);
       });
   }
