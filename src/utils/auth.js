@@ -1,9 +1,9 @@
-const BASE_URL = 'https://photo-market.acceleratorpracticum.ru/api'; //my adress
+const BASE_URL = 'http://127.0.0.1:8080/https://photo-market.acceleratorpracticum.ru/api'; //my adress
 const HEADERS = { 'Content-Type': 'application/json' };
 
 function getResponseData(res) {
   if (!res.ok) {
-    return Promise.reject(res.json());
+    return res.json().then(err => Promise.reject(err));
   }
   return res.json();
 }
@@ -44,7 +44,7 @@ export function login(values) {
 
 //Войти в аккаунт через гугл
 export function loginGoogle(param) {
-  return fetch(`${BASE_URL}/auth_google`, {
+  return fetch(`${BASE_URL}/social/login/google-oauth2`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({ eccses_token: param })
@@ -52,46 +52,44 @@ export function loginGoogle(param) {
     .then(res => getResponseData(res))
     .then(res => {
       localStorage.setItem('token', res.token);
+      return res;
     });
 }
 
 //Войти в аккаунт через ВК
 export function loginVk(param) {
-  return fetch(`${BASE_URL}/auth_vk`, {
+  return fetch(`${BASE_URL}/social/login/vk-oauth2`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({ code: param })
   })
     .then(res => getResponseData(res))
     .then(res => {
+      console.log(res);
       localStorage.setItem('token', res.token);
+      return res;
     });
 }
 
 //Сбросить пароль: отправить письмо
 export function sendEmailToResetPassword(email) {
-  return fetch(`${BASE_URL}/api/users/reset_password/`, {
+  return fetch(`${BASE_URL}/users/reset_password/`, {
     method: 'POST',
     headers: HEADERS,
-    body: JSON.stringify({ email: email })
+    body: JSON.stringify(email)
   })
     .then(res => getResponseData(res))
-    .then(res => {
-      console.log(res);
-    });
+    ;
 }
 
 //Сбросить пароль: отправить новый пароль
 export function resetPassword(values, param) {
-  return fetch(`${BASE_URL}/api/users/reset_password_confirm/`, {
+  return fetch(`${BASE_URL}/users/reset_password_confirm/`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({ new_password: values.resetPassword, uid: param.uid, token: param.token })
   })
-    .then(res => getResponseData(res))
-    .then(res => {
-      console.log(res);
-    });
+    .then(res => getResponseData(res));
 }
 
 // Получить информацию о пользователе
