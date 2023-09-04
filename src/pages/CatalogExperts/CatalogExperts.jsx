@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Preview } from '../../components/Preview/Preview';
 import { useNavigate } from 'react-router-dom';
-import  Filter  from '../../components/Filter/Filter'
+import Filter from '../../components/Filter/Filter'
 import './CatalogExperts.css';
+import { Card } from '../../components/Card/card';
 
 
 
@@ -14,11 +15,14 @@ export const CatalogExecutors = () => {
       <div className={'catalog-container'}>
         <h1>Каталог фотографов и видеооператоров</h1>
         {names.map((name, index) => (
-          <Preview
-            id={index + 1}
-            name={name}
-            key={`card-${index}`}
-          />
+          <>
+            <Preview
+              id={index + 1}
+              name={name}
+              key={`card-${index}`}
+            />
+            <Card></Card>
+          </>
         ))}
         <button onClick={() => navigate(`/client/${1}`, { state: { name: 'Клиент 1', id: 1 } })}>
           Личный кабинет клиента
@@ -26,11 +30,12 @@ export const CatalogExecutors = () => {
         <button onClick={() => navigate(`/expert/${1}`, { state: { name: 'Исполнитель 1', id: 1 } })}>
           Личный кабинет исполнителя
         </button>
-          <Filter 
-          photo = 'Фотографы'
-          video = 'Видеооператоры'
+        <Filter
+          photo='Фотографы'
+          video='Видеооператоры'
         />
-    </div>
+
+      </div>
     </>
   );
 };
