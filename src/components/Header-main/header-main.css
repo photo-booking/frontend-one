@@ -9,7 +9,10 @@
     height: 80px;
     padding-left: 56px;
     padding-right: 56px;
-    position: relative;
+    position: sticky;
+    top: 16px;
+    z-index: 99;
+    /*position: relative;*/
     justify-content: center;
 }
 
@@ -24,7 +27,10 @@
     padding-left: 40px;
     padding-right: 40px;
     margin: 16px auto 0;
-    position: relative;
+    position: sticky;
+    top: 16px;
+    z-index: 99;
+    /*position: relative;*/
     justify-content: center;
 }
 
