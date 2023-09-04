@@ -1,28 +1,18 @@
 import './PhotoCard.css';
-import cameraSvg from '../../../images/ph_camera.svg';
+import { CardInfoProfile } from './CardInfo/CardInfo';
 export const PhotoCard = props => {
   return (
     <div
-      className={'photoCardContainer'}
-      onClick={() => console.log('click')}
+      className={'photoCardContainerProfile'}
+      onClick={props.onOpenImg}
     >
       <img
-        className={'photoCardContainer__card'}
+        id={props.id}
+        className={'photoCardContainerProfile__card'}
         src={props.src}
         alt={props.alt}
       />
-      <div className="photoCardContainer__info">
-        <div className="photoCardContainer__info__title-container">
-          <div className="photoCardContainer__info__img">
-            <img
-              src={cameraSvg}
-              alt={'camera'}
-            />
-          </div>
-          <div className="photoCardContainer__info__title">Love story</div>
-        </div>
-        <div className="photoCardContainer__info__title">от 2000₽/час</div>
-      </div>
+      <CardInfoProfile />
     </div>
   );
 };

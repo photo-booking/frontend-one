@@ -5,7 +5,7 @@
 }
 
 .slider-range__track {
-    width: 208px;
+    width: 100%;
     border-radius: 10px;
     height: 4px;
     background-color: #e3e3e3;

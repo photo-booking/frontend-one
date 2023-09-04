@@ -8,9 +8,9 @@ export const CheckboxProfile = props => {
   };
   return (
     <>
-      <div className="checkbox-container">
+      <div className="checkboxProfile-container">
         <input
-          className="checkbox"
+          className="checkboxProfile"
           type="checkbox"
           id={props.checkboxId}
           checked={isChecked}
@@ -18,7 +18,7 @@ export const CheckboxProfile = props => {
         />
         <label
           htmlFor={props.checkboxId}
-          className="lable"
+          className="labelProfile"
         >
           {props.checkboxLabel}
         </label>

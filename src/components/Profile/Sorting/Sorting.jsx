@@ -1,8 +1,8 @@
-import './Sorting.css';
 import { CheckboxProfile } from './components/Checkbox/Checkbox';
 import { RadioButtonProfile } from './components/RadioButton/RadioButton';
 import { useState } from 'react';
 import { RangeInput } from './components/RangeInput/RangeInput';
+import './Sorting.css';
 
 export const Sorting = props => {
   const [checkedPrice, setCheckedPrice] = useState('Высокая стоимость');
@@ -35,6 +35,7 @@ export const Sorting = props => {
       <div className={'sortingContainer__sorting-price'}>
         {radioPrice.map(el => (
           <RadioButtonProfile
+            key={el}
             radioId={el}
             radioLabel={el}
             value={el}
@@ -49,6 +50,7 @@ export const Sorting = props => {
         <div className="sortingContainer__subTitle">Специализации</div>
         {radioMainFilter.map(el => (
           <RadioButtonProfile
+            key={el}
             radioId={el}
             radioLabel={el}
             value={el}

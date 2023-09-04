@@ -4,41 +4,38 @@ import { useState } from 'react';
 export const RangeInput = props => {
   const [minCost, setMinCost] = useState('350');
   const [maxCost, setMaxCost] = useState('2500');
-  function sliderOne(e) {
+  const sliderOne = e => {
     if (minCost > +maxCost) {
       setMinCost(e.target.value);
       setMaxCost(e.target.value);
     }
     setMinCost(e.target.value);
-  }
+  };
 
-  function sliderTwo(e) {
+  const sliderTwo = e => {
     if (minCost > +maxCost) {
       setMinCost(e.target.value);
       setMaxCost(e.target.value);
     } else {
       setMaxCost(e.target.value);
     }
-  }
+  };
 
-  function inputMinValue(e) {
+  const inputMinValue = e => {
     setMinCost(e.target.value);
-  }
+  };
 
-  function inputMaxValue(e) {
+  const inputMaxValue = e => {
     if (e.target.value > 2500) {
       setMaxCost(2500);
     } else {
       setMaxCost(e.target.value);
     }
-  }
-  function triggeredSubmit() {
-    // document.getElementById('form').requestSubmit();
-  }
+  };
 
-  function blurInput() {
-    triggeredSubmit();
-  }
+  const sendSortingRequest = () => {
+    console.log(minCost, maxCost);
+  };
 
   return (
     <div className="slider">
@@ -54,7 +51,7 @@ export const RangeInput = props => {
             value={minCost}
             id="slider-1"
             onChange={e => sliderOne(e)}
-            onClick={e => triggeredSubmit()}
+            onMouseUp={sendSortingRequest}
             className="slider__input"
           />
 
@@ -67,7 +64,7 @@ export const RangeInput = props => {
             value={maxCost}
             id="slider-2"
             onChange={e => sliderTwo(e)}
-            onClick={e => triggeredSubmit()}
+            onMouseUp={sendSortingRequest}
             className="slider__input"
           />
         </div>
@@ -80,7 +77,7 @@ export const RangeInput = props => {
               max="2500"
               value={minCost}
               onChange={inputMinValue}
-              onBlur={e => blurInput(e)}
+              onBlur={sendSortingRequest}
               id="slider-1-meaning"
               className="meaning__input"
             />
@@ -94,7 +91,7 @@ export const RangeInput = props => {
               max="2500"
               value={maxCost}
               onChange={inputMaxValue}
-              onBlur={e => blurInput(e)}
+              onBlur={sendSortingRequest}
               id="slider-2-meaning"
               className="meaning__input"
             />
@@ -103,43 +100,5 @@ export const RangeInput = props => {
         </div>
       </div>
     </div>
-
-    // <div className="range">
-    //   <div className="range-slider">
-    //     <span className="range-selected"></span>
-    //   </div>
-    //   <div className="range-input">
-    //     <input
-    //       type="range"
-    //       className="min"
-    //       min="0"
-    //       max="1000"
-    //       value="300"
-    //       step="10"
-    //     />
-    //     <input
-    //       type="range"
-    //       className="max"
-    //       min="0"
-    //       max="1000"
-    //       value="700"
-    //       step="10"
-    //     />
-    //   </div>
-    //   <div className="range-price">
-    //     <label htmlFor="min">Min</label>
-    //     <input
-    //       type="number"
-    //       name="min"
-    //       value="300"
-    //     />
-    //     <label htmlFor="max">Max</label>
-    //     <input
-    //       type="number"
-    //       name="max"
-    //       value="700"
-    //     />
-    //   </div>
-    // </div>
   );
 };
