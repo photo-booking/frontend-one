@@ -59,7 +59,7 @@ export function App() {
           });
       })
       .catch((err) => {
-        err.then((e) => console.log(e));
+        console.log(err);
         setLoggedIn(false);
       });
   }
@@ -91,20 +91,20 @@ export function App() {
   };
 
   const onSubmitSendEmailToResetPassword = values => {
+    console.log(values);
+    setIsEmailSend(false);
     sendEmailToResetPassword(values)
       .then(res => {
         console.log(res);
         setIsEmailSend(true);
       })
-      .catch(err => {
-        console.log(err);
-      })
-      .finally(()=> {
-        setIsEmailSend(false)
+      .catch((err) => {
+        err.then(e => console.log(e));
       })
   };
 
   const onSubmitResetPassword = (values, param) => {
+    setIsPasswordReset(false);
     resetPassword(values, param)
       .then(res => {
         console.log(res);
@@ -112,9 +112,6 @@ export function App() {
       })
       .catch(err => {
         console.log(err);
-      })
-      .finally(()=> {
-        setIsPasswordReset(false)
       })
   };
 

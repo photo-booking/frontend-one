@@ -1,4 +1,5 @@
 import './Profile.css';
+import { AboutMe } from '../../components/AboutMe/AboutMe';
 import { PhotoCard } from '../../components/Profile/PhotoCard/PhotoCard';
 import { useEffect, useState } from 'react';
 import { LinksPortfolio } from '../../components/Profile/Links/Links';
@@ -102,6 +103,7 @@ export const Profile = () => {
 
   return (
     <>
+      <AboutMe />
       <div id="overlayProfile" />
       <LinksPortfolio
         onPrice={onPrice}
