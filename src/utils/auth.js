@@ -20,7 +20,10 @@ export function register(values, status) {
       password: values.password,
       is_client: status
     })
-  }).then(res => getResponseData(res));
+  }).then(res => {
+    console.log(res);
+    getResponseData(res);
+  });
 }
 
 //Войти в аккаунт
@@ -28,9 +31,9 @@ export function login(values) {
   return fetch(`${BASE_URL}/auth/token/login`, {
     method: 'POST',
     headers: HEADERS,
-    body: JSON.stringify({ 
-      email: values.email, 
-      password: values.password 
+    body: JSON.stringify({
+      email: values.email,
+      password: values.password
     })
   })
     .then(res => getResponseData(res))
@@ -68,7 +71,7 @@ export function loginVk(param) {
     });
 }
 
-//Сбросить пароль: отправить письмо 
+//Сбросить пароль: отправить письмо
 export function sendEmailToResetPassword(email) {
   return fetch(`${BASE_URL}/users/reset_password/`, {
     method: 'POST',
@@ -84,21 +87,17 @@ export function resetPassword(values, param) {
   return fetch(`${BASE_URL}/users/reset_password_confirm/`, {
     method: 'POST',
     headers: HEADERS,
-    body: JSON.stringify({ new_password: values.resetPassword,
-                           uid: param.uid,
-                           token: param.token
-                        })   
+    body: JSON.stringify({ new_password: values.resetPassword, uid: param.uid, token: param.token })
   })
     .then(res => getResponseData(res));
 }
 
 // Получить информацию о пользователе
 export function getUserInfo(jwt) {
-  return fetch (`${BASE_URL}/users/me/`, {
+  return fetch(`${BASE_URL}/users/me/`, {
     method: 'GET',
-    headers: {...HEADERS, 'Authorization': `token ${jwt}`}
-  })
-  .then(res=> getResponseData(res))
+    headers: { ...HEADERS, Authorization: `token ${jwt}` }
+  }).then(res => getResponseData(res));
 }
 
 //Проверить токен на валидность

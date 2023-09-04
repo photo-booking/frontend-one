@@ -1,0 +1,38 @@
+.sortingContainer {
+    width: 208px;
+    min-width: 208px;
+    position: sticky;
+    top: 0;
+    overflow: scroll;
+    height: 90%;
+    align-self: flex-start
+}
+.sortingContainer::-webkit-scrollbar {
+    width: 0;
+}
+.sortingContainer__title {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: -0.44px;
+    color: #0C1200;
+    margin-bottom: 20px;
+}
+.sortingContainer__sorting-price {
+    margin-bottom: 32px;
+}
+.sortingContainer__subTitle {
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.13px;
+    text-transform: uppercase;
+    color: #757575;
+    margin-bottom: 16px;
+}
+.sortingContainer__sorting-specializations {
+    margin-bottom: 24px;
+}
+
