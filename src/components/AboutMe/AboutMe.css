@@ -149,6 +149,19 @@
   left: 0;
 }
 
+.about-me__contact-container::before {
+  content: '';
+  background: url(../../images/Polygon\ 1.svg);
+  position: absolute;
+  top: -12px;
+  left: 16px;
+  z-index: 10;
+  width: 24px;
+  height: 17px;
+  display: block;
+}
+
+
 .about-me__share-container {
   border-radius: 4px;
   border: 1px solid #0C1200;
