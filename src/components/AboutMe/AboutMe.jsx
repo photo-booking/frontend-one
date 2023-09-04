@@ -14,6 +14,8 @@ export const AboutMe = () => {
   const baseUrl = 'http://localhost:3000';
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
+  const [isLinkCopy, setIsLinkCopy] = useState(false);
+
   const handleContactOpen = () => {
     setIsContactOpen(!isContactOpen);
   };
@@ -31,11 +33,16 @@ export const AboutMe = () => {
     isContactOpen ? 'about-me__contact-container_visible' : ''
   }`;
 
-  const shareButtonClassname = `${isShareOpen ? 'about-me__button-share_hidden' : 'about-me__button-share'} `
+  const shareButtonClassname = `${
+    isShareOpen ? 'about-me__button-share_hidden' : 'about-me__button-share'
+  } `;
 
   const shareMenuClassName = `about-me__share-container ${
     isShareOpen ? 'about-me__share-container_visible' : ''
   }`;
+
+  // const copyMessageClassName = `'about-me__copy-message' ${isLinkCopy ? '' : ''}`;
+
   return (
     <article className="about-me">
       <button
@@ -125,35 +132,29 @@ export const AboutMe = () => {
                   to={sharePostInVk(`${baseUrl}${location.pathname}`)}
                   target="_blank"
                   className="about-me__share-link about-me__share-link_vk"
-                >
-                  {/* <img
-                    src={icon_vk_share}
-                    alt="vk logo"
-                    className=""
-                  /> */}
-                </Link>
+                ></Link>
 
                 <Link
                   to={shareInTelegram(`${baseUrl}${location.pathname}`)}
                   target="_blank"
                   className="about-me__share-link about-me__share-link_telegram"
-                >
-                  {/* <img
-                    src={icon_telegram_share}
-                    alt="telegram  logo"
-                    className=""
-                  /> */}
-                </Link>
+                ></Link>
 
                 <button
                   className="about-me__button-copy"
-                  onClick={()=> {
+                  onClick={() => {
                     const url = `${baseUrl}${location.pathname}`;
-                    navigator.clipboard.writeText(url)
-                      .then(()=>{console.log('copy')})
-                      .catch(()=> {console.log('copy error')})
+                    navigator.clipboard
+                      .writeText(url)
+                      .then(() => {
+                        console.log('copy');
+                      })
+                      .catch(() => {
+                        console.log('copy error');
+                      });
                   }}
                 />
+                <span className='about-me__copy-message'>Ссылка скопирована</span>
               </div>
             </article>
           </div>

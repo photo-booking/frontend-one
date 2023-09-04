@@ -297,3 +297,8 @@
 .about-me__share-container:hover .about-me__share-link_telegram {
   background-image: url(../../images/icon_telegram_white.svg);
 }
+
+.about-me__copy-message {
+  padding: 16px;
+  
+}
