@@ -36,10 +36,10 @@ export const Signin = props => {
   };
 
   useEffect(() => {
-    const access_token_google = new URLSearchParams(location.hash).get("access_token");
-    const code_vk = new URLSearchParams(location.search).get("code");
-    if(access_token_google) {signinGoogle(access_token_google)};
-    if(code_vk) {signinVk(code_vk)};
+    // const access_token_google = new URLSearchParams(location.hash).get("access_token");
+    // const code_vk = new URLSearchParams(location.search).get("code");
+    // if(access_token_google) {signinGoogle(access_token_google)};
+    // if(code_vk) {signinVk(code_vk)};
   }, []);
 
   const handleSubmitSignin = values => {
