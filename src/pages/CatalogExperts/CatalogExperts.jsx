@@ -1,5 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
+import StickyBox from "react-sticky-box";
+
 import { Preview } from '../../components/Preview/Preview';
 import { useNavigate } from 'react-router-dom';
 import  Filter  from '../../components/Filter/Filter';
@@ -183,25 +185,27 @@ export const CatalogExecutors = () => {
   return (
     <>
     <section className='catalog'>
-      <div className='catalog__filter'>
+      <div className='catalog__info'>
         <p className='catalog__city'>Москва</p>
-        <Filter
-          photo='Фотографы'
-          video='Видеооператоры'
-        />
-      </div>
-
-      <div className={'catalog__container'}>
         <h1 className='catalog__title'>1370 профессиональных фотографов и видеооператоров</h1>
-        <div className='catalog__box'>
-          {users.map((user) => (
-            <Card user={user} key={uuidv4()}></Card>
-          ))}
-          <button className='button_more'>Показать еще</button>
-        </div>
       </div>
-
-
+      <div className={'catalog__container'}>
+        <div className='catalog__filter'>
+          <StickyBox offsetTop={52} offsetBottom={52}>
+            <Filter
+              photo='Фотографы'
+              video='Видеооператоры'
+            />  
+          </StickyBox>
+        </div>
+          <div className='catalog__box'>
+            {users.map((user) => (
+              <Card user={user} key={uuidv4()}></Card>
+            ))}
+            <button className='button_more'>Показать еще</button>
+          </div>
+        </div> 
+        
       {/* <div>
         <button onClick={() => navigate(`/client/${1}`, { state: { name: 'Клиент 1', id: 1 } })}>
           Личный кабинет клиента
