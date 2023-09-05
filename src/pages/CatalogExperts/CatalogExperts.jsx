@@ -49,6 +49,7 @@ export const CatalogExecutors = () => {
   ]
 
   return (
+    <>
     <section className='catalog'>
       <div className='catalog__filter'>
         <p className='catalog__city'>Москва</p>
@@ -62,7 +63,7 @@ export const CatalogExecutors = () => {
         <h1 className='catalog__title'>1370 профессиональных фотографов и видеооператоров</h1>
         <div className='catalog__box'>
           {users.map((user) => (
-            <Card user={user} key={uuidv4}></Card>
+            <Card user={user} key={uuidv4()}></Card>
           ))}
         </div>
 
@@ -79,5 +80,6 @@ export const CatalogExecutors = () => {
       </div> */}
     </section>
     <Footer />
+    </>
   );
 };

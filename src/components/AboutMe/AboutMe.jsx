@@ -22,10 +22,24 @@ export const AboutMe = () => {
   const handleShareOpen = () => {
     setIsShareOpen(!isShareOpen);
   };
-  function sharePostInVk(url) {
+  const copyLink = () => {
+    const url = `${baseUrl}${location.pathname}`;
+    navigator.clipboard
+      .writeText(url)
+      .then(() => {
+        console.log('copy');
+        setIsLinkCopy(true)
+        setTimeout(()=> {setIsLinkCopy(false)}, 2000)
+      })
+      .catch(() => {
+        console.log('copy error');
+        setIsLinkCopy(false)
+      })
+  };
+  const sharePostInVk = (url) => {
     return `https://vk.com/share.php?url=${url}?title='Title'`; //Надо добавить заголовки в метаданные
   }
-  function shareInTelegram(url) {
+  const shareInTelegram = (url) => {
     return `https://telegram.me/share/url?url=${url}&text=ТЕКСТ`; //Надо добавить заголовки в метаданные
   }
 
@@ -41,7 +55,7 @@ export const AboutMe = () => {
     isShareOpen ? 'about-me__share-container_visible' : ''
   }`;
 
-  // const copyMessageClassName = `'about-me__copy-message' ${isLinkCopy ? '' : ''}`;
+  const copyMessageClassName = `about-me__copy-message ${isLinkCopy ? 'about-me__copy-message_visible' : ''}`;
 
   return (
     <article className="about-me">
@@ -49,24 +63,14 @@ export const AboutMe = () => {
         className="about-me__button"
         onClick={() => navigate(-1)}
       />
-      <div className="about-me__container about-me__container_aling_spbet">
-        <div className=" about-me__container about-me__container_column about-me__container_small">
-          <div className=" about-me__container about-me__container_aling_start">
+      <div className="about-me__container">
+        <div className=" about-me__container-info">
+          <div className=" about-me__container-title">
             <h1 className="about-me__title">Алена Коновалова</h1>
-            <span>
-              <img
-                src={icon_photo}
-                alt=""
-              />
-            </span>
-            <span>
-              <img
-                src={icon_video}
-                alt=""
-              />
-            </span>
+            <span className='about-me__icon about-me__icon_photo'/>
+            <span className='about-me__icon about-me__icon_video'/>
           </div>
-          <p className="about-me__subtitle">Москва</p>
+          {/* <p className="about-me__subtitle">Москва</p> */}
           <div className="about-me__info">
             <h2 className="about-me__subtitle">Обо мне</h2>
             <p className="about-me__text">
@@ -82,7 +86,7 @@ export const AboutMe = () => {
             </p>
           </div>
           {/* Кнопка и менюшка с контактами */}
-          <div className="about-me__container about-me__container_aling_start">
+          <div className="about-me__container-contact">
             <article className="about-me__article-contact">
               <button
                 className="about-me__button-contact"
@@ -142,20 +146,10 @@ export const AboutMe = () => {
 
                 <button
                   className="about-me__button-copy"
-                  onClick={() => {
-                    const url = `${baseUrl}${location.pathname}`;
-                    navigator.clipboard
-                      .writeText(url)
-                      .then(() => {
-                        console.log('copy');
-                      })
-                      .catch(() => {
-                        console.log('copy error');
-                      });
-                  }}
+                  onClick={copyLink}
                 />
-                <span className='about-me__copy-message'>Ссылка скопирована</span>
               </div>
+              <span className={copyMessageClassName}>Ссылка скопирована</span>
             </article>
           </div>
         </div>
