@@ -65,3 +65,7 @@
     display: flex;
     justify-content: space-between;
 }
+
+.catalog__filter {
+    width: 208px;
+}

@@ -38,7 +38,7 @@
 .header-main__logo_container {
     position: absolute;
     top: 30px;
-    left: 56px;
+    left: 40px;
 }
 
 .header-main__logo {
@@ -51,7 +51,7 @@
     display: flex;
     column-gap: 32px;
     line-height: 20px;
-    max-width: 330px;
+    max-width: 297px;
     width: 100%;
     align-items: center;
 }
@@ -61,7 +61,7 @@
     font-family: 'Aneliza';
     font-size: 14px;
     justify-self: center;
-    width: 100%;
+    /* width: 100%; */
     text-decoration: none;
     display: flex;
     column-gap: 8px;
@@ -71,7 +71,8 @@
 .header-main__marker {
     width: 6px;
     height: 6px;
-    background-color: transparent;
+    /* background-color: transparent; */
+    display: none;
 }
 
 .header-main__marker_active {
@@ -89,7 +90,7 @@
     align-items: center;
     position: absolute;
     top: 18px;
-    right: 56px;
+    right: 40px;
 }
 
 .header-main__button_signin {

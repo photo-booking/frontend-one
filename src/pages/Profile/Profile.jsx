@@ -11,19 +11,18 @@ import { Footer } from '../../components/Footer/footer';
 export const Profile = () => {
   useEffect(() => {
     //последняя карточка не выравнивается,не знаю как еще решить
-    if (document.getElementsByClassName('photoCardContainerProfile__card').length !== 0) {
-      const cards = document.getElementsByClassName('photoCardContainerProfile__card');
-      const length = document.getElementsByClassName('photoCardContainerProfile__card').length;
-      cards[length - 1].style.marginLeft = '16px';
-    }
-    // fetch('https://photo-market.acceleratorpracticum.ru/api/users/1')
-    //   .then(response => console.log(response))
-    //   .catch(err => console.log(err));
+    // if (document.getElementsByClassName('photoCardContainerProfile__card').length !== 0) {
+    //   const cards = document.getElementsByClassName('photoCardContainerProfile__card');
+    //   const length = document.getElementsByClassName('photoCardContainerProfile__card').length;
+      // cards[length - 1].style.marginLeft = '16px';
+    // }
+    fetch('https://photo-market.acceleratorpracticum.ru/api/users/1')
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
   });
   const [img, setImg] = useState([
     'https://img.freepik.com/free-photo/lavender-field-at-sunset-near-valensole_268835-3910.jpg',
     'https://lifehacker.ru/special/fujifilm/dist/static/img/5.2410a2d.jpg',
-    'https://cdn.fotosklad.ru/unsafe/00b0ecf9768e44e0a4ddc59e94bacc25/image.jpg',
     'https://bigpicture.ru/wp-content/uploads/2015/11/nophotoshop29-800x532.jpg',
     'https://www.interfax.ru/ftproot/photos/photostory/2022/04/29/week/week7_1100.jpg',
     'https://where.ru/upload/iblock/ad4/ad4ef7e48f611b6be29e51e9aefaecd1.jpg'
@@ -88,9 +87,9 @@ export const Profile = () => {
     player.setSize(1034, 500);
 
     //этот же вопрос с выравниванием последней карточки
-    const cards = document.getElementsByClassName('photoCardContainerProfile__card');
-    const length = document.getElementsByClassName('photoCardContainerProfile__card').length;
-    cards[length - 1].style.marginLeft = '0';
+    // const cards = document.getElementsByClassName('photoCardContainerProfile__card');
+    // const length = document.getElementsByClassName('photoCardContainerProfile__card').length;
+    // cards[length - 1].style.marginLeft = '0';
 
     document.getElementsByClassName('profileContainer__youtube')[0].style.display = ' none';
     overlay.style.display = 'block';
@@ -98,7 +97,7 @@ export const Profile = () => {
       overlay.style.display = 'none';
       player.destroy();
       document.getElementsByClassName('profileContainer__youtube')[0].style.display = 'block';
-      cards[length - 1].style.marginLeft = '16px';
+      // cards[length - 1].style.marginLeft = '16px';
     });
   };
 
@@ -139,7 +138,7 @@ export const Profile = () => {
                 <CardInfoProfile />
               </div>
               <button
-                className="button-showMore"
+                className="button_more"
                 onClick={onShowMore}
               >
                 Показать ещё
