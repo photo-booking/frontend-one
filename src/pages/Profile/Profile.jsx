@@ -1,3 +1,5 @@
+import StickyBox from "react-sticky-box";
+
 import './Profile.css';
 import { AboutMe } from '../../components/AboutMe/AboutMe';
 import { PhotoCard } from '../../components/Profile/PhotoCard/PhotoCard';
@@ -112,7 +114,12 @@ export const Profile = () => {
       {!isPrice ? (
         <>
           <div className={'profileContainer'}>
-            <Sorting />
+            <div className='profileContainer__filter'>
+              <StickyBox offsetTop={52} offsetBottom={52}>
+                <Sorting />
+              </StickyBox> 
+            </div>
+          
             <div className={'profileContainer__cardsContainer'}>
               {img.map((img, index) => (
                 <PhotoCard
