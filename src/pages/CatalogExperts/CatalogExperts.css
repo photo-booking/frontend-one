@@ -2,11 +2,10 @@
     padding-left: 56px;
     padding-right: 32px;
     margin: 0 auto 240px;
-    display: flex;
-    justify-content: space-between;
-    
-}
+    /* display: flex;
+    justify-content: space-between; */
 
+}
 
 .catalog__city {
     display: inline-block;
@@ -34,24 +33,14 @@
     text-align: left;
     padding-top: 140px;
     padding-bottom: 156px;
-}
-
-.catalog__container-filter  {
-    /* width: fit-content; */
-    margin: 20px auto 0;
-    display: flex;
-    justify-content:space-between;
+    padding-right: 14%;
 }
 
 .catalog__box {
+    max-width: 1024px;
     display: flex;
     flex-wrap: wrap;
     gap: 32px;
-    justify-content: center;
-}
-
-.catalog-container h1 {
-    text-align: center;
 }
 
 .button_more {
@@ -64,4 +53,15 @@
     font-size: 14px;
     line-height: 20px;
     border-radius: 5px;
+}
+
+.catalog__info {
+    display: flex;
+    max-width: 1328;
+    justify-content: space-between;
+}
+
+.catalog__container {
+    display: flex;
+    justify-content: space-between;
 }

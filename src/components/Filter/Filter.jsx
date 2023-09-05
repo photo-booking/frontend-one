@@ -205,9 +205,9 @@ const chengeCostValue =(e) => {
 
 // в принципе, если поставить еще одну точку  где-то на каталоге, то можно сделать условие
 // что если во вьюпорте появилась эта точка, то верни ве, как было, отлепи фильтры от прокрутки!
-const myRef = React.useRef();
-const myRef1 = React.useRef();
-const [formElementIsVisible, setFormElementIsVisible] = React.useState();
+// const myRef = React.useRef();
+// const myRef1 = React.useRef();
+// const [formElementIsVisible, setFormElementIsVisible] = React.useState();
 
 // useEffect(() => {
 //   const observer = new IntersectionObserver((ent) => {
