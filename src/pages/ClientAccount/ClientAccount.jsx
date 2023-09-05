@@ -12,7 +12,6 @@ export const ClientAccount = () => {
       <button onClick={() => navigate(`/client/${id}/orders`, { state: { name, id } })}>
         Заказы
       </button>
-      <Footer />
     </div>
     
   );
