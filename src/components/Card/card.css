@@ -1,0 +1,101 @@
+
+.card {
+    width: 320px;
+    height: 630px;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden
+}
+
+.card__portfolio {
+    width: 320px;
+    height: 420px;
+    background-color: antiquewhite;
+    border-radius: 12px;
+}
+
+.card__portfolio_item {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.card__about {
+    padding: 24px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+}
+
+.card__about_profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card__about_info {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Aneliza';
+}
+
+.card__about_name {
+    margin: 0;
+    font-size: 16px;
+    line-height: 20px;
+    font-style: normal;
+    border-bottom: 0.5px solid black;
+}
+
+.card__about_profession {
+    margin: 0;
+    font-family: Aneliza;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    color: rgba(117, 117, 117, 1);
+}
+
+
+.card__avatar_box{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden,
+}
+
+.card__avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;;
+    border-radius: 50%;
+}
+
+.card__about-me {
+    margin: 0;
+    font-family: 'Fira Sans';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    height: 60px;
+/* 
+    white-space: nowrap; */
+    /* text-overflow: ellipsis; */
+    /* overflow: hidden;
+    line-clamp: 3; */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+
+.card__price {
+    font-family: 'Fira Sans';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}

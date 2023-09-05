@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-
+  position: relative;
 }
 
 .App-logo {
@@ -32,4 +32,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.page {
+  max-width: 1440px;
+  /* border: 1px solid red; */
+  margin: 0 auto;
+  background-color: #F2F2F2;
+  font-family: "Aneliza", "Arial", sans-serif;;
 }

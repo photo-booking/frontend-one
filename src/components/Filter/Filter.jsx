@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Filter.css"
 
 function Filter({photo, video}) {
@@ -191,7 +191,7 @@ function submit(e) {
     }
   }
   // пока с данными нечего делать, будут выводиться в консоль
-  // console.log(formValue)
+  console.log(formValue)
 }
 
 // Присвятые РАДИОКНОПКИ!
@@ -203,9 +203,31 @@ const chengeCostValue =(e) => {
   setCostValue(e.target.value);
 }
 
+// в принципе, если поставить еще одну точку  где-то на каталоге, то можно сделать условие
+// что если во вьюпорте появилась эта точка, то верни ве, как было, отлепи фильтры от прокрутки!
+const myRef = React.useRef();
+const myRef1 = React.useRef();
+const [formElementIsVisible, setFormElementIsVisible] = React.useState();
+
+// useEffect(() => {
+//   const observer = new IntersectionObserver((ent) => {
+//     const entry = ent[0];
+//     setFormElementIsVisible(entry.isIntersecting)
+//   })
+//   observer.observe(myRef.current)
+// }, [])
+
+// useEffect(() => {
+//   const observer = new IntersectionObserver((ent) => {
+//     const entry = ent[0];
+//     setFormElementIsVisible(!entry.isIntersecting)
+//   })
+//   observer.observe(myRef1.current)
+// }, [])
+
   return (
-    <form className="filter-form" id='form' onSubmit={(e)=> {submit(e)}} >
-     
+    <form className=/*{!formElementIsVisible ? */ "filter-form" /*: "filter-form_slick"}*/ id='form' onSubmit={(e)=> {submit(e)}} >
+      {/* <div ref= {myRef1} className="ear"></div> */}
       <fieldset className="fild">
        <p className="filter__type">Сортировка</p> 
         <input 
@@ -217,7 +239,7 @@ const chengeCostValue =(e) => {
           checked={costValue === 'cheap' ? true : false}
           onChange={(e) => {chengeCostValue(e)}}
           />
-        <label className="ratio-label" for="cheap">Низкая стоимость</label>
+        <label className="ratio-label" htmlFor="cheap">Низкая стоимость</label>
 
         <input 
           type="radio" 
@@ -228,7 +250,7 @@ const chengeCostValue =(e) => {
           checked={costValue === 'expensive' ? true : false}
           onChange={(e) => {chengeCostValue(e)}}
         />
-        <label className="ratio-label" for="expensive">Высокая стоимость</label>
+        <label className="ratio-label" htmlFor="expensive">Высокая стоимость</label>
       </fieldset>
 
     
@@ -244,18 +266,18 @@ const chengeCostValue =(e) => {
           checked={expertValue === 'all' ? true : false}
           onChange={chengeExpertValue}
         />
-        <label className="ratio-label" for="all" >Все</label>
+        <label className="ratio-label" htmlFor="all" >Все</label>
       
         <input 
           type="radio" 
           name="expert" 
-          id="photographer" 
+          id="photographer"
           value="photographer" 
           className="ratio" 
           checked={expertValue === 'photographer' ? true : false}
           onChange={chengeExpertValue}
         />
-        <label className="ratio-label" for="photographer">{photo}</label>
+        <label className="ratio-label" htmlFor="photographer">{photo}</label>
       
         <input 
           type="radio" 
@@ -266,7 +288,7 @@ const chengeCostValue =(e) => {
           checked={expertValue === 'videographer' ? true : false}
           onChange={chengeExpertValue}
         />
-        <label className="ratio-label" for="videographer">{video}</label>
+        <label className="ratio-label" htmlFor="videographer">{video}</label>
         
       </fieldset>
 
@@ -282,7 +304,7 @@ const chengeCostValue =(e) => {
           checked={weddingIsChecked} 
           onChange={submitWeddingClick}
         />
-        <label className="checkbox-label" for="wedding">Свадебная</label>
+        <label className="checkbox-label" htmlFor="wedding">Свадебная</label>
 
         <input 
           type="checkbox" 
@@ -293,7 +315,7 @@ const chengeCostValue =(e) => {
           checked={loveStoryIsChecked} 
           onChange={submitLoveStoryClick}
         />
-        <label className="checkbox-label" for="love-story"> Love Story</label>
+        <label className="checkbox-label" htmlFor="love-story"> Love Story</label>
       
         <input 
           type="checkbox" 
@@ -304,7 +326,7 @@ const chengeCostValue =(e) => {
           checked={individualIsChecked} 
           onChange={submitIndividualClick}
         />
-        <label className="checkbox-label" for="individual"> Индивидуальная</label>
+        <label className="checkbox-label" htmlFor="individual"> Индивидуальная</label>
       
         <input 
           type="checkbox" 
@@ -315,7 +337,7 @@ const chengeCostValue =(e) => {
           checked={familyIsChecked} 
           onChange={submitFamilyClick}
         />
-        <label className="checkbox-label" for="family"> Семейная</label>
+        <label className="checkbox-label" htmlFor="family"> Семейная</label>
       
         <input 
           type="checkbox" 
@@ -326,7 +348,7 @@ const chengeCostValue =(e) => {
           checked={fashionIsChecked} 
           onChange={submitFashionClick}
         />
-        <label className="checkbox-label" for="fashion"> Fashion </label>
+        <label className="checkbox-label" htmlFor="fashion"> Fashion </label>
       
         <input 
           type="checkbox" 
@@ -337,7 +359,7 @@ const chengeCostValue =(e) => {
           checked={petsIsChecked} 
           onChange={submitPetsClick}
         />
-        <label className="checkbox-label" for="pets">Питомцы</label>
+        <label className="checkbox-label" htmlFor="pets">Питомцы</label>
       
         <input 
           type="checkbox" 
@@ -348,7 +370,7 @@ const chengeCostValue =(e) => {
           checked={interviewIsChecked} 
           onChange={submitInterviewClick}
         />
-        <label className="checkbox-label" for="interview"> Интервью </label>
+        <label className="checkbox-label" htmlFor="interview"> Интервью </label>
         
         <input 
           type="checkbox" 
@@ -359,7 +381,7 @@ const chengeCostValue =(e) => {
           checked={aerialIsChecked} 
           onChange={submitAerialClick}
         />
-        <label className="checkbox-label" for="aerial"> Аэросъемка </label>
+        <label className="checkbox-label" htmlFor="aerial"> Аэросъемка </label>
       
         <input 
           type="checkbox" 
@@ -370,7 +392,7 @@ const chengeCostValue =(e) => {
           checked={stockIsChecked} 
           onChange={submitStockClick}
         />
-        <label className="checkbox-label" for="stock"> Стоковая</label>
+        <label className="checkbox-label" htmlFor="stock"> Стоковая</label>
       
         <input 
           type="checkbox" 
@@ -381,7 +403,7 @@ const chengeCostValue =(e) => {
           checked={clipsIsChecked} 
           onChange={submitClipsClick}
         />
-        <label className="checkbox-label" for="clips"> Клипы</label>
+        <label className="checkbox-label" htmlFor="clips"> Клипы</label>
         
       </fieldset>
 
@@ -441,6 +463,7 @@ const chengeCostValue =(e) => {
               <p className="values__info">&#8381;</p>
             </div>
           </div>
+          {/* <div ref= {myRef} className="tail"></div> */}
         </div>
       </div>
     </form>

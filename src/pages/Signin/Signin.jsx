@@ -36,8 +36,10 @@ export const Signin = props => {
   };
 
   useEffect(() => {
-    // signinGoogle(new URLSearchParams(location.hash).get("access_token"));
-    // signinVk(new URLSearchParams(location.search).get("code"));
+    // const access_token_google = new URLSearchParams(location.hash).get("access_token");
+    // const code_vk = new URLSearchParams(location.search).get("code");
+    // if(access_token_google) {signinGoogle(access_token_google)};
+    // if(code_vk) {signinVk(code_vk)};
   }, []);
 
   const handleSubmitSignin = values => {
@@ -62,6 +64,7 @@ export const Signin = props => {
               className="form-auth__label"
             >
               Email
+              <span className="form-auth__err">{errors?.email && errors.email.message}</span>
               <input
                 className={formAuthInputClassName('email')}
                 id="email"
@@ -74,13 +77,13 @@ export const Signin = props => {
                   }
                 })}
               />
-              <span className="form-auth__err">{errors?.email && errors.email.message}</span>
             </label>
             <label
               htmlFor="password"
               className="form-auth__label"
             >
               Пароль
+              <span className="form-auth__err">{errors?.password && errors.password.message}</span>
               <div className="form-auth__input-container">
                 <input
                   className={formAuthInputClassName('password')}
@@ -106,7 +109,6 @@ export const Signin = props => {
                   />
                 </button>
               </div>
-              <span className="form-auth__err">{errors?.password && errors.password.message}</span>
             </label>
             <button
               className="form-auth__button_sign form-auth__button_sign_left"
@@ -121,7 +123,7 @@ export const Signin = props => {
         err={errors}
       />
       <p className="form-auth__caption">
-        Нет аккаунта?
+        Нет аккаунта? 
         <button
           className="form-auth__button_sign"
           onClick={evt => {
@@ -129,7 +131,7 @@ export const Signin = props => {
             navigate('/sign-up');
           }}
         >
-          Зарегистрируйтесь
+           Зарегистрируйтесь
         </button>
       </p>
     </div>

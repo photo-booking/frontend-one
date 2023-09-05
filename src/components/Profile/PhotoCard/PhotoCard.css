@@ -1,0 +1,21 @@
+.photoCardContainerProfile {
+    border-radius: 12px 12px 0 0 ;
+    position: relative;
+    width: 501px;
+    height: 300px;
+    margin-bottom: 32px;
+}
+.photoCardContainerProfile__card {
+    border-radius: 12px;
+    width: 100%;
+    aspect-ratio: 501/300;
+    object-fit: cover;
+}
+
+.photoCardContainerProfile:hover  {
+    cursor: pointer;
+    background-color: #FFFFFF;
+}
+.photoCardContainerProfile:hover  .photoCardContainerProfile-info {
+    display: flex;
+}

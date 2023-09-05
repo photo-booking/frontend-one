@@ -6,3 +6,18 @@
   src: url(./Aneliza-SemiBold.ttf) format("truetype");
 }
 
+@font-face {
+  font-family: 'Aneliza';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./Aneliza-SemiBold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./FiraSans-Regular.ttf) format("truetype");
+}

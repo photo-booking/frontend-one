@@ -26,11 +26,12 @@
   border: none;
 }
 
-.form-auth__button_show-pass{
+.form-auth__button_show-pass {
   background: none;
   position: absolute;
   top: 10px;
   right: 16px;
+  padding: 0;
 }
 
 .form-auth__button_submit {
@@ -38,11 +39,15 @@
   border-radius: 4px;
   color: #0C1200;
   display: flex;
-  width: 359px;
+  width: 360px;
   padding: 12px 28px;
   justify-content: center;
   align-items: center;
   margin-top: 52px;
+}
+
+.form-auth__button_submit-email {
+  margin-top: 10px;
 }
 
 .form-auth__button_submit:hover {
@@ -63,17 +68,25 @@
   background: none;
   cursor: pointer;
   border: none;
-  border-bottom: 1px solid #0C1200;
+  text-decoration: underline;
+  padding: 0;
+  font-family: 'Aneliza';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  margin-left: 4px;
 }
 
 .form-auth__button_sign_left {
-  align-self: flex-end;
+  align-self: flex-start;
+  margin-left: -4px;
 }
 
 .form-auth__label {
   display: flex;
   flex-direction: column;
-  font-family: Aneliza;
+  font-family: 'Aneliza';
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -103,17 +116,20 @@
   text-align: center;
   width: 325px;
   margin: 0 0 52px;
-  font-family: Aneliza;
+  font-family: 'Aneliza';
   font-size: 35px;
   font-style: normal;
   font-weight: 600;
   line-height: 36px;
-  /* 102.857% */
   letter-spacing: -1.4px;
 }
 
+.form-auth__title_email {
+  margin: 23px 0 24px;
+}
+
 .form-auth__subtitle {
-  font-family: Aneliza;
+  font-family: 'Aneliza';
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -123,16 +139,38 @@
   margin: 0 0 40px;
 }
 
+.form-auth__subtitle_email {
+  margin: 0 0 20px;
+  width: 363px;
+}
+.form-auth__subtitle_pass {
+  margin: 0 0 40px;
+  width: 363px;
+}
+
 .form-auth__caption {
-  margin: 12px 0 0;
+  margin: 15px 0 0;
+  font-family: 'Aneliza';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
 }
 
 .form-auth__err {
-  height: 16px;
-  width: 359px;
+  /* height: 12px; */
+  width: 360px;
   color: #BA1B00;
+  font-family: 'Aneliza';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px;
+  /* 133.333% */
+  letter-spacing: 0.24px;
+  margin-bottom: 10px;
 }
 
-.form-auth__input-container{
+.form-auth__input-container {
   position: relative;
 }

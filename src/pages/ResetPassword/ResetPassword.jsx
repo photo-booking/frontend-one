@@ -52,11 +52,11 @@ export const ResetPassword = props => {
   };
 
   const compareInputValues = (firstInput, secondInput) => {
-    return (watchAllFields[firstInput] === watchAllFields[secondInput])
-  }
+    return watchAllFields[firstInput] === watchAllFields[secondInput];
+  };
 
   const handleSubmitSendEmailToResetPassword = values => {
-    onSubmitSendEmailToResetPassword(values);
+    onSubmitSendEmailToResetPassword({ email: values.email });
     reset();
   };
 
@@ -73,9 +73,9 @@ export const ResetPassword = props => {
           alt="ok"
           className="reset-password__image"
         />
-        <h1 className="form-auth__title">Письмо отправлено</h1>
-        <p className="form-auth__subtitle">
-          Перейдите по ссылке из письма и откроется окно для создания нового пароля
+        <h1 className="form-auth__title form-auth__title_email">Письмо отправлено</h1>
+        <p className="form-auth__subtitle form-auth__subtitle_email">
+          Перейдите по ссылке из письма<br/> и откроется окно для создания нового &nbsp;пароля.
         </p>
       </div>
     );
@@ -84,21 +84,22 @@ export const ResetPassword = props => {
       <div className="form-auth__container">
         <h1 className="form-auth__title">Сброс пароля</h1>
         <h2 className="form-auth__subtitle">
-          Введите email и мы отправим письмо с ссылкой для создания нового пароля
+          Введите email и мы отправим письмо с ссылкой для создания нового пароля.
         </h2>
         <FormAuth
           child={
             <>
               <label
-                htmlFor="sendEmail"
+                htmlFor="email"
                 className="form-auth__label"
               >
                 Email
+                <span className="form-auth__err">{errors?.email && errors.email.message}</span>
                 <input
-                  className={formAuthInputClassName('sendEmail')}
+                  className={formAuthInputClassName('email')}
                   type="email"
-                  id="sendEmail"
-                  {...register('sendEmail', {
+                  id="email"
+                  {...register('email', {
                     required: ERR_MESSAGE_REQUIRED,
                     pattern: {
                       value: REG_EMAIL,
@@ -106,9 +107,6 @@ export const ResetPassword = props => {
                     }
                   })}
                 />
-                <span className="form-auth__err">
-                  {errors?.sendEmail && errors.sendEmail.message}
-                </span>
               </label>
             </>
           }
@@ -117,7 +115,7 @@ export const ResetPassword = props => {
           err={errors}
         />
         <button
-          className="form-auth__button_sign"
+          className="form-auth__caption form-auth__button_sign"
           onClick={() => navigate('/sign-in')}
         >
           Вернуться на страницу входа
@@ -132,9 +130,9 @@ export const ResetPassword = props => {
           alt="ok"
           className="reset-password__image"
         />
-        <h1 className="form-auth__title">Пароль сохранен</h1>
+        <h1 className="form-auth__title form-auth__title_email">Пароль сохранен</h1>
         <button
-          className="form-auth__button_submit"
+          className="form-auth__button_submit form-auth__button_submit-email"
           onClick={() => navigate('/sign-in')}
         >
           Войти в аккаунт
@@ -144,7 +142,8 @@ export const ResetPassword = props => {
   } else if (searchParam?.uid !== null && searchParam?.token !== null && !isPasswordReset) {
     return (
       <div className="form-auth__container">
-        <h1 className="form-auth__title">Сброс пароля</h1>
+        <h1 className="form-auth__title form-auth__title_email">Смена пароля</h1>
+        <h2 className="form-auth__subtitle form-auth__subtitle_pass">Придумайте новый пароль и запомните его.</h2>
         <FormAuth
           child={
             <>
@@ -153,6 +152,9 @@ export const ResetPassword = props => {
                 className="form-auth__label"
               >
                 Новый пароль
+                <span className="form-auth__err">
+                  {errors?.resetPassword && errors.resetPassword.message}
+                </span>
                 <input
                   className={formAuthInputClassName('resetPassword')}
                   type="password"
@@ -165,16 +167,15 @@ export const ResetPassword = props => {
                     }
                   })}
                 />
-                <span className="form-auth__err">
-                  {errors?.resetPassword && errors.resetPassword.message}
-                </span>
               </label>
-
               <label
                 htmlFor="repeatResetPassword"
                 className="form-auth__label"
               >
                 Повторите пароль
+                <span className="form-auth__err">
+                  {errors?.repeatResetPassword && errors.repeatResetPassword.message}
+                </span>
                 <input
                   className={formAuthInputClassName('repeatResetPassword')}
                   type="password"
@@ -188,13 +189,10 @@ export const ResetPassword = props => {
                     }
                   })}
                 />
-                <span className="form-auth__err">
-                  {errors?.repeatResetPassword && errors.repeatResetPassword.message}
-                </span>
               </label>
             </>
           }
-          buttonTitle={'Сбросить пароль'}
+          buttonTitle={'Сменить пароль'}
           onSubmit={handleSubmit(handleSubmitResetPassword)}
           err={errors}
         />
