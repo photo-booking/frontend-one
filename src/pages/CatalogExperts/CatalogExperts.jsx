@@ -202,7 +202,7 @@ export const CatalogExecutors = () => {
             {users.map((user) => (
               <Card user={user} key={uuidv4()}></Card>
             ))}
-            <button className='button_more'>Показать еще</button>
+            <button className='button_more'>Показать ещё</button>
           </div>
         </div> 
         

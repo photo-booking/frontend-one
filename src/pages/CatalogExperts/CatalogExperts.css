@@ -55,6 +55,10 @@
     border-radius: 5px;
 }
 
+.button_more:hover {
+    cursor: pointer;
+}
+
 .catalog__info {
     display: flex;
     max-width: 1328;
