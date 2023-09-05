@@ -28,32 +28,38 @@
 
 .about-me__container {
   display: flex;
-}
-
-.about-me__container_column {
-  flex-direction: column;
-}
-
-.about-me__container_small {
-  width: 857px;
-}
-
-.about-me__container_aling_spbet {
   justify-content: space-between;
   border-bottom: 1px solid #E0E0E0;
   padding-bottom: 48px;
 }
 
-.about-me__container_aling_start {
+.about-me__container-info {
+  display: flex;
+  flex-direction: column;
+  width: 857px;
+}
+
+.about-me__container-title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 8px;
+  margin: 40px 0 12px;
+}
+
+.about-me__container-contact {
+  display: flex;
   justify-content: flex-start;
   gap: 32px;
+  box-sizing: border-box;
+  padding-top: 40px;
 }
 
 .about-me__avatar {
   width: 208px;
   height: 208px;
   border-radius: 50%;
-  margin: 0;
+  margin: 40px 0 0;
   overflow: hidden;
 }
 
@@ -70,7 +76,7 @@
   font-weight: 700;
   line-height: 60px;
   letter-spacing: -3.5px;
-  margin: 40px 0 12px;
+  margin: 0 20px 0 0;
 }
 
 .about-me__subtitle {
@@ -83,8 +89,25 @@
   margin: 0 0 8px;
 }
 
+.about-me__icon {
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  background-color: #0C1200;
+  border-radius: 50%;
+}
+
+.about-me__icon_photo {
+  background-image: url(../../images/worker\ icon_photo.svg);
+}
+
+.about-me__icon_video {
+  background-image: url(../../images/worker\ icon_video.svg);
+}
+
 .about-me__info {
-  margin-top: 32px;
+  margin-top: 30px;
 }
 
 .about-me__text {
@@ -94,7 +117,7 @@
   font-weight: 400;
   line-height: 26px;
   text-overflow: ellipsis;
-  max-width: 496px;
+  max-width: 472px;
   margin: 0;
 }
 
@@ -110,7 +133,6 @@
 }
 
 .about-me__button-contact {
-  margin: 40px 0 0;
   border-radius: 4px;
   background: none;
   font-family: 'Aneliza';
@@ -148,7 +170,7 @@
   gap: 4px;
   box-shadow: 0px 8px 25px 0px rgba(0, 0, 0, 0.04);
   position: absolute;
-  top: 97px;
+  top: 57px;
   left: 0;
 }
 
@@ -175,7 +197,7 @@
   column-gap: 11px;
   position: absolute;
   left: 0;
-  top: 40px;
+  top: 0px;
   height: 44px;
   padding: 0 20px;
   box-sizing: border-box;
@@ -216,7 +238,7 @@
 }
 
 .about-me__button-share {
-  margin: 40px 32px 0 0;
+  margin: 0 32px 0 0;
   border-radius: 4px;
   border: 1px solid #0C1200;
   background: none;
@@ -315,7 +337,7 @@
   line-height: 20px;
   box-shadow: 0px 8px 25px 0px rgba(0, 0, 0, 0.04);
   position: absolute;
-  top: -25px;
+  top: -65px;
   left: 150px;
 }
 

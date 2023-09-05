@@ -63,24 +63,14 @@ export const AboutMe = () => {
         className="about-me__button"
         onClick={() => navigate(-1)}
       />
-      <div className="about-me__container about-me__container_aling_spbet">
-        <div className=" about-me__container about-me__container_column about-me__container_small">
-          <div className=" about-me__container about-me__container_aling_start">
+      <div className="about-me__container">
+        <div className=" about-me__container-info">
+          <div className=" about-me__container-title">
             <h1 className="about-me__title">Алена Коновалова</h1>
-            <span>
-              <img
-                src={icon_photo}
-                alt=""
-              />
-            </span>
-            <span>
-              <img
-                src={icon_video}
-                alt=""
-              />
-            </span>
+            <span className='about-me__icon about-me__icon_photo'/>
+            <span className='about-me__icon about-me__icon_video'/>
           </div>
-          <p className="about-me__subtitle">Москва</p>
+          {/* <p className="about-me__subtitle">Москва</p> */}
           <div className="about-me__info">
             <h2 className="about-me__subtitle">Обо мне</h2>
             <p className="about-me__text">
@@ -96,7 +86,7 @@ export const AboutMe = () => {
             </p>
           </div>
           {/* Кнопка и менюшка с контактами */}
-          <div className="about-me__container about-me__container_aling_start">
+          <div className="about-me__container-contact">
             <article className="about-me__article-contact">
               <button
                 className="about-me__button-contact"
