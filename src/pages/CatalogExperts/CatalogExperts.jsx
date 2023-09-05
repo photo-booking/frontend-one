@@ -49,6 +49,7 @@ export const CatalogExecutors = () => {
   ]
 
   return (
+    <>
     <section className='catalog'>
       <div className='catalog__filter'>
         <p className='catalog__city'>Москва</p>
@@ -79,5 +80,6 @@ export const CatalogExecutors = () => {
       </div> */}
     </section>
     <Footer />
+    </>
   );
 };

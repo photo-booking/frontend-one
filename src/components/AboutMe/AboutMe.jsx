@@ -22,10 +22,24 @@ export const AboutMe = () => {
   const handleShareOpen = () => {
     setIsShareOpen(!isShareOpen);
   };
-  function sharePostInVk(url) {
+  const copyLink = () => {
+    const url = `${baseUrl}${location.pathname}`;
+    navigator.clipboard
+      .writeText(url)
+      .then(() => {
+        console.log('copy');
+        setIsLinkCopy(true)
+        setTimeout(()=> {setIsLinkCopy(false)}, 2000)
+      })
+      .catch(() => {
+        console.log('copy error');
+        setIsLinkCopy(false)
+      })
+  };
+  const sharePostInVk = (url) => {
     return `https://vk.com/share.php?url=${url}?title='Title'`; //Надо добавить заголовки в метаданные
   }
-  function shareInTelegram(url) {
+  const shareInTelegram = (url) => {
     return `https://telegram.me/share/url?url=${url}&text=ТЕКСТ`; //Надо добавить заголовки в метаданные
   }
 
@@ -41,7 +55,7 @@ export const AboutMe = () => {
     isShareOpen ? 'about-me__share-container_visible' : ''
   }`;
 
-  // const copyMessageClassName = `'about-me__copy-message' ${isLinkCopy ? '' : ''}`;
+  const copyMessageClassName = `about-me__copy-message ${isLinkCopy ? 'about-me__copy-message_visible' : ''}`;
 
   return (
     <article className="about-me">
@@ -142,20 +156,10 @@ export const AboutMe = () => {
 
                 <button
                   className="about-me__button-copy"
-                  onClick={() => {
-                    const url = `${baseUrl}${location.pathname}`;
-                    navigator.clipboard
-                      .writeText(url)
-                      .then(() => {
-                        console.log('copy');
-                      })
-                      .catch(() => {
-                        console.log('copy error');
-                      });
-                  }}
+                  onClick={copyLink}
                 />
-                <span className='about-me__copy-message'>Ссылка скопирована</span>
               </div>
+              <span className={copyMessageClassName}>Ссылка скопирована</span>
             </article>
           </div>
         </div>
