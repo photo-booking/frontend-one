@@ -215,7 +215,6 @@ export const CatalogExecutors = () => {
         </button>
       </div> */}
     </section>
-    <Footer />
     </>
   );
 };

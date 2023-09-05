@@ -149,7 +149,6 @@ export const Profile = () => {
       ) : (
         <PricesPage />
       )}      
-      <Footer />
     </>
   );
 };
