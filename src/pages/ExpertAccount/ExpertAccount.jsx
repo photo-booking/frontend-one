@@ -14,7 +14,6 @@ export const ExecutorAccount = () => {
         Заказы
       </button>
     </div>
-    <Footer />
     </>
   );
 };
