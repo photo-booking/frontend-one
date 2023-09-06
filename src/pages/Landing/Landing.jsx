@@ -2,13 +2,15 @@ import { useNavigate } from 'react-router-dom';
 import './Landing.css';
 
 
-export const Landing = () => {
+export const Landing = (props) => {
   const navigate = useNavigate();
+  const {signOut} = props;
   return (
     <div className={'landing-container'}>
       <h1>Лэндинг</h1>
       <button onClick={() => navigate('/sign-in')}>Войти</button>
       <button onClick={() => navigate('/order-service')}>Заказать услугу</button>
+      <button onClick={signOut}>Выйти из профиля</button>
     </div>
   );
 };

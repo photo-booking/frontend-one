@@ -107,3 +107,15 @@ export function checkToken(jwt) {
     headers: { ...HEADERS, Authorization: `token ${jwt}` }
   }).then(res => getResponseData(res));
 }
+
+//выйти из профиля
+export function logOut(jwt) {
+  return fetch(`${BASE_URL}/auth/token/logout`, {
+    method: 'POST',
+    headers: { ...HEADERS, Authorization: `token ${jwt}` } 
+  }).then((res)=> {
+    if(res.status === 204) {
+      console.log("токен удален")
+    }
+  });
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { CurrentUserContext } from "../context/CurrentUserContext";
-import "./App.css"
+import { CurrentUserContext } from '../context/CurrentUserContext';
+import './App.css';
 
 import {
   register,
@@ -11,7 +11,8 @@ import {
   resetPassword,
   sendEmailToResetPassword,
   getUserInfo,
-  checkToken
+  checkToken,
+  logOut
 } from '../../utils/auth';
 
 import { Signin } from '../../pages/Signin/Signin';
@@ -37,8 +38,8 @@ export function App() {
   const [currentUser, setCurrentUser] = React.useState({});
 
   const [isClient, setIsClient] = useState(undefined);
-  const [isEmailSend, setIsEmailSend] = useState(false);//false
-  const [isPasswordReset, setIsPasswordReset] = useState(false);//false
+  const [isEmailSend, setIsEmailSend] = useState(false); //false
+  const [isPasswordReset, setIsPasswordReset] = useState(false); //false
   const [errMessage, setErrorMessage] = useState(undefined);
 
   const [isLoader, setIsLoader] = useState(false);
@@ -47,24 +48,24 @@ export function App() {
   const onSubmitSignin = values => {
     login(values)
       .then(res => {
-        const jwt = localStorage.getItem("token");
+        const jwt = localStorage.getItem('token');
         getUserInfo(jwt)
-          .then((res) => {
+          .then(res => {
+            console.log(res);
             setCurrentUser(res.results);
             setLoggedIn(true);
-            navigate('/')
+            navigate('/');
           })
-          .catch((err) => {
+          .catch(err => {
             console.log(err);
-
           });
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err.non_field_errors[0]);
-        setErrorMessage(err.non_field_errors[0])
+        setErrorMessage(err.non_field_errors[0]);
         setLoggedIn(false);
       });
-  }
+  };
 
   const onSubmitSignup = (values, status) => {
     register(values, status)
@@ -78,17 +79,21 @@ export function App() {
       });
   };
 
-  // function signOut() {
-  //   setLoggedIn(false);
-  //   localStorage.removeItem("token");
-  //   setCurrentUser({});
-  //   navigate("/");
-  // }
+  //Для выхода
+  function signOut() {
+    const jwt = localStorage.getItem('token');
+    logOut(jwt).then(() => {
+      setLoggedIn(false);
+      localStorage.removeItem('token');
+      setCurrentUser({});
+      navigate('/'); //??????Куда????
+    });
+  }
 
   const onSubmitJoin = values => {
     if (values.type === 'client') {
       setIsClient(true);
-    } else{
+    } else {
       setIsClient(false);
     }
   };
@@ -101,9 +106,9 @@ export function App() {
         console.log(res);
         setIsEmailSend(true);
       })
-      .catch((err) => {
+      .catch(err => {
         err.then(e => console.log(e));
-      })
+      });
   };
 
   const onSubmitResetPassword = (values, param) => {
@@ -115,7 +120,7 @@ export function App() {
       })
       .catch(err => {
         console.log(err);
-      })
+      });
   };
 
   const signinGoogle = param => {
@@ -140,119 +145,118 @@ export function App() {
 
   function tokenCheck() {
     setIsLoader(true);
-    const jwt = localStorage.getItem("token");
+    const jwt = localStorage.getItem('token');
     if (jwt) {
       checkToken(jwt)
-        .then((res) => {
-    const [userInfo] = res;
+        .then(res => {
+          const [userInfo] = res;
           setCurrentUser(userInfo);
           setLoggedIn(true);
-           navigate("/", { replace: true });
+          navigate('/', { replace: true });
         })
-        .catch((err) => {
-          console.log("Ошибка:" + err)
-          localStorage.removeItem("token");
+        .catch(err => {
+          console.log('Ошибка:' + err);
+          localStorage.removeItem('token');
           setLoggedIn(false);
         })
         .finally(() => setIsLoader(false));
     }
   }
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      tokenCheck();
-    }
+    tokenCheck();
   }, []);
-
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className='page'>
-      <HeaderMain isClient={isClient} setIsClient={setIsClient}></HeaderMain>
-      <Routes>
-        <Route
-          path="/"
-          element={<Landing />}
-        />
-        <Route
-          path="/sign-up"
-          element={
-            <Signup
-              onSubmit={onSubmitSignup}
-              onSubmitJoin={onSubmitJoin}
-              isClient={isClient}
-              setIsClient={setIsClient}
-              errMessage={errMessage}
-            />
-          }
-        />
-        <Route
-          path="/sign-in"
-          element={
-            <Signin
-              onSubmit={onSubmitSignin}
-              signinGoogle={signinGoogle}
-              signinVk={signinVk}
-              errMessage={errMessage}
-            />
-          }
-        />
-        <Route
-          path="/reset-password"
-          element={
-            <ResetPassword
-              isEmailSend={isEmailSend}
-              isPasswordReset={isPasswordReset}
-              onSubmitResetPassword={onSubmitResetPassword}
-              onSubmitSendEmailToResetPassword={onSubmitSendEmailToResetPassword}
-            />
-          }
-        />
-        <Route
-          path="/catalog"
-          element={<CatalogExecutors />}
-        />
-        <Route
-          path="/card/:id"
-          element={<Profile />}
-        />
-        <Route
-          path="/client/:id"
-          element={<ClientAccount />}
-        />
-        <Route
-          path="/client/:id/orders"
-          element={<ClientOrders />}
-        />
-        <Route
-          path="/expert/:id"
-          element={<ExecutorAccount />}
-        />
-        <Route
-          path="/expert/:id/orders"
-          element={<ExecutorOrders />}
-        />
-        <Route
-          path="/expert/:id/ratings"
-          element={<ExecutorRatings />}
-        />
-        <Route
-          path="/order-service"
-          element={<OrderServices />}
-        />
-        <Route
-          path="/client/:id/chat"
-          element={<ClientChat />}
-        />
-        <Route
-          path="/expert/:id/chat"
-          element={<ExecutorChat />}
-        />
-        <Route
-          path="*"
-          element={<Page404 />}
-        />
-      </Routes>
-     
+      <div className="page">
+        <HeaderMain
+          isClient={isClient}
+          setIsClient={setIsClient}
+        ></HeaderMain>
+        <Routes>
+          <Route
+            path="/"
+            element={<Landing signOut={signOut}/>}
+          />
+          <Route
+            path="/sign-up"
+            element={
+              <Signup
+                onSubmit={onSubmitSignup}
+                onSubmitJoin={onSubmitJoin}
+                isClient={isClient}
+                setIsClient={setIsClient}
+                errMessage={errMessage}
+              />
+            }
+          />
+          <Route
+            path="/sign-in"
+            element={
+              <Signin
+                onSubmit={onSubmitSignin}
+                signinGoogle={signinGoogle}
+                signinVk={signinVk}
+                errMessage={errMessage}
+              />
+            }
+          />
+          <Route
+            path="/reset-password"
+            element={
+              <ResetPassword
+                isEmailSend={isEmailSend}
+                isPasswordReset={isPasswordReset}
+                onSubmitResetPassword={onSubmitResetPassword}
+                onSubmitSendEmailToResetPassword={onSubmitSendEmailToResetPassword}
+              />
+            }
+          />
+          <Route
+            path="/catalog"
+            element={<CatalogExecutors />}
+          />
+          <Route
+            path="/card/:id"
+            element={<Profile />}
+          />
+          <Route
+            path="/client/:id"
+            element={<ClientAccount />}
+          />
+          <Route
+            path="/client/:id/orders"
+            element={<ClientOrders />}
+          />
+          <Route
+            path="/expert/:id"
+            element={<ExecutorAccount />}
+          />
+          <Route
+            path="/expert/:id/orders"
+            element={<ExecutorOrders />}
+          />
+          <Route
+            path="/expert/:id/ratings"
+            element={<ExecutorRatings />}
+          />
+          <Route
+            path="/order-service"
+            element={<OrderServices />}
+          />
+          <Route
+            path="/client/:id/chat"
+            element={<ClientChat />}
+          />
+          <Route
+            path="/expert/:id/chat"
+            element={<ExecutorChat />}
+          />
+          <Route
+            path="*"
+            element={<Page404 />}
+          />
+        </Routes>
       </div>
     </CurrentUserContext.Provider>
   );
