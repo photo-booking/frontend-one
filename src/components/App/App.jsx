@@ -153,8 +153,8 @@ export function App() {
         })
         .catch(err => {
           console.log('Ошибка:' + err);
-          // localStorage.removeItem('token');
-          // setLoggedIn(false);
+          localStorage.removeItem('token');
+          setLoggedIn(false);
         })
         .finally(() => setIsLoader(false));
     }
