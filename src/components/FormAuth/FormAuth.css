@@ -80,7 +80,7 @@
 
 .form-auth__button_sign_left {
   align-self: flex-start;
-  margin-left: -4px;
+  margin: 0;
 }
 
 .form-auth__label {

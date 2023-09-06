@@ -39,6 +39,7 @@ export function App() {
   const [isClient, setIsClient] = useState(undefined);
   const [isEmailSend, setIsEmailSend] = useState(false);//false
   const [isPasswordReset, setIsPasswordReset] = useState(false);//false
+  const [errMessage, setErrorMessage] = useState(undefined);
 
   const [isLoader, setIsLoader] = useState(false);
   const navigate = useNavigate();
@@ -55,10 +56,12 @@ export function App() {
           })
           .catch((err) => {
             console.log(err);
+
           });
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.non_field_errors[0]);
+        setErrorMessage(err.non_field_errors[0])
         setLoggedIn(false);
       });
   }
@@ -69,7 +72,8 @@ export function App() {
         onSubmitSignin(values);
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.email[0]);
+        setErrorMessage(err.email[0]);
         setLoggedIn(false);
       });
   };
@@ -84,7 +88,7 @@ export function App() {
   const onSubmitJoin = values => {
     if (values.type === 'client') {
       setIsClient(true);
-    } else {
+    } else{
       setIsClient(false);
     }
   };
@@ -134,40 +138,30 @@ export function App() {
       });
   };
 
-  // function tokenCheck() {
-  //   setIsLoader(true);
-  //   const jwt = localStorage.getItem("token");
-  //   if (jwt) {
-  //     checkToken(jwt)
-  //       .then((res) => {
-  //         const userEmail = res.email;
-  //         setLoggedIn(true);
-  //         setUserEmail(userEmail);
-  //         navigate("/", { replace: true });
-  //       })
-  //       .catch((err) => {
-  //         console.log("Ошибка:" + err)
-  //         localStorage.removeItem("token");
-  //         setLoggedIn(false);
-  //       })
-  //       .finally(() => setIsLoader(false));
-  //   }
-  // }
-  // useEffect(() => {
-  //   tokenCheck();
-  //   if (loggedIn) {
-  //     setIsLoader(true);
-  //     Promise([api.getUserInfo()])
-  //       .then((res) => {
-  //         const [userInfo] = res;
-  //         setCurrentUser(userInfo);
-  //        })
-  //       .catch((err) => {
-  //         console.log("Ошибка:" + err);
-  //       })
-  //       .finally(() => setIsLoader(false));
-  //   }
-  // }, [loggedIn]);
+  function tokenCheck() {
+    setIsLoader(true);
+    const jwt = localStorage.getItem("token");
+    if (jwt) {
+      checkToken(jwt)
+        .then((res) => {
+    const [userInfo] = res;
+          setCurrentUser(userInfo);
+          setLoggedIn(true);
+           navigate("/", { replace: true });
+        })
+        .catch((err) => {
+          console.log("Ошибка:" + err)
+          localStorage.removeItem("token");
+          setLoggedIn(false);
+        })
+        .finally(() => setIsLoader(false));
+    }
+  }
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      tokenCheck();
+    }
+  }, []);
 
 
   return (
@@ -187,6 +181,7 @@ export function App() {
               onSubmitJoin={onSubmitJoin}
               isClient={isClient}
               setIsClient={setIsClient}
+              errMessage={errMessage}
             />
           }
         />
@@ -197,6 +192,7 @@ export function App() {
               onSubmit={onSubmitSignin}
               signinGoogle={signinGoogle}
               signinVk={signinVk}
+              errMessage={errMessage}
             />
           }
         />

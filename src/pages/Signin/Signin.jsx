@@ -23,7 +23,7 @@ export const Signin = props => {
     reset,
     formState: { errors }
   } = useForm({ mode: 'onChange' });
-  const { onSubmit, signinGoogle, signinVk } = props;
+  const { onSubmit, signinGoogle, signinVk, errMessage } = props;
   const [showPass, setShowPass] = useState(false);
   const watchAllFields = watch();
 
@@ -116,6 +116,7 @@ export const Signin = props => {
             >
               Забыли пароль?
             </button>
+            <span className="form-auth__err">{errMessage}</span>
           </>
         }
         buttonTitle={'Войти в аккаунт'}

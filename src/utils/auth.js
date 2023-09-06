@@ -102,8 +102,8 @@ export function getUserInfo(jwt) {
 
 //Проверить токен на валидность
 export function checkToken(jwt) {
-  return fetch(`${BASE_URL}/???`, {
+  return fetch(`${BASE_URL}/users/me/`, {
     method: 'GET',
-    headers: { ...HEADERS, Authorization: `Bearer ${jwt}` }
+    headers: { ...HEADERS, Authorization: `token ${jwt}` }
   }).then(res => getResponseData(res));
 }

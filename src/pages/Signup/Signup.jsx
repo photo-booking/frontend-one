@@ -26,7 +26,7 @@ export const Signup = props => {
   } = useForm({ mode: 'onChange' });
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
-  const { onSubmit, onSubmitJoin, isClient } = props;
+  const { onSubmit, onSubmitJoin, isClient, errMessage } = props;
   const title = `Зарегистрироваться как ${isClient ? 'заказчик' : 'специалист'}`;
 
   // const watchType = watch('type', undefined);
@@ -186,6 +186,7 @@ export const Signup = props => {
                       />
                     </button>
                   </div>
+                  <span className="form-auth__err">{errMessage}</span>
                 </label>
               </>
             }
