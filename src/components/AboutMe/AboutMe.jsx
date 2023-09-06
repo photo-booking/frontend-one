@@ -35,7 +35,7 @@ export const AboutMe = () => {
       })
   };
   const sharePostInVk = (url) => {
-    return `https://vk.com/share.php?url=${url}?title='Title'`; //Надо добавить заголовки в метаданные
+    return `https://vk.com/share.php?title=Title&url=${encodeURI(url)}`; //Надо добавить заголовки в метаданные
   }
   const shareInTelegram = (url) => {
     return `https://telegram.me/share/url?url=${url}&text=ТЕКСТ`; //Надо добавить заголовки в метаданные
