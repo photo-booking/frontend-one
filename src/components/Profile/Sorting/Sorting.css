@@ -1,11 +1,12 @@
 .sortingContainer {
-    width: 208px;
+    /* переопределение стиля. */
+    /* width: 208px; */ 
     min-width: 208px;
-    position: sticky;
-    top: 0;
-    overflow: scroll;
-    height: 90%;
-    align-self: flex-start
+    /* position: sticky; */
+    /* top: 0; */
+    /* overflow: scroll; */
+    /* height: 90%; */
+    /* align-self: flex-start */
 }
 .sortingContainer::-webkit-scrollbar {
     width: 0;

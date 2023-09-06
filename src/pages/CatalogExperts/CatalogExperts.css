@@ -55,6 +55,10 @@
     border-radius: 5px;
 }
 
+.button_more:hover {
+    cursor: pointer;
+}
+
 .catalog__info {
     display: flex;
     max-width: 1328;
@@ -64,4 +68,8 @@
 .catalog__container {
     display: flex;
     justify-content: space-between;
+}
+
+.catalog__filter {
+    width: 208px;
 }

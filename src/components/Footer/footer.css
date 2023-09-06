@@ -56,12 +56,14 @@
     color: rgba(117, 117, 117, 1);
     text-decoration: underline;
     line-height: 16px;
+    font-size: 12px;
 }
 
 .footer__by {
     font-family: 'Aneliza';
     align-self: self-end;
     margin: 0;
+    font-size: 12px;
     color: rgba(117, 117, 117, 1);
 }
 

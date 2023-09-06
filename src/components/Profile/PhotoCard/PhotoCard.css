@@ -5,11 +5,14 @@
     height: 296px;
     margin-bottom: 32px;
 }
+
+/* photoCardContainerProfile__card */
 .photoCardContainerProfile__card {
     border-radius: 12px;
     width: 100%;
     aspect-ratio: 496/296;
     object-fit: cover;
+    margin: 0;
 }
 
 .photoCardContainerProfile:hover  {

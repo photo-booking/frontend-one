@@ -1,10 +1,17 @@
+import { useNavigate } from 'react-router-dom'
 import './card.css';
 import test from '../../images/avatar-test.jpg'
 
 export const Card = ({user}) => {
 
+    const navigate = useNavigate();
+    const navigateProfile = (event) => {
+      navigate('/card/1');
+    };
+
+
     return (
-        <section className="card">
+        <section className="card" onClick={navigateProfile}>
             <div className='card__portfolio'>
                 <img className='card__portfolio_item' src={user.portfolio}/>
             </div>
