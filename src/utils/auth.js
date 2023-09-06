@@ -114,8 +114,10 @@ export function logOut(jwt) {
     method: 'POST',
     headers: { ...HEADERS, Authorization: `token ${jwt}` } 
   }).then((res)=> {
-    if(res.status === 204) {
+    if(res.ok) {
       console.log("токен удален")
+    } else {
+      console.log("ошибка сервера")
     }
   });
 }

@@ -51,8 +51,7 @@ export function App() {
         const jwt = localStorage.getItem('token');
         getUserInfo(jwt)
           .then(res => {
-            console.log(res);
-            setCurrentUser(res.results);
+            setCurrentUser(res);
             setLoggedIn(true);
             navigate('/');
           })
@@ -61,7 +60,6 @@ export function App() {
           });
       })
       .catch(err => {
-        console.log(err.non_field_errors[0]);
         setErrorMessage(err.non_field_errors[0]);
         setLoggedIn(false);
       });
@@ -73,7 +71,6 @@ export function App() {
         onSubmitSignin(values);
       })
       .catch(err => {
-        console.log(err.email[0]);
         setErrorMessage(err.email[0]);
         setLoggedIn(false);
       });
@@ -149,15 +146,15 @@ export function App() {
     if (jwt) {
       checkToken(jwt)
         .then(res => {
-          const [userInfo] = res;
+          const userInfo = res;
           setCurrentUser(userInfo);
           setLoggedIn(true);
           navigate('/', { replace: true });
         })
         .catch(err => {
           console.log('Ошибка:' + err);
-          localStorage.removeItem('token');
-          setLoggedIn(false);
+          // localStorage.removeItem('token');
+          // setLoggedIn(false);
         })
         .finally(() => setIsLoader(false));
     }
