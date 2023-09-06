@@ -6,15 +6,14 @@ import { LinksPortfolio } from '../../components/Profile/Links/Links';
 import { Sorting } from '../../components/Profile/Sorting/Sorting';
 import PricesPage from '../PricesPage/PricesPage';
 import { CardInfoProfile } from '../../components/Profile/PhotoCard/CardInfo/CardInfo';
-import { Footer } from '../../components/Footer/footer';
 
 export const Profile = () => {
   useEffect(() => {
     //последняя карточка не выравнивается,не знаю как еще решить
     if (document.getElementsByClassName('photoCardContainerProfile__card').length !== 0) {
-      const cards = document.getElementsByClassName('photoCardContainerProfile__card');
-      const length = document.getElementsByClassName('photoCardContainerProfile__card').length;
-      cards[length - 1].style.marginLeft = '16px';
+      const div = document.getElementsByClassName('photoCardContainerProfile');
+      const divLength = document.getElementsByClassName('photoCardContainerProfile__card').length;
+      div[divLength - 1].style.marginLeft = '32px';
     }
     // fetch('https://photo-market.acceleratorpracticum.ru/api/users/1')
     //   .then(response => console.log(response))
@@ -88,9 +87,8 @@ export const Profile = () => {
     player.setSize(1034, 500);
 
     //этот же вопрос с выравниванием последней карточки
-    const cards = document.getElementsByClassName('photoCardContainerProfile__card');
-    const length = document.getElementsByClassName('photoCardContainerProfile__card').length;
-    cards[length - 1].style.marginLeft = '0';
+    const div = document.getElementsByClassName('photoCardContainerProfile');
+    const divLength = document.getElementsByClassName('photoCardContainerProfile__card').length;
 
     document.getElementsByClassName('profileContainer__youtube')[0].style.display = ' none';
     overlay.style.display = 'block';
@@ -98,7 +96,7 @@ export const Profile = () => {
       overlay.style.display = 'none';
       player.destroy();
       document.getElementsByClassName('profileContainer__youtube')[0].style.display = 'block';
-      cards[length - 1].style.marginLeft = '16px';
+      div[divLength - 1].style.marginLeft = '32px';
     });
   };
 
@@ -131,8 +129,8 @@ export const Profile = () => {
               >
                 <img
                   src={`//img.youtube.com/vi/${splitUrl(video)}/default.jpg`}
-                  width="501"
-                  height="300"
+                  width="496"
+                  height="296"
                   alt="youtubePreview"
                 />
                 <div className="profileContainer__youtube_playContainer" />
@@ -149,7 +147,7 @@ export const Profile = () => {
         </>
       ) : (
         <PricesPage />
-      )}      
+      )}
     </>
   );
 };
