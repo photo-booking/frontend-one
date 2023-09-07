@@ -1,4 +1,4 @@
-const BASE_URL = 'http://127.0.0.1:8080/https://photo-market.acceleratorpracticum.ru/api'; //my adress
+const BASE_URL = 'https://photo-market.acceleratorpracticum.ru/api'; //my adress
 const HEADERS = { 'Content-Type': 'application/json' };
 
 function getResponseData(res) {
@@ -42,35 +42,6 @@ export function login(values) {
     });
 }
 
-//Войти в аккаунт через гугл
-export function loginGoogle(param) {
-  return fetch(`${BASE_URL}/social/login/google-oauth2`, {
-    method: 'POST',
-    headers: HEADERS,
-    body: JSON.stringify({ eccses_token: param })
-  })
-    .then(res => getResponseData(res))
-    .then(res => {
-      localStorage.setItem('token', res.token);
-      return res;
-    });
-}
-
-//Войти в аккаунт через ВК
-export function loginVk(param) {
-  return fetch(`${BASE_URL}/social/login/vk-oauth2`, {
-    method: 'POST',
-    headers: HEADERS,
-    body: JSON.stringify({ code: param })
-  })
-    .then(res => getResponseData(res))
-    .then(res => {
-      console.log(res);
-      localStorage.setItem('token', res.token);
-      return res;
-    });
-}
-
 //Сбросить пароль: отправить письмо
 export function sendEmailToResetPassword(email) {
   return fetch(`${BASE_URL}/users/reset_password/`, {
@@ -102,8 +73,22 @@ export function getUserInfo(jwt) {
 
 //Проверить токен на валидность
 export function checkToken(jwt) {
-  return fetch(`${BASE_URL}/???`, {
+  return fetch(`${BASE_URL}/users/me/`, {
     method: 'GET',
-    headers: { ...HEADERS, Authorization: `Bearer ${jwt}` }
+    headers: { ...HEADERS, Authorization: `token ${jwt}` }
   }).then(res => getResponseData(res));
+}
+
+//выйти из профиля
+export function logOut(jwt) {
+  return fetch(`${BASE_URL}/auth/token/logout`, {
+    method: 'POST',
+    headers: { ...HEADERS, Authorization: `token ${jwt}` } 
+  }).then((res)=> {
+    if(res.ok) {
+      console.log("токен удален")
+    } else {
+      console.log("ошибка сервера")
+    }
+  });
 }

@@ -5,6 +5,7 @@ import './Signin.css';
 import showPassImage from '../../images/Show.svg';
 import { AuthIntegration } from '../../components/AuthIntegration/AuthIntegration';
 import { FormAuth } from '../../components/FormAuth/FormAuth';
+import { SkeletonLogin } from '../../components/Skeleton/SkeletonLogin';
 import {
   REG_EMAIL,
   REG_PASSWORD,
@@ -23,7 +24,7 @@ export const Signin = props => {
     reset,
     formState: { errors }
   } = useForm({ mode: 'onChange' });
-  const { onSubmit, signinGoogle, signinVk } = props;
+  const { onSubmitSignin, onLoginWithSocial, errMessage, setErrorMessage } = props;
   const [showPass, setShowPass] = useState(false);
   const watchAllFields = watch();
 
@@ -34,16 +35,14 @@ export const Signin = props => {
         : ''
     }`;
   };
-
+  const token = new URLSearchParams(location.search).get("token");
   useEffect(() => {
-    // const access_token_google = new URLSearchParams(location.hash).get("access_token");
-    // const code_vk = new URLSearchParams(location.search).get("code");
-    // if(access_token_google) {signinGoogle(access_token_google)};
-    // if(code_vk) {signinVk(code_vk)};
+    setErrorMessage(undefined);
+    if(token) {onLoginWithSocial(token)};
   }, []);
 
   const handleSubmitSignin = values => {
-    onSubmit(values);
+    onSubmitSignin(values);
     reset();
   };
 
@@ -52,8 +51,9 @@ export const Signin = props => {
     setShowPass(!showPass);
   };
 
-  return (
-    <div className="signin form-auth__container">
+  if(!token || (token && errMessage)) {
+    return (
+    <div className="form-auth__container">
       <h1 className="form-auth__title">Вход в аккаунт</h1>
       <AuthIntegration />
       <FormAuth
@@ -116,6 +116,7 @@ export const Signin = props => {
             >
               Забыли пароль?
             </button>
+            <span className="form-auth__err">{errMessage}</span>
           </>
         }
         buttonTitle={'Войти в аккаунт'}
@@ -135,5 +136,12 @@ export const Signin = props => {
         </button>
       </p>
     </div>
-  );
+    )
+  } else {
+    return (
+      <div className="form-auth__container">
+        <SkeletonLogin />
+      </div>
+    )
+  }
 };

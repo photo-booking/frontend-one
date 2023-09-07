@@ -71,6 +71,7 @@
 
 .about-me__title {
   font-family: 'Aneliza';
+  font-feature-settings: 'ss01' on;
   font-size: 76px;
   font-style: normal;
   font-weight: 700;
@@ -81,6 +82,7 @@
 
 .about-me__subtitle {
   font-family: 'Aneliza';
+  font-feature-settings: 'ss01' on;
   font-size: 22px;
   font-style: normal;
   font-weight: 700;
@@ -112,6 +114,7 @@
 
 .about-me__text {
   font-family: 'Fira Sans';
+  text-overflow: ellipsis;
   font-size: 22px;
   font-style: normal;
   font-weight: 400;

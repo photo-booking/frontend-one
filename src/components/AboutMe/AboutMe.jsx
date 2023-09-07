@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import './AboutMe.css';
 import photo from '../../images/Rectangle 11.jpg';
-import icon_photo from '../../images/worker icon_photo.svg';
-import icon_video from '../../images/worker icon_video.svg';
 import icon_telephone from '../../images/contact icons_telephone.svg';
 import icon_telegram from '../../images/contact icons _telegram.svg';
 import icon_email from '../../images/contact icons_email.svg';
@@ -37,7 +35,7 @@ export const AboutMe = () => {
       })
   };
   const sharePostInVk = (url) => {
-    return `https://vk.com/share.php?url=${url}?title='Title'`; //Надо добавить заголовки в метаданные
+    return `https://vk.com/share.php?title=Title&url=${encodeURI(url)}`; //Надо добавить заголовки в метаданные
   }
   const shareInTelegram = (url) => {
     return `https://telegram.me/share/url?url=${url}&text=ТЕКСТ`; //Надо добавить заголовки в метаданные

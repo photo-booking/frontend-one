@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { CurrentUserContext } from "../context/CurrentUserContext";
-import "./App.css"
+import { CurrentUserContext } from '../context/CurrentUserContext';
+import './App.css';
 
 import {
   register,
@@ -11,7 +11,8 @@ import {
   resetPassword,
   sendEmailToResetPassword,
   getUserInfo,
-  checkToken
+  checkToken,
+  logOut
 } from '../../utils/auth';
 
 import { Signin } from '../../pages/Signin/Signin';
@@ -38,8 +39,9 @@ export function App() {
   const [currentUser, setCurrentUser] = React.useState({});
 
   const [isClient, setIsClient] = useState(undefined);
-  const [isEmailSend, setIsEmailSend] = useState(false);//false
-  const [isPasswordReset, setIsPasswordReset] = useState(false);//false
+  const [isEmailSend, setIsEmailSend] = useState(false); //false
+  const [isPasswordReset, setIsPasswordReset] = useState(false); //false
+  const [errMessage, setErrorMessage] = useState(undefined);
 
   const [isLoader, setIsLoader] = useState(false);
   const navigate = useNavigate();
@@ -47,22 +49,37 @@ export function App() {
   const onSubmitSignin = values => {
     login(values)
       .then(res => {
-        const jwt = localStorage.getItem("token");
+        const jwt = localStorage.getItem('token');
         getUserInfo(jwt)
-          .then((res) => {
-            setCurrentUser(res.results);
+          .then(res => {
+            setCurrentUser(res);
             setLoggedIn(true);
-            navigate('/')
+            navigate('/');
           })
-          .catch((err) => {
+          .catch(err => {
             console.log(err);
           });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(err => {
+        setErrorMessage(err.non_field_errors[0]);
         setLoggedIn(false);
       });
-  }
+  };
+
+  const onLoginWithSocial = jwt => {
+    console.log(jwt);
+    getUserInfo(jwt)
+      .then(res => {
+        localStorage.setItem('token', jwt);
+        setCurrentUser(res);
+        setLoggedIn(true);
+        navigate('/');
+      })
+      .catch(err => {
+        setErrorMessage(err.detail);
+        setLoggedIn(false);
+      });
+  };
 
   const onSubmitSignup = (values, status) => {
     register(values, status)
@@ -70,17 +87,21 @@ export function App() {
         onSubmitSignin(values);
       })
       .catch(err => {
-        console.log(err);
+        setErrorMessage(err.email[0]);
         setLoggedIn(false);
       });
   };
 
-  // function signOut() {
-  //   setLoggedIn(false);
-  //   localStorage.removeItem("token");
-  //   setCurrentUser({});
-  //   navigate("/");
-  // }
+  //Для выхода
+  function signOut() {
+    const jwt = localStorage.getItem('token');
+    logOut(jwt).then(() => {
+      setLoggedIn(false);
+      localStorage.removeItem('token');
+      setCurrentUser({});
+      navigate('/'); //??????Куда????
+    });
+  }
 
   const onSubmitJoin = values => {
     if (values.type === 'client') {
@@ -98,9 +119,9 @@ export function App() {
         console.log(res);
         setIsEmailSend(true);
       })
-      .catch((err) => {
+      .catch(err => {
         err.then(e => console.log(e));
-      })
+      });
   };
 
   const onSubmitResetPassword = (values, param) => {
@@ -112,152 +133,124 @@ export function App() {
       })
       .catch(err => {
         console.log(err);
-      })
-  };
-
-  const signinGoogle = param => {
-    loginGoogle(param)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
       });
   };
 
-  const signinVk = param => {
-    loginVk(param)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  // function tokenCheck() {
-  //   setIsLoader(true);
-  //   const jwt = localStorage.getItem("token");
-  //   if (jwt) {
-  //     checkToken(jwt)
-  //       .then((res) => {
-  //         const userEmail = res.email;
-  //         setLoggedIn(true);
-  //         setUserEmail(userEmail);
-  //         navigate("/", { replace: true });
-  //       })
-  //       .catch((err) => {
-  //         console.log("Ошибка:" + err)
-  //         localStorage.removeItem("token");
-  //         setLoggedIn(false);
-  //       })
-  //       .finally(() => setIsLoader(false));
-  //   }
-  // }
-  // useEffect(() => {
-  //   tokenCheck();
-  //   if (loggedIn) {
-  //     setIsLoader(true);
-  //     Promise([api.getUserInfo()])
-  //       .then((res) => {
-  //         const [userInfo] = res;
-  //         setCurrentUser(userInfo);
-  //        })
-  //       .catch((err) => {
-  //         console.log("Ошибка:" + err);
-  //       })
-  //       .finally(() => setIsLoader(false));
-  //   }
-  // }, [loggedIn]);
-
+  function tokenCheck() {
+    setIsLoader(true);
+    const jwt = localStorage.getItem('token');
+    if (jwt) {
+      checkToken(jwt)
+        .then(res => {
+          const userInfo = res;
+          setCurrentUser(userInfo);
+          setLoggedIn(true);
+          navigate('/', { replace: true });
+        })
+        .catch(err => {
+          console.log('Ошибка:' + err);
+          localStorage.removeItem('token');
+          setLoggedIn(false);
+        })
+        .finally(() => setIsLoader(false));
+    }
+  }
+  useEffect(() => {
+    tokenCheck();
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className='page'>
-      <HeaderMain isClient={isClient} setIsClient={setIsClient}></HeaderMain>
-      <Routes>
-        <Route
-          path="/"
-          element={<Landing />}
-        />
-        <Route
-          path="/sign-up"
-          element={
-            <Signup
-              onSubmit={onSubmitSignup}
-              onSubmitJoin={onSubmitJoin}
-              isClient={isClient}
-              setIsClient={setIsClient}
-            />
-          }
-        />
-        <Route
-          path="/sign-in"
-          element={
-            <Signin
-              onSubmit={onSubmitSignin}
-              signinGoogle={signinGoogle}
-              signinVk={signinVk}
-            />
-          }
-        />
-        <Route
-          path="/reset-password"
-          element={
-            <ResetPassword
-              isEmailSend={isEmailSend}
-              isPasswordReset={isPasswordReset}
-              onSubmitResetPassword={onSubmitResetPassword}
-              onSubmitSendEmailToResetPassword={onSubmitSendEmailToResetPassword}
-            />
-          }
-        />
-        <Route
-          path="/catalog"
-          element={<CatalogExecutors />}
-        />
-        <Route
-          path="/card/:id"
-          element={<Profile />}
-        />
-        <Route
-          path="/client/:id"
-          element={<ClientAccount />}
-        />
-        <Route
-          path="/client/:id/orders"
-          element={<ClientOrders />}
-        />
-        <Route
-          path="/expert/:id"
-          element={<ExecutorAccount />}
-        />
-        <Route
-          path="/expert/:id/orders"
-          element={<ExecutorOrders />}
-        />
-        <Route
-          path="/expert/:id/ratings"
-          element={<ExecutorRatings />}
-        />
-        <Route
-          path="/order-service"
-          element={<OrderServices />}
-        />
-        <Route
-          path="/client/:id/chat"
-          element={<ClientChat />}
-        />
-        <Route
-          path="/expert/:id/chat"
-          element={<ExecutorChat />}
-        />
-        <Route
-          path="*"
-          element={<Page404 />}
-        />
-      </Routes>
-      <Footer isClient={isClient}></Footer>
+      <div className="page">
+        <HeaderMain
+          isClient={isClient}
+          setIsClient={setIsClient}
+        ></HeaderMain>
+        <Routes>
+          <Route
+            path="/"
+            element={<Landing signOut={signOut} />}
+          />
+          <Route
+            path="/sign-up"
+            element={
+              <Signup
+                onSubmitSignup={onSubmitSignup}
+                onSubmitJoin={onSubmitJoin}
+                isClient={isClient}
+                setIsClient={setIsClient}
+                errMessage={errMessage}
+                setErrorMessage={setErrorMessage}
+              />
+            }
+          />
+          <Route
+            path="/sign-in"
+            element={
+              <Signin
+                onSubmitSignin={onSubmitSignin}
+                onLoginWithSocial={onLoginWithSocial}
+                errMessage={errMessage}
+                setErrorMessage={setErrorMessage}
+              />
+            }
+          />
+          <Route
+            path="/reset-password"
+            element={
+              <ResetPassword
+                isEmailSend={isEmailSend}
+                isPasswordReset={isPasswordReset}
+                onSubmitResetPassword={onSubmitResetPassword}
+                onSubmitSendEmailToResetPassword={onSubmitSendEmailToResetPassword}
+              />
+            }
+          />
+          <Route
+            path="/catalog"
+            element={<CatalogExecutors />}
+          />
+          <Route
+            path="/card/:id"
+            element={<Profile />}
+          />
+          <Route
+            path="/client/:id"
+            element={<ClientAccount />}
+          />
+          <Route
+            path="/client/:id/orders"
+            element={<ClientOrders />}
+          />
+          <Route
+            path="/expert/:id"
+            element={<ExecutorAccount />}
+          />
+          <Route
+            path="/expert/:id/orders"
+            element={<ExecutorOrders />}
+          />
+          <Route
+            path="/expert/:id/ratings"
+            element={<ExecutorRatings />}
+          />
+          <Route
+            path="/order-service"
+            element={<OrderServices />}
+          />
+          <Route
+            path="/client/:id/chat"
+            element={<ClientChat />}
+          />
+          <Route
+            path="/expert/:id/chat"
+            element={<ExecutorChat />}
+          />
+          <Route
+            path="*"
+            element={<Page404 />}
+          />
+        </Routes>
       </div>
     </CurrentUserContext.Provider>
   );
