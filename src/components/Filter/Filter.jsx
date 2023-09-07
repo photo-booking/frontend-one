@@ -6,7 +6,14 @@ function Filter({photo, video}) {
 const [minCost, setMinCost] = React.useState('350');
 const [maxCost, setMaxCost] = React.useState('2500');
 const [costValue, setCostValue] = React.useState('cheap')
+
+const [isMinCost, setIsMinCost] = React.useState(true)
+
 const [expertValue, setExpertValue] = React.useState('photographer');
+
+// const [isPhotographer, setIsPhotographer] = React.useState(true);
+// const [isVideographer, setIsVideographer] = React.useState(false);
+
 const [weddingIsChecked, setWeddingIsChecked] = React.useState(false)
 const [loveStoryIsChecked, setLoveStoryIsChecked] = React.useState(false)
 const [individualIsChecked, setIndividualIsChecked] = React.useState(false)
@@ -155,7 +162,7 @@ React.useEffect(() => {
 
   triggeredSubmit()
 }, [
-  costValue,
+  isMinCost,
   expertValue,
   checkboxIsClick
   // weddingIsChecked,
@@ -173,22 +180,23 @@ React.useEffect(() => {
 function submit(e) {
   e.preventDefault();
   const formValue = {
-    cost: costValue,
+    isMinCost: isMinCost,
+    isMaxCost: !isMinCost,
     minCost: minCost,
     maxCost: maxCost,
     expert: expertValue,
-    typeOfShooting: {
-      wedding: weddingIsChecked,
-      loveStory: loveStoryIsChecked,
-      individual: individualIsChecked,
-      family: familyIsChecked,
-      fashion: fashionIsChecked,
-      pets: petsIsChecked,
-      interview: interviewIsChecked,
-      aerial: aerialIsChecked,
-      stock: stockIsChecked,
-      clips: clipsIsChecked,
-    }
+    // typeOfShooting: {
+    //   wedding: weddingIsChecked,
+    //   loveStory: loveStoryIsChecked,
+    //   individual: individualIsChecked,
+    //   family: familyIsChecked,
+    //   fashion: fashionIsChecked,
+    //   pets: petsIsChecked,
+    //   interview: interviewIsChecked,
+    //   aerial: aerialIsChecked,
+    //   stock: stockIsChecked,
+    //   clips: clipsIsChecked,
+    // }
   }
   // пока с данными нечего делать, будут выводиться в консоль
   console.log(formValue)
@@ -199,31 +207,9 @@ function chengeExpertValue(e) {
   setExpertValue(e.target.value);
 }
 
-const chengeCostValue =(e) => {
-  setCostValue(e.target.value);
+function chengeCost() {
+  setIsMinCost(!isMinCost);
 }
-
-// в принципе, если поставить еще одну точку  где-то на каталоге, то можно сделать условие
-// что если во вьюпорте появилась эта точка, то верни ве, как было, отлепи фильтры от прокрутки!
-// const myRef = React.useRef();
-// const myRef1 = React.useRef();
-// const [formElementIsVisible, setFormElementIsVisible] = React.useState();
-
-// useEffect(() => {
-//   const observer = new IntersectionObserver((ent) => {
-//     const entry = ent[0];
-//     setFormElementIsVisible(entry.isIntersecting)
-//   })
-//   observer.observe(myRef.current)
-// }, [])
-
-// useEffect(() => {
-//   const observer = new IntersectionObserver((ent) => {
-//     const entry = ent[0];
-//     setFormElementIsVisible(!entry.isIntersecting)
-//   })
-//   observer.observe(myRef1.current)
-// }, [])
 
   return (
     <form className=/*{!formElementIsVisible ? */ "filter-form" /*: "filter-form_slick"}*/ id='form' onSubmit={(e)=> {submit(e)}} >
@@ -236,8 +222,8 @@ const chengeCostValue =(e) => {
           id="cheap" 
           value="cheap"
           className="ratio" 
-          checked={costValue === 'cheap' ? true : false}
-          onChange={(e) => {chengeCostValue(e)}}
+          checked={isMinCost}
+          onChange={() => {chengeCost()}}
           />
         <label className="ratio-label" htmlFor="cheap">Низкая стоимость</label>
 
@@ -247,8 +233,8 @@ const chengeCostValue =(e) => {
           id="expensive" 
           value="expensive" 
           className="ratio" 
-          checked={costValue === 'expensive' ? true : false}
-          onChange={(e) => {chengeCostValue(e)}}
+          checked={!isMinCost}
+          onChange={() => {chengeCost()}}
         />
         <label className="ratio-label" htmlFor="expensive">Высокая стоимость</label>
       </fieldset>
