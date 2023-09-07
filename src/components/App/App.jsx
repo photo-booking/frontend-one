@@ -15,8 +15,6 @@ import {
   logOut
 } from '../../utils/auth';
 
-import { getAmountExpert } from '../../utils/api';
-
 import { Signin } from '../../pages/Signin/Signin';
 import { Signup } from '../../pages/Signup/Signup';
 import { ResetPassword } from '../../pages/ResetPassword/ResetPassword';
@@ -160,7 +158,6 @@ export function App() {
     tokenCheck();
   }, []);
 
-  // useEffect(() => {getAmountExpert()}, []);
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">

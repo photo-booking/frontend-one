@@ -53,7 +53,7 @@ export const Signin = props => {
 
   if(!token || (token && errMessage)) {
     return (
-    <div className="signin form-auth__container">
+    <div className="form-auth__container">
       <h1 className="form-auth__title">Вход в аккаунт</h1>
       <AuthIntegration />
       <FormAuth
@@ -138,6 +138,10 @@ export const Signin = props => {
     </div>
     )
   } else {
-    return (<SkeletonLogin />)
+    return (
+      <div className="form-auth__container">
+        <SkeletonLogin />
+      </div>
+    )
   }
 };
