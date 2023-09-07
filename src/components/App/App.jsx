@@ -15,6 +15,8 @@ import {
   logOut
 } from '../../utils/auth';
 
+import { getAmountExpert } from '../../utils/api';
+
 import { Signin } from '../../pages/Signin/Signin';
 import { Signup } from '../../pages/Signup/Signup';
 import { ResetPassword } from '../../pages/ResetPassword/ResetPassword';
@@ -61,6 +63,21 @@ export function App() {
       })
       .catch(err => {
         setErrorMessage(err.non_field_errors[0]);
+        setLoggedIn(false);
+      });
+  };
+
+  const onLoginWithSocial = jwt => {
+    console.log(jwt);
+    getUserInfo(jwt)
+      .then(res => {
+        localStorage.setItem('token', jwt);
+        setCurrentUser(res);
+        setLoggedIn(true);
+        navigate('/');
+      })
+      .catch(err => {
+        setErrorMessage(err.detail);
         setLoggedIn(false);
       });
   };
@@ -120,26 +137,6 @@ export function App() {
       });
   };
 
-  const signinGoogle = param => {
-    loginGoogle(param)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  const signinVk = param => {
-    loginVk(param)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
   function tokenCheck() {
     setIsLoader(true);
     const jwt = localStorage.getItem('token');
@@ -163,6 +160,7 @@ export function App() {
     tokenCheck();
   }, []);
 
+  // useEffect(() => {getAmountExpert()}, []);
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -173,17 +171,18 @@ export function App() {
         <Routes>
           <Route
             path="/"
-            element={<Landing signOut={signOut}/>}
+            element={<Landing signOut={signOut} />}
           />
           <Route
             path="/sign-up"
             element={
               <Signup
-                onSubmit={onSubmitSignup}
+                onSubmitSignup={onSubmitSignup}
                 onSubmitJoin={onSubmitJoin}
                 isClient={isClient}
                 setIsClient={setIsClient}
                 errMessage={errMessage}
+                setErrorMessage={setErrorMessage}
               />
             }
           />
@@ -191,10 +190,10 @@ export function App() {
             path="/sign-in"
             element={
               <Signin
-                onSubmit={onSubmitSignin}
-                signinGoogle={signinGoogle}
-                signinVk={signinVk}
+                onSubmitSignin={onSubmitSignin}
+                onLoginWithSocial={onLoginWithSocial}
                 errMessage={errMessage}
+                setErrorMessage={setErrorMessage}
               />
             }
           />
