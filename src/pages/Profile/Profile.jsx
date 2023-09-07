@@ -1,3 +1,5 @@
+import StickyBox from "react-sticky-box";
+
 import './Profile.css';
 import { AboutMe } from '../../components/AboutMe/AboutMe';
 import { PhotoCard } from '../../components/Profile/PhotoCard/PhotoCard';
@@ -6,24 +8,24 @@ import { LinksPortfolio } from '../../components/Profile/Links/Links';
 import { Sorting } from '../../components/Profile/Sorting/Sorting';
 import PricesPage from '../PricesPage/PricesPage';
 import { CardInfoProfile } from '../../components/Profile/PhotoCard/CardInfo/CardInfo';
-import { Footer } from '../../components/Footer/footer';
 
 export const Profile = () => {
   useEffect(() => {
     //последняя карточка не выравнивается,не знаю как еще решить
-    if (document.getElementsByClassName('photoCardContainerProfile__card').length !== 0) {
-      const cards = document.getElementsByClassName('photoCardContainerProfile__card');
-      const length = document.getElementsByClassName('photoCardContainerProfile__card').length;
-      cards[length - 1].style.marginLeft = '16px';
-    }
+
+    // if (document.getElementsByClassName('photoCardContainerProfile__card').length !== 0) {
+    //   const cards = document.getElementsByClassName('photoCardContainerProfile__card');
+    //   const length = document.getElementsByClassName('photoCardContainerProfile__card').length;
+      // cards[length - 1].style.marginLeft = '16px';
+    // }
     // fetch('https://photo-market.acceleratorpracticum.ru/api/users/1')
     //   .then(response => console.log(response))
     //   .catch(err => console.log(err));
+
   });
   const [img, setImg] = useState([
     'https://img.freepik.com/free-photo/lavender-field-at-sunset-near-valensole_268835-3910.jpg',
     'https://lifehacker.ru/special/fujifilm/dist/static/img/5.2410a2d.jpg',
-    'https://cdn.fotosklad.ru/unsafe/00b0ecf9768e44e0a4ddc59e94bacc25/image.jpg',
     'https://bigpicture.ru/wp-content/uploads/2015/11/nophotoshop29-800x532.jpg',
     'https://www.interfax.ru/ftproot/photos/photostory/2022/04/29/week/week7_1100.jpg',
     'https://where.ru/upload/iblock/ad4/ad4ef7e48f611b6be29e51e9aefaecd1.jpg'
@@ -88,9 +90,9 @@ export const Profile = () => {
     player.setSize(1034, 500);
 
     //этот же вопрос с выравниванием последней карточки
-    const cards = document.getElementsByClassName('photoCardContainerProfile__card');
-    const length = document.getElementsByClassName('photoCardContainerProfile__card').length;
-    cards[length - 1].style.marginLeft = '0';
+
+    const div = document.getElementsByClassName('photoCardContainerProfile');
+    const divLength = document.getElementsByClassName('photoCardContainerProfile__card').length;
 
     document.getElementsByClassName('profileContainer__youtube')[0].style.display = ' none';
     overlay.style.display = 'block';
@@ -98,7 +100,9 @@ export const Profile = () => {
       overlay.style.display = 'none';
       player.destroy();
       document.getElementsByClassName('profileContainer__youtube')[0].style.display = 'block';
-      cards[length - 1].style.marginLeft = '16px';
+
+      div[divLength - 1].style.marginLeft = '32px';
+
     });
   };
 
@@ -113,7 +117,12 @@ export const Profile = () => {
       {!isPrice ? (
         <>
           <div className={'profileContainer'}>
-            <Sorting />
+            <div className='profileContainer__filter'>
+              <StickyBox offsetTop={52} offsetBottom={52}>
+                <Sorting />
+              </StickyBox> 
+            </div>
+          
             <div className={'profileContainer__cardsContainer'}>
               {img.map((img, index) => (
                 <PhotoCard
@@ -131,15 +140,15 @@ export const Profile = () => {
               >
                 <img
                   src={`//img.youtube.com/vi/${splitUrl(video)}/default.jpg`}
-                  width="501"
-                  height="300"
+                  width="496"
+                  height="296"
                   alt="youtubePreview"
                 />
                 <div className="profileContainer__youtube_playContainer" />
                 <CardInfoProfile />
               </div>
               <button
-                className="button-showMore"
+                className="button_more"
                 onClick={onShowMore}
               >
                 Показать ещё
@@ -149,8 +158,7 @@ export const Profile = () => {
         </>
       ) : (
         <PricesPage />
-      )}      
-      <Footer />
+      )}
     </>
   );
 };

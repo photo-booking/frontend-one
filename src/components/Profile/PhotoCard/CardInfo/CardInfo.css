@@ -1,9 +1,9 @@
 .photoCardContainerProfile-info {
     position: absolute;
     display: none;
-    top: 300px;
+    top: 296px;
     z-index: 2;
-    width: 501px;
+    width: 496px;
     height: 81px;
     background-color: #FFFFFF;
     border-radius: 0 0 12px 12px;
