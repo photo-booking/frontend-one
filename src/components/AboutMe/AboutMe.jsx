@@ -9,7 +9,7 @@ import icon_email from '../../images/contact icons_email.svg';
 export const AboutMe = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const baseUrl = 'http://localhost:3000';
+  const baseUrl = 'https://photo-market.acceleratorpracticum.ru';
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isLinkCopy, setIsLinkCopy] = useState(false);
@@ -61,7 +61,7 @@ export const AboutMe = () => {
         className="about-me__button"
         onClick={() => navigate(-1)}
       />
-      <div className="about-me__container">
+      <div className="about-me__container" >
         <div className=" about-me__container-info">
           <div className=" about-me__container-title">
             <h1 className="about-me__title">Алена Коновалова</h1>
@@ -85,14 +85,14 @@ export const AboutMe = () => {
           </div>
           {/* Кнопка и менюшка с контактами */}
           <div className="about-me__container-contact">
-            <article className="about-me__article-contact">
+            <article className="about-me__article-contact" >
               <button
                 className="about-me__button-contact"
                 onClick={handleContactOpen}
               >
                 Показать контакты
               </button>
-              <div className={contactMenuClassName}>
+              <div className={contactMenuClassName} >
                 <span className="about-me__contact-span">
                   <img
                     className="about-me__contact-icon"
@@ -120,12 +120,12 @@ export const AboutMe = () => {
               </div>
             </article>
             {/* Кнопка и менюшка поделиться */}
-            <article className="about-me__article-share">
+            <article className="about-me__article-share" >
               <button
                 className={shareButtonClassname}
                 onClick={handleShareOpen}
               />
-              <div className={shareMenuClassName}>
+              <div className={shareMenuClassName} >
                 <button
                   className="about-me__button-close"
                   onClick={handleShareOpen}

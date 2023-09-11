@@ -70,14 +70,15 @@
 }
 
 .about-me__title {
-  font-family: 'Aneliza';
   font-feature-settings: 'ss01' on;
+  /* design/display/big */
+  font-family: Aneliza;
   font-size: 76px;
   font-style: normal;
   font-weight: 700;
-  line-height: 60px;
+  line-height: 60px; /* 78.947% */
   letter-spacing: -3.5px;
-  margin: 0 20px 0 0;
+  margin: 0 11px 0 0;
 }
 
 .about-me__subtitle {
@@ -126,6 +127,7 @@
 
 .about-me__article-share {
   position: relative;
+  height: 44px;
 }
 
 .about-me__article-contact {
@@ -257,6 +259,7 @@
 
 .about-me__button-share_hidden {
   visibility: hidden;
+  padding: 0;
 }
 
 .about-me__button-share:hover {
