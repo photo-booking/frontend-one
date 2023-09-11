@@ -17,3 +17,30 @@ export function getAmountExpert() {
         return getResponseData(res)
     }).then(res => console.log(res))
 }
+
+
+//Получаем users всех пользователей
+
+export function getUsers() {
+  return fetch(`${BASE_URL}/users`, {
+    method: 'GET',
+    headers: HEADERS
+  })
+  .then(getResponseData)
+  .then((users) => {
+      // console.log('Пользователи', users);
+      return users
+  })
+}
+
+export function getUsersID(id) {
+  return fetch(`${BASE_URL}/users${id}`, {
+    method: 'GET',
+    headers: HEADERS
+  })
+  .then(getResponseData)
+  .then((user) => {
+      // console.log('Пользователи', user);
+      return user
+  })
+}

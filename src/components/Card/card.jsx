@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import './card.css';
-import test from '../../images/avatar-test.jpg'
+
 
 export const Card = ({user}) => {
 

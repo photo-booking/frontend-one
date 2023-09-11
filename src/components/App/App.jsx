@@ -32,6 +32,7 @@ import { ExecutorChat } from '../../pages/ExpertChat/ExpertChat';
 import { Page404 } from '../../pages/404/404';
 import { HeaderMain } from '../Header-main/header-main';
 import { Footer } from '../Footer/footer';
+import { getUsers } from '../../utils/api';
 
 export function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -92,6 +93,8 @@ export function App() {
       });
   };
 
+  getUsers()
+
   //Для выхода
   function signOut() {
     const jwt = localStorage.getItem('token');
@@ -100,7 +103,9 @@ export function App() {
       localStorage.removeItem('token');
       setCurrentUser({});
       navigate('/'); //??????Куда????
+      console.log('я сработал');
     });
+
   }
 
   const onSubmitJoin = values => {
@@ -165,6 +170,8 @@ export function App() {
         <HeaderMain
           isClient={isClient}
           setIsClient={setIsClient}
+          loggedIn={loggedIn}
+          signOut={signOut}
         ></HeaderMain>
         <Routes>
           <Route
