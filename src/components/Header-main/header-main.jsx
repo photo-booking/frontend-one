@@ -1,11 +1,12 @@
 import './header-main.css';
 import logo from '../../images/Logo-header.svg'
-import { Link, NavLink, useMatch } from 'react-router-dom';
+import { Link, NavLink, useMatch, useNavigate } from 'react-router-dom';
 import test from '../../images/avatar-test.jpg';
-import popup from '../../images/Background.svg'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
+
+    const navigate = useNavigate();
 
     const isCatalog = useMatch('/catalog');
     const isConnectWithUs = useMatch('/');
@@ -27,8 +28,12 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
     }
 
     const onLogoutClick = function () {
-        setisAvatarClick(false);
         signOut();
+        setisAvatarClick(false);
+    }
+
+    const onProfileClick = function (event) {
+        setisAvatarClick(false) 
     }
 
     return (
@@ -70,7 +75,7 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
                                 </div>
 
                                 <div className={!isAvatarClick ? 'header-main__popup':  'header-main__popup header-main__popup_visible'} >
-                                    <Link className='header-main__popup_link header-main__popup_profile' to='/profile'>Профиль</Link>
+                                    <Link className='header-main__popup_link header-main__popup_profile' to='/card/:1' onClick={onProfileClick}>Профиль</Link>
                                     <Link className='header-main__popup_link header-main__popup_logout' onClick={onLogoutClick}>Выйти</Link>
                                 </div>
                             </div>
