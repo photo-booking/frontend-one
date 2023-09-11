@@ -66,7 +66,7 @@ export function App() {
           });
       })
       .catch(err => {
-        setErrorMessage(err.non_field_errors[0]);
+        // setErrorMessage(err);
         setLoggedIn(false);
       });
   };
@@ -81,7 +81,7 @@ export function App() {
         navigate('/');
       })
       .catch(err => {
-        setErrorMessage(err.detail);
+        // setErrorMessage(err.detail);
         setLoggedIn(false);
       });
   };
@@ -92,7 +92,7 @@ export function App() {
         onSubmitSignin(values);
       })
       .catch(err => {
-        setErrorMessage(err.email[0]);
+        // setErrorMessage(err);
         setLoggedIn(false);
       });
   };

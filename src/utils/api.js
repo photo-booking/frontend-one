@@ -9,18 +9,21 @@ function getResponseData(res) {
 }
 
 //Получить количество профессиональных фотографов и видеооператоров
+//другой url
 export function getAmountExpert() {
-    return fetch(`${BASE_URL}/catalog/`, {
-        method: 'GET',
-        headers: HEADERS
-    }).then(res=> {
-        return getResponseData(res)
-    }).then(res => console.log(res))
+  return fetch(`${BASE_URL}/???/`, {
+    method: 'GET',
+    headers: HEADERS
+  })
+    .then(res => {
+      return getResponseData(res);
+    })
+    .then(res => console.log(res));
 }
 
 
-//Получаем users всех пользователей
 
+//Получаем users всех пользователей
 export function getUsers() {
   return fetch(`${BASE_URL}/users`, {
     method: 'GET',
@@ -32,13 +35,47 @@ export function getUsers() {
   })
 }
 
-export function getUsersID(id) {
-  return fetch(`${BASE_URL}/users${id}`, {
+//Получить массив фотографов и видеооператоров
+export function getArrayExpert(values, page) {
+  return fetch(`${BASE_URL}/users/`, {
+    method: 'POST',
+    headers: HEADERS,
+    body: JSON.stringify({
+      price: values.price,
+      experts: values.experts,
+      type: values.type,
+      price_min: values.price_min,
+      price_max: values.price_max,
+      page: page
+    })
+  })
+    .then(res => {
+      return getResponseData(res);
+    })
+    .then(res => console.log(res));
+}
+
+//Получить информацию Профиля специалиста
+export function getExpertProfile(id) {
+  return fetch(`${BASE_URL}/users/${id}/`, {
     method: 'GET',
     headers: HEADERS
   })
-  .then(getResponseData)
-  .then((user) => {
-      return user
+    .then(res => {
+      return getResponseData(res);
+    })
+    .then(res => console.log(res));
+}
+
+//Получить прайслист специалиста
+export function getPriceExpert (id) {
+  return fetch(`${BASE_URL}/services/${id}/`, {
+    method: 'GET',
+    headers: HEADERS
   })
+    .then(res => {
+      return getResponseData(res);
+    })
+    .then(res => console.log(res));
+
 }

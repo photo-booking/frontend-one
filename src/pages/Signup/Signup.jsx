@@ -26,7 +26,14 @@ export const Signup = props => {
   } = useForm({ mode: 'onChange' });
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
-  const { onSubmitSignup, onSubmitJoin, isClient, errMessage, setErrorMessage } = props;
+  const { 
+    onSubmitSignup, 
+    onSubmitJoin, 
+    isClient, 
+    setIsClient, 
+    errMessage, 
+    setErrorMessage 
+  } = props;
   const title = `Зарегистрироваться как ${isClient ? 'заказчик' : 'специалист'}`;
 
   // const watchType = watch('type', undefined);
@@ -81,6 +88,7 @@ export const Signup = props => {
 
   useEffect(() => {
     setErrorMessage(undefined);
+    setIsClient(undefined);
   }, []);
 
   return (
