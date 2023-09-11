@@ -28,7 +28,7 @@ export function getUsers() {
   })
   .then(getResponseData)
   .then((users) => {
-      // console.log('Пользователи', users);
+      console.log('Пользователи', users);
       return users
   })
 }
@@ -40,7 +40,6 @@ export function getUsersID(id) {
   })
   .then(getResponseData)
   .then((user) => {
-      // console.log('Пользователи', user);
       return user
   })
 }

@@ -33,6 +33,8 @@ import { Page404 } from '../../pages/404/404';
 import { HeaderMain } from '../Header-main/header-main';
 import { Footer } from '../Footer/footer';
 import { getUsers } from '../../utils/api';
+import { useDispatch } from 'react-redux';
+import { fetchUsers } from '../../services/redusers/users';
 
 export function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -46,6 +48,8 @@ export function App() {
 
   const [isLoader, setIsLoader] = useState(false);
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const onSubmitSignin = values => {
     login(values)
@@ -93,7 +97,6 @@ export function App() {
       });
   };
 
-  getUsers()
 
   //Для выхода
   function signOut() {
@@ -162,6 +165,8 @@ export function App() {
   }
   useEffect(() => {
     tokenCheck();
+    dispatch(fetchUsers());
+    
   }, []);
 
   return (
