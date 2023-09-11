@@ -21,8 +21,7 @@ export function register(values, status) {
       is_client: status
     })
   }).then(res => {
-    console.log(res);
-    getResponseData(res);
+      getResponseData(res);
   });
 }
 

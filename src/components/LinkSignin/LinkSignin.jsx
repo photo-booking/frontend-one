@@ -7,6 +7,7 @@ export const LinkSignIn = props => {
     <Link
       className="link-signin"
       to={url}
+      reloadDocument={true}
     >
       <img
         className="link-signin__logo"
