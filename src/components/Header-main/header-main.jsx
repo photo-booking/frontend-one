@@ -1,8 +1,12 @@
 import './header-main.css';
 import logo from '../../images/Logo-header.svg'
-import { Link, NavLink, useMatch } from 'react-router-dom';
+import { Link, NavLink, useMatch, useNavigate } from 'react-router-dom';
+import test from '../../images/avatar-test.jpg';
+import { useState } from 'react';
 
-export const HeaderMain = ({ isClient, setIsClient }) => {
+export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
+
+    const navigate = useNavigate();
 
     const isCatalog = useMatch('/catalog');
     const isConnectWithUs = useMatch('/');
@@ -10,8 +14,26 @@ export const HeaderMain = ({ isClient, setIsClient }) => {
     const isSignIn = useMatch('/sign-in');
     const isResetPassword = useMatch('/reset-password');
 
+    const [isAvatarClick, setisAvatarClick] = useState(false);
+
     const reload = function () {
         setIsClient(!isClient)
+    }
+
+
+
+    const onAvatarClick = function (event) {
+        event.preventDefault();
+        setisAvatarClick(!isAvatarClick)
+    }
+
+    const onLogoutClick = function () {
+        signOut();
+        setisAvatarClick(false);
+    }
+
+    const onProfileClick = function (event) {
+        setisAvatarClick(false) 
     }
 
     return (
@@ -42,12 +64,27 @@ export const HeaderMain = ({ isClient, setIsClient }) => {
                             <p className='header-main__find'>Хотите найти специалиста?</p>
                             <a href='#' className='header-main__reg' onClick={reload}>Зарегистрироваться как клиент</a>
                         </div>) :
-                        (
-                            <div className='header-main__button'>
-                                <Link to='/sign-in' className='header-main__button_signin'>Войти</Link>
-                                <Link to='/sign-up' className='header-main__button_signup'>Зарегистрироваться</Link>
+                        loggedIn ?
+                        (<div className='header-main__logged-in'>
+                            <div className='header-main__logged-in_container'>
+                                <div className='header-main__user-info'>
+                                    <p className='header-main__name'>User name</p>
+                                    <div className='header-main__avatar_box' onClick={onAvatarClick}>
+                                        <img className='header-main__avatar' src={test} />
+                                    </div>
+                                </div>
+
+                                <div className={!isAvatarClick ? 'header-main__popup':  'header-main__popup header-main__popup_visible'} >
+                                    <Link className='header-main__popup_link header-main__popup_profile' to='/card/:1' onClick={onProfileClick}>Профиль</Link>
+                                    <Link className='header-main__popup_link header-main__popup_logout' onClick={onLogoutClick}>Выйти</Link>
+                                </div>
                             </div>
-                        )
+                        </div>)
+                :
+                    (<div className='header-main__button'>
+                        <Link to='/sign-in' className='header-main__button_signin'>Войти</Link>
+                        <Link to='/sign-up' className='header-main__button_signup'>Зарегистрироваться</Link>
+                    </div>)
             }
 
         </header>

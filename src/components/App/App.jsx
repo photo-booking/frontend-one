@@ -32,6 +32,9 @@ import { ExecutorChat } from '../../pages/ExpertChat/ExpertChat';
 import { Page404 } from '../../pages/404/404';
 import { HeaderMain } from '../Header-main/header-main';
 import { Footer } from '../Footer/footer';
+import { getUsers } from '../../utils/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUsers } from '../../services/redusers/users';
 
 export function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -45,6 +48,8 @@ export function App() {
 
   const [isLoader, setIsLoader] = useState(false);
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const onSubmitSignin = values => {
     login(values)
@@ -92,6 +97,7 @@ export function App() {
       });
   };
 
+
   //Для выхода
   function signOut() {
     const jwt = localStorage.getItem('token');
@@ -100,7 +106,9 @@ export function App() {
       localStorage.removeItem('token');
       setCurrentUser({});
       navigate('/'); //??????Куда????
+      console.log('я сработал');
     });
+
   }
 
   const onSubmitJoin = values => {
@@ -157,7 +165,14 @@ export function App() {
   }
   useEffect(() => {
     tokenCheck();
+    dispatch(fetchUsers());
+    
   }, []);
+
+
+  //достаем юзеров из редакса
+  const usersInfo = useSelector(state => state.usersStore.data)
+  
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -165,6 +180,8 @@ export function App() {
         <HeaderMain
           isClient={isClient}
           setIsClient={setIsClient}
+          loggedIn={loggedIn}
+          signOut={signOut}
         ></HeaderMain>
         <Routes>
           <Route
@@ -252,6 +269,7 @@ export function App() {
           />
         </Routes>
       </div>
+      <Footer isClient={isClient}/>
     </CurrentUserContext.Provider>
   );
 }

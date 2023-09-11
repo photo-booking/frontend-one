@@ -21,6 +21,20 @@ export function getAmountExpert() {
     .then(res => console.log(res));
 }
 
+
+
+//Получаем users всех пользователей
+export function getUsers() {
+  return fetch(`${BASE_URL}/users`, {
+    method: 'GET',
+    headers: HEADERS
+  })
+  .then(getResponseData)
+  .then((users) => {
+      return users
+  })
+}
+
 //Получить массив фотографов и видеооператоров
 export function getArrayExpert(values, page) {
   return fetch(`${BASE_URL}/users/`, {
@@ -63,4 +77,5 @@ export function getPriceExpert (id) {
       return getResponseData(res);
     })
     .then(res => console.log(res));
+
 }
