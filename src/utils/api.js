@@ -28,7 +28,6 @@ export function getUsers() {
   })
   .then(getResponseData)
   .then((users) => {
-      console.log('Пользователи', users);
       return users
   })
 }

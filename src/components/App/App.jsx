@@ -33,7 +33,7 @@ import { Page404 } from '../../pages/404/404';
 import { HeaderMain } from '../Header-main/header-main';
 import { Footer } from '../Footer/footer';
 import { getUsers } from '../../utils/api';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../../services/redusers/users';
 
 export function App() {
@@ -168,6 +168,11 @@ export function App() {
     dispatch(fetchUsers());
     
   }, []);
+
+
+  //достаем юзеров из редакса
+  const usersInfo = useSelector(state => state.usersStore.data)
+  
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
