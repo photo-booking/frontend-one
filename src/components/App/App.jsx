@@ -259,6 +259,7 @@ export function App() {
           />
         </Routes>
       </div>
+      <Footer isClient={isClient}/>
     </CurrentUserContext.Provider>
   );
 }
