@@ -59,7 +59,7 @@ export function App() {
           .then(res => {
             setCurrentUser(res);
             setLoggedIn(true);
-            navigate('/');
+            navigate('/catalog');
           })
           .catch(err => {
             console.log(err);
@@ -78,7 +78,7 @@ export function App() {
         localStorage.setItem('token', jwt);
         setCurrentUser(res);
         setLoggedIn(true);
-        navigate('/');
+        navigate('/catalog');
       })
       .catch(err => {
         // setErrorMessage(err.detail);
@@ -98,15 +98,13 @@ export function App() {
   };
 
 
-  //Для выхода
   function signOut() {
     const jwt = localStorage.getItem('token');
     logOut(jwt).then(() => {
       setLoggedIn(false);
       localStorage.removeItem('token');
       setCurrentUser({});
-      navigate('/'); //??????Куда????
-      console.log('я сработал');
+      navigate('/catalog');
     });
 
   }
