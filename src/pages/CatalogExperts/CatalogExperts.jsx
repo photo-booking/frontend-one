@@ -12,19 +12,25 @@ import { Card } from '../../components/Card/card';
 export const CatalogExecutors = props => {
   const { amountExpert, onStartCatalog } = props;
   const navigate = useNavigate();
+
+  function num_word(value, words) {
+    value = Math.abs(value) % 100;
+    var num = value % 10;
+    if (value > 10 && value < 20) return words[2];
+    if (num > 1 && num < 5) return words[1];
+    if (num === 1) return words[0];
+    return words[2];
+  }
+
   const returnCatalogTitle = num => {
-    let title;
-    if (String(num).endsWith('1')) {
-      title = num + ' профессиональный фотограф и видеооператор';
-    } else if (String(num).endsWith('2')) {
-      title = num + ' профессиональных фотографа и видеооператора';
-    } else if (String(num).endsWith('3')) {
-      title = num + ' профессиональных фотографа и видеооператора';
-    } else {
-      title = num + ' профессиональных фотографов и видеооператоров';
-    }
+    let title = num_word(num, [
+      ' профессиональный фотограф и видеооператор',
+      ' профессиональных фотографа и видеооператора',
+      ' профессиональных фотографов и видеооператоров'
+    ]);
     return title;
   };
+
   const catalogTitle = amountExpert
     ? returnCatalogTitle(amountExpert)
     : '100 профессиональных фотографов и видеооператоров';
