@@ -12,10 +12,13 @@ import { Card } from '../../components/Card/card';
 
 
 export const CatalogExecutors = (props) => {
-  const {amountExpert} = props;
+  const {amountExpert, onStartCatalog} = props;
   const navigate = useNavigate();
   const catalogTitle = (amountExpert ? amountExpert : 'Множество') + ' профессиональных фотографов и видеооператоров';
 
+  useEffect(()=> {
+    onStartCatalog();
+  },[])
   const users = [
     {
       name: 'Елена Прекрасная',

@@ -6,8 +6,6 @@ import './App.css';
 import {
   register,
   login,
-  loginGoogle,
-  loginVk,
   resetPassword,
   sendEmailToResetPassword,
   getUserInfo,
@@ -175,7 +173,6 @@ export function App() {
   useEffect(() => {
     tokenCheck();
     dispatch(fetchUsers());
-    onStartCatalog();
   }, []);
 
 
@@ -237,6 +234,7 @@ export function App() {
             element={
               <CatalogExecutors 
               amountExpert={amountExpert}
+              onStartCatalog={onStartCatalog}
               />}
           />
           <Route

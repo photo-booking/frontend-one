@@ -17,7 +17,6 @@ export function getAmountExpert() {
     .then(res => {
       return getResponseData(res);
     })
-    .then(res => console.log(res));
 }
 
 
