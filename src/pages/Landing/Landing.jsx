@@ -8,9 +8,7 @@ export const Landing = (props) => {
   return (
     <div className={'landing-container'}>
       <h1>Лэндинг</h1>
-      <button onClick={() => navigate('/sign-in')}>Войти</button>
       <button onClick={() => navigate('/order-service')}>Заказать услугу</button>
-      <button onClick={signOut}>Выйти из профиля</button>
     </div>
   );
 };

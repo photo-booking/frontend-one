@@ -6,14 +6,14 @@ import './App.css';
 import {
   register,
   login,
-  loginGoogle,
-  loginVk,
   resetPassword,
   sendEmailToResetPassword,
   getUserInfo,
   checkToken,
   logOut
 } from '../../utils/auth';
+
+import { getAmountExpert} from '../../utils/api';
 
 import { Signin } from '../../pages/Signin/Signin';
 import { Signup } from '../../pages/Signup/Signup';
@@ -38,14 +38,12 @@ import { fetchUsers } from '../../services/redusers/users';
 
 export function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-
   const [currentUser, setCurrentUser] = React.useState({});
-
   const [isClient, setIsClient] = useState(undefined);
   const [isEmailSend, setIsEmailSend] = useState(false); //false
   const [isPasswordReset, setIsPasswordReset] = useState(false); //false
   const [errMessage, setErrorMessage] = useState(undefined);
-
+  const [amountExpert, setAmountExpert] = useState(undefined);
   const [isLoader, setIsLoader] = useState(false);
   const navigate = useNavigate();
 
@@ -59,14 +57,15 @@ export function App() {
           .then(res => {
             setCurrentUser(res);
             setLoggedIn(true);
-            navigate('/');
+            navigate('/catalog');
           })
           .catch(err => {
             console.log(err);
           });
       })
       .catch(err => {
-        // setErrorMessage(err);
+        console.log(err)
+        // setErrorMessage(err.non_field_errors[0]);
         setLoggedIn(false);
       });
   };
@@ -78,7 +77,7 @@ export function App() {
         localStorage.setItem('token', jwt);
         setCurrentUser(res);
         setLoggedIn(true);
-        navigate('/');
+        navigate('/catalog');
       })
       .catch(err => {
         // setErrorMessage(err.detail);
@@ -92,21 +91,20 @@ export function App() {
         onSubmitSignin(values);
       })
       .catch(err => {
+        console.log(err)
         // setErrorMessage(err);
         setLoggedIn(false);
       });
   };
 
 
-  //Для выхода
   function signOut() {
     const jwt = localStorage.getItem('token');
     logOut(jwt).then(() => {
       setLoggedIn(false);
       localStorage.removeItem('token');
       setCurrentUser({});
-      navigate('/'); //??????Куда????
-      console.log('я сработал');
+      navigate('/catalog');
     });
 
   }
@@ -163,10 +161,18 @@ export function App() {
         .finally(() => setIsLoader(false));
     }
   }
+
+  function onStartCatalog() {
+    getAmountExpert()
+      .then((res)=> {
+        setAmountExpert(res.total_spec_user)
+      })
+      .catch(err => {console.log('Ошибка:' + err.detail);})
+  }
+
   useEffect(() => {
     tokenCheck();
     dispatch(fetchUsers());
-    
   }, []);
 
 
@@ -225,7 +231,11 @@ export function App() {
           />
           <Route
             path="/catalog"
-            element={<CatalogExecutors />}
+            element={
+              <CatalogExecutors 
+              amountExpert={amountExpert}
+              onStartCatalog={onStartCatalog}
+              />}
           />
           <Route
             path="/card/:id"

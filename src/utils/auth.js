@@ -21,7 +21,7 @@ export function register(values, status) {
       is_client: status
     })
   }).then(res => {
-      getResponseData(res);
+    getResponseData(res);
   });
 }
 
@@ -47,9 +47,13 @@ export function sendEmailToResetPassword(email) {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify(email)
-  })
-    .then(res => getResponseData(res))
-    ;
+  }).then(res => {
+    if (res.ok) {
+      console.log('письмо отправлено');
+    } else {
+      console.log('ошибка сервера');
+    }
+  });
 }
 
 //Сбросить пароль: отправить новый пароль
@@ -58,8 +62,13 @@ export function resetPassword(values, param) {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({ new_password: values.resetPassword, uid: param.uid, token: param.token })
-  })
-    .then(res => getResponseData(res));
+  }).then(res => {
+    if (res.ok) {
+      console.log('пароль сброшен');
+    } else {
+      console.log('ошибка сервера');
+    }
+  });
 }
 
 // Получить информацию о пользователе
@@ -82,12 +91,12 @@ export function checkToken(jwt) {
 export function logOut(jwt) {
   return fetch(`${BASE_URL}/auth/token/logout`, {
     method: 'POST',
-    headers: { ...HEADERS, Authorization: `token ${jwt}` } 
-  }).then((res)=> {
-    if(res.ok) {
-      console.log("токен удален")
+    headers: { ...HEADERS, Authorization: `token ${jwt}` }
+  }).then(res => {
+    if (res.ok) {
+      console.log('токен удален');
     } else {
-      console.log("ошибка сервера")
+      console.log('ошибка сервера');
     }
   });
 }
