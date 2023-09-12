@@ -15,6 +15,8 @@ import {
   logOut
 } from '../../utils/auth';
 
+import { getAmountExpert} from '../../utils/api';
+
 import { Signin } from '../../pages/Signin/Signin';
 import { Signup } from '../../pages/Signup/Signup';
 import { ResetPassword } from '../../pages/ResetPassword/ResetPassword';
@@ -38,14 +40,12 @@ import { fetchUsers } from '../../services/redusers/users';
 
 export function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-
   const [currentUser, setCurrentUser] = React.useState({});
-
   const [isClient, setIsClient] = useState(undefined);
   const [isEmailSend, setIsEmailSend] = useState(false); //false
   const [isPasswordReset, setIsPasswordReset] = useState(false); //false
   const [errMessage, setErrorMessage] = useState(undefined);
-
+  const [amountExpert, setAmountExpert] = useState(undefined);
   const [isLoader, setIsLoader] = useState(false);
   const navigate = useNavigate();
 
@@ -66,7 +66,8 @@ export function App() {
           });
       })
       .catch(err => {
-        // setErrorMessage(err);
+        console.log(err)
+        // setErrorMessage(err.non_field_errors[0]);
         setLoggedIn(false);
       });
   };
@@ -92,6 +93,7 @@ export function App() {
         onSubmitSignin(values);
       })
       .catch(err => {
+        console.log(err)
         // setErrorMessage(err);
         setLoggedIn(false);
       });
@@ -161,10 +163,19 @@ export function App() {
         .finally(() => setIsLoader(false));
     }
   }
+
+  function onStartCatalog() {
+    getAmountExpert()
+      .then((res)=> {
+        setAmountExpert(res.total_spec_user)
+      })
+      .catch(err => {console.log('Ошибка:' + err.detail);})
+  }
+
   useEffect(() => {
     tokenCheck();
     dispatch(fetchUsers());
-    
+    onStartCatalog();
   }, []);
 
 
@@ -223,7 +234,10 @@ export function App() {
           />
           <Route
             path="/catalog"
-            element={<CatalogExecutors />}
+            element={
+              <CatalogExecutors 
+              amountExpert={amountExpert}
+              />}
           />
           <Route
             path="/card/:id"

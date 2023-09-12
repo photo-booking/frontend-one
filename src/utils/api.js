@@ -9,9 +9,8 @@ function getResponseData(res) {
 }
 
 //Получить количество профессиональных фотографов и видеооператоров
-//другой url
 export function getAmountExpert() {
-  return fetch(`${BASE_URL}/???/`, {
+  return fetch(`${BASE_URL}/users/count/`, {
     method: 'GET',
     headers: HEADERS
   })

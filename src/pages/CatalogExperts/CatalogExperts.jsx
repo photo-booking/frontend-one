@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import StickyBox from "react-sticky-box";
 
 import { Preview } from '../../components/Preview/Preview';
@@ -11,8 +11,10 @@ import { Card } from '../../components/Card/card';
 
 
 
-export const CatalogExecutors = () => {
+export const CatalogExecutors = (props) => {
+  const {amountExpert} = props;
   const navigate = useNavigate();
+  const catalogTitle = (amountExpert ? amountExpert : 'Множество') + ' профессиональных фотографов и видеооператоров';
 
   const users = [
     {
@@ -187,7 +189,7 @@ export const CatalogExecutors = () => {
     <section className='catalog'>
       <div className='catalog__info'>
         <p className='catalog__city'>Москва</p>
-        <h1 className='catalog__title'>1370 профессиональных фотографов и видеооператоров</h1>
+        <h1 className='catalog__title'>{catalogTitle}</h1>
       </div>
       <div className={'catalog__container'}>
         <div className='catalog__filter'>
@@ -205,15 +207,6 @@ export const CatalogExecutors = () => {
             <button className='button_more'>Показать ещё</button>
           </div>
         </div> 
-        
-      {/* <div>
-        <button onClick={() => navigate(`/client/${1}`, { state: { name: 'Клиент 1', id: 1 } })}>
-          Личный кабинет клиента
-        </button>
-        <button onClick={() => navigate(`/expert/${1}`, { state: { name: 'Исполнитель 1', id: 1 } })}>
-          Личный кабинет исполнителя
-        </button>
-      </div> */}
     </section>
     </>
   );
