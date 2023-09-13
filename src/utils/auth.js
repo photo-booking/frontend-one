@@ -100,3 +100,29 @@ export function logOut(jwt) {
     }
   });
 }
+
+//Войти в аккаунт через гугл
+export function loginGoogle(param) {
+  return fetch(`${BASE_URL}/api/social/login/google-oauth2`, {
+    method: 'POST',
+    headers: HEADERS,
+    body: JSON.stringify({ eccses_token: param })
+  })
+    .then(res => getResponseData(res))
+    .then(res => {
+      localStorage.setItem('token', res.auth_token);
+    });
+}
+
+//Войти в аккаунт через ВК
+export function loginVk(param) {
+  return fetch(`${BASE_URL}/api/social/login/vk-oauth2`, {
+    method: 'POST',
+    headers: HEADERS,
+    body: JSON.stringify({ code: param })
+  })
+    .then(res => getResponseData(res))
+    .then(res => {
+      localStorage.setItem('token', res.auth_token);
+    });
+}
