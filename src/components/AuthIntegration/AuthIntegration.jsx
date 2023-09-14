@@ -5,8 +5,8 @@ import vk_logo from '../../images/icon_vk_auth.svg';
 export const AuthIntegration = () => {
   const client_id_google =
     '1091642644631-3nfthndgf7bsge2f1rckiqpqm0ddtpst.apps.googleusercontent.com';
-  const client_id_vk = '51727959';
-  const redirect_url = 'http://localhost:3000/sign-in';
+  const client_id_vk = '51732243';
+  const redirect_url = 'https://photo-market.acceleratorpracticum.ru/sign-in';
   return (
     // <>
     //   <LinkSignIn
@@ -29,7 +29,7 @@ export const AuthIntegration = () => {
       />
 
       <LinkSignIn
-        url={`https://oauth.vk.com/authorize?client_id=${client_id_vk}&display=page&redirect_uri=http://localhost:3000/sign-in&scope=email&response_type=code&v=5.131`}
+        url={`https://oauth.vk.com/authorize?client_id=${client_id_vk}&display=page&redirect_uri=${redirect_url}&scope=email&response_type=code&v=5.131`}
         logo={vk_logo}
         title="Войти через VK"
       />
