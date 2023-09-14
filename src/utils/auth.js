@@ -103,7 +103,7 @@ export function logOut(jwt) {
 
 //Войти в аккаунт через гугл
 export function loginGoogle(param) {
-  return fetch(`${BASE_URL}/api/social/login/google-oauth2`, {
+  return fetch(`${BASE_URL}/api/social_google`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({ eccses_token: param })
@@ -116,7 +116,7 @@ export function loginGoogle(param) {
 
 //Войти в аккаунт через ВК
 export function loginVk(param) {
-  return fetch(`${BASE_URL}/api/social/login/vk-oauth2`, {
+  return fetch(`${BASE_URL}/api/social_vk`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({ code: param })
