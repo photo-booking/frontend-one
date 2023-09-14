@@ -28,16 +28,17 @@ export const CatalogExecutors = props => {
       ' профессиональных фотографа и видеооператора',
       ' профессиональных фотографов и видеооператоров'
     ]);
-    return title;
+    return num + title;
   };
-
+  
   const catalogTitle = amountExpert
-    ? returnCatalogTitle(amountExpert)
-    : '100 профессиональных фотографов и видеооператоров';
+  ? returnCatalogTitle(amountExpert)
+  : '100 профессиональных фотографов и видеооператоров';
 
   useEffect(() => {
     onStartCatalog();
   }, []);
+
   const users = [
     {
       name: 'Елена Прекрасная',

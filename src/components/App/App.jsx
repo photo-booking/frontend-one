@@ -10,7 +10,9 @@ import {
   sendEmailToResetPassword,
   getUserInfo,
   checkToken,
-  logOut
+  logOut,
+  loginGoogle,
+  loginVk
 } from '../../utils/auth';
 
 import { getAmountExpert} from '../../utils/api';
@@ -70,20 +72,20 @@ export function App() {
       });
   };
 
-  const onLoginWithSocial = jwt => {
-    console.log(jwt);
-    getUserInfo(jwt)
-      .then(res => {
-        localStorage.setItem('token', jwt);
-        setCurrentUser(res);
-        setLoggedIn(true);
-        navigate('/catalog');
-      })
-      .catch(err => {
-        // setErrorMessage(err.detail);
-        setLoggedIn(false);
-      });
-  };
+  // const onLoginWithSocial = jwt => {
+  //   console.log(jwt);
+  //   getUserInfo(jwt)
+  //     .then(res => {
+  //       localStorage.setItem('token', jwt);
+  //       setCurrentUser(res);
+  //       setLoggedIn(true);
+  //       navigate('/catalog');
+  //     })
+  //     .catch(err => {
+  //       // setErrorMessage(err.detail);
+  //       setLoggedIn(false);
+  //     });
+  // };
 
   const onSubmitSignup = (values, status) => {
     register(values, status)
@@ -165,10 +167,51 @@ export function App() {
   function onStartCatalog() {
     getAmountExpert()
       .then((res)=> {
+        console.log(res.total_spec_user)
         setAmountExpert(res.total_spec_user)
       })
       .catch(err => {console.log('Ошибка:' + err.detail);})
   }
+
+  const signinGoogle = (param) => {
+    loginGoogle(param)
+      .then((res) => {
+        console.log(res);
+        const jwt = localStorage.getItem('token');
+        getUserInfo(jwt)
+          .then(res => {
+            setCurrentUser(res);
+            setLoggedIn(true);
+            navigate('/catalog');
+          })
+          .catch(err => {
+            console.log(err);
+          })
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const signinVk = (param) => {
+    loginVk(param)
+      .then((res) => {
+        console.log(res);
+        const jwt = localStorage.getItem('token');
+        getUserInfo(jwt)
+          .then(res => {
+            setCurrentUser(res);
+            setLoggedIn(true);
+            navigate('/catalog');
+          })
+          .catch(err => {
+            console.log(err);
+          })
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     tokenCheck();
@@ -212,9 +255,11 @@ export function App() {
             element={
               <Signin
                 onSubmitSignin={onSubmitSignin}
-                onLoginWithSocial={onLoginWithSocial}
+                // onLoginWithSocial={onLoginWithSocial}
                 errMessage={errMessage}
                 setErrorMessage={setErrorMessage}
+                signinGoogle={signinGoogle}
+                signinVk={signinVk}
               />
             }
           />
