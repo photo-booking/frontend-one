@@ -45,7 +45,7 @@ export const RangeInput = props => {
           <input
             type="range"
             name="min-cost"
-            min="0"
+            min="350"
             max="2500"
             step="50"
             value={minCost}
@@ -58,7 +58,7 @@ export const RangeInput = props => {
           <input
             type="range"
             name="max-cost"
-            min="50"
+            min="350"
             max="2500"
             step="50"
             value={maxCost}

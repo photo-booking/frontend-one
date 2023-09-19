@@ -1,22 +1,39 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import './AboutMe.css';
-import photo from '../../images/Rectangle 11.jpg';
+
 import icon_telephone from '../../images/contact icons_telephone.svg';
 import icon_telegram from '../../images/contact icons _telegram.svg';
 import icon_email from '../../images/contact icons_email.svg';
+import photo from '../../images/Rectangle 11.jpg';
 
-export const AboutMe = () => {
+import './AboutMe.css';
+
+export const AboutMe = props => {
   const navigate = useNavigate();
   const location = useLocation();
   const baseUrl = 'https://photo-market.acceleratorpracticum.ru';
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isLinkCopy, setIsLinkCopy] = useState(false);
+  const [overlayAbout, setOverlayAbout] = useState(false);
 
+  const overlay = document.getElementById('about-me-overlay');
+
+  useEffect(() => {
+    if (overlayAbout) {
+      overlay.addEventListener('click', () => {
+        overlay.style.display = 'none';
+        setIsContactOpen(!isContactOpen);
+      });
+    }
+  }, [overlayAbout]);
   const handleContactOpen = () => {
+    overlay.style.display = 'block';
+    setOverlayAbout(true);
     setIsContactOpen(!isContactOpen);
+    console.log(isContactOpen);
   };
+
   const handleShareOpen = () => {
     setIsShareOpen(!isShareOpen);
   };
@@ -26,20 +43,22 @@ export const AboutMe = () => {
       .writeText(url)
       .then(() => {
         console.log('copy');
-        setIsLinkCopy(true)
-        setTimeout(()=> {setIsLinkCopy(false)}, 2000)
+        setIsLinkCopy(true);
+        setTimeout(() => {
+          setIsLinkCopy(false);
+        }, 2000);
       })
       .catch(() => {
         console.log('copy error');
-        setIsLinkCopy(false)
-      })
+        setIsLinkCopy(false);
+      });
   };
-  const sharePostInVk = (url) => {
+  const sharePostInVk = url => {
     return `https://vk.com/share.php?title=Title&url=${encodeURI(url)}`; //Надо добавить заголовки в метаданные
-  }
-  const shareInTelegram = (url) => {
+  };
+  const shareInTelegram = url => {
     return `https://telegram.me/share/url?url=${url}&text=ТЕКСТ`; //Надо добавить заголовки в метаданные
-  }
+  };
 
   const contactMenuClassName = `about-me__contact-container ${
     isContactOpen ? 'about-me__contact-container_visible' : ''
@@ -53,79 +72,84 @@ export const AboutMe = () => {
     isShareOpen ? 'about-me__share-container_visible' : ''
   }`;
 
-  const copyMessageClassName = `about-me__copy-message ${isLinkCopy ? 'about-me__copy-message_visible' : ''}`;
+  const copyMessageClassName = `about-me__copy-message ${
+    isLinkCopy ? 'about-me__copy-message_visible' : ''
+  }`;
 
   return (
     <article className="about-me">
+      <div id="about-me-overlay" />
       <button
         className="about-me__button"
         onClick={() => navigate(-1)}
       />
-      <div className="about-me__container" >
+      <div className="about-me__container">
         <div className=" about-me__container-info">
           <div className=" about-me__container-title">
-            <h1 className="about-me__title">Алена Коновалова</h1>
-            <span className='about-me__icon about-me__icon_photo'/>
-            <span className='about-me__icon about-me__icon_video'/>
+            <h1 className="about-me__title">
+              {props.name} {props.surname}
+            </h1>
+            <span className="about-me__icon about-me__icon_photo" />
+            <span className="about-me__icon about-me__icon_video" />
           </div>
           {/* <p className="about-me__subtitle">Москва</p> */}
           <div className="about-me__info">
             <h2 className="about-me__subtitle">Обо мне</h2>
-            <p className="about-me__text">
-              Меня зовут Алена и я профессионально снимаю фото и видео🤍 Буду рада познакомиться
-              лично!
-            </p>
+            <p className="about-me__text">{props.aboutMe}</p>
           </div>
           <div className="about-me__info">
             <h2 className="about-me__subtitle">Оборудование</h2>
-            <p className="about-me__text">
-              Canon EOS 90D Body, объектив Canon EF 50mm f/1.8 STM, фотовспышка Canon Speedlite
-              430EX III-RT, свет Raylab Axio III 400 Basic Kit
-            </p>
+            <p className="about-me__text">{props.equipment}</p>
           </div>
           {/* Кнопка и менюшка с контактами */}
           <div className="about-me__container-contact">
-            <article className="about-me__article-contact" >
+            <article className="about-me__article-contact">
               <button
                 className="about-me__button-contact"
                 onClick={handleContactOpen}
               >
                 Показать контакты
               </button>
-              <div className={contactMenuClassName} >
-                <span className="about-me__contact-span">
-                  <img
-                    className="about-me__contact-icon"
-                    src={icon_telephone}
-                    alt=""
-                  />
-                  <p className="about-me__contact">+7 800 555 35 35</p>
-                </span>
-                <span className="about-me__contact-span">
-                  <img
-                    className="about-me__contact-icon"
-                    src={icon_telegram}
-                    alt=""
-                  />
-                  <p className="about-me__contact">@photo_grapher</p>
-                </span>
-                <span className="about-me__contact-span">
-                  <img
-                    className="about-me__contact-icon"
-                    src={icon_email}
-                    alt=""
-                  />
-                  <p className="about-me__contact">photo@example.com</p>
-                </span>
+              <div className={contactMenuClassName}>
+                {props.phone && (
+                  <span className="about-me__contact-span">
+                    <img
+                      className="about-me__contact-icon"
+                      src={icon_telephone}
+                      alt=""
+                    />
+                    <p className="about-me__contact">{props.phone}</p>
+                  </span>
+                )}
+                {props.telegram && (
+                  <span className="about-me__contact-span">
+                    <img
+                      className="about-me__contact-icon"
+                      src={icon_telegram}
+                      alt=""
+                    />
+                    <p className="about-me__contact">{props.telegram}</p>
+                  </span>
+                )}
+                {props.email && (
+                  <span className="about-me__contact-span">
+                    <img
+                      className="about-me__contact-icon"
+                      src={icon_email}
+                      alt=""
+                    />
+                    <p className="about-me__contact">{props.email}</p>
+                  </span>
+                )}
               </div>
             </article>
             {/* Кнопка и менюшка поделиться */}
-            <article className="about-me__article-share" >
+            <article className="about-me__article-share">
               <button
                 className={shareButtonClassname}
                 onClick={handleShareOpen}
               />
-              <div className={shareMenuClassName} >
+              <div className={shareMenuClassName}>
                 <button
                   className="about-me__button-close"
                   onClick={handleShareOpen}
@@ -153,7 +177,7 @@ export const AboutMe = () => {
         </div>
         <figure className="about-me__avatar">
           <img
-            src={photo}
+            src={props.photo != null ? props.photo : photo}
             className="about-me__avatar-image"
             alt=""
           />

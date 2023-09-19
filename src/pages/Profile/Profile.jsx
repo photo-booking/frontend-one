@@ -1,4 +1,4 @@
-import StickyBox from "react-sticky-box";
+import StickyBox from 'react-sticky-box';
 
 import './Profile.css';
 import { AboutMe } from '../../components/AboutMe/AboutMe';
@@ -8,21 +8,32 @@ import { LinksPortfolio } from '../../components/Profile/Links/Links';
 import { Sorting } from '../../components/Profile/Sorting/Sorting';
 import PricesPage from '../PricesPage/PricesPage';
 import { CardInfoProfile } from '../../components/Profile/PhotoCard/CardInfo/CardInfo';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProfile } from '../../services/redusers/profile';
+
+// const HEADERS = { 'Content-Type': 'application/json' };
+// const HEADERS_MEDIA = { 'Content-Type': 'text/html; charset=utf-8' };
 
 export const Profile = () => {
+  const dispatch = useDispatch();
+  const profile = useSelector(state => state.profile.data);
+  const [user, setUser] = useState({});
+  const params = useParams();
   useEffect(() => {
+    window.scrollTo(0, 0);
+    dispatch(fetchProfile(params.id));
     //последняя карточка не выравнивается,не знаю как еще решить
-
     // if (document.getElementsByClassName('photoCardContainerProfile__card').length !== 0) {
     //   const cards = document.getElementsByClassName('photoCardContainerProfile__card');
     //   const length = document.getElementsByClassName('photoCardContainerProfile__card').length;
-      // cards[length - 1].style.marginLeft = '16px';
+    // cards[length - 1].style.marginLeft = '16px';
     // }
-    // fetch('https://photo-market.acceleratorpracticum.ru/api/users/1')
-    //   .then(response => console.log(response))
-    //   .catch(err => console.log(err));
-
-  });
+  }, []);
+  useEffect(() => {
+    setUser(profile);
+    console.log('profile', profile);
+  }, [params, profile]);
   const [img, setImg] = useState([
     'https://img.freepik.com/free-photo/lavender-field-at-sunset-near-valensole_268835-3910.jpg',
     'https://lifehacker.ru/special/fujifilm/dist/static/img/5.2410a2d.jpg',
@@ -102,63 +113,76 @@ export const Profile = () => {
       document.getElementsByClassName('profileContainer__youtube')[0].style.display = 'block';
 
       div[divLength - 1].style.marginLeft = '32px';
-
     });
   };
 
   return (
-    <>
-      <AboutMe />
-      <div id="overlayProfile" />
-      <LinksPortfolio
-        onPrice={onPrice}
-        onPortfolio={onPortfolio}
-      />
-      {!isPrice ? (
-        <>
-          <div className={'profileContainer'}>
-            <div className='profileContainer__filter'>
-              <StickyBox offsetTop={52} offsetBottom={52}>
-                <Sorting />
-              </StickyBox> 
-            </div>
-          
-            <div className={'profileContainer__cardsContainer'}>
-              {img.map((img, index) => (
-                <PhotoCard
-                  id={`photocard${index}`}
-                  key={img}
-                  src={img}
-                  alt={'photo-booking'}
-                  onOpenImg={() => onOpenImg(`photocard${index}`)}
-                />
-              ))}
-              <div id="player" />
-              <div
-                className="profileContainer__youtube"
-                onClick={() => onPlayVideo(splitUrl(video))}
-              >
-                <img
-                  src={`//img.youtube.com/vi/${splitUrl(video)}/default.jpg`}
-                  width="496"
-                  height="296"
-                  alt="youtubePreview"
-                />
-                <div className="profileContainer__youtube_playContainer" />
-                <CardInfoProfile />
+    user && (
+      <>
+        <AboutMe
+          name={user.first_name}
+          surname={user.last_name}
+          aboutMe={user.about_me}
+          phone={user.phone}
+          telegram={user.social_telegram}
+          email={user.email}
+          equipment={user.equipment}
+          photo={user.profile_photo}
+        />
+        <div id="overlayProfile" />
+        <LinksPortfolio
+          onPrice={onPrice}
+          onPortfolio={onPortfolio}
+        />
+        {!isPrice ? (
+          <>
+            <div className={'profileContainer'}>
+              <div className="profileContainer__filter">
+                <StickyBox
+                  offsetTop={52}
+                  offsetBottom={52}
+                >
+                  <Sorting />
+                </StickyBox>
               </div>
-              <button
-                className="button_more"
-                onClick={onShowMore}
-              >
-                Показать ещё
-              </button>
+
+              <div className={'profileContainer__cardsContainer'}>
+                {img.map((img, index) => (
+                  <PhotoCard
+                    id={`photocard${index}`}
+                    key={img}
+                    src={img}
+                    alt={'photo-booking'}
+                    onOpenImg={() => onOpenImg(`photocard${index}`)}
+                  />
+                ))}
+                <div id="player" />
+                <div
+                  className="profileContainer__youtube"
+                  onClick={() => onPlayVideo(splitUrl(video))}
+                >
+                  <img
+                    src={`//img.youtube.com/vi/${splitUrl(video)}/default.jpg`}
+                    width="496"
+                    height="296"
+                    alt="youtubePreview"
+                  />
+                  <div className="profileContainer__youtube_playContainer" />
+                  <CardInfoProfile />
+                </div>
+                <button
+                  className="button_more"
+                  onClick={onShowMore}
+                >
+                  Показать ещё
+                </button>
+              </div>
             </div>
-          </div>
-        </>
-      ) : (
-        <PricesPage />
-      )}
-    </>
+          </>
+        ) : (
+          <PricesPage />
+        )}
+      </>
+    )
   );
 };

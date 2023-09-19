@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getUsers } from '../../utils/api';
+import { getExpertProfile } from '../../utils/api';
 
 export const initialState = {
   data: {},
@@ -7,11 +7,11 @@ export const initialState = {
   error: null
 };
 
-export const fetchUsers = createAsyncThunk(
-  'users/fetchUsers',
-  async ({ spec, page_size }, { rejectWithValue, fulfillWithValue }) => {
+export const fetchProfile = createAsyncThunk(
+  'profile/fetchProfile',
+  async (id, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const data = await getUsers(spec, page_size);
+      const data = await getExpertProfile(id);
       if (!(typeof data === 'object')) {
         throw new Error('Ошибка. Данные не получены 404');
       }
@@ -25,26 +25,26 @@ export const fetchUsers = createAsyncThunk(
   }
 );
 
-export const usersSlice = createSlice({
-  name: 'users',
+export const profileSlice = createSlice({
+  name: 'profile',
   initialState,
   reducers: {},
   extraReducers: builder => {
     //для запросов
     builder
-      .addCase(fetchUsers.pending, state => {
+      .addCase(fetchProfile.pending, state => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
+      .addCase(fetchProfile.fulfilled, (state, action) => {
         state.isLoading = false;
         state.data = action.payload;
       })
-      .addCase(fetchUsers.rejected, (state, action) => {
+      .addCase(fetchProfile.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
   }
 });
 
-export default usersSlice.reducer;
+export default profileSlice.reducer;
