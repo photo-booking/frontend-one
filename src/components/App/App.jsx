@@ -127,8 +127,7 @@ export function App() {
         console.log(res);
         setIsEmailSend(true);
       })
-      .catch(err => {
-        err.then(e => console.log(e));
+      .catch(err => { console.log(err);
       });
   };
 

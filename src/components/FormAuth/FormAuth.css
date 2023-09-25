@@ -58,7 +58,8 @@
   background-color: #8BDB00;
 }
 
-.form-auth__button_submit_disabled {
+.form-auth__button_submit_disabled,
+.form-auth__button_submit_disabled:hover {
   background-color: #E0E0E0;
   color: #808080;
   cursor: default;

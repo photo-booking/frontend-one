@@ -50,8 +50,10 @@ export function sendEmailToResetPassword(email) {
   }).then(res => {
     if (res.ok) {
       console.log('письмо отправлено');
+      return res;
     } else {
       console.log('ошибка сервера');
+      Promise.reject(res)
     }
   });
 }
