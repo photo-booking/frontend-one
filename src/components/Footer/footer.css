@@ -69,11 +69,20 @@
     justify-self: right;
     align-self: self-end;
     cursor: pointer;
+    background-color: rgba(175, 250, 0, 1);
+    height: 92px;
+    width: 92px;
+    border-radius: 50%;
+    border: none;
     transition: all 0.3s ease;
 }
 
 .footer__up:hover {
-    transform: scale(1.2);
+    background-color: rgba(145, 229, 0, 1);
+}
+
+.footer__up:active {
+    background-color: rgba(139, 219, 0, 1);
 }
 
 .footer__signUp {

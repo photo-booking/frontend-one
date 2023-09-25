@@ -1,8 +1,9 @@
 import './footer.css';
-import logo from '../../images/Logo-header.svg';
+import logo from '../../images/lenshire-logo.svg';
 import logo2 from '../../images/Logo_aligner.png';
 import { Link, useMatch } from 'react-router-dom';
 import up from '../../images/Button_Back_to_top.svg';
+import u from '../../images/VectorUp.svg';
 
 export const Footer = ({ isClient }) => {
 
@@ -29,7 +30,7 @@ export const Footer = ({ isClient }) => {
                         </p>
                     </div>) :
                     (<footer className="footer">
-                        <Link to='/catalog'><img className='footer__logo' src={logo2} /></Link>
+                        <Link to='/catalog'><img className='footer__logo' src={logo} /></Link>
                         <nav className='footer__nav'>
                             <p className='footer__nav_title'>Навигация</p>
                             <ul className='footer__nav_list'>
@@ -50,7 +51,10 @@ export const Footer = ({ isClient }) => {
                             <Link to='/' className='footer__privacy_link'>Политика конфиденциальности</Link>
                         </div>
                         <p className='footer__by'>© LensHire. 2023</p>
-                        <img src={up} className='footer__up' onClick={scrollUp} />
+                        <button className='footer__up'>
+                            <img src={u} className='footer__up_pointer' onClick={scrollUp} />
+                        </button>
+                        
                     </footer>)
             }
         </>
