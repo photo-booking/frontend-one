@@ -1,7 +1,8 @@
 .catalog {
-    padding-left: 56px;
-    padding-right: 32px;
+    padding-left: 40px;
+    padding-right: 16px;
     margin: 0 auto 240px;
+    max-width: 1352px;
     /* display: flex;
     justify-content: space-between; */
 
