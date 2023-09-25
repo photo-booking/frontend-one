@@ -12,9 +12,16 @@
     padding: 36px 40px 40px;
 }
 
+.footer__logo_container {
+    position: relative;
+}
+
 .footer__logo {
     width: 319px;
     height: 52px;
+    position: absolute;
+    top: 0;
+    left: -20px;
 }
 
 .footer__nav {

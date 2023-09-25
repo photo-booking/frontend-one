@@ -30,7 +30,10 @@ export const Footer = ({ isClient }) => {
                         </p>
                     </div>) :
                     (<footer className="footer">
-                        <Link to='/catalog'><img className='footer__logo' src={logo} /></Link>
+                        <div className='footer__logo_container'>
+                            <Link to='/catalog'><img className='footer__logo' src={logo} /></Link>
+                        </div>
+
                         <nav className='footer__nav'>
                             <p className='footer__nav_title'>Навигация</p>
                             <ul className='footer__nav_list'>
@@ -54,7 +57,7 @@ export const Footer = ({ isClient }) => {
                         <button className='footer__up'>
                             <img src={u} className='footer__up_pointer' onClick={scrollUp} />
                         </button>
-                        
+
                     </footer>)
             }
         </>
