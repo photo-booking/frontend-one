@@ -45,6 +45,7 @@ export const Card = ({ user }) => {
           }
     ];
 
+    
   return (
     <section
       className="card"
