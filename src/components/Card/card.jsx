@@ -10,9 +10,6 @@ export const Card = ({ user }) => {
     navigate(`/card/${user.id}`, { id: user.id });
   };
 
-  
-export const Card = ({user}) => {
-
     const mediafiles = [
         {
             id: "102",
@@ -48,8 +45,7 @@ export const Card = ({user}) => {
           }
     ];
 
-}
-
+    
   return (
     <section
       className="card"
@@ -91,4 +87,4 @@ export const Card = ({user}) => {
       </div>
     </section>
   );
-};
+}
