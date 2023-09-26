@@ -5,12 +5,10 @@
     max-width: 1352px;
     /* display: flex;
     justify-content: space-between; */
-
 }
 
 .catalog__city {
     display: inline-block;
-    /* font-family: 'Aneliza'; */
     font-size: 35px;
     font-style: normal;
     font-weight: 600;
@@ -23,11 +21,10 @@
 
 .catalog__title {
     margin: 0;
-    /* font-family: 'Aneliza'; */
     font-size: 60px;
     font-style: normal;
     font-weight: 500;
-    line-height: 60px; 
+    line-height: 60px;
     letter-spacing: -3px;
     max-width: 842px;
     width: 100%;

@@ -15,12 +15,12 @@ import {
   loginVk
 } from '../../utils/auth';
 
-import { getAmountExpert} from '../../utils/api';
+import { getAmountExpert } from '../../utils/api';
 
 import { Signin } from '../../pages/Signin/Signin';
 import { Signup } from '../../pages/Signup/Signup';
 import { ResetPassword } from '../../pages/ResetPassword/ResetPassword';
-import { CatalogExecutors } from '../../pages/CatalogExperts/CatalogExperts';
+import { CatalogExperts } from '../../pages/CatalogExperts/CatalogExperts';
 import { Profile } from '../../pages/Profile/Profile';
 import { Landing } from '../../pages/Landing/Landing';
 import { ClientAccount } from '../../pages/ClientAccount/ClientAccount';
@@ -34,8 +34,7 @@ import { ExecutorChat } from '../../pages/ExpertChat/ExpertChat';
 import { Page404 } from '../../pages/404/404';
 import { HeaderMain } from '../Header-main/header-main';
 import { Footer } from '../Footer/footer';
-import { getUsers } from '../../utils/api';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchUsers } from '../../services/redusers/users';
 
 export function App() {
@@ -67,25 +66,10 @@ export function App() {
       })
       .catch(err => {
         console.log(err)
-        // setErrorMessage(err.non_field_errors[0]);
+        setErrorMessage(err.non_field_errors[0]);
         setLoggedIn(false);
       });
   };
-
-  // const onLoginWithSocial = jwt => {
-  //   console.log(jwt);
-  //   getUserInfo(jwt)
-  //     .then(res => {
-  //       localStorage.setItem('token', jwt);
-  //       setCurrentUser(res);
-  //       setLoggedIn(true);
-  //       navigate('/catalog');
-  //     })
-  //     .catch(err => {
-  //       // setErrorMessage(err.detail);
-  //       setLoggedIn(false);
-  //     });
-  // };
 
   const onSubmitSignup = (values, status) => {
     register(values, status)
@@ -93,12 +77,10 @@ export function App() {
         onSubmitSignin(values);
       })
       .catch(err => {
-        console.log(err)
-        // setErrorMessage(err);
+        setErrorMessage(Object.values(err)[0][0]);
         setLoggedIn(false);
       });
   };
-
 
   function signOut() {
     const jwt = localStorage.getItem('token');
@@ -108,7 +90,6 @@ export function App() {
       setCurrentUser({});
       navigate('/catalog');
     });
-
   }
 
   const onSubmitJoin = values => {
@@ -127,8 +108,7 @@ export function App() {
         console.log(res);
         setIsEmailSend(true);
       })
-      .catch(err => {
-        err.then(e => console.log(e));
+      .catch(err => { console.log(err);
       });
   };
 
@@ -166,16 +146,17 @@ export function App() {
 
   function onStartCatalog() {
     getAmountExpert()
-      .then((res)=> {
-        console.log(res.total_spec_user)
-        setAmountExpert(res.total_spec_user)
+      .then(res => {
+        setAmountExpert(res.total_spec_user);
       })
-      .catch(err => {console.log('Ошибка:' + err.detail);})
+      .catch(err => {
+        console.log('Ошибка:' + err.detail);
+      });
   }
 
-  const signinGoogle = (param) => {
+  const signinGoogle = param => {
     loginGoogle(param)
-      .then((res) => {
+      .then(res => {
         console.log(res);
         const jwt = localStorage.getItem('token');
         getUserInfo(jwt)
@@ -186,16 +167,16 @@ export function App() {
           })
           .catch(err => {
             console.log(err);
-          })
+          });
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   };
 
-  const signinVk = (param) => {
+  const signinVk = param => {
     loginVk(param)
-      .then((res) => {
+      .then(res => {
         console.log(res);
         const jwt = localStorage.getItem('token');
         getUserInfo(jwt)
@@ -206,23 +187,21 @@ export function App() {
           })
           .catch(err => {
             console.log(err);
-          })
+          });
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   };
 
   useEffect(() => {
     tokenCheck();
-    dispatch(fetchUsers());
+    //при первой загрузке запрашиваем только фотографов, как стоит в сортировке по дефолту
+    dispatch(fetchUsers({ spec: 'all', limit: 1, pageSize: '' }));
   }, []);
 
-
   //достаем юзеров из редакса
-  const usersInfo = useSelector(state => state.usersStore.data)
-  
-
+  // const usersInfo = useSelector(state => state.users.data);
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -277,10 +256,11 @@ export function App() {
           <Route
             path="/catalog"
             element={
-              <CatalogExecutors 
-              amountExpert={amountExpert}
-              onStartCatalog={onStartCatalog}
-              />}
+              <CatalogExperts
+                amountExpert={amountExpert}
+                onStartCatalog={onStartCatalog}
+              />
+            }
           />
           <Route
             path="/card/:id"
@@ -325,7 +305,6 @@ export function App() {
         </Routes>
         <Footer isClient={isClient}/>
       </div>
-     
     </CurrentUserContext.Provider>
   );
 }
