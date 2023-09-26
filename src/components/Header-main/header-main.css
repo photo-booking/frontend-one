@@ -1,18 +1,29 @@
 
 .header-main {
     margin: 0 auto;
-    border-bottom: 1px solid rgba(226, 223, 223, 0.8);
+    /* border-bottom: 1px solid rgba(226, 223, 223, 0.8); */
     display: flex;
     align-items: center;
     background-color: transparent;
     max-width: 1328px;
     width: 100%;
     height: 80px;
-    padding-left: 56px;
-    padding-right: 56px;
+    padding-left: 40px;
+    padding-right: 40px;
     top: 16px;
     z-index: 99;
     justify-content: center;
+    position: relative;
+}
+
+.header-main::after {
+    content: '';
+    background: rgba(226, 223, 223, 0.8);
+    height: 1px;
+    width: 1440px;
+    position: absolute;
+    bottom: 0;
+    left: -16px;
 }
 
 .header-main_border {
@@ -20,11 +31,8 @@
     display: flex;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.8);
-    max-width: 1328px;
-    width: 100%;
+    max-width: 1408px;
     height: 80px;
-    padding-left: 40px;
-    padding-right: 40px;
     margin: 16px auto 0;
     position: sticky;
     top: 16px;

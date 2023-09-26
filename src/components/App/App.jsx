@@ -303,8 +303,8 @@ export function App() {
             element={<Page404 />}
           />
         </Routes>
+        <Footer isClient={isClient}/>
       </div>
-      <Footer isClient={isClient} />
     </CurrentUserContext.Provider>
   );
 }
