@@ -214,7 +214,7 @@ export function App() {
   useEffect(() => {
     tokenCheck();
     //при первой загрузке запрашиваем только фотографов, как стоит в сортировке по дефолту
-    dispatch(fetchUsers({ spec: 'all', page_size: 4 }));
+    dispatch(fetchUsers({ spec: 'all', limit: 1, pageSize: '' }));
   }, []);
 
   //достаем юзеров из редакса

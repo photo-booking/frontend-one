@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const initialState = {
   pageSize: 4,
-  isButtonShown: true,
+  limit: 1,
   isLoading: false,
   error: null
 };
@@ -14,8 +14,8 @@ export const catalogSlice = createSlice({
     savePageSize(state, { payload }) {
       state.pageSize = payload;
     },
-    saveIsButtonShown(state, { payload }) {
-      state.isButtonShown = payload;
+    saveLimit(state, { payload }) {
+      state.limit = payload;
     }
   }
 });

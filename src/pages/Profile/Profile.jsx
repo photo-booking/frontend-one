@@ -39,19 +39,22 @@ export const Profile = () => {
     'https://lifehacker.ru/special/fujifilm/dist/static/img/5.2410a2d.jpg',
     'https://bigpicture.ru/wp-content/uploads/2015/11/nophotoshop29-800x532.jpg',
     'https://www.interfax.ru/ftproot/photos/photostory/2022/04/29/week/week7_1100.jpg',
-    'https://where.ru/upload/iblock/ad4/ad4ef7e48f611b6be29e51e9aefaecd1.jpg'
+    'https://www.interfax.ru/ftproot/photos/photostory/2022/04/29/week/week7_1100.jpg'
   ]);
-  const video = 'https://www.youtube.com/watch?v=HwVh8pmOot4=3s';
+  // const video = 'https://www.youtube.com/watch?v=HwVh8pmOot4=3s';
+  const video = ' https://www.youtube.com/shorts/D1i-QBEe5y8';
+  // https://www.youtube.com/shorts/D1i-QBEe5y8?feature=share
   const [isPrice, setIsPrice] = useState(false);
 
   const splitUrl = video => {
     const urls = video.split('/');
-    let videoId = '';
-    urls.forEach(url => {
-      if (url.startsWith('watch?v=')) {
-        videoId = url.split('=')[1];
-      }
-    });
+    // let videoId = '';
+    let videoId = urls[urls.length - 1];
+    // urls.forEach(url => {
+    //   if (url.startsWith('watch?v=')) {
+    //     videoId = url.split('=')[1];
+    //   }
+    // });
     return videoId;
   };
   const onPrice = () => {
@@ -120,6 +123,8 @@ export const Profile = () => {
     user && (
       <>
         <AboutMe
+          isPhotografer={user.is_photographer}
+          isVideoOperator={user.is_video_operator}
           name={user.first_name}
           surname={user.last_name}
           aboutMe={user.about_me}

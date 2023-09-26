@@ -31,7 +31,6 @@ export const AboutMe = props => {
     overlay.style.display = 'block';
     setOverlayAbout(true);
     setIsContactOpen(!isContactOpen);
-    console.log(isContactOpen);
   };
 
   const handleShareOpen = () => {
@@ -89,8 +88,8 @@ export const AboutMe = props => {
             <h1 className="about-me__title">
               {props.name} {props.surname}
             </h1>
-            <span className="about-me__icon about-me__icon_photo" />
-            <span className="about-me__icon about-me__icon_video" />
+            {props.isPhotografer && <span className="about-me__icon about-me__icon_photo" />}
+            {props.isVideoOperator && <span className="about-me__icon about-me__icon_video" />}
           </div>
           {/* <p className="about-me__subtitle">Москва</p> */}
           <div className="about-me__info">

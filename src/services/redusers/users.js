@@ -9,9 +9,9 @@ export const initialState = {
 
 export const fetchUsers = createAsyncThunk(
   'users/fetchUsers',
-  async ({ spec, page_size }, { rejectWithValue, fulfillWithValue }) => {
+  async ({ spec, limit, page_size }, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const data = await getUsers(spec, page_size);
+      const data = await getUsers(spec, limit, page_size);
       if (!(typeof data === 'object')) {
         throw new Error('Ошибка. Данные не получены 404');
       }

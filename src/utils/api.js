@@ -19,11 +19,15 @@ export function getAmountExpert() {
 }
 
 //Получаем users всех пользователей
-export function getUsers(spec, pageSize) {
-  return fetch(`${BASE_URL}/users/?spec=${spec}&page_size=${pageSize}`, {
-    method: 'GET',
-    headers: HEADERS
-  })
+export function getUsers(spec, limit, pageSize) {
+  console.log(spec, limit, pageSize);
+  return fetch(
+    `${BASE_URL}/users/?spec=${spec}&limit=${limit}${pageSize ? `&page_size=${pageSize}` : ''}`,
+    {
+      method: 'GET',
+      headers: HEADERS
+    }
+  )
     .then(getResponseData)
     .then(users => {
       return users;

@@ -17,7 +17,7 @@ export const Card = ({ user }) => {
           className="card__portfolio_item"
           src={
             user.mediafiles.length > 0
-              ? 'https://photo-market.acceleratorpracticum.ru/media/users/photos/свадебная_1.jpeg'
+              ? 'https://photo-market.acceleratorpracticum.ru/media/users/photos/facebook-5127fcb0b51adb0c217f1b04c9f1374b.jpg'
               : // `https://photo-market.acceleratorpracticum.ru${user.mediafiles[0].photo}`
                 'https://img.freepik.com/free-photo/lavender-field-at-sunset-near-valensole_268835-3910.jpg'
           }

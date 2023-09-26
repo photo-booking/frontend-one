@@ -18,7 +18,8 @@ export const CatalogExperts = props => {
 
   const [data, setData] = useState([]);
   const [pageSize, setPageSize] = useState(4);
-  const [isButtonShowMore, setIsButtonShowMore] = useState(catalog.isButtonShown);
+  const [limit, setLimit] = useState(1);
+  const [isButtonShowMore, setIsButtonShowMore] = useState(true);
 
   function num_word(value, words) {
     value = Math.abs(value) % 100;
@@ -45,24 +46,40 @@ export const CatalogExperts = props => {
   useEffect(() => {
     setData(usersInfo);
     onStartCatalog();
-    console.log(catalog.isButtonShown, isButtonShowMore);
-  }, [usersInfo, catalog.isButtonShown]);
+    setPageSize(catalog.pageSize);
+    setLimit(catalog.limit);
+    setIsButtonShowMore(data.next);
+    console.log('data', data);
+  }, [usersInfo, catalog]);
 
   useEffect(() => {
     const isFirstRender = 4;
-    // console.log(data.count, pageSize);
-    if (isFirstRender !== pageSize) {
-      if (data.count >= pageSize) {
-        dispatch(fetchUsers({ spec: 'all', page_size: pageSize }));
-        // catalogActions.savePageSize(pageSize);
+    const isLimit = 1;
+    if (isFirstRender !== pageSize || isLimit !== limit) {
+      console.log('isFirstRender !== pageSize');
+      // if (data.count >= pageSize) {
+      //   dispatch(fetchUsers({ spec: 'all', page_size: pageSize }));
+      //   dispatch(catalogActions.savePageSize(pageSize));
+      // } else {
+      //   console.log('else');
+      //   dispatch(fetchUsers(data.count));
+      //   setIsButtonShowMore(false);
+      //   dispatch(catalogActions.saveIsButtonShown(false));
+      //   dispatch(catalogActions.savePageSize(data.count));
+      // }
+      if (data.next != null) {
+        dispatch(fetchUsers({ spec: 'all', limit: data.next }));
+        dispatch(catalogActions.saveLimit(data.next));
       } else {
-        dispatch(fetchUsers(data.count));
+        console.log('else');
         setIsButtonShowMore(false);
-        catalogActions.saveIsButtonShown(false);
-        // catalogActions.savePageSize(pageSize);
+        dispatch(catalogActions.saveLimit(data.next));
       }
     }
-  }, [pageSize]);
+    console.log(catalog);
+    console.log('pageSize', pageSize);
+    console.log('data.count', data.count);
+  }, [pageSize, limit]);
 
   const setNext = () => {
     let nextStep = pageSize <= data.count ? 4 : data.count;
@@ -70,6 +87,9 @@ export const CatalogExperts = props => {
       setPageSize(prev => prev + nextStep);
     } else {
       setPageSize(data.count);
+    }
+    if (data.next) {
+      setLimit(data.next);
     }
   };
 
