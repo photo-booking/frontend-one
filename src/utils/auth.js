@@ -20,9 +20,7 @@ export function register(values, status) {
       password: values.password,
       is_client: status
     })
-  }).then(res => {
-    getResponseData(res);
-  });
+  }).then(res => getResponseData(res));
 }
 
 //Войти в аккаунт
@@ -50,8 +48,10 @@ export function sendEmailToResetPassword(email) {
   }).then(res => {
     if (res.ok) {
       console.log('письмо отправлено');
+      return res;
     } else {
       console.log('ошибка сервера');
+      return Promise.reject(res)
     }
   });
 }

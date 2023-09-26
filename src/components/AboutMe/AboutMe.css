@@ -283,6 +283,10 @@
   background-image: url(../../images/icon_close_white.svg);
 }
 
+.about-me__share-container:hover .about-me__button-close:hover {
+  background-image: url(../../images/icon_close_hover.svg);
+}
+
 .about-me__button-copy {
   background: none;
   background-image: url(../../images/icon_copy.svg);
@@ -299,6 +303,10 @@
 
 .about-me__share-container:hover .about-me__button-copy {
   background-image: url(../../images/icon_copy_white.svg);
+}
+
+.about-me__share-container:hover .about-me__button-copy:hover {
+  background-image: url(../../images/icon_copy_hover.svg);
 }
 
 .about-me__share-link {
@@ -327,6 +335,14 @@
 
 .about-me__share-container:hover .about-me__share-link_telegram {
   background-image: url(../../images/icon_telegram_white.svg);
+}
+
+.about-me__share-container:hover .about-me__share-link_vk:hover {
+  background-image: url(../../images/icon_vk_hover.svg);
+}
+
+.about-me__share-container:hover .about-me__share-link_telegram:hover {
+  background-image: url(../../images/icon_telegram_hover.svg);
 }
 
 .about-me__copy-message {
