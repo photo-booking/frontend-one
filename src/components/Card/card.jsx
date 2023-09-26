@@ -10,9 +10,6 @@ export const Card = ({ user }) => {
     navigate(`/card/${user.id}`, { id: user.id });
   };
 
-  
-export const Card = ({user}) => {
-
     const mediafiles = [
         {
             id: "102",
@@ -47,8 +44,6 @@ export const Card = ({user}) => {
             download_url: "https://picsum.photos/id/106/2592/1728"
           }
     ];
-
-}
 
   return (
     <section
@@ -91,4 +86,4 @@ export const Card = ({user}) => {
       </div>
     </section>
   );
-};
+}
