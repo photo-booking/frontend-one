@@ -65,26 +65,11 @@ export function App() {
           });
       })
       .catch(err => {
-        console.log(err);
-        // setErrorMessage(err.non_field_errors[0]);
+        console.log(err)
+        setErrorMessage(err.non_field_errors[0]);
         setLoggedIn(false);
       });
   };
-
-  // const onLoginWithSocial = jwt => {
-  //   console.log(jwt);
-  //   getUserInfo(jwt)
-  //     .then(res => {
-  //       localStorage.setItem('token', jwt);
-  //       setCurrentUser(res);
-  //       setLoggedIn(true);
-  //       navigate('/catalog');
-  //     })
-  //     .catch(err => {
-  //       // setErrorMessage(err.detail);
-  //       setLoggedIn(false);
-  //     });
-  // };
 
   const onSubmitSignup = (values, status) => {
     register(values, status)
@@ -92,8 +77,7 @@ export function App() {
         onSubmitSignin(values);
       })
       .catch(err => {
-        console.log(err);
-        // setErrorMessage(err);
+        setErrorMessage(Object.values(err)[0][0]);
         setLoggedIn(false);
       });
   };
@@ -124,8 +108,7 @@ export function App() {
         console.log(res);
         setIsEmailSend(true);
       })
-      .catch(err => {
-        err.then(e => console.log(e));
+      .catch(err => { console.log(err);
       });
   };
 

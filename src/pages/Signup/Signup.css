@@ -36,7 +36,6 @@
     border: 1px solid #E0E0E0;
     background: none;
     box-sizing: border-box;
-    cursor: pointer;
 }
 
 .signup__input-container_check {
@@ -66,4 +65,5 @@
     line-height: 20px;
     margin: 0 0 0 16px;
     width: 264px;
+    cursor: pointer;
 }

@@ -52,12 +52,12 @@ export const AboutMe = props => {
         setIsLinkCopy(false);
       });
   };
-  const sharePostInVk = url => {
-    return `https://vk.com/share.php?title=Title&url=${encodeURI(url)}`; //Надо добавить заголовки в метаданные
-  };
-  const shareInTelegram = url => {
-    return `https://telegram.me/share/url?url=${url}&text=ТЕКСТ`; //Надо добавить заголовки в метаданные
-  };
+  const sharePostInVk = (url) => {
+    return `https://vk.com/share.php?title=lense/hire твой фото- и видеооператор онлайн!&url=${encodeURI(url)}`; //Надо добавить заголовки в метаданные
+  }
+  const shareInTelegram = (url) => {
+    return `https://telegram.me/share/url?url=${url}&text=lense/hire твой фото- и видеооператор онлайн!`; //Надо добавить заголовки в метаданные
+  }
 
   const contactMenuClassName = `about-me__contact-container ${
     isContactOpen ? 'about-me__contact-container_visible' : ''
