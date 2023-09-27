@@ -1,13 +1,10 @@
 import './slider.css';
-import sliderLeft from '../../images/Slider-Left-arrow.svg';
-import sliderRight from '../../images/Slider-Right-arrow.svg';
+import { v4 as uuidv4 } from 'uuid';
 import { ChevronLeft, ChevronRight } from 'react-feather';
 import { useState } from 'react';
 
 
 export const Slider = ({ children: slides }) => {
-    console.log(slides.length, 'lenght');
-    console.log(slides, 'djdjdjdjdj');
 
     const [current, setCurrent] = useState(0);
     const prev = () => {
@@ -19,17 +16,31 @@ export const Slider = ({ children: slides }) => {
 
     return (
         <div className='slider__container'>
-            <div className="slider" style={{transform: `translateX(-${current * 100}%)`}}>
+            <div className="slider" style={{ transform: `translateX(-${current * 100}%)` }}>
                 {slides}
             </div>
-            <div className='slider__button_container'>
-                <button className='slider__button' onClick={prev}>
-                    <ChevronLeft className='slider__button_image' />
-                </button>
-                <button className='slider__button' onClick={next}>
-                    <ChevronRight className='slider__button_image' />
-                </button>
+            <div className='slider__visible'>
+                <div className='slider__button_container'>
+                    <button className='slider__button' onClick={prev}>
+                        <ChevronLeft className='slider__button_image' />
+                    </button>
+                    <button className='slider__button' onClick={next}>
+                        <ChevronRight className='slider__button_image' />
+                    </button>
+                </div>
+
+                <div className='slider__dot_container'>
+                    {slides.map((_, index) => {
+                        if (current === index) {
+                            return (<div className='slider__dot_active' key={uuidv4()}></div>)
+                        }
+                        else {
+                            return (<div className='slider__dot' key={uuidv4()}></div>)
+                        }
+                    })}
+                </div>
             </div>
+
         </div>
     );
 

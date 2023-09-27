@@ -14,7 +14,8 @@ export const Card = ({ user }) => {
   const mediafiles = [
     "https://picsum.photos/id/102/4320/3240",
     "https://picsum.photos/id/103/2592/1936",
-    "https://picsum.photos/id/104/3840/2160"
+    "https://picsum.photos/id/104/3840/2160",
+    "https://picsum.photos/id/103/2592/1936",
   ];
 
 
