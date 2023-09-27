@@ -133,7 +133,6 @@ export function App() {
           const userInfo = res;
           setCurrentUser(userInfo);
           setLoggedIn(true);
-          navigate('/', { replace: true });
         })
         .catch(err => {
           console.log('Ошибка:' + err);
@@ -268,11 +267,11 @@ export function App() {
           />
           <Route
             path="/client/:id"
-            element={<ClientAccount />}
+            element={<ClientAccount isClient={isClient}/>}
           />
           <Route
             path="/expert/:id"
-            element={<ExpertAccount />}
+            element={<ExpertAccount isClient={isClient}/>}
           />
           <Route
             path="/client/:id/orders"
