@@ -1,17 +1,14 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Footer } from '../../components/Footer/footer'
 import './ClientAccount.css';
+import { useState, useContext } from 'react';
+import { CurrentUserContext } from '../../components/context/CurrentUserContext';
+
 export const ClientAccount = () => {
-  const navigate = useNavigate();
-  const { state } = useLocation();
-  const { name, id } = state;
+  const currentUser = useContext(CurrentUserContext);
+
   return (
     <div className={'clientAccount-container'}>
-      <h1>Личный кабинет клиента: {name}</h1>
-      <button onClick={() => navigate('/catalog')}>Перейти в каталог</button>
-      <button onClick={() => navigate(`/client/${id}/orders`, { state: { name, id } })}>
-        Заказы
-      </button>
+      <h1>Личный кабинет клиента: {currentUser.first_name}</h1>
     </div>
     
   );

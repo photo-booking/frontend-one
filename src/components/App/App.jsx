@@ -25,12 +25,12 @@ import { Profile } from '../../pages/Profile/Profile';
 import { Landing } from '../../pages/Landing/Landing';
 import { ClientAccount } from '../../pages/ClientAccount/ClientAccount';
 import { ClientOrders } from '../../pages/ClientOrders/ClientOrders';
-import { ExecutorAccount } from '../../pages/ExpertAccount/ExpertAccount';
+import { ExpertAccount } from '../../pages/ExpertAccount/ExpertAccount';
 import { ExecutorOrders } from '../../pages/ExpertOrders/ExpertOrders';
 import { ExecutorRatings } from '../../pages/ExpertRatings/ExpertRatings';
 import { OrderServices } from '../../pages/OrderServices/OrderServices';
 import { ClientChat } from '../../pages/ClientChat/ClientChat';
-import { ExecutorChat } from '../../pages/ExpertChat/ExpertChat';
+import { ExpertChat } from '../../pages/ExpertChat/ExpertChat';
 import { Page404 } from '../../pages/404/404';
 import { HeaderMain } from '../Header-main/header-main';
 import { Footer } from '../Footer/footer';
@@ -271,12 +271,12 @@ export function App() {
             element={<ClientAccount />}
           />
           <Route
-            path="/client/:id/orders"
-            element={<ClientOrders />}
+            path="/expert/:id"
+            element={<ExpertAccount />}
           />
           <Route
-            path="/expert/:id"
-            element={<ExecutorAccount />}
+            path="/client/:id/orders"
+            element={<ClientOrders />}
           />
           <Route
             path="/expert/:id/orders"
@@ -296,7 +296,7 @@ export function App() {
           />
           <Route
             path="/expert/:id/chat"
-            element={<ExecutorChat />}
+            element={<ExpertChat />}
           />
           <Route
             path="*"

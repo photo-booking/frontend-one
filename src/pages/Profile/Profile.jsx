@@ -32,7 +32,7 @@ export const Profile = () => {
   }, []);
   useEffect(() => {
     setUser(profile);
-    console.log('profile', profile);
+    // console.log('profile', profile);
   }, [params, profile]);
   const [img, setImg] = useState([
     'https://img.freepik.com/free-photo/lavender-field-at-sunset-near-valensole_268835-3910.jpg',
@@ -155,7 +155,7 @@ export const Profile = () => {
                 {img.map((img, index) => (
                   <PhotoCard
                     id={`photocard${index}`}
-                    key={img}
+                    key={index}
                     src={img}
                     alt={'photo-booking'}
                     onOpenImg={() => onOpenImg(`photocard${index}`)}

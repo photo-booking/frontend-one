@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation, useParams, Link } from 'react-router-dom';
 
 import icon_telephone from '../../images/contact icons_telephone.svg';
 import icon_telegram from '../../images/contact icons _telegram.svg';
@@ -11,25 +11,28 @@ import './AboutMe.css';
 export const AboutMe = props => {
   const navigate = useNavigate();
   const location = useLocation();
+  const param = useParams();
   const baseUrl = 'https://photo-market.acceleratorpracticum.ru';
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isLinkCopy, setIsLinkCopy] = useState(false);
-  const [overlayAbout, setOverlayAbout] = useState(false);
+  // const [overlayAbout, setOverlayAbout] = useState(false);
 
-  const overlay = document.getElementById('about-me-overlay');
+  // const overlay = document.getElementById('about-me-overlay');
 
-  useEffect(() => {
-    if (overlayAbout) {
-      overlay.addEventListener('click', () => {
-        overlay.style.display = 'none';
-        setIsContactOpen(!isContactOpen);
-      });
-    }
-  }, [overlayAbout]);
+  // useEffect(() => {
+  //   if (overlayAbout) {
+  //     overlay.addEventListener('click', () => {
+  //       overlay.style.display = 'none';
+  //       setIsContactOpen(!isContactOpen);
+  //       console.log('add listener')
+  //     });
+  //   }
+  // }, [overlayAbout]);
+
   const handleContactOpen = () => {
-    overlay.style.display = 'block';
-    setOverlayAbout(true);
+    // overlay.style.display = 'block';
+    // setOverlayAbout(true);
     setIsContactOpen(!isContactOpen);
   };
 
@@ -52,25 +55,24 @@ export const AboutMe = props => {
         setIsLinkCopy(false);
       });
   };
-  const sharePostInVk = (url) => {
-    return `https://vk.com/share.php?title=lense/hire твой фото- и видеооператор онлайн!&url=${encodeURI(url)}`; //Надо добавить заголовки в метаданные
-  }
-  const shareInTelegram = (url) => {
+  const sharePostInVk = url => {
+    return `https://vk.com/share.php?title=lense/hire твой фото- и видеооператор онлайн!&url=${encodeURI(
+      url
+    )}`;
+  };
+  const shareInTelegram = url => {
     return `https://telegram.me/share/url?url=${url}&text=lense/hire твой фото- и видеооператор онлайн!`; //Надо добавить заголовки в метаданные
-  }
-
+  };
+  const navigateToChat = id => {navigate(`/expert/${id}/chat`)};
   const contactMenuClassName = `about-me__contact-container ${
     isContactOpen ? 'about-me__contact-container_visible' : ''
   }`;
-
   const shareButtonClassname = `${
     isShareOpen ? 'about-me__button-share_hidden' : 'about-me__button-share'
   } `;
-
   const shareMenuClassName = `about-me__share-container ${
     isShareOpen ? 'about-me__share-container_visible' : ''
   }`;
-
   const copyMessageClassName = `about-me__copy-message ${
     isLinkCopy ? 'about-me__copy-message_visible' : ''
   }`;
@@ -100,8 +102,14 @@ export const AboutMe = props => {
             <h2 className="about-me__subtitle">Оборудование</h2>
             <p className="about-me__text">{props.equipment}</p>
           </div>
-          {/* Кнопка и менюшка с контактами */}
+          {/* Кнопки и менюшка с контактами */}
           <div className="about-me__container-contact">
+            <button
+              className="about-me__button-chat"
+              onClick={() => navigateToChat(param.id)}
+            >
+              Написать
+            </button>
             <article className="about-me__article-contact">
               <button
                 className="about-me__button-contact"

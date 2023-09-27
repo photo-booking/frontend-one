@@ -1,4 +1,4 @@
-export const REG_NAME = /^([a-zA-Z0-9а-яА-Я]+(\ [a-zA-Z0-9а-яА-Я]+)?)$/;
+export const REG_NAME = /^([a-zA-Zа-яА-Я]+(\ [a-zA-Zа-яА-Я]+)?)$/;
 export const REG_SURNAME = REG_NAME;
 export const REG_EMAIL = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 export const REG_PASSWORD = /^([a-zA-Z0-9+@!#$%&'*+/=?^`{|}~,-\.]*)$/;
