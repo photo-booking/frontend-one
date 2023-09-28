@@ -107,6 +107,7 @@ export const CatalogExperts = props => {
             <div className="catalog__filter">
               <StickyBox
               offsetTop={148} 
+              offsetBottom={52}
               >
                 <Sorting />
               </StickyBox>

@@ -144,7 +144,8 @@ export const Profile = () => {
             <div className={'profileContainer'}>
               <div className="profileContainer__filter">
                 <StickyBox
-                  offsetTop={148}
+                  offsetTop={148} 
+                  offsetBottom={52}
                 >
                   <Sorting />
                 </StickyBox>
