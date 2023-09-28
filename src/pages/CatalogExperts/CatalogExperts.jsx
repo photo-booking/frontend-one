@@ -106,8 +106,8 @@ export const CatalogExperts = props => {
           <div className={'catalog__container'}>
             <div className="catalog__filter">
               <StickyBox
-                offsetTop={52}
-                offsetBottom={52}
+              style={{border: "3px solid green"}}
+              offsetTop={148} 
               >
                 <Sorting />
               </StickyBox>
