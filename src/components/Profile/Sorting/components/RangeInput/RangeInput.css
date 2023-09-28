@@ -1,10 +1,10 @@
-.slider-range {
+.rangeinput__slider-range {
     position: relative;
     height: 16px;
     margin-top: 20px;
 }
 
-.slider-range__track {
+.rangeinput__slider-range_track {
     width: 100%;
     border-radius: 10px;
     height: 4px;
@@ -12,7 +12,7 @@
     position: absolute;
 }
 
-.slider__input {
+.rangeinput__slider_input {
     width: 100%;
     background: transparent;
     position: absolute;
@@ -20,7 +20,7 @@
     margin: 0;
 }
 /* Специальные правила для браузеров на движках WebKit/Blink */
-.slider__input::-webkit-slider-thumb {
+.rangeinput__slider_input::-webkit-slider-thumb {
     -webkit-appearance: none;
     height: 16px;
     width: 16px;
@@ -31,7 +31,7 @@
 }
 
 /* Тоже самое для Firefox */
-.slider__input::-moz-range-thumb {
+.rangeinput__slider_input::-moz-range-thumb {
     height: 16px;
     width: 16px;
     border-radius: 3px;
@@ -40,7 +40,7 @@
 }
 
 /* Тоже самое для IE */
-.slider__input::-ms-track {
+.rangeinput__slider_input::-ms-track {
     width: 100%;
     cursor: pointer;
     background: transparent; /* Скрывает слайдер, чтобы можно было добавить собственные стили.  */

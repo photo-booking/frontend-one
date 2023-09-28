@@ -9,6 +9,7 @@ import { fetchUsers } from '../../services/redusers/users';
 
 import './CatalogExperts.css';
 import { catalogActions } from '../../services/redusers/catalog';
+import { Sorting } from '../../components/Profile/Sorting/Sorting';
 
 export const CatalogExperts = props => {
   const { amountExpert, onStartCatalog } = props;
@@ -49,14 +50,14 @@ export const CatalogExperts = props => {
     setPageSize(catalog.pageSize);
     setLimit(catalog.limit);
     setIsButtonShowMore(data.next);
-    console.log('data', data);
   }, [usersInfo, catalog]);
 
   useEffect(() => {
     const isFirstRender = 4;
     const isLimit = 1;
     if (isFirstRender !== pageSize || isLimit !== limit) {
-      console.log('isFirstRender !== pageSize');
+      // console.log('isFirstRender !== pageSize');
+
       // if (data.count >= pageSize) {
       //   dispatch(fetchUsers({ spec: 'all', page_size: pageSize }));
       //   dispatch(catalogActions.savePageSize(pageSize));
@@ -71,14 +72,14 @@ export const CatalogExperts = props => {
         dispatch(fetchUsers({ spec: 'all', limit: data.next }));
         dispatch(catalogActions.saveLimit(data.next));
       } else {
-        console.log('else');
+        // console.log('else');
         setIsButtonShowMore(false);
         dispatch(catalogActions.saveLimit(data.next));
       }
     }
-    console.log(catalog);
-    console.log('pageSize', pageSize);
-    console.log('data.count', data.count);
+    // console.log(catalog);
+    // console.log('pageSize', pageSize);
+    // console.log('data.count', data.count);
   }, [pageSize, limit]);
 
   const setNext = () => {
@@ -92,6 +93,7 @@ export const CatalogExperts = props => {
       setLimit(data.next);
     }
   };
+  
 
   return (
     <>
@@ -107,10 +109,7 @@ export const CatalogExperts = props => {
                 offsetTop={52}
                 offsetBottom={52}
               >
-                <Filter
-                  photo="Фотографы"
-                  video="Видеооператоры"
-                />
+                <Sorting />
               </StickyBox>
             </div>
             <div className="catalog__box">

@@ -3,6 +3,7 @@ import { RadioButtonProfile } from './components/RadioButton/RadioButton';
 import { useState } from 'react';
 import { RangeInput } from './components/RangeInput/RangeInput';
 import './Sorting.css';
+import { useLocation } from 'react-router-dom';
 
 export const Sorting = props => {
   const [checkedPrice, setCheckedPrice] = useState('Высокая стоимость');
@@ -20,8 +21,12 @@ export const Sorting = props => {
     'Стоковая',
     'Клипы'
   ];
+
+  const location = useLocation();
+  console.log(location);
+
   const radioPrice = ['Высокая стоимость', 'Низкая стоимость'];
-  const radioMainFilter = ['Все', 'Фото', 'Видео'];
+  const radioMainFilter = location.pathname === '/catalog' ? ['Все', 'Фотографы', 'Видеооператоры'] : ['Все', 'Фото', 'Видео'];
 
   const onChangePrice = e => {
     setCheckedPrice(e.target.value);
