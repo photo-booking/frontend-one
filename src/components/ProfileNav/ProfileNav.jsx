@@ -8,6 +8,8 @@ import { PersonalInfo } from '../../pages/PersonalArea/PersonalInfo/PersonalInfo
 import { Portfolio } from '../../pages/PersonalArea/Portfolio/Portfolio';
 import { PriceList } from '../../pages/PersonalArea/PriceList/PriceList';
 import { VipSubscription } from '../../pages/PersonalArea/VipSubscription/VipSubscription';
+import { Preview } from '../Preview/Preview';
+import { OrderServices } from '../../pages/OrderServices/OrderServices';
 
 export const ProfileNav = props => {
   const { isClient } = props;
@@ -29,10 +31,6 @@ export const ProfileNav = props => {
   const [notice, setNotice] = React.useState(false);
   const [vipSubscription, setVipSubscription] = React.useState(false);
   const [deleteAccount, setdeleteAccount] = React.useState(false);
-
-  //   Боковая навигация - Заказы
-
-  //   Боковая навигация - Отзывы
 
   const buttonClassName = param => {
     return `profile-nav__btn ${param ? 'profile-nav__btn_active' : ''}`;
@@ -121,45 +119,51 @@ export const ProfileNav = props => {
                   Личная информация
                 </button>
               </li>
-              <li className="profile-nav__side-item">
-                <button
-                  className={sideNavButtonClassName(contacts)}
-                  onClick={() => {
-                    setPersonalInfo(false);
-                    setContacts(true);
-                    setPortfolio(false);
-                    setPriceList(false);
-                  }}
-                >
-                  Контакты
-                </button>
-              </li>
-              <li className="profile-nav__side-item">
-                <button
-                  className={sideNavButtonClassName(portfolio)}
-                  onClick={() => {
-                    setPersonalInfo(false);
-                    setContacts(false);
-                    setPortfolio(true);
-                    setPriceList(false);
-                  }}
-                >
-                  Портфолио
-                </button>
-              </li>
-              <li className="profile-nav__side-item">
-                <button
-                  className={sideNavButtonClassName(priceList)}
-                  onClick={() => {
-                    setPersonalInfo(false);
-                    setContacts(false);
-                    setPortfolio(false);
-                    setPriceList(true);
-                  }}
-                >
-                  Прайс-лист
-                </button>
-              </li>
+              {!isClient ? (
+                <>
+                  <li className="profile-nav__side-item">
+                    <button
+                      className={sideNavButtonClassName(contacts)}
+                      onClick={() => {
+                        setPersonalInfo(false);
+                        setContacts(true);
+                        setPortfolio(false);
+                        setPriceList(false);
+                      }}
+                    >
+                      Контакты
+                    </button>
+                  </li>
+                  <li className="profile-nav__side-item">
+                    <button
+                      className={sideNavButtonClassName(portfolio)}
+                      onClick={() => {
+                        setPersonalInfo(false);
+                        setContacts(false);
+                        setPortfolio(true);
+                        setPriceList(false);
+                      }}
+                    >
+                      Портфолио
+                    </button>
+                  </li>
+                  <li className="profile-nav__side-item">
+                    <button
+                      className={sideNavButtonClassName(priceList)}
+                      onClick={() => {
+                        setPersonalInfo(false);
+                        setContacts(false);
+                        setPortfolio(false);
+                        setPriceList(true);
+                      }}
+                    >
+                      Прайс-лист
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <></>
+              )}
             </ul>
           </nav>
         ) : (
@@ -195,19 +199,23 @@ export const ProfileNav = props => {
                   Уведомления
                 </button>
               </li>
-              <li className="profile-nav__side-item">
-                <button
-                  className={sideNavButtonClassName(vipSubscription)}
-                  onClick={() => {
-                    setPassword(false);
-                    setNotice(false);
-                    setVipSubscription(true);
-                    setdeleteAccount(false);
-                  }}
-                >
-                  Премиум подписка
-                </button>
-              </li>
+              {!isClient ? (
+                <li className="profile-nav__side-item">
+                  <button
+                    className={sideNavButtonClassName(vipSubscription)}
+                    onClick={() => {
+                      setPassword(false);
+                      setNotice(false);
+                      setVipSubscription(true);
+                      setdeleteAccount(false);
+                    }}
+                  >
+                    Премиум подписка
+                  </button>
+                </li>
+              ) : (
+                <></>
+              )}
               <li className="profile-nav__side-item">
                 <button
                   className={sideNavButtonClassName(deleteAccount)}
@@ -226,48 +234,10 @@ export const ProfileNav = props => {
         ) : (
           <></>
         )}
-        {/* для Заказов  пока нет макета не понятно что отображать мб цикл по заказам???*/}
-        {orders ? (
-          <nav className="profile-nav__side-nav">
-            <ul className="profile-nav__list profile-nav__list_column">
-              <li className="profile-nav__side-item">
-                <button>Заказ 1</button>
-              </li>
-              <li className="profile-nav__side-item">
-                <button>Заказ 2</button>
-              </li>
-              <li className="profile-nav__side-item">
-                <button>Заказ 3</button>
-              </li>
-              <li className="profile-nav__side-item">
-                <button>Заказ 4</button>
-              </li>
-            </ul>
-          </nav>
-        ) : (
-          <></>
-        )}
-        {/* для Отзывов пока нет макета не понятно что отображать мб цикл по отзывам??? */}
-        {review ? (
-          <nav className="profile-nav__side-nav">
-            <ul className="profile-nav__list profile-nav__list_column">
-              <li className="profile-nav__side-item">
-                <button>Отзыв 1</button>
-              </li>
-              <li className="profile-nav__side-item">
-                <button>Отзыв 2</button>
-              </li>
-              <li className="profile-nav__side-item">
-                <button>Отзыв 3</button>
-              </li>
-              <li className="profile-nav__side-item">
-                <button>Отзыв 4</button>
-              </li>
-            </ul>
-          </nav>
-        ) : (
-          <></>
-        )}
+        {/* для Заказов  пока нет макета */}
+        {orders ? <OrderServices /> : <></>}
+        {/* для Отзывов пока нет макета */}
+        {review ? <Preview /> : <></>}
         {/* Отображение компонентов - Профиль*/}
         {profile && personalInfo ? <PersonalInfo /> : <></>}
         {profile && contacts ? <Contacts /> : <></>}
