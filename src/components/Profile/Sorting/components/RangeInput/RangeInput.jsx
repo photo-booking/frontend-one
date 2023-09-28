@@ -38,10 +38,10 @@ export const RangeInput = props => {
   };
 
   return (
-    <div className="slider">
-      <div className="slider__container">
-        <div className="slider-range">
-          <div className="slider-range__track"></div>
+    <div className="rangeinput__slider">
+      <div className="rangeinput__slider_container">
+        <div className="rangeinput__slider-range">
+          <div className="rangeinput__slider-range_track"></div>
           <input
             type="range"
             name="min-cost"
@@ -52,7 +52,7 @@ export const RangeInput = props => {
             id="slider-1"
             onChange={e => sliderOne(e)}
             onMouseUp={sendSortingRequest}
-            className="slider__input"
+            className="rangeinput__slider_input"
           />
 
           <input
@@ -65,10 +65,10 @@ export const RangeInput = props => {
             id="slider-2"
             onChange={e => sliderTwo(e)}
             onMouseUp={sendSortingRequest}
-            className="slider__input"
+            className="rangeinput__slider_input"
           />
         </div>
-        <div className="slider__values">
+        <div className="rangeinput__slider_values">
           <div className="values__container">
             <p className="values__info">от</p>
             <input

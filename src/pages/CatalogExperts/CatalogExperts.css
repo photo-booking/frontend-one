@@ -70,4 +70,7 @@
 
 .catalog__filter {
     width: 208px;
+    display: flex;
+    flex-direction: column;
+    justify-content: "flex-start"
 }
