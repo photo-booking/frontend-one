@@ -8,7 +8,7 @@ import { PersonalInfo } from '../../pages/PersonalArea/PersonalInfo/PersonalInfo
 import { Portfolio } from '../../pages/PersonalArea/Portfolio/Portfolio';
 import { PriceList } from '../../pages/PersonalArea/PriceList/PriceList';
 import { VipSubscription } from '../../pages/PersonalArea/VipSubscription/VipSubscription';
-import { Preview } from '../Preview/Preview';
+import { ProfileReviews } from '../ProfileReviews/ProfileReviews';
 import { OrderServices } from '../../pages/OrderServices/OrderServices';
 
 export const ProfileNav = props => {
@@ -237,7 +237,7 @@ export const ProfileNav = props => {
         {/* для Заказов  пока нет макета */}
         {orders ? <OrderServices /> : <></>}
         {/* для Отзывов пока нет макета */}
-        {review ? <Preview /> : <></>}
+        {review ? <ProfileReviews /> : <></>}
         {/* Отображение компонентов - Профиль*/}
         {profile && personalInfo ? <PersonalInfo /> : <></>}
         {profile && contacts ? <Contacts /> : <></>}

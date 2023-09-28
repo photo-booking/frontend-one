@@ -36,6 +36,7 @@ export function login(values) {
     .then(res => getResponseData(res))
     .then(res => {
       localStorage.setItem('token', res.auth_token);
+      // console.log(res);
     });
 }
 

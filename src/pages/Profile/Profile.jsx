@@ -11,6 +11,7 @@ import { CardInfoProfile } from '../../components/Profile/PhotoCard/CardInfo/Car
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProfile } from '../../services/redusers/profile';
+import { Reviews } from '../../components/Reviews/Reviews';
 
 // const HEADERS = { 'Content-Type': 'application/json' };
 // const HEADERS_MEDIA = { 'Content-Type': 'text/html; charset=utf-8' };
@@ -187,6 +188,7 @@ export const Profile = () => {
         ) : (
           <PricesPage />
         )}
+        <Reviews />
       </>
     )
   );

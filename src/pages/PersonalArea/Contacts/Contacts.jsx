@@ -1,7 +1,10 @@
 import './Contacts.css';
 
 export const Contacts = () => {
-    return (
-        <h1>Contacts</h1>
-    )
-}
+  return (
+    <article>
+      <h1>Контакты</h1>
+      <p>Эта информация видна всем в вашем профиле</p>
+    </article>
+  );
+};

@@ -58,6 +58,7 @@ export function App() {
         getUserInfo(jwt)
           .then(res => {
             setCurrentUser(res);
+            setIsClient(res.is_client);
             setLoggedIn(true);
             navigate('/catalog');
           })

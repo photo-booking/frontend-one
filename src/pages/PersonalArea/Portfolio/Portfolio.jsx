@@ -1,7 +1,10 @@
 import './Portfolio.css';
 
 export const Portfolio = () => {
-    return (
-        <h1>Portfolio</h1>
-    )
-}
+  return (
+    <article>
+      <h1>Портфолио</h1>
+      <p>Эта информация видна всем в вашем профиле</p>
+    </article>
+  );
+};
