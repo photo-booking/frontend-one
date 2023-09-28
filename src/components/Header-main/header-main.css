@@ -215,6 +215,8 @@
     font-weight: 600;
     line-height: 20px; 
     font-feature-settings: 'ss01' on;
+    border: none;
+    background: none;
 }
 
 

@@ -25,7 +25,8 @@ export const Signin = props => {
     formState: { errors }
   } = useForm({ mode: 'onChange' });
   const { onSubmitSignin, 
-    // onLoginWithSocial, 
+    // onLoginWithSocial,
+    isClient, 
     errMessage, 
     setErrorMessage, 
     signinGoogle, 
@@ -47,8 +48,8 @@ export const Signin = props => {
   useEffect(() => {
     setErrorMessage(undefined);
     // if(token) {onLoginWithSocial(token)};
-    if(access_token){signinGoogle(access_token);}
-    if(code) {signinVk(code)};
+    if(access_token){signinGoogle(access_token, isClient);}
+    if(code) {signinVk(code, isClient)};
   }, []);
 
   const handleSubmitSignin = values => {

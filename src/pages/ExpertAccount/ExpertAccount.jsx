@@ -1,19 +1,16 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Footer } from '../../components/Footer/footer';
 import './ExpertAccount.css';
-export const ExecutorAccount = () => {
-  const navigate = useNavigate();
-  const { state } = useLocation();
-  const { name, id } = state;
+import { useState, useContext } from 'react';
+import { CurrentUserContext } from '../../components/context/CurrentUserContext';
+import { ProfileNav } from '../../components/ProfileNav/ProfileNav';
+
+export const ExpertAccount = (props) => {
+  const currentUser = useContext(CurrentUserContext);
+  const { isClient } = props;
+
   return (
-    <>
-    <div className={'expertAccount-container'}>
-      <h1>Личный кабинет исполнителя: {name}</h1>
-      <button onClick={() => navigate('/catalog')}>Перейти в каталог</button>
-      <button onClick={() => navigate(`/expert/${id}/orders`, { state: { name, id } })}>
-        Заказы
-      </button>
+    <div className=''>
+      <ProfileNav isClient={isClient}/>
     </div>
-    </>
   );
 };

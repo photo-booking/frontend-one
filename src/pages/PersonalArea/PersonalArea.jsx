@@ -1,10 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import './ClientAccount.css';
+import './PersonalArea.css';
 import { useState, useContext } from 'react';
 import { CurrentUserContext } from '../../components/context/CurrentUserContext';
 import { ProfileNav } from '../../components/ProfileNav/ProfileNav';
 
-export const ClientAccount = (props) => {
+export const PersonalArea = (props) => {
   const currentUser = useContext(CurrentUserContext);
   const { isClient } = props;
 

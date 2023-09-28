@@ -33,10 +33,14 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
         setisAvatarClick(false);
     };
 
-    const onProfileClick = function (event) {
+    // const navigateToProfile = (id) => {
+    //     setisAvatarClick(false);
+    //     isClient ? navigate(`/client/${id}`) : navigate(`/expert/${id}`);
+    // };
+    const navigateToProfile = (id) => {
         setisAvatarClick(false);
+        navigate(`/personal/${id}`);
     };
-
     return (
         <header
             className={isSignIn || isResetPassword || isSignUp ? 'header-main' : 'header-main_border'}
@@ -118,13 +122,12 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
                                     : 'header-main__popup header-main__popup_visible'
                             }
                         >
-                            <Link
+                            <button
                                 className="header-main__popup_link header-main__popup_profile"
-                                to="/card/:1"
-                                onClick={onProfileClick}
+                                onClick={()=> navigateToProfile(currentUser.id)}
                             >
                                 Профиль
-                            </Link>
+                            </button>
                             <Link
                                 className="header-main__popup_link header-main__popup_logout"
                                 onClick={onLogoutClick}
