@@ -1,4 +1,4 @@
-import './Notice.css'
+import './Notice.css';
 
 export const Notice = () => {
     return (
