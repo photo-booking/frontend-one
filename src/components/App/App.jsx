@@ -23,12 +23,13 @@ import { ResetPassword } from '../../pages/ResetPassword/ResetPassword';
 import { CatalogExperts } from '../../pages/CatalogExperts/CatalogExperts';
 import { Profile } from '../../pages/Profile/Profile';
 import { Landing } from '../../pages/Landing/Landing';
-import { ClientAccount } from '../../pages/ClientAccount/ClientAccount';
-import { ClientOrders } from '../../pages/ClientOrders/ClientOrders';
-import { ExpertAccount } from '../../pages/ExpertAccount/ExpertAccount';
-import { ExecutorOrders } from '../../pages/ExpertOrders/ExpertOrders';
-import { ExecutorRatings } from '../../pages/ExpertRatings/ExpertRatings';
-import { OrderServices } from '../../pages/OrderServices/OrderServices';
+// import { ClientAccount } from '../../pages/ClientAccount/ClientAccount';
+// import { ClientOrders } from '../../pages/ClientOrders/ClientOrders';
+// import { ExpertAccount } from '../../pages/ExpertAccount/ExpertAccount';
+// import { ExecutorOrders } from '../../pages/ExpertOrders/ExpertOrders';
+// import { ExecutorRatings } from '../../pages/ExpertRatings/ExpertRatings';
+// import { OrderServices } from '../../pages/OrderServices/OrderServices';
+import { PersonalArea } from '../../pages/PersonalArea/PersonalArea';
 import { ClientChat } from '../../pages/ClientChat/ClientChat';
 import { ExpertChat } from '../../pages/ExpertChat/ExpertChat';
 import { Page404 } from '../../pages/404/404';
@@ -153,8 +154,8 @@ export function App() {
       });
   }
 
-  const signinGoogle = param => {
-    loginGoogle(param)
+  const signinGoogle = (param, status) => {
+    loginGoogle(param, status)
       .then(res => {
         console.log(res);
         const jwt = localStorage.getItem('token');
@@ -173,8 +174,8 @@ export function App() {
       });
   };
 
-  const signinVk = param => {
-    loginVk(param)
+  const signinVk = (param, status) => {
+    loginVk(param, status)
       .then(res => {
         console.log(res);
         const jwt = localStorage.getItem('token');
@@ -234,6 +235,7 @@ export function App() {
               <Signin
                 onSubmitSignin={onSubmitSignin}
                 // onLoginWithSocial={onLoginWithSocial}
+                isClient={isClient}
                 errMessage={errMessage}
                 setErrorMessage={setErrorMessage}
                 signinGoogle={signinGoogle}
@@ -265,7 +267,7 @@ export function App() {
             path="/card/:id"
             element={<Profile />}
           />
-          <Route
+          {/* <Route
             path="/client/:id"
             element={<ClientAccount isClient={isClient}/>}
           />
@@ -288,7 +290,12 @@ export function App() {
           <Route
             path="/order-service"
             element={<OrderServices />}
+          /> */}
+          <Route
+            path="/personal/:id"
+            element={<PersonalArea isClient={isClient}/>}
           />
+
           <Route
             path="/client/:id/chat"
             element={<ClientChat />}

@@ -102,11 +102,11 @@ export function logOut(jwt) {
 }
 
 //Войти в аккаунт через гугл
-export function loginGoogle(param) {
+export function loginGoogle(param, status) {
   return fetch(`${BASE_URL}/social_google/`, {
     method: 'POST',
     headers: HEADERS,
-    body: JSON.stringify({ eccses_token: param })
+    body: JSON.stringify({ eccses_token: param, status: status })
   })
     .then(res => getResponseData(res))
     .then(res => {
@@ -115,11 +115,11 @@ export function loginGoogle(param) {
 }
 
 //Войти в аккаунт через ВК
-export function loginVk(param) {
+export function loginVk(param, status) {
   return fetch(`${BASE_URL}/social_vk/`, {
     method: 'POST',
     headers: HEADERS,
-    body: JSON.stringify({ code: param })
+    body: JSON.stringify({ code: param, status: status })
   })
     .then(res => getResponseData(res))
     .then(res => {

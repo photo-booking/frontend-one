@@ -33,11 +33,14 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
         setisAvatarClick(false);
     };
 
+    // const navigateToProfile = (id) => {
+    //     setisAvatarClick(false);
+    //     isClient ? navigate(`/client/${id}`) : navigate(`/expert/${id}`);
+    // };
     const navigateToProfile = (id) => {
         setisAvatarClick(false);
-        isClient ? navigate(`/client/${id}`) : navigate(`/expert/${id}`);
+        navigate(`/personal/${id}`);
     };
-
     return (
         <header
             className={isSignIn || isResetPassword || isSignUp ? 'header-main' : 'header-main_border'}
