@@ -1,0 +1,40 @@
+.features-element {
+    max-width: 440px;
+    max-height: 344px;
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    border-radius: 12px;
+    background-color: #FFFFFF;
+}
+
+.features-element__img {
+    width: 100px;
+    height: 100px;
+    margin-top: 52px;
+    margin-left: 52px;
+}
+
+.features-element__container-text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: #0C1200;
+    text-align: left;
+    margin: 32px 52px 52px;
+}
+
+.features-element__title {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 24px;
+    /* letter-spacing: -0.3rem; */
+}
+
+.features-element__text {
+    font-family: 'FiraSans, Arial, sans-serif';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* letter-spacing: -0.3rem; */
+}

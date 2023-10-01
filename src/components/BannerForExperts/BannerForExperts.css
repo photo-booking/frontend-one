@@ -2,14 +2,13 @@
     margin: 0 auto;
     max-width: 1376px;
     height: 620px;
-    background-color: #0C1200;
     border-radius: 12px;
     display: flex;
     justify-content: space-between;
 }
 
 .banner-for-experts__title {
-    color: #FFFFFF;
+    color: #0C1200;
     font-weight: 500;
     font-size: 60px;
     line-height: 60px;
@@ -20,7 +19,7 @@
 }
 
 .banner-for-experts__subtitle {
-    color: #FFFFFF;
+    color: #0C1200;
     max-width: 552px;
     font-family: 'FiraSans, Arial, sans-serif';
     font-weight: 400;
@@ -32,11 +31,12 @@
 }
 
 .banner-for-experts__btn {
-    background-color: #AFFA00;
+    background-color: #0C1200;
     width: 203px;
     height: 44px;
     border: none;
     border-radius: 4px;
+    color:#FFFFFF;
     text-align: center;
     font-weight: 400;
     font-size: 14px;
@@ -128,7 +128,6 @@
 .banner-for-experts__statistics-percent-container {
     margin: 40px auto 24px;
     height: 36px;
-    background-color: #F2F2F2;
     border: 1px solid #F2F2F2;
     border-radius: 25px;
     display: flex;

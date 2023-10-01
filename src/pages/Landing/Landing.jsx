@@ -1,14 +1,18 @@
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import './Landing.css';
+import { FirstScreen } from '../../components/FirstScreen/FirstScreen';
+import { ProductFeatures } from '../../components/ProductFeatures/ProductFeatures';
 import { BannerForExperts } from '../../components/BannerForExperts/BannerForExperts';
 
 export const Landing = props => {
-  const navigate = useNavigate();
-  const { signOut } = props;
+  // const navigate = useNavigate();
+  // const { signOut } = props;
   return (
     <div className={'landing-container'}>
+      <FirstScreen />
+      <ProductFeatures />
       <BannerForExperts />
-      <button onClick={() => navigate('/order-service')}>Заказать услугу</button>
+      {/* <button onClick={() => navigate('/order-service')}>Заказать услугу</button> */}
     </div>
   );
 };
