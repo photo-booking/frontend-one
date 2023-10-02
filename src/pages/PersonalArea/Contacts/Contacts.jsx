@@ -1,10 +1,11 @@
+import '../PersonalArea.css';
 import './Contacts.css';
 
 export const Contacts = () => {
   return (
     <article>
-      <h1>Контакты</h1>
-      <p>Эта информация видна всем в вашем профиле</p>
+      <h1 className='personal-area__title'>Контакты</h1>
+      <p className='personal-area__subtitle'>Эта информация видна всем в вашем профиле</p>
       <form className="contacts__form">
         <label>
           Номер телефона

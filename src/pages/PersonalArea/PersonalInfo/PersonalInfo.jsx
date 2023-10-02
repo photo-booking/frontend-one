@@ -1,51 +1,62 @@
+import '../PersonalArea.css';
 import './PersonalInfo.css';
+import defaultAvatar from '../../../images/Avatar.svg';
 
 export const PersonalInfo = () => {
   return (
-    <article className="personalInfo">
-      <h1>Личная информация</h1>
-      <p>Эта информация видна всем в вашем профиле</p>
-      <div>
-        <p>Аватар</p>
-        <div>
-          <span>Круг</span>
-          <form
-            method="post"
-            enctype="multipart/form-data"
-            className="personalInfo__form"
-          >
+    <article className="personal-info">
+      <h1 className="personal-area__title">Личная информация</h1>
+      <p className="personal-area__subtitle">Эта информация видна всем в вашем профиле</p>
+      <form
+        method="post"
+        enctype="multipart/form-data"
+        className="personal-info__form"
+      >
+        <div className="personal-info__avatar-container personal-info__avatar-container_column">
+          <p className="personal-info__avatar-text">Аватар</p>
+          <div className="personal-info__avatar-container">
+            <img
+              src={defaultAvatar}
+              alt="avatar"
+              className="personal-info__avatar-image"
+            />
+
             <label class="input-file">
-              <input
-                type="file"
-                name="file"
-              />
-              <span class="input-file-btn">Загрузить новый аватар</span>
-              <span class="input-file-text">Размер 800x800px В формате JPG или PNG</span>
+              <div className="personal-info__avatar-container personal-info__avatar-container_caption">
+                <input
+                  type="file"
+                  name="file"
+                />
+
+                <span class="input-file-btn">Загрузить новый аватар</span>
+                  <span class="input-file-text">Размер 800x800px</span>
+                  <span class="input-file-text">В формате JPG или PNG</span>
+              </div>
             </label>
-            <label>
-              Имя
-              <input></input>
-            </label>
-            <label>
-              Фамилия
-              <input></input>
-            </label>
-            <label>
-              Город
-              <input></input>
-            </label>
-            <label>
-              Обо мне
-              <textarea></textarea>
-            </label>
-            <label>
-              Оборудование
-              <textarea></textarea>
-            </label>
-            <button>Сохранить</button>
-          </form>
+          </div>
         </div>
-      </div>
+        <label className="personal-info__label">
+          Имя
+          <input className="personal-info__input"></input>
+        </label>
+        <label className="personal-info__label">
+          Фамилия
+          <input className="personal-info__input"></input>
+        </label>
+        <label className="personal-info__label">
+          Город
+          <input className="personal-info__input"></input>
+        </label>
+        <label className="personal-info__label">
+          Обо мне
+          <textarea className="personal-info__input"></textarea>
+        </label>
+        <label className="personal-info__label">
+          Оборудование
+          <textarea className="personal-info__input"></textarea>
+        </label>
+        <button className="personal-info__btn-submit">Сохранить</button>
+      </form>
     </article>
   );
 };
