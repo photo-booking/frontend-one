@@ -12,7 +12,8 @@ import {
   checkToken,
   logOut,
   loginGoogle,
-  loginVk
+  loginVk,
+  updatePersonalInfo
 } from '../../utils/auth';
 
 import { getAmountExpert } from '../../utils/api';
@@ -67,7 +68,7 @@ export function App() {
           });
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
         setErrorMessage(err.non_field_errors[0]);
         setLoggedIn(false);
       });
@@ -110,7 +111,8 @@ export function App() {
         console.log(res);
         setIsEmailSend(true);
       })
-      .catch(err => { console.log(err);
+      .catch(err => {
+        console.log(err);
       });
   };
 
@@ -124,6 +126,16 @@ export function App() {
       .catch(err => {
         console.log(err);
       });
+  };
+
+  const onSubmitPersonalInfo = values => {
+    const jwt = localStorage.getItem('token');
+    updatePersonalInfo(values, jwt)
+      .then(res => {
+        console.log(res);
+        setCurrentUser(res);
+      })
+      .catch(err => console.log(err));
   };
 
   function tokenCheck() {
@@ -294,7 +306,12 @@ export function App() {
           /> */}
           <Route
             path="/personal/:id"
-            element={<PersonalArea isClient={isClient}/>}
+            element={
+              <PersonalArea
+                isClient={isClient}
+                onSubmitPersonalInfo={onSubmitPersonalInfo}
+              />
+            }
           />
 
           <Route
@@ -310,7 +327,7 @@ export function App() {
             element={<Page404 />}
           />
         </Routes>
-        <Footer isClient={isClient}/>
+        <Footer isClient={isClient} />
       </div>
     </CurrentUserContext.Provider>
   );

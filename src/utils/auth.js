@@ -127,3 +127,19 @@ export function loginVk(param, status) {
       localStorage.setItem('token', res.auth_token);
     });
 }
+
+//Обновить личную информацию в ЛК
+export function updatePersonalInfo(values, jwt) {
+  return fetch(`${BASE_URL}/users/me/`, {
+    method: 'PATCH',
+    headers: { ...HEADERS, Authorization: `token ${jwt}` },
+    body: JSON.stringify({
+      first_name: values.name,
+      last_name: values.surname,
+      city: values.city,
+      about_me: values.aboutMe,
+      equipment: values.equipment
+    })
+  })
+    .then(res => getResponseData(res))
+}

@@ -12,7 +12,7 @@ import { ProfileReviews } from '../ProfileReviews/ProfileReviews';
 import { OrderServices } from '../../pages/OrderServices/OrderServices';
 
 export const ProfileNav = props => {
-  const { isClient } = props;
+  const { isClient, onSubmitPersonalInfo } = props;
 
   //   Верхняя навигация
   const [profile, setProfile] = React.useState(false);
@@ -239,7 +239,7 @@ export const ProfileNav = props => {
         {/* для Отзывов пока нет макета */}
         {review ? <ProfileReviews /> : <></>}
         {/* Отображение компонентов - Профиль*/}
-        {profile && personalInfo ? <PersonalInfo /> : <></>}
+        {profile && personalInfo ? <PersonalInfo onSubmitPersonalInfo={onSubmitPersonalInfo}/> : <></>}
         {profile && contacts ? <Contacts /> : <></>}
         {profile && portfolio ? <Portfolio /> : <></>}
         {profile && priceList ? <PriceList /> : <></>}

@@ -1,16 +1,12 @@
-import { useLocation, useNavigate } from 'react-router-dom';
 import './PersonalArea.css';
-import { useState, useContext } from 'react';
-import { CurrentUserContext } from '../../components/context/CurrentUserContext';
 import { ProfileNav } from '../../components/ProfileNav/ProfileNav';
 
 export const PersonalArea = (props) => {
-  const currentUser = useContext(CurrentUserContext);
-  const { isClient } = props;
+  const { isClient, onSubmitPersonalInfo } = props;
 
   return (
     <div className=''>
-      <ProfileNav isClient={isClient}/>
+      <ProfileNav isClient={isClient} onSubmitPersonalInfo={onSubmitPersonalInfo}/>
     </div>
     
   );
