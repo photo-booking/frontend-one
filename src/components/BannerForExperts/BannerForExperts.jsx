@@ -3,9 +3,11 @@ import './BannerForExperts.css';
 export const BannerForExperts = () => {
     return (
         <section className='banner-for-experts'>
-            <div className='banner-for-experts__text-block'>
-                <h1 className='banner-for-experts__title'>Находите заказы. Работайте комфортно.</h1>
-                <h2 className='banner-for-experts__subtitle'>Фотографам и видеооператорам доступна доска заказов, где можно найти новых клиентов.</h2>
+            <div className='banner-for-experts__container'>
+                <div className='banner-for-experts__text-block'>
+                    <h1 className='banner-for-experts__title'>Находите заказы. Работайте комфортно.</h1>
+                    <p className='banner-for-experts__subtitle'>Фотографам и видеооператорам доступна доска заказов, где можно найти новых клиентов.</p>
+                </div>
                 <button className='banner-for-experts__btn'>Стать специалистом</button>
             </div>
             <div className='banner-for-experts__frame-block'>
@@ -22,6 +24,9 @@ export const BannerForExperts = () => {
                         <span className='banner-for-experts__statistics-percent-count'>37%</span>
                         <span className='banner-for-experts__statistics-percent-text'>за последний месяц</span>
                     </div>
+                </div>
+                <div className='banner-for-experts__diagram'>
+                    <span className='banner-for-experts__diagram-text'>Динамика дохода</span>
                 </div>
             </div>
         </section>

@@ -1,0 +1,73 @@
+.expert-card {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    height: 672px;
+    border-radius: 12px;
+    background-color: #FFFFFF;
+}
+
+.expert-card__img {
+    width: 320px;
+    height: 420px;
+    border-radius: 12px;
+}
+
+.expert-card__container {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.expert-card__about {
+    display: flex;
+}
+
+.expert-card__text-part {
+
+}
+
+.expert-card__name {
+
+}
+
+.expert-card__position {
+
+}
+
+.expert-card__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 100px;
+}
+
+.expert-card__work-type {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: auto;
+}
+
+.expert-card__work-position {
+
+}
+
+.expert-card__check {
+    display: flex;
+    justify-content: space-between;
+}
+
+.expert-card__amount {
+
+}
+
+.expert-card__grade {
+    display: flex;
+}
+
+.expert-card__grade-rating {
+
+}
+
+.expert-card__grade-count {
+
+}

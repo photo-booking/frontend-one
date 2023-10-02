@@ -7,6 +7,12 @@
     justify-content: space-between;
 }
 
+.banner-for-experts__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .banner-for-experts__title {
     color: #0C1200;
     font-weight: 500;
@@ -14,23 +20,25 @@
     line-height: 60px;
     max-width: 592px;
     padding-top: 76px;
-    margin-left: 76px;
+    margin-left: 96px;
     letter-spacing: -0.2rem;
 }
 
 .banner-for-experts__subtitle {
     color: #0C1200;
     max-width: 552px;
-    font-family: 'FiraSans, Arial, sans-serif';
+    font-family: 'Fira Sans';
     font-weight: 400;
     font-size: 20px;
     line-height: 28px;
     margin-top: 32px;
-    margin-left: 80px;
+    margin-left: 100px;
+    margin-bottom: 0;
     letter-spacing: 0.08rem;
 }
 
 .banner-for-experts__btn {
+    font-family: 'Aneliza';
     background-color: #0C1200;
     width: 203px;
     height: 44px;
@@ -38,11 +46,11 @@
     border-radius: 4px;
     color:#FFFFFF;
     text-align: center;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 14px;
     line-height: 20px;
-    margin-top: 211px;
-    margin-left: 80px;
+    margin-left: 100px;
+    margin-bottom: 80px;
 }
 
 .banner-for-experts__frame-block {
@@ -50,7 +58,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 28px;
+    gap: 32px;
 }
 
 .banner-for-experts__chart {
@@ -63,7 +71,7 @@
     background-image: url(../../images/chart.svg);
     background-position: 232px 20px;
     background-repeat: no-repeat;
-    margin-top: 28px;
+    margin-top: 40px;
 }
 
 .banner-for-experts__chart-text {
@@ -76,9 +84,9 @@
 }
 
 .banner-for-experts__chart-count {
-    font-family: 'FiraSans, Arial, sans-serif';
+    font-family: 'Fira Sans';
     color: #0C1200;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 50px;
     line-height: 50px;
     margin-top: 12px;
@@ -109,9 +117,9 @@
 }
 
 .banner-for-experts__statistics-count {
-    font-family: 'FiraSans, Arial, sans-serif';
+    font-family: 'Fira Sans';
     color: #0C1200;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 50px;
     line-height: 50px;
     margin-top: 9px;
@@ -147,9 +155,9 @@
 }
 
 .banner-for-experts__statistics-percent-count {
-    font-family: 'FiraSans, Arial, sans-serif';
+    font-family: 'Fira Sans';
     color: #0C1200;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 20px;
     line-height: 20px;
 }
@@ -160,4 +168,25 @@
     font-size: 12px;
     line-height: 12px;
     margin-right: 12px;
+}
+
+.banner-for-experts__diagram {
+    width: 354px;
+    height: 110px;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    display: flex;
+    background-image: url(../../images/diagram.svg);
+    background-repeat: no-repeat;
+    background-position: 20px 46px;
+}
+
+.banner-for-experts__diagram-text {
+    color: #0C1200;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: -0.03rem;
+    margin-top: 20px;
+    margin-left: 24px;
 }

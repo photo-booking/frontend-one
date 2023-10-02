@@ -2,6 +2,7 @@
 import './Landing.css';
 import { FirstScreen } from '../../components/FirstScreen/FirstScreen';
 import { ProductFeatures } from '../../components/ProductFeatures/ProductFeatures';
+import { ExpertsPreview } from '../../components/ExpertsPreview/ExpertsPreview';
 import { BannerForExperts } from '../../components/BannerForExperts/BannerForExperts';
 
 export const Landing = props => {
@@ -11,6 +12,7 @@ export const Landing = props => {
     <div className={'landing-container'}>
       <FirstScreen />
       <ProductFeatures />
+      <ExpertsPreview />
       <BannerForExperts />
       {/* <button onClick={() => navigate('/order-service')}>Заказать услугу</button> */}
     </div>
