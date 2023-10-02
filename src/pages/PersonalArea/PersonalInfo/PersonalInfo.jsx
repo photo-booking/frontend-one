@@ -28,7 +28,7 @@ export const PersonalInfo = props => {
   const { onSubmitPersonalInfo } = props;
   const buttonSubmitClassName = isValid
     ? 'personal-info__btn-submit'
-    : 'personal-info__btn-submit_disabled';
+    : 'personal-info__btn-submit personal-info__btn-submit_disabled';
 
   const handleSubmitPersonalInfo = values => {
     onSubmitPersonalInfo(values);
@@ -72,7 +72,7 @@ export const PersonalInfo = props => {
             className="personal-info__input"
             type="text"
             id="name"
-            {...register('name')}
+            {...register('name', {required: 'Это обязательное поле'})}
           ></input>
         </label>
         <label className="personal-info__label">
@@ -81,7 +81,7 @@ export const PersonalInfo = props => {
             className="personal-info__input"
             type="text"
             id="surname"
-            {...register('surname')}
+            {...register('surname', {required: 'Это обязательное поле'})}
           ></input>
         </label>
         <label className="personal-info__label">
@@ -89,7 +89,7 @@ export const PersonalInfo = props => {
           <select
             className="personal-info__input"
             id="city"
-            {...register('city')}
+            {...register('city', {required: 'Это обязательное поле'})}
           >
             <option value=''>Выберите из списка</option>
             <option value='Москва'>Москва</option>
