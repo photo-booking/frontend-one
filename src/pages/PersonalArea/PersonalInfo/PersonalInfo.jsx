@@ -27,7 +27,7 @@ export const PersonalInfo = props => {
     }
   });
   const watchAllFields = watch();
-  const { onSubmitPersonalInfo, onSubmitPersonalAvatar } = props;
+  const { isClient, onSubmitPersonalInfo, onSubmitPersonalAvatar, onDeletePersonalAvatar } = props;
 
   const handleSubmitPersonalInfo = values => {
     onSubmitPersonalInfo(values);
@@ -35,6 +35,10 @@ export const PersonalInfo = props => {
 
   const handleSubmitPersonalAvatar = (value, type) => {
     onSubmitPersonalAvatar(value, type);
+  };
+
+  const handleDeletePersonalAvatar = () => {
+    onDeletePersonalAvatar();
   };
 
   const isButtonDisabled = () => {
@@ -47,8 +51,10 @@ export const PersonalInfo = props => {
 
   return (
     <article className="personal-info">
-      <h1 className="personal-area__title">Личная информация</h1>
-      <p className="personal-area__subtitle">Эта информация видна всем в вашем профиле</p>
+      <span>
+        <h1 className="personal-area__title">Личная информация</h1>
+        <p className="personal-area__subtitle">Эта информация видна всем в вашем профиле</p>
+      </span>
       {/* Загрузка аватара */}
       <form className="personal-info__avatar-container personal-info__avatar-container_column">
         <p className="personal-info__avatar-text">Аватар</p>
@@ -83,6 +89,16 @@ export const PersonalInfo = props => {
               <span className="input-file-text">В формате JPG или PNG</span>
             </div>
           </label>
+          {currentUser.profile_photo ? (
+            <button
+              className="personal-info__btn-delete-avatar"
+              onClick={handleDeletePersonalAvatar}
+            >
+              Удалить
+            </button>
+          ) : (
+            <></>
+          )}
         </div>
       </form>
       {/* Загрузка личной информации */}
@@ -125,30 +141,36 @@ export const PersonalInfo = props => {
             <option value="Казань">Казань</option>
           </select>
         </label>
-        <label className="personal-info__label">
-          Обо мне
-          <textarea
-            className="personal-info__input personal-info_relative"
-            maxLength="150"
-            id="aboutMe"
-            {...register('aboutMe')}
-          ></textarea>
-          <span className="personal-info__lenght">
-            {watchAllFields.aboutMe ? watchAllFields.aboutMe.length : 0}/150
-          </span>
-        </label>
-        <label className="personal-info__label">
-          Оборудование
-          <textarea
-            className="personal-info__input personal-info_relative"
-            maxLength="150"
-            id="equipment"
-            {...register('equipment')}
-          ></textarea>
-          <span className="personal-info__lenght">
-            {watchAllFields.equipment ? watchAllFields.equipment.length : 0}/150
-          </span>
-        </label>
+        {!isClient ? (
+          <>
+            <label className="personal-info__label">
+              Обо мне
+              <textarea
+                className="personal-info__input personal-info_relative"
+                maxLength="150"
+                id="aboutMe"
+                {...register('aboutMe')}
+              ></textarea>
+              <span className="personal-info__lenght">
+                {watchAllFields.aboutMe ? watchAllFields.aboutMe.length : 0}/150
+              </span>
+            </label>
+            <label className="personal-info__label">
+              Оборудование
+              <textarea
+                className="personal-info__input personal-info_relative"
+                maxLength="150"
+                id="equipment"
+                {...register('equipment')}
+              ></textarea>
+              <span className="personal-info__lenght">
+                {watchAllFields.equipment ? watchAllFields.equipment.length : 0}/150
+              </span>
+            </label>
+          </>
+        ) : (
+          <></>
+        )}
         <button
           className={buttonSubmitClassName}
           disabled={isButtonDisabled()}

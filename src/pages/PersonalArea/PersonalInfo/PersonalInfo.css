@@ -17,7 +17,7 @@
 	text-align: center;
 	border-radius: 4px;
 	background-color: #AFFA00;
-	padding: 12px 32px;
+	padding: 12px 14px;
 	box-sizing: border-box;
 	border: none;
 	margin: 0 0 20px;
@@ -127,6 +127,7 @@
 	align-self: flex-end;
 	cursor: pointer;
 }
+
 .personal-info__btn-submit:hover {
 	background-color: #91E500;
 }
@@ -150,6 +151,8 @@
 	font-style: normal;
 	font-weight: 600;
 	line-height: 20px;
+	width: 496px;
+	box-sizing: border-box;
 }
 
 /* .personal-info_relative[id='aboutMe']
@@ -160,17 +163,39 @@
 } */
 
 .personal-info__lenght {
-	/* position: absolute; */
-	/* right: 10px;
-	bottom: 10px;
-	z-index: 100; */
 	color: #757575;
 	text-align: right;
 	font-feature-settings: 'ss01' on;
-	/* design/label/medium */
 	font-family: Aneliza;
 	font-size: 14px;
 	font-style: normal;
 	font-weight: 600;
 	line-height: 20px;
+}
+
+.personal-info__btn-delete-avatar {
+	width: 164px;
+	height: 44px;
+	padding: 12px 32px;
+	border-radius: 4px;
+	border: 1px solid #0C1200;
+	color: #0C1200;
+	text-align: center;
+	font-feature-settings: 'ss01' on;
+	font-family: Aneliza;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 20px;
+	cursor: pointer;
+}
+
+.personal-info__btn-delete-avatar:hover {
+	background-color: #0C1200;
+	color: #E0E0E0;
+}
+
+.personal-info__btn-delete-avatar:active {
+	background-color: #0C1200;
+	color:  #808080;
 }

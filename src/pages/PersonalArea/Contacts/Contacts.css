@@ -1,3 +1,9 @@
+.personal-area__contacts {
+    display: flex;
+    flex-direction: column;
+    row-gap: 28px;
+}
+
 .contacts__form {
     display: flex;
     flex-direction: column;
@@ -28,6 +34,8 @@
     border-radius: 4px;
     border: 1px solid #E0E0E0;
     background: #FFF;
+    width: 496px;
+    box-sizing: border-box;
 }
 
 .contacts__btn-submit {
@@ -39,6 +47,14 @@
     background: #AFFA00;
     cursor: pointer;
     border: none;
+    text-align: center;
+    font-feature-settings: 'ss01' on;
+    /* design/label/medium */
+    font-family: Aneliza;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
 }
 
 .contacts__btn-submit:hover {

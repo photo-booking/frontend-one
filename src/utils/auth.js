@@ -156,6 +156,18 @@ export function updatePersonalAvatar (value, type, jwt) {
     .then(res => getResponseData(res))
 }
 
+//Удалить аватар в ЛК
+export function deletePersonalAvatar (jwt) {
+  return fetch (`${BASE_URL}/users/me/`, {
+    method: 'PATCH',
+    headers: { ...HEADERS, Authorization: `token ${jwt}` },
+    body: JSON.stringify({
+      profile_photo: 'null'
+    })
+  })
+    .then(res => getResponseData(res))
+}
+
 //Обновить контакты в ЛК
 export function updatePersonalContacts (values, jwt) {
   return fetch (`${BASE_URL}/users/me/`, {

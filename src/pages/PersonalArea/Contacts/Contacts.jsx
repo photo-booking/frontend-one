@@ -33,9 +33,11 @@ export const Contacts = props => {
     : 'contacts__btn-submit contacts__btn-submit_disabled';
 
   return (
-    <article>
-      <h1 className="personal-area__title">Контакты</h1>
-      <p className="personal-area__subtitle">Эта информация видна всем в вашем профиле</p>
+    <article className="personal-area__contacts">
+      <span>
+        <h1 className="personal-area__title">Контакты</h1>
+        <p className="personal-area__subtitle">Эта информация видна всем в вашем профиле</p>
+      </span>
       <form
         className="contacts__form"
         onSubmit={handleSubmit(handleSubmitPersonalContacts)}

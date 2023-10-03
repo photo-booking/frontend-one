@@ -15,7 +15,8 @@ import {
   loginVk,
   updatePersonalInfo,
   updatePersonalAvatar,
-  updatePersonalContacts
+  updatePersonalContacts,
+  deletePersonalAvatar
 } from '../../utils/auth';
 
 import { getAmountExpert } from '../../utils/api';
@@ -143,6 +144,16 @@ export function App() {
   const onSubmitPersonalAvatar = (value, type) => {
     const jwt = localStorage.getItem('token');
     updatePersonalAvatar(value,type, jwt)
+      .then(res => {
+        console.log(res);
+        setCurrentUser(res);
+      })
+      .catch(err => console.log(err));
+  }
+
+  const onDeletePersonalAvatar = () => {
+    const jwt = localStorage.getItem('token');
+    deletePersonalAvatar(jwt)
       .then(res => {
         console.log(res);
         setCurrentUser(res);
@@ -310,6 +321,7 @@ export function App() {
                 onSubmitPersonalInfo={onSubmitPersonalInfo}
                 onSubmitPersonalAvatar={onSubmitPersonalAvatar}
                 onSubmitPersonalContacts={onSubmitPersonalContacts}
+                onDeletePersonalAvatar={onDeletePersonalAvatar}
               />
             }
           />

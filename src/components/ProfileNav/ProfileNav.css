@@ -5,12 +5,12 @@ h1 {margin: 0;}
 }
 
 .profile-nav__container {
-    margin: 40px 0;
+    margin: 44px 0 60px;
 }
 
 .profile-nav__content {
     display: flex;
-    column-gap: 32px;
+    column-gap: 60px;
 }
 
 .profile-nav__list {
@@ -18,7 +18,7 @@ h1 {margin: 0;}
     display: flex;
     padding: 0;
     margin: 0;
-    row-gap: 24px;
+    row-gap: 30px;
     column-gap: 24px;
 }
 
