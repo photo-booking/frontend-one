@@ -125,17 +125,50 @@
 	line-height: 20px;
 	margin-top: 4px;
 	align-self: flex-end;
+	cursor: pointer;
+}
+.personal-info__btn-submit:hover {
+	background-color: #91E500;
 }
 
-.personal-info__btn-submit_disabled {
+.personal-info__btn-submit:active {
+	background-color: #8BDB00;
+}
+
+.personal-info__btn-submit_disabled,
+.personal-info__btn-submit_disabled:hover {
 	background: #E0E0E0;
 	color: #808080;
+	cursor: default;
 }
 
 .personal-info__input {
 	border: 1px solid #E0E0E0;
 	border-radius: 4px;
 	padding: 12px 16px;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 20px;
+}
+
+/* .personal-info_relative[id='aboutMe']
+
+.personal-info_relative[id='equipment']
+	{
+	position: relative;
+} */
+
+.personal-info__lenght {
+	/* position: absolute; */
+	/* right: 10px;
+	bottom: 10px;
+	z-index: 100; */
+	color: #757575;
+	text-align: right;
+	font-feature-settings: 'ss01' on;
+	/* design/label/medium */
+	font-family: Aneliza;
 	font-size: 14px;
 	font-style: normal;
 	font-weight: 600;

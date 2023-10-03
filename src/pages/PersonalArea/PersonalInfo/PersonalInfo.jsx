@@ -9,10 +9,11 @@ import { CurrentUserContext } from '../../../components/context/CurrentUserConte
 export const PersonalInfo = props => {
   const currentUser = useContext(CurrentUserContext);
   const {
+    watch,
     register,
     handleSubmit,
     reset,
-    formState: { errors, isValid }
+    formState: { errors, isValid, isDirty }
   } = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -24,21 +25,26 @@ export const PersonalInfo = props => {
       //правильнее сделать запрос на сервер за информацией профиля, дождаться и подставить из ответа
     }
   });
-
+  const watchAllFields = watch();
   const { onSubmitPersonalInfo } = props;
-  const buttonSubmitClassName = isValid
-    ? 'personal-info__btn-submit'
-    : 'personal-info__btn-submit personal-info__btn-submit_disabled';
 
   const handleSubmitPersonalInfo = values => {
     onSubmitPersonalInfo(values);
   };
 
+  const isButtonDisabled = () => {
+    return !isDirty || !isValid
+  };
+
+  const buttonSubmitClassName = !isButtonDisabled()
+  ? 'personal-info__btn-submit'
+  : 'personal-info__btn-submit personal-info__btn-submit_disabled';
+
   return (
     <article className="personal-info">
       <h1 className="personal-area__title">Личная информация</h1>
       <p className="personal-area__subtitle">Эта информация видна всем в вашем профиле</p>
-
+      {/* Загрузка аватара */}
       <form className="personal-info__avatar-container personal-info__avatar-container_column">
         <p className="personal-info__avatar-text">Аватар</p>
         <div className="personal-info__avatar-container">
@@ -62,6 +68,7 @@ export const PersonalInfo = props => {
           </label>
         </div>
       </form>
+      {/* Загрузка личной информации */}
       <form
         className="personal-info__form"
         onSubmit={handleSubmit(handleSubmitPersonalInfo)}
@@ -72,7 +79,7 @@ export const PersonalInfo = props => {
             className="personal-info__input"
             type="text"
             id="name"
-            {...register('name', {required: 'Это обязательное поле'})}
+            {...register('name', { required: 'Это обязательное поле' })}
           ></input>
         </label>
         <label className="personal-info__label">
@@ -81,7 +88,7 @@ export const PersonalInfo = props => {
             className="personal-info__input"
             type="text"
             id="surname"
-            {...register('surname', {required: 'Это обязательное поле'})}
+            {...register('surname', { required: 'Это обязательное поле' })}
           ></input>
         </label>
         <label className="personal-info__label">
@@ -89,37 +96,50 @@ export const PersonalInfo = props => {
           <select
             className="personal-info__input"
             id="city"
-            {...register('city', {required: 'Это обязательное поле'})}
+            {...register('city', { required: 'Это обязательное поле' })}
           >
-            <option value=''>Выберите из списка</option>
-            <option value='Москва'>Москва</option>
-            <option value='Санкт-Петербур'>Санкт-Петербург</option>
-            <option value='Волгоград'>Волгоград</option>
-            <option value='Владивосток'>Владивосток</option>
-            <option value='Воронеж'>Воронеж</option>
-            <option value='Екатеринбург'>Екатеринбург</option>
-            <option value='Казань'>Казань</option>
+            <option value="">Выберите из списка</option>
+            <option value="Москва">Москва</option>
+            <option value="Санкт-Петербур">Санкт-Петербург</option>
+            <option value="Волгоград">Волгоград</option>
+            <option value="Владивосток">Владивосток</option>
+            <option value="Воронеж">Воронеж</option>
+            <option value="Екатеринбург">Екатеринбург</option>
+            <option value="Казань">Казань</option>
           </select>
         </label>
         <label className="personal-info__label">
           Обо мне
           <textarea
-            className="personal-info__input"
+            className="personal-info__input personal-info_relative"
             maxLength="150"
             id="aboutMe"
             {...register('aboutMe')}
+            // onChange={evt => returnSimbolLength(evt)}
           ></textarea>
+          <span className="personal-info__lenght">
+            {watchAllFields.aboutMe ? watchAllFields.aboutMe.length : 0}/150
+          </span>
         </label>
         <label className="personal-info__label">
           Оборудование
           <textarea
-            className="personal-info__input"
+            className="personal-info__input personal-info_relative"
             maxLength="150"
             id="equipment"
             {...register('equipment')}
+            // onChange={evt => returnSimbolLength(evt)}
           ></textarea>
+          <span className="personal-info__lenght">
+            {watchAllFields.equipment ? watchAllFields.equipment.length : 0}/150
+          </span>
         </label>
-        <button className={buttonSubmitClassName}>Сохранить</button>
+        <button
+          className={buttonSubmitClassName}
+          disabled={isButtonDisabled()}
+        >
+          Сохранить
+        </button>
       </form>
     </article>
   );
