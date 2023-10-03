@@ -13,7 +13,8 @@ import {
   logOut,
   loginGoogle,
   loginVk,
-  updatePersonalInfo
+  updatePersonalInfo,
+  updatePersonalAvatar
 } from '../../utils/auth';
 
 import { getAmountExpert } from '../../utils/api';
@@ -137,6 +138,16 @@ export function App() {
       })
       .catch(err => console.log(err));
   };
+
+  const onSubmitPersonalAvatar = value => {
+    const jwt = localStorage.getItem('token');
+    updatePersonalAvatar(value, jwt)
+      .then(res => {
+        console.log(res);
+        setCurrentUser(res);
+      })
+      .catch(err => console.log(err));
+  }
 
   function tokenCheck() {
     setIsLoader(true);
@@ -280,36 +291,13 @@ export function App() {
             path="/card/:id"
             element={<Profile />}
           />
-          {/* <Route
-            path="/client/:id"
-            element={<ClientAccount isClient={isClient}/>}
-          />
-          <Route
-            path="/expert/:id"
-            element={<ExpertAccount isClient={isClient}/>}
-          />
-          <Route
-            path="/client/:id/orders"
-            element={<ClientOrders />}
-          />
-          <Route
-            path="/expert/:id/orders"
-            element={<ExecutorOrders />}
-          />
-          <Route
-            path="/expert/:id/ratings"
-            element={<ExecutorRatings />}
-          />
-          <Route
-            path="/order-service"
-            element={<OrderServices />}
-          /> */}
           <Route
             path="/personal/:id"
             element={
               <PersonalArea
                 isClient={isClient}
                 onSubmitPersonalInfo={onSubmitPersonalInfo}
+                onSubmitPersonalAvatar={onSubmitPersonalAvatar}
               />
             }
           />

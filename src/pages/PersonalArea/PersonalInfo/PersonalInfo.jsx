@@ -3,6 +3,7 @@ import './PersonalInfo.css';
 import defaultAvatar from '../../../images/Avatar.svg';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import imageToBase64 from 'image-to-base64/browser'
 
 import { CurrentUserContext } from '../../../components/context/CurrentUserContext';
 
@@ -26,11 +27,15 @@ export const PersonalInfo = props => {
     }
   });
   const watchAllFields = watch();
-  const { onSubmitPersonalInfo } = props;
+  const { onSubmitPersonalInfo, onSubmitPersonalAvatar } = props;
 
   const handleSubmitPersonalInfo = values => {
     onSubmitPersonalInfo(values);
   };
+
+  const handleSubmitPersonalAvatar = value => {
+    onSubmitPersonalAvatar(value)
+  }
 
   const isButtonDisabled = () => {
     return !isDirty || !isValid
@@ -49,7 +54,7 @@ export const PersonalInfo = props => {
         <p className="personal-info__avatar-text">Аватар</p>
         <div className="personal-info__avatar-container">
           <img
-            src={defaultAvatar}
+            src={currentUser.profile_photo ? currentUser.profile_photo : defaultAvatar}
             alt="avatar"
             className="personal-info__avatar-image"
           />
@@ -58,7 +63,14 @@ export const PersonalInfo = props => {
             <div className="personal-info__avatar-container personal-info__avatar-container_caption">
               <input
                 type="file"
-                name="file"
+                name="avatar"
+                id="avatar"
+                accept="image/png, image/jpeg"
+                onChange={(evt) => {
+                  imageToBase64(evt.target.files)
+                    .then(res => handleSubmitPersonalAvatar(res))
+                    .catch(err => console.log(err))
+                }}
               />
 
               <span className="input-file-btn">Загрузить новый аватар</span>
@@ -115,7 +127,6 @@ export const PersonalInfo = props => {
             maxLength="150"
             id="aboutMe"
             {...register('aboutMe')}
-            // onChange={evt => returnSimbolLength(evt)}
           ></textarea>
           <span className="personal-info__lenght">
             {watchAllFields.aboutMe ? watchAllFields.aboutMe.length : 0}/150
@@ -128,7 +139,6 @@ export const PersonalInfo = props => {
             maxLength="150"
             id="equipment"
             {...register('equipment')}
-            // onChange={evt => returnSimbolLength(evt)}
           ></textarea>
           <span className="personal-info__lenght">
             {watchAllFields.equipment ? watchAllFields.equipment.length : 0}/150
