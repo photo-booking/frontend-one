@@ -37,7 +37,8 @@ export const PersonalInfo = props => {
     onSubmitPersonalAvatar(value, type);
   };
 
-  const handleDeletePersonalAvatar = () => {
+  const handleDeletePersonalAvatar = (evt) => {
+    evt.preventDefault();
     onDeletePersonalAvatar();
   };
 

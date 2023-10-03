@@ -162,7 +162,7 @@ export function deletePersonalAvatar (jwt) {
     method: 'PATCH',
     headers: { ...HEADERS, Authorization: `token ${jwt}` },
     body: JSON.stringify({
-      profile_photo: 'null'
+      profile_photo: null
     })
   })
     .then(res => getResponseData(res))
