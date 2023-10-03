@@ -1,6 +1,7 @@
 import './ExpertCard.css';
 import expertPhoto from '../../images/ExpertPhoto.png';
 import expertAvatar from '../../images/ExpertAvatar.png';
+import gradeImg from '../../images/StarIcon.svg';
 
 export const ExpertCard = () => {
     return (
@@ -24,6 +25,7 @@ export const ExpertCard = () => {
                 <div className='expert-card__check'>
                     <div className='expert-card__amount'>от 2500₽/час</div>
                     <div className='expert-card__grade'>
+                        <img className='expert-card__grade-img' src={gradeImg} alt='Иконка звездочки' />
                         <span className='expert-card__grade-rating'>4.78</span>
                         <span className='expert-card__grade-count'>(137)</span>
                     </div>
