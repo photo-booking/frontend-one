@@ -1,4 +1,57 @@
 .contacts__form {
     display: flex;
     flex-direction: column;
+    row-gap: 24px;
+}
+
+.contacts__form-label {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+    color: #0C1200;
+    font-feature-settings: 'ss01' on;
+    font-family: Aneliza;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+.contacts__form-input {
+    color: #0C1200;
+    font-family: Fira Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    padding: 12px 16px;
+    border-radius: 4px;
+    border: 1px solid #E0E0E0;
+    background: #FFF;
+}
+
+.contacts__btn-submit {
+    margin-top: 4px;
+    padding: 12px 32px;
+    align-self: flex-end;
+    border-radius: 4px;
+    color: #0C1200;
+    background: #AFFA00;
+    cursor: pointer;
+    border: none;
+}
+
+.contacts__btn-submit:hover {
+    background: #91E500;
+}
+
+.contacts__btn-submit:active {
+    background: #8BDB00;
+}
+
+.contacts__btn-submit_disabled,
+.contacts__btn-submit_disabled:hover {
+    background: #E0E0E0;
+    color: #808080;
+    cursor: default;
 }

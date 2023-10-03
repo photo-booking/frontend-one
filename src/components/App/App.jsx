@@ -14,7 +14,8 @@ import {
   loginGoogle,
   loginVk,
   updatePersonalInfo,
-  updatePersonalAvatar
+  updatePersonalAvatar,
+  updatePersonalContacts
 } from '../../utils/auth';
 
 import { getAmountExpert } from '../../utils/api';
@@ -148,6 +149,16 @@ export function App() {
       })
       .catch(err => console.log(err));
   }
+
+  const onSubmitPersonalContacts = values => {
+    const jwt = localStorage.getItem('token');
+    updatePersonalContacts(values, jwt)
+      .then(res => {
+        console.log(res);
+        setCurrentUser(res);
+      })
+      .catch(err => console.log(err));
+  };
 
   function tokenCheck() {
     setIsLoader(true);
@@ -298,6 +309,7 @@ export function App() {
                 isClient={isClient}
                 onSubmitPersonalInfo={onSubmitPersonalInfo}
                 onSubmitPersonalAvatar={onSubmitPersonalAvatar}
+                onSubmitPersonalContacts={onSubmitPersonalContacts}
               />
             }
           />

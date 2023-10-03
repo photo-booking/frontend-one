@@ -3,7 +3,7 @@ import './PersonalInfo.css';
 import defaultAvatar from '../../../images/Avatar.svg';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import imageToBase64 from 'image-to-base64/browser'
+import imageToBase64 from 'image-to-base64/browser';
 
 import { CurrentUserContext } from '../../../components/context/CurrentUserContext';
 
@@ -34,16 +34,16 @@ export const PersonalInfo = props => {
   };
 
   const handleSubmitPersonalAvatar = (value, type) => {
-    onSubmitPersonalAvatar(value, type)
-  }
+    onSubmitPersonalAvatar(value, type);
+  };
 
   const isButtonDisabled = () => {
-    return !isDirty || !isValid
+    return !isDirty || !isValid;
   };
 
   const buttonSubmitClassName = !isButtonDisabled()
-  ? 'personal-info__btn-submit'
-  : 'personal-info__btn-submit personal-info__btn-submit_disabled';
+    ? 'personal-info__btn-submit'
+    : 'personal-info__btn-submit personal-info__btn-submit_disabled';
 
   return (
     <article className="personal-info">
@@ -66,16 +66,15 @@ export const PersonalInfo = props => {
                 name="avatar"
                 id="avatar"
                 accept="image/png, image/jpeg"
-                onChange={(evt) => {
+                onChange={evt => {
                   const type = evt.target.files[0].type;
                   const reader = new FileReader();
                   reader.readAsDataURL(evt.target.files[0]);
                   reader.onload = function () {
                     imageToBase64(reader.result)
-                    .then(res => handleSubmitPersonalAvatar(res, type))
-                    .catch(err => console.log(err))
+                      .then(res => handleSubmitPersonalAvatar(res, type))
+                      .catch(err => console.log(err));
                   };
-                  
                 }}
               />
 

@@ -155,3 +155,17 @@ export function updatePersonalAvatar (value, type, jwt) {
   })
     .then(res => getResponseData(res))
 }
+
+//Обновить контакты в ЛК
+export function updatePersonalContacts (values, jwt) {
+  return fetch (`${BASE_URL}/users/me/`, {
+    method: 'PATCH',
+    headers: { ...HEADERS, Authorization: `token ${jwt}` },
+    body: JSON.stringify({
+      phone: values.phone,
+      social_telegram: values.telegram,
+      contact_email: values.email,
+    })
+  })
+    .then(res => getResponseData(res))
+}
