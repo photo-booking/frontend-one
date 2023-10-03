@@ -1,10 +1,27 @@
 import './Portfolio.css';
+import photoIcon from '../../../images/photo-icon.svg';
+import videoIcon from '../../../images/video-icon.svg';
 
 export const Portfolio = () => {
   return (
-    <article>
-      <h1>Портфолио</h1>
-      <p>Эта информация видна всем в вашем профиле</p>
+    <article className='portfolio'>
+      <h1 className='portfolio__title'>Портфолио</h1>
+      <p className='portfolio__subtitle'>Эта информация видна всем в вашем профиле</p>
+
+      <div className='portfolio__download-fields_conteiner'>
+        <button className='portfolio__download-fields'>
+          <p className='portfolio__download-fields_text'>Загрузить фото</p>
+          <img src={photoIcon} />
+        </button>
+        <button className='portfolio__download-fields'>
+          <p className='portfolio__download-fields_text'>Загрузить видео</p>
+          <img src={videoIcon} />
+        </button>
+      </div>
+
+      <div>
+        
+      </div>
     </article>
   );
 };
