@@ -145,12 +145,12 @@ export function updatePersonalInfo(values, jwt) {
 }
 
 //Обновить аватар в ЛК
-export function updatePersonalAvatar (value, jwt) {
+export function updatePersonalAvatar (value, type, jwt) {
   return fetch (`${BASE_URL}/users/me/`, {
     method: 'PATCH',
     headers: { ...HEADERS, Authorization: `token ${jwt}` },
     body: JSON.stringify({
-      profile_photo: `data:image/${value}`,
+      profile_photo: `data:image/${type};base64,` + value,
     })
   })
     .then(res => getResponseData(res))

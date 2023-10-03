@@ -33,8 +33,8 @@ export const PersonalInfo = props => {
     onSubmitPersonalInfo(values);
   };
 
-  const handleSubmitPersonalAvatar = value => {
-    onSubmitPersonalAvatar(value)
+  const handleSubmitPersonalAvatar = (value, type) => {
+    onSubmitPersonalAvatar(value, type)
   }
 
   const isButtonDisabled = () => {
@@ -67,9 +67,15 @@ export const PersonalInfo = props => {
                 id="avatar"
                 accept="image/png, image/jpeg"
                 onChange={(evt) => {
-                  imageToBase64(evt.target.files)
-                    .then(res => handleSubmitPersonalAvatar(res))
+                  const type = evt.target.files[0].type;
+                  const reader = new FileReader();
+                  reader.readAsDataURL(evt.target.files[0]);
+                  reader.onload = function () {
+                    imageToBase64(reader.result)
+                    .then(res => handleSubmitPersonalAvatar(res, type))
                     .catch(err => console.log(err))
+                  };
+                  
                 }}
               />
 

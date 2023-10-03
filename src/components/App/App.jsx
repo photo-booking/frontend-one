@@ -139,9 +139,9 @@ export function App() {
       .catch(err => console.log(err));
   };
 
-  const onSubmitPersonalAvatar = value => {
+  const onSubmitPersonalAvatar = (value, type) => {
     const jwt = localStorage.getItem('token');
-    updatePersonalAvatar(value, jwt)
+    updatePersonalAvatar(value,type, jwt)
       .then(res => {
         console.log(res);
         setCurrentUser(res);
