@@ -12,6 +12,9 @@ export const ExpertsPreview = () => {
                 <ExpertCard />
                 <ExpertCard />
             </div>
+            <div className='experts-preview__scroll'>
+                <div className='experts-preview__scroll-line'></div>
+            </div>
             <button className='experts-preview__btn'>Посмотреть всех специалистов</button>
         </section>
     )

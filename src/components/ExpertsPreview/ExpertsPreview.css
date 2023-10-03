@@ -18,6 +18,17 @@
 .experts-preview__container {
     display: flex;
     gap: 32px;
+    overflow-x: scroll;
+}
+
+.experts-preview__container::-webkit-scrollbar {
+    display: none;
+}
+
+.experts-preview__scroll {
+    width: 1024px;
+    margin: 39px auto 0;
+    border-top: 2px solid #E0E0E0;
 }
 
 .experts-preview__btn {

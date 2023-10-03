@@ -59,9 +59,17 @@
     grid-template-columns: repeat(2,1fr);
     grid-template-rows: auto;
     gap: 8px 20px;
+    align-items: center;
+}
+
+.expert-card__work-position {
     font-weight: 600;
     font-size: 14px;
     line-height: 20px;
+    background-image: url(../../images/Success-mini.svg);
+    background-repeat: no-repeat;
+    background-position: 0 2px;
+    padding-left: 22px;
 }
 
 .expert-card__check {
