@@ -12,7 +12,12 @@ import {
   checkToken,
   logOut,
   loginGoogle,
-  loginVk
+  loginVk,
+  updatePersonalInfo,
+  updatePersonalAvatar,
+  updatePersonalContacts,
+  deletePersonalAvatar,
+  updatePersonalPassword
 } from '../../utils/auth';
 
 import { getAmountExpert } from '../../utils/api';
@@ -23,12 +28,6 @@ import { ResetPassword } from '../../pages/ResetPassword/ResetPassword';
 import { CatalogExperts } from '../../pages/CatalogExperts/CatalogExperts';
 import { Profile } from '../../pages/Profile/Profile';
 import { Landing } from '../../pages/Landing/Landing';
-// import { ClientAccount } from '../../pages/ClientAccount/ClientAccount';
-// import { ClientOrders } from '../../pages/ClientOrders/ClientOrders';
-// import { ExpertAccount } from '../../pages/ExpertAccount/ExpertAccount';
-// import { ExecutorOrders } from '../../pages/ExpertOrders/ExpertOrders';
-// import { ExecutorRatings } from '../../pages/ExpertRatings/ExpertRatings';
-// import { OrderServices } from '../../pages/OrderServices/OrderServices';
 import { PersonalArea } from '../../pages/PersonalArea/PersonalArea';
 import { ClientChat } from '../../pages/ClientChat/ClientChat';
 import { ExpertChat } from '../../pages/ExpertChat/ExpertChat';
@@ -67,7 +66,7 @@ export function App() {
           });
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
         setErrorMessage(err.non_field_errors[0]);
         setLoggedIn(false);
       });
@@ -84,7 +83,7 @@ export function App() {
       });
   };
 
-  function signOut() {
+  const signOut = () => {
     const jwt = localStorage.getItem('token');
     logOut(jwt).then(() => {
       setLoggedIn(false);
@@ -110,7 +109,8 @@ export function App() {
         console.log(res);
         setIsEmailSend(true);
       })
-      .catch(err => { console.log(err);
+      .catch(err => {
+        console.log(err);
       });
   };
 
@@ -126,7 +126,56 @@ export function App() {
       });
   };
 
-  function tokenCheck() {
+  const onSubmitPersonalInfo = values => {
+    const jwt = localStorage.getItem('token');
+    updatePersonalInfo(values, jwt)
+      .then(res => {
+        console.log(res);
+        setCurrentUser(res);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const onSubmitPersonalAvatar = (value, type) => {
+    const jwt = localStorage.getItem('token');
+    updatePersonalAvatar(value,type, jwt)
+      .then(res => {
+        console.log(res);
+        setCurrentUser(res);
+      })
+      .catch(err => console.log(err));
+  }
+
+  const onDeletePersonalAvatar = () => {
+    const jwt = localStorage.getItem('token');
+    deletePersonalAvatar(jwt)
+      .then(res => {
+        console.log(res);
+        setCurrentUser(res);
+      })
+      .catch(err => console.log(err));
+  }
+
+  const onSubmitPersonalContacts = values => {
+    const jwt = localStorage.getItem('token');
+    updatePersonalContacts(values, jwt)
+      .then(res => {
+        console.log(res);
+        setCurrentUser(res);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const onSubmitPersonalPassword = values => {
+    const jwt = localStorage.getItem('token');
+    updatePersonalPassword(values, jwt)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => console.log(err));
+  }
+
+  const tokenCheck = () => {
     setIsLoader(true);
     const jwt = localStorage.getItem('token');
     if (jwt) {
@@ -145,7 +194,7 @@ export function App() {
     }
   }
 
-  function onStartCatalog() {
+  const onStartCatalog = () => {
     getAmountExpert()
       .then(res => {
         setAmountExpert(res.total_spec_user);
@@ -268,33 +317,18 @@ export function App() {
             path="/card/:id"
             element={<Profile />}
           />
-          {/* <Route
-            path="/client/:id"
-            element={<ClientAccount isClient={isClient}/>}
-          />
-          <Route
-            path="/expert/:id"
-            element={<ExpertAccount isClient={isClient}/>}
-          />
-          <Route
-            path="/client/:id/orders"
-            element={<ClientOrders />}
-          />
-          <Route
-            path="/expert/:id/orders"
-            element={<ExecutorOrders />}
-          />
-          <Route
-            path="/expert/:id/ratings"
-            element={<ExecutorRatings />}
-          />
-          <Route
-            path="/order-service"
-            element={<OrderServices />}
-          /> */}
           <Route
             path="/personal/:id"
-            element={<PersonalArea isClient={isClient}/>}
+            element={
+              <PersonalArea
+                isClient={isClient}
+                onSubmitPersonalInfo={onSubmitPersonalInfo}
+                onSubmitPersonalAvatar={onSubmitPersonalAvatar}
+                onSubmitPersonalContacts={onSubmitPersonalContacts}
+                onDeletePersonalAvatar={onDeletePersonalAvatar}
+                onSubmitPersonalPassword={onSubmitPersonalPassword}
+              />
+            }
           />
 
           <Route
@@ -310,7 +344,7 @@ export function App() {
             element={<Page404 />}
           />
         </Routes>
-        <Footer isClient={isClient}/>
+        <Footer isClient={isClient} />
       </div>
     </CurrentUserContext.Provider>
   );

@@ -1,16 +1,16 @@
 h1 {margin: 0;}
 
 .profile-nav {
-    margin: 0 40px;
+    margin: 0 40px 316px;
 }
 
 .profile-nav__container {
-    margin: 40px 0;
+    margin: 44px 0 60px;
 }
 
 .profile-nav__content {
     display: flex;
-    column-gap: 32px;
+    column-gap: 60px;
 }
 
 .profile-nav__list {
@@ -18,6 +18,8 @@ h1 {margin: 0;}
     display: flex;
     padding: 0;
     margin: 0;
+    row-gap: 30px;
+    column-gap: 24px;
 }
 
 .profile-nav__list_column {
@@ -25,7 +27,7 @@ h1 {margin: 0;}
 }
 
 .profile-nav__item {
-    margin-right: 24px;
+    /* margin-right: 24px; */
 }
 
 .profile-nav__item:last-of-type,
@@ -39,7 +41,7 @@ profile-nav__side-item:last-of-type {
 }
 
 .profile-nav__side-item {
-    margin-bottom: 24px;
+    /* margin-bottom: 24px; */
 }
 
 .profile-nav__btn {
