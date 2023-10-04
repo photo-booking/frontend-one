@@ -100,7 +100,7 @@
 	border-radius: 50%;
 	background-color: #E0E0E0;
 	overflow: hidden;
-    object-fit: cover;
+	object-fit: cover;
 }
 
 .personal-info__label {
@@ -199,5 +199,63 @@
 
 .personal-info__btn-delete-avatar:active {
 	background-color: #0C1200;
-	color:  #808080;
+	color: #808080;
+}
+
+textarea {
+	resize: none;
+	height: 108px;
+}
+
+.save-popup {
+	border-radius: 12px;
+	background: #FFF;
+	display: flex;
+	justify-content: center;
+	width: 572px;
+	height: min-content;
+	column-gap: 34px;
+	padding: 20px 0 24px;
+	box-sizing: border-box;
+}
+
+.save-popup__icon {
+	background: url(../../../images/Success.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 54px;
+	height: 54px;
+	overflow: hidden;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+.save-popup__title {
+	color: var(--design-neutral-black, #0C1200);
+	/* design/body/extra large */
+	font-family: Fira Sans;
+	font-size: 22px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 26px;
+}
+
+.save-popup__subtitle {
+	color: var(--design-neutral-black, #0C1200);
+	/* design/body/small */
+	font-family: Fira Sans;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+
+.save-popup__btn-close {
+	width: 28px;
+	height: 28px;
+	background: url(../../../images/icon_close.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+	border: none;
+	cursor: pointer;
 }
