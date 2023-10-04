@@ -183,7 +183,7 @@ export const PersonalInfo = props => {
       </article>
       <article className='save-popup'>
         <span className='save-popup__icon'/>
-        <div>
+        <div className='save-popup__container'>
           <h1 className='save-popup__title'>Изменения сохранены</h1>
           <h2 className='save-popup__subtitle'>Новые данные будут отображаться в профиле</h2>
         </div>

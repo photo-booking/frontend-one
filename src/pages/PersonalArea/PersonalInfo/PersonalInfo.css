@@ -230,6 +230,12 @@ textarea {
 	border-radius: 50%;
 }
 
+.save-popup__container {
+	display: flex;
+	flex-direction: column;
+	row-gap: 8px;
+}
+
 .save-popup__title {
 	color: var(--design-neutral-black, #0C1200);
 	/* design/body/extra large */
@@ -248,6 +254,7 @@ textarea {
 	font-style: normal;
 	font-weight: 400;
 	line-height: 20px;
+	margin: 0;
 }
 
 .save-popup__btn-close {
