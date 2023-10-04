@@ -6,12 +6,15 @@ export const PhotoCard = props => {
       className={'photoCardContainerProfile'}
       onClick={props.onOpenImg}
     >
-      <img
-        id={props.id}
-        className={'photoCardContainerProfile__card'}
-        src={props.src}
-        alt={props.alt}
-      />
+      {props.src != null && (
+        <img
+          id={props.id}
+          className={'photoCardContainerProfile__card'}
+          src={props.src}
+          alt={props.alt}
+        />
+      )}
+
       <CardInfoProfile />
     </div>
   );

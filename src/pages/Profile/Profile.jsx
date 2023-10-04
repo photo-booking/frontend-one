@@ -13,9 +13,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProfile } from '../../services/redusers/profile';
 import { Reviews } from '../../components/Reviews/Reviews';
 
-// const HEADERS = { 'Content-Type': 'application/json' };
-// const HEADERS_MEDIA = { 'Content-Type': 'text/html; charset=utf-8' };
-
 export const Profile = () => {
   const dispatch = useDispatch();
   const profile = useSelector(state => state.profile.data);
@@ -32,6 +29,7 @@ export const Profile = () => {
     // }
   }, []);
   useEffect(() => {
+    console.log(user.mediafiles);
     setUser(profile);
     // console.log('profile', profile);
   }, [params, profile]);
@@ -58,6 +56,7 @@ export const Profile = () => {
     // });
     return videoId;
   };
+  const overlay = document.getElementById('overlayProfile');
   const onPrice = () => {
     setIsPrice(true);
     document.getElementsByClassName('portfolio-button')[0].classList.remove('active');
@@ -70,7 +69,6 @@ export const Profile = () => {
   };
   const onShowMore = () => {};
   const onOpenImg = id => {
-    const overlay = document.getElementById('overlayProfile');
     const img = document.getElementById(id);
     if (img.naturalHeight !== null && img.naturalWidth !== null) {
       const scrollY = window.scrollY;
@@ -133,6 +131,10 @@ export const Profile = () => {
           telegram={user.social_telegram}
           email={user.email}
           equipment={user.equipment}
+          // photo={
+          //   // 'https://photo-market.acceleratorpracticum.ru/media/users/profile_photo/django.png'
+          //   'https://photo-market.acceleratorpracticum.ru/media/users/photos/de0ff9c5-0078-432c-aeed-4ca9f1e93c58.jpg'
+          // }
           photo={user.profile_photo}
         />
         <div id="overlayProfile" />
@@ -145,7 +147,7 @@ export const Profile = () => {
             <div className={'profileContainer'}>
               <div className="profileContainer__filter">
                 <StickyBox
-                  offsetTop={148} 
+                  offsetTop={148}
                   offsetBottom={52}
                 >
                   <Sorting />
@@ -153,15 +155,17 @@ export const Profile = () => {
               </div>
 
               <div className={'profileContainer__cardsContainer'}>
-                {img.map((img, index) => (
-                  <PhotoCard
-                    id={`photocard${index}`}
-                    key={index}
-                    src={img}
-                    alt={'photo-booking'}
-                    onOpenImg={() => onOpenImg(`photocard${index}`)}
-                  />
-                ))}
+                {user.mediafiles &&
+                  user.mediafiles.length > 0 &&
+                  user.mediafiles.map((img, index) => (
+                    <PhotoCard
+                      id={`photocard${index}`}
+                      key={index}
+                      src={`https://photo-market.acceleratorpracticum.ru${img.photo}`}
+                      alt={'photo-booking'}
+                      onOpenImg={() => onOpenImg(`photocard${index}`)}
+                    />
+                  ))}
                 <div id="player" />
                 <div
                   className="profileContainer__youtube"
