@@ -17,17 +17,18 @@ export const ProfileNav = props => {
     onSubmitPersonalInfo,
     onSubmitPersonalAvatar,
     onSubmitPersonalContacts,
-    onDeletePersonalAvatar
+    onDeletePersonalAvatar,
+    onSubmitPersonalPassword
   } = props;
 
   //   Верхняя навигация
-  const [profile, setProfile] = React.useState(false);
+  const [profile, setProfile] = React.useState(true);
   const [settings, setSettings] = React.useState(false);
   const [orders, setOrders] = React.useState(false);
   const [review, setReview] = React.useState(false);
 
   //   Боковая навигация - Профиль
-  const [personalInfo, setPersonalInfo] = React.useState(false);
+  const [personalInfo, setPersonalInfo] = React.useState(true);
   const [contacts, setContacts] = React.useState(false);
   const [portfolio, setPortfolio] = React.useState(false);
   const [priceList, setPriceList] = React.useState(false);
@@ -263,7 +264,11 @@ export const ProfileNav = props => {
         {profile && portfolio ? <Portfolio /> : <></>}
         {profile && priceList ? <PriceList /> : <></>}
         {/* Отображение компонентов - Настройки*/}
-        {settings && password ? <Password /> : <></>}
+        {settings && password ? (
+          <Password onSubmitPersonalPassword={onSubmitPersonalPassword} />
+        ) : (
+          <></>
+        )}
         {settings && notice ? <Notice /> : <></>}
         {settings && vipSubscription ? <VipSubscription /> : <></>}
         {settings && deleteAccount ? <DeleteAccount /> : <></>}

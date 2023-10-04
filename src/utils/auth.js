@@ -181,3 +181,17 @@ export function updatePersonalContacts (values, jwt) {
   })
     .then(res => getResponseData(res))
 }
+
+//Обновить пароль в ЛК
+export function updatePersonalPassword (values, jwt) {
+  return fetch (`${BASE_URL}/users/set_password/`, {
+    method: 'POST',
+    headers: { ...HEADERS, Authorization: `token ${jwt}` },
+    body: JSON.stringify({
+      current_password: values.current_password,
+      new_password: values.new_password,
+      re_new_password: values.repeat_new_password,
+    })
+  })
+    .then(res => getResponseData(res))
+}

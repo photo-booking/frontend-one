@@ -16,7 +16,8 @@ import {
   updatePersonalInfo,
   updatePersonalAvatar,
   updatePersonalContacts,
-  deletePersonalAvatar
+  deletePersonalAvatar,
+  updatePersonalPassword
 } from '../../utils/auth';
 
 import { getAmountExpert } from '../../utils/api';
@@ -27,12 +28,6 @@ import { ResetPassword } from '../../pages/ResetPassword/ResetPassword';
 import { CatalogExperts } from '../../pages/CatalogExperts/CatalogExperts';
 import { Profile } from '../../pages/Profile/Profile';
 import { Landing } from '../../pages/Landing/Landing';
-// import { ClientAccount } from '../../pages/ClientAccount/ClientAccount';
-// import { ClientOrders } from '../../pages/ClientOrders/ClientOrders';
-// import { ExpertAccount } from '../../pages/ExpertAccount/ExpertAccount';
-// import { ExecutorOrders } from '../../pages/ExpertOrders/ExpertOrders';
-// import { ExecutorRatings } from '../../pages/ExpertRatings/ExpertRatings';
-// import { OrderServices } from '../../pages/OrderServices/OrderServices';
 import { PersonalArea } from '../../pages/PersonalArea/PersonalArea';
 import { ClientChat } from '../../pages/ClientChat/ClientChat';
 import { ExpertChat } from '../../pages/ExpertChat/ExpertChat';
@@ -88,7 +83,7 @@ export function App() {
       });
   };
 
-  function signOut() {
+  const signOut = () => {
     const jwt = localStorage.getItem('token');
     logOut(jwt).then(() => {
       setLoggedIn(false);
@@ -171,7 +166,16 @@ export function App() {
       .catch(err => console.log(err));
   };
 
-  function tokenCheck() {
+  const onSubmitPersonalPassword = values => {
+    const jwt = localStorage.getItem('token');
+    updatePersonalPassword(values, jwt)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => console.log(err));
+  }
+
+  const tokenCheck = () => {
     setIsLoader(true);
     const jwt = localStorage.getItem('token');
     if (jwt) {
@@ -190,7 +194,7 @@ export function App() {
     }
   }
 
-  function onStartCatalog() {
+  const onStartCatalog = () => {
     getAmountExpert()
       .then(res => {
         setAmountExpert(res.total_spec_user);
@@ -322,6 +326,7 @@ export function App() {
                 onSubmitPersonalAvatar={onSubmitPersonalAvatar}
                 onSubmitPersonalContacts={onSubmitPersonalContacts}
                 onDeletePersonalAvatar={onDeletePersonalAvatar}
+                onSubmitPersonalPassword={onSubmitPersonalPassword}
               />
             }
           />
