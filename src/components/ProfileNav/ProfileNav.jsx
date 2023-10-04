@@ -22,13 +22,13 @@ export const ProfileNav = props => {
   } = props;
 
   //   Верхняя навигация
-  const [profile, setProfile] = React.useState(true);
+  const [profile, setProfile] = React.useState(false);
   const [settings, setSettings] = React.useState(false);
   const [orders, setOrders] = React.useState(false);
   const [review, setReview] = React.useState(false);
 
   //   Боковая навигация - Профиль
-  const [personalInfo, setPersonalInfo] = React.useState(true);
+  const [personalInfo, setPersonalInfo] = React.useState(false);
   const [contacts, setContacts] = React.useState(false);
   const [portfolio, setPortfolio] = React.useState(false);
   const [priceList, setPriceList] = React.useState(false);

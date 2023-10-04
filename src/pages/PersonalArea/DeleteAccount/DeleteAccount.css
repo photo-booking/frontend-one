@@ -2,4 +2,181 @@
 .delete-account__form {
     display: flex;
     flex-direction: column;
+    width: 320px;
+}
+
+.delete-account {
+    row-gap: 20px;
+}
+
+.delete-account__form {
+    row-gap: 8px;
+}
+
+.delete-account__popup-title {
+    color: #000;
+    text-align: center;
+    font-feature-settings: 'ss01' on;
+    /* design/title/large */
+    font-family: Aneliza;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 41px;
+    /* 146.429% */
+    letter-spacing: -0.14px;
+}
+
+.delete-account__title,
+.delete-account__popup-subtitle {
+    color: #000;
+    font-feature-settings: 'ss01' on;
+    font-family: Aneliza;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+}
+
+.delete-account__popup-subtitle {
+    margin: 0;
+    max-width: 520px;
+}
+
+.delete-account__subtitle {
+    color: #0C1200;
+    font-feature-settings: 'ss01' on;
+    font-family: Aneliza;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    margin: 0;
+}
+
+.delete-account__btn-submit {
+    width: 320px;
+    padding: 12px 32px;
+    border-radius: 4px;
+    color: #0C1200;
+    text-align: center;
+    font-feature-settings: 'ss01' on;
+    font-family: Aneliza;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    margin-top: 8px;
+    cursor: pointer;
+    background: none;
+}
+
+.delete-account__btn-submit:hover {
+    background-color: #0C1200;
+    color: #E0E0E0;
+}
+
+.delete-account__btn-submit:active {
+    background-color: #0C1200;
+    color: #808080;
+}
+
+.delete-account__btn-submit_color {
+    background-color: #AFFA00;
+    border: none;
+}
+
+.delete-account__btn-submit_color:hover {
+    background-color: #91E500;
+    color: #0C1200;
+}
+
+.delete-account__btn-submit_color:active {
+    background-color: #8BDB00;
+    color: #0C1200;
+}
+
+.delete-account__btn-submit_disable,
+.delete-account__btn-submit_disable:hover {
+    background: #E0E0E0;
+    color: #808080;
+    border: none;
+    cursor: default;
+}
+
+.delete-account__btn-submit_small {
+    width: 269px;
+    margin: 0;
+}
+
+.delete-account__input {
+    display: none;
+}
+
+.delete-account__label {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.delete-account__label::before {
+    display: inline-block;
+    content: "";
+    z-index: 2;
+    width: 16px;
+    height: 16px;
+    border: 2px solid black;
+    border-radius: 4px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.delete-account__input:checked+.delete-account__label::before {
+    background-image: url(../../../images/checkbox_hecked.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.delete-account__popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.30);
+    visibility: hidden; /* не виден */
+    opacity: 0;
+    transition: visibility 0s ease-in 700ms, opacity 700ms;
+}
+
+.delete-account__popup_open {
+    visibility: visible; /* виден */
+    opacity: 1;
+    transition: visibility 0s ease-in 0s, opacity 700ms;
+}
+
+.delete-account__popup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 32px;
+    padding: 44px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    background: #FFF;
+    text-align: center;
+    max-width: 654px;
+}
+
+.delete-account__popup-btn-container {
+    display: flex;
+    column-gap: 28px;
 }

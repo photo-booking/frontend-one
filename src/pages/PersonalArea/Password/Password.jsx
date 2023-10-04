@@ -11,8 +11,6 @@ export const Password = (props) => {
   const {onSubmitPersonalPassword} = props;
 
   const handleSubmitUpdatePassword = values => {
-    console.log(values);
-    console.log('update password');
     onSubmitPersonalPassword(values);
   };
 
