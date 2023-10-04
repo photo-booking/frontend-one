@@ -39,7 +39,8 @@ export const DeleteAccount = () => {
           </label>
           <button
             className={deleteBtnClassName}
-            onClick={() => {
+            onClick={(evt) => {
+              evt.preventDefault();
               setIsPopupOpen(true);
             }}
           >
