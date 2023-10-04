@@ -49,7 +49,6 @@ export const CatalogExperts = props => {
     setPageSize(catalog.pageSize);
     setLimit(catalog.limit);
     setIsButtonShowMore(data.next);
-    console.log('usersInfo', usersInfo.results);
   }, [usersInfo, catalog]);
 
   useEffect(() => {

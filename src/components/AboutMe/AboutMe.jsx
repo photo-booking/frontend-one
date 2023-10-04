@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useLocation, useParams, Link } from 'react-router-dom';
 
 import icon_telephone from '../../images/contact icons_telephone.svg';
 import icon_telegram from '../../images/contact icons _telegram.svg';
 import icon_email from '../../images/contact icons_email.svg';
-import photo from '../../images/Rectangle 11.jpg';
+import defaultAvatar from '../../images/Avatar.svg';
 
 import './AboutMe.css';
 
@@ -63,7 +63,9 @@ export const AboutMe = props => {
   const shareInTelegram = url => {
     return `https://telegram.me/share/url?url=${url}&text=lense/hire твой фото- и видеооператор онлайн!`; //Надо добавить заголовки в метаданные
   };
-  const navigateToChat = id => {navigate(`/expert/${id}/chat`)};
+  const navigateToChat = id => {
+    navigate(`/expert/${id}/chat`);
+  };
   const contactMenuClassName = `about-me__contact-container ${
     isContactOpen ? 'about-me__contact-container_visible' : ''
   }`;
@@ -184,7 +186,7 @@ export const AboutMe = props => {
         </div>
         <figure className="about-me__avatar">
           <img
-            src={props.photo != null ? props.photo : photo}
+            src={props.photo != null ? props.photo : defaultAvatar}
             className="about-me__avatar-image"
             alt=""
           />
