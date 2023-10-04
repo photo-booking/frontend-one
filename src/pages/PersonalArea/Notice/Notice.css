@@ -1,0 +1,5 @@
+.notice,
+.notice__form {
+    display: flex;
+    flex-direction: column;
+}

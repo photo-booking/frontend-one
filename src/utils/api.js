@@ -20,7 +20,7 @@ export function getAmountExpert() {
 
 //Получаем users всех пользователей
 export function getUsers(spec, limit, pageSize) {
-  console.log(spec, limit, pageSize);
+  // console.log(spec, limit, pageSize);
   return fetch(
     `${BASE_URL}/users/?spec=${spec}&limit=${limit}${pageSize ? `&page_size=${pageSize}` : ''}`,
     {

@@ -127,3 +127,71 @@ export function loginVk(param, status) {
       localStorage.setItem('token', res.auth_token);
     });
 }
+
+//Обновить личную информацию в ЛК
+export function updatePersonalInfo(values, jwt) {
+  return fetch(`${BASE_URL}/users/me/`, {
+    method: 'PATCH',
+    headers: { ...HEADERS, Authorization: `token ${jwt}` },
+    body: JSON.stringify({
+      first_name: values.name,
+      last_name: values.surname,
+      city: values.city,
+      about_me: values.aboutMe,
+      equipment: values.equipment
+    })
+  })
+    .then(res => getResponseData(res))
+}
+
+//Обновить аватар в ЛК
+export function updatePersonalAvatar (value, type, jwt) {
+  return fetch (`${BASE_URL}/users/me/`, {
+    method: 'PATCH',
+    headers: { ...HEADERS, Authorization: `token ${jwt}` },
+    body: JSON.stringify({
+      profile_photo: `data:image/${type};base64,` + value,
+    })
+  })
+    .then(res => getResponseData(res))
+}
+
+//Удалить аватар в ЛК
+export function deletePersonalAvatar (jwt) {
+  return fetch (`${BASE_URL}/users/me/`, {
+    method: 'PATCH',
+    headers: { ...HEADERS, Authorization: `token ${jwt}` },
+    body: JSON.stringify({
+      profile_photo: null
+    })
+  })
+    .then(res => getResponseData(res))
+}
+
+//Обновить контакты в ЛК
+export function updatePersonalContacts (values, jwt) {
+  return fetch (`${BASE_URL}/users/me/`, {
+    method: 'PATCH',
+    headers: { ...HEADERS, Authorization: `token ${jwt}` },
+    body: JSON.stringify({
+      phone: values.phone,
+      social_telegram: values.telegram,
+      contact_email: values.email,
+    })
+  })
+    .then(res => getResponseData(res))
+}
+
+//Обновить пароль в ЛК
+export function updatePersonalPassword (values, jwt) {
+  return fetch (`${BASE_URL}/users/set_password/`, {
+    method: 'POST',
+    headers: { ...HEADERS, Authorization: `token ${jwt}` },
+    body: JSON.stringify({
+      current_password: values.current_password,
+      new_password: values.new_password,
+      re_new_password: values.repeat_new_password,
+    })
+  })
+    .then(res => getResponseData(res))
+}

@@ -12,22 +12,29 @@ import { ProfileReviews } from '../ProfileReviews/ProfileReviews';
 import { OrderServices } from '../../pages/OrderServices/OrderServices';
 
 export const ProfileNav = props => {
-  const { isClient } = props;
+  const {
+    isClient,
+    onSubmitPersonalInfo,
+    onSubmitPersonalAvatar,
+    onSubmitPersonalContacts,
+    onDeletePersonalAvatar,
+    onSubmitPersonalPassword
+  } = props;
 
   //   Верхняя навигация
-  const [profile, setProfile] = React.useState(false);
+  const [profile, setProfile] = React.useState(true);
   const [settings, setSettings] = React.useState(false);
   const [orders, setOrders] = React.useState(false);
   const [review, setReview] = React.useState(false);
 
   //   Боковая навигация - Профиль
-  const [personalInfo, setPersonalInfo] = React.useState(false);
+  const [personalInfo, setPersonalInfo] = React.useState(true);
   const [contacts, setContacts] = React.useState(false);
   const [portfolio, setPortfolio] = React.useState(false);
   const [priceList, setPriceList] = React.useState(false);
 
   //   Боковая навигация - Настройки
-  const [password, setPassword] = React.useState(false);
+  const [password, setPassword] = React.useState(true);
   const [notice, setNotice] = React.useState(false);
   const [vipSubscription, setVipSubscription] = React.useState(false);
   const [deleteAccount, setdeleteAccount] = React.useState(false);
@@ -239,12 +246,29 @@ export const ProfileNav = props => {
         {/* для Отзывов пока нет макета */}
         {review ? <ProfileReviews /> : <></>}
         {/* Отображение компонентов - Профиль*/}
-        {profile && personalInfo ? <PersonalInfo /> : <></>}
-        {profile && contacts ? <Contacts /> : <></>}
+        {profile && personalInfo ? (
+          <PersonalInfo
+            isClient={isClient}
+            onSubmitPersonalInfo={onSubmitPersonalInfo}
+            onSubmitPersonalAvatar={onSubmitPersonalAvatar}
+            onDeletePersonalAvatar={onDeletePersonalAvatar}
+          />
+        ) : (
+          <></>
+        )}
+        {profile && contacts ? (
+          <Contacts onSubmitPersonalContacts={onSubmitPersonalContacts} />
+        ) : (
+          <></>
+        )}
         {profile && portfolio ? <Portfolio /> : <></>}
         {profile && priceList ? <PriceList /> : <></>}
         {/* Отображение компонентов - Настройки*/}
-        {settings && password ? <Password /> : <></>}
+        {settings && password ? (
+          <Password onSubmitPersonalPassword={onSubmitPersonalPassword} />
+        ) : (
+          <></>
+        )}
         {settings && notice ? <Notice /> : <></>}
         {settings && vipSubscription ? <VipSubscription /> : <></>}
         {settings && deleteAccount ? <DeleteAccount /> : <></>}
