@@ -38,6 +38,7 @@ export const DeleteAccount = () => {
             Я хочу удалить аккунт
           </label>
           <button
+            disabled={!agreement}
             className={deleteBtnClassName}
             onClick={(evt) => {
               evt.preventDefault();
