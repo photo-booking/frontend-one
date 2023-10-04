@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, useParams, Link } from 'react-router-dom';
 
 import icon_telephone from '../../images/contact icons_telephone.svg';
@@ -16,23 +16,23 @@ export const AboutMe = props => {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isLinkCopy, setIsLinkCopy] = useState(false);
-  // const [overlayAbout, setOverlayAbout] = useState(false);
+  const [overlayAbout, setOverlayAbout] = useState(false);
 
-  // const overlay = document.getElementById('about-me-overlay');
-
-  // useEffect(() => {
-  //   if (overlayAbout) {
-  //     overlay.addEventListener('click', () => {
-  //       overlay.style.display = 'none';
-  //       setIsContactOpen(!isContactOpen);
-  //       console.log('add listener')
-  //     });
-  //   }
-  // }, [overlayAbout]);
+  const listener = () => {
+    const overlay = document.getElementById('about-me-overlay');
+    overlay.style.display = overlayAbout ? 'none' : 'block';
+    setIsContactOpen(!isContactOpen);
+  };
+  useEffect(() => {
+    const overlay = document.getElementById('about-me-overlay');
+    overlay.addEventListener('click', listener);
+    return () => overlay.removeEventListener('click', listener);
+  }, [overlayAbout]);
 
   const handleContactOpen = () => {
-    // overlay.style.display = 'block';
-    // setOverlayAbout(true);
+    const overlay = document.getElementById('about-me-overlay');
+    overlay.style.display = 'block';
+    setOverlayAbout(true);
     setIsContactOpen(!isContactOpen);
   };
 

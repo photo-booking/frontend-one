@@ -17,7 +17,6 @@ export const Slider = ({ children: slides }) => {
       setIsChevron(false);
     } else {
       setIsChevron(true);
-      console.log(slides);
     }
   });
   return (

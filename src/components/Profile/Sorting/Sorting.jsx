@@ -23,10 +23,12 @@ export const Sorting = props => {
   ];
 
   const location = useLocation();
-  console.log(location);
 
   const radioPrice = ['Высокая стоимость', 'Низкая стоимость'];
-  const radioMainFilter = location.pathname === '/catalog' ? ['Все', 'Фотографы', 'Видеооператоры'] : ['Все', 'Фото', 'Видео'];
+  const radioMainFilter =
+    location.pathname === '/catalog'
+      ? ['Все', 'Фотографы', 'Видеооператоры']
+      : ['Все', 'Фото', 'Видео'];
 
   const onChangePrice = e => {
     setCheckedPrice(e.target.value);

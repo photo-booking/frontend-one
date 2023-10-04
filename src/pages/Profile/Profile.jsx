@@ -18,30 +18,27 @@ export const Profile = () => {
   const dispatch = useDispatch();
   const profile = useSelector(state => state.profile.data);
   const [user, setUser] = useState({});
+  const [isShowMore, setIsShowMore] = useState(false);
+
   const params = useParams();
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(fetchProfile(params.id));
-    //последняя карточка не выравнивается,не знаю как еще решить
-    // if (document.getElementsByClassName('photoCardContainerProfile__card').length !== 0) {
-    //   const cards = document.getElementsByClassName('photoCardContainerProfile__card');
-    //   const length = document.getElementsByClassName('photoCardContainerProfile__card').length;
-    //   cards[length - 1].style.marginLeft = '16px';
-    // }
   }, []);
   useEffect(() => {
     let video = [];
-    if (profile.mediafiles.length > 0) {
-      profile.mediafiles.map(media => {
-        if (media.media_type === 'VIDEO') {
-          video.push(media.link);
-        }
-      });
+    if (Object.keys(profile).length !== 0) {
+      if (profile.mediafiles.length > 0) {
+        profile.mediafiles.map(media => {
+          if (media.media_type === 'VIDEO') {
+            video.push(media.link);
+          }
+        });
+      }
     }
     setUser({ profile, video: video });
   }, [params, profile]);
 
-  const video = ' https://www.youtube.com/shorts/D1i-QBEe5y8';
   const [isPrice, setIsPrice] = useState(false);
 
   const splitUrl = video => {
@@ -65,7 +62,7 @@ export const Profile = () => {
     document.getElementsByClassName('portfolio-button')[0].classList.add('active');
     document.getElementsByClassName('price-button')[0].classList.remove('active');
   };
-  // const onShowMore = () => {};
+  const onShowMore = () => {};
   const onOpenImg = id => {
     const img = document.getElementById(id);
     if (img.naturalHeight !== null && img.naturalWidth !== null) {
@@ -90,7 +87,6 @@ export const Profile = () => {
     }
   };
   const onPlayVideo = id => {
-    console.log('id', video);
     const overlay = document.getElementById('overlayProfile');
     const divPlayer = document.getElementById('player');
     divPlayer.style.cssText = `z-index:100;`;
@@ -101,18 +97,12 @@ export const Profile = () => {
     player.setVolume(100);
     player.setSize(1034, 500);
 
-    //этот же вопрос с выравниванием последней карточки
-
-    // const div = document.getElementsByClassName('photoCardContainerProfile');
-    // const divLength = document.getElementsByClassName('photoCardContainerProfile__card').length;
-
     document.getElementsByClassName('profileContainer__youtube')[0].style.display = ' none';
     overlay.style.display = 'block';
     overlay.addEventListener('click', () => {
       overlay.style.display = 'none';
       player.destroy();
       document.getElementsByClassName('profileContainer__youtube')[0].style.display = 'block';
-      // div[divLength - 1].style.marginLeft = '32px';
     });
   };
 
@@ -147,7 +137,6 @@ export const Profile = () => {
                   <Sorting />
                 </StickyBox>
               </div>
-
               <div className={'profileContainer__cardsContainer'}>
                 {user.profile.mediafiles &&
                   user.profile.mediafiles.length > 0 &&
@@ -167,6 +156,7 @@ export const Profile = () => {
                 {user.video.length > 0 &&
                   user.video.map(video => (
                     <div
+                      key={video}
                       className="profileContainer__youtube"
                       onClick={() => onPlayVideo(splitUrl(video))}
                     >
@@ -180,12 +170,14 @@ export const Profile = () => {
                       <CardInfoProfile />
                     </div>
                   ))}
-                {/*<button*/}
-                {/*  className="button_more"*/}
-                {/*  onClick={onShowMore}*/}
-                {/*>*/}
-                {/*  Показать ещё*/}
-                {/*</button>*/}
+                {isShowMore && (
+                  <button
+                    className="button_more"
+                    onClick={onShowMore}
+                  >
+                    Показать ещё
+                  </button>
+                )}
               </div>
             </div>
           </>
