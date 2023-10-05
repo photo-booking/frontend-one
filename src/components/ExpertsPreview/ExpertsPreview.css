@@ -31,6 +31,10 @@
     border-top: 2px solid #E0E0E0;
 }
 
+.experts-preview__link-btn {
+    margin: 0 auto;
+}
+
 .experts-preview__btn {
     margin: 52px auto 200px;
     background-color: #AFFA00;
@@ -43,4 +47,5 @@
     font-size: 14px;
     line-height: 20px;
     text-align: center;
+    cursor: pointer;
 }

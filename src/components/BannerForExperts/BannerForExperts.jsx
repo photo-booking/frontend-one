@@ -1,4 +1,5 @@
 import './BannerForExperts.css';
+import { Link } from 'react-router-dom';
 
 export const BannerForExperts = () => {
     return (
@@ -8,7 +9,9 @@ export const BannerForExperts = () => {
                     <h1 className='banner-for-experts__title'>Находите заказы. Работайте комфортно.</h1>
                     <p className='banner-for-experts__subtitle'>Фотографам и видеооператорам доступна доска заказов, где можно найти новых клиентов.</p>
                 </div>
-                <button className='banner-for-experts__btn'>Стать специалистом</button>
+                <Link to='/sign-up'>
+                    <button className='banner-for-experts__btn'>Стать специалистом</button>
+                </Link>
             </div>
             <div className='banner-for-experts__frame-block'>
                 <div className='banner-for-experts__chart'>

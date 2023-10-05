@@ -1,5 +1,6 @@
 import './ProductFeatures.css';
 import { FeaturesElement } from '../../components/FeaturesElement/FeaturesElement';
+import { Link } from 'react-router-dom';
 import baseIcon from '../../images/base-icon.svg';
 import privacyIcon from '../../images/privacy-icon.svg';
 import rarityIcon from '../../images/rarity-icon.svg';
@@ -49,7 +50,9 @@ export const ProductFeatures = () => {
                 text="Лофт-студии предоставляют место и всё необходимое, чтобы вы могли как можно скорее приступить к съёмке."
                 />
             </div>
-            <button className='product-features__btn'>Зарегистрироваться</button>
+            <Link to='/sign-up'>
+                <button className='product-features__btn'>Зарегистрироваться</button>
+            </Link>
         </section>
     )
 }

@@ -5,6 +5,9 @@
     border-radius: 12px;
     display: flex;
     justify-content: space-between;
+    background: linear-gradient(rgba(255, 238, 77, 0.5), rgba(255, 238, 77, 0.14)),
+    linear-gradient(rgba(78, 255, 78, 0.14), rgba(128, 255, 128, 0.3), rgba(77, 255, 77, 0.5)),
+    linear-gradient(rgba(180, 255, 51, 0.14), rgba(180, 255, 51, 0.3));
 }
 
 .banner-for-experts__container {
@@ -51,6 +54,7 @@
     line-height: 20px;
     margin-left: 100px;
     margin-bottom: 80px;
+    cursor: pointer;
 }
 
 .banner-for-experts__frame-block {

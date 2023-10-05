@@ -2,6 +2,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .product-features__title{
@@ -35,4 +36,5 @@
     font-size: 14px;
     line-height: 20px;
     text-align: center;
+    cursor: pointer;
 }

@@ -1,5 +1,6 @@
 import './ExpertsPreview.css';
 import { ExpertCard } from '../../components/ExpertCard/ExpertCard';
+import { Link } from 'react-router-dom';
 
 export const ExpertsPreview = () => {
     return (
@@ -15,7 +16,9 @@ export const ExpertsPreview = () => {
             <div className='experts-preview__scroll'>
                 <div className='experts-preview__scroll-line'></div>
             </div>
-            <button className='experts-preview__btn'>Посмотреть всех специалистов</button>
+            <Link to='/catalog' className='experts-preview__link-btn'>
+                <button className='experts-preview__btn'>Посмотреть всех специалистов</button>
+            </Link>
         </section>
     )
 }
