@@ -1,5 +1,13 @@
 @font-face {
   font-family: 'Aneliza';
+  font-style: bold;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./Aneliza-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Aneliza';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -12,6 +20,14 @@
   font-weight: 500;
   font-display: swap;
   src: url(./Aneliza-SemiBold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./FiraSans-Medium.ttf) format("truetype");
 }
 
 @font-face {
