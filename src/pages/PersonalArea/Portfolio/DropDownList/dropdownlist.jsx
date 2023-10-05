@@ -59,10 +59,22 @@ export const DropDownList = () => {
         handkeClickDropDownItems()
     })
 
+    const disabledButton = () => {
+        const button = document.querySelector('.dropdownlist__apply');
+        if (isClickDropDownItem !== null) {
+            button.disabled = false
+        }
+    }
+    disabledButton();
+
+    const handleSubmitForm = (e) => {
+        e.preventDefault()
+    }
+
 
     return (
         <>
-            <form className='dropdownlist_form'>
+            <form className='dropdownlist_form' onClick={handleSubmitForm}>
                 <div className='dropdownlist__container'>
                     <button className='dropdownlist' onClick={handleClickDropDown}>
                         <div className='dropdownlist__content'>
@@ -88,7 +100,7 @@ export const DropDownList = () => {
                     </ul>
 
                 </div>
-                <button className='dropdownlist__apply'>Применить</button>
+                <button type='submit' disabled className='dropdownlist__apply'>Применить</button>
 
             </form>
         </>

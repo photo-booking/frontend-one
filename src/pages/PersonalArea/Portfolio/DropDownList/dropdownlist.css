@@ -100,6 +100,26 @@
     height: 44px;
     border: none;
     border-radius: 8px;
+    background-color: rgba(175, 250, 0, 1);
+    color: black;
+    cursor: pointer;
+    font-family: 'Aneliza';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px; 
+}
+
+.dropdownlist__apply:disabled {
     background-color: rgba(224, 224, 224, 1);
     color: rgba(128, 128, 128, 1);
+    cursor: default;
+}
+
+.dropdownlist__apply:hover {
+    background-color: rgba(145, 229, 0, 1);
+}
+
+.dropdownlist__apply:active {
+    background-color: rgba(139, 219, 0, 1);
 }
