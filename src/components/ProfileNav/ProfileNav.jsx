@@ -18,7 +18,8 @@ export const ProfileNav = props => {
     onSubmitPersonalAvatar,
     onSubmitPersonalContacts,
     onDeletePersonalAvatar,
-    onSubmitPersonalPassword
+    onSubmitPersonalPassword,
+    onSubmitDeleteAccount
   } = props;
 
   //   Верхняя навигация
@@ -291,7 +292,7 @@ export const ProfileNav = props => {
           <></>
         )}
         {settings && vipSubscription ? <VipSubscription /> : <></>}
-        {settings && deleteAccount ? <DeleteAccount /> : <></>}
+        {settings && deleteAccount ? <DeleteAccount onSubmitDeleteAccount={onSubmitDeleteAccount}/> : <></>}
       </section>
     </section>
   );

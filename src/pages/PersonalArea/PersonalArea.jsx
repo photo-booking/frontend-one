@@ -8,7 +8,8 @@ export const PersonalArea = props => {
     onSubmitPersonalAvatar,
     onSubmitPersonalContacts,
     onDeletePersonalAvatar,
-    onSubmitPersonalPassword
+    onSubmitPersonalPassword,
+    onSubmitDeleteAccount
   } = props;
 
   return (
@@ -20,6 +21,7 @@ export const PersonalArea = props => {
         onSubmitPersonalContacts={onSubmitPersonalContacts}
         onDeletePersonalAvatar={onDeletePersonalAvatar}
         onSubmitPersonalPassword={onSubmitPersonalPassword}
+        onSubmitDeleteAccount={onSubmitDeleteAccount}
       />
     </div>
   );

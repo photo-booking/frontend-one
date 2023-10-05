@@ -1,7 +1,9 @@
 import './DeleteAccount.css';
 import { useState } from 'react';
 
-export const DeleteAccount = () => {
+export const DeleteAccount = (props) => {
+  const {onSubmitDeleteAccount} = props;
+
   const [agreement, setAgreement] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -12,6 +14,10 @@ export const DeleteAccount = () => {
   const popupClassName = isPopupOpen
     ? 'delete-account__popup delete-account__popup_open'
     : 'delete-account__popup';
+
+    const handleDeleteAccount = () => {
+      onSubmitDeleteAccount();
+    }
   return (
     <>
       <article className="delete-account">
@@ -35,7 +41,7 @@ export const DeleteAccount = () => {
             htmlFor="agreement"
             className="delete-account__subtitle delete-account__label"
           >
-            Я хочу удалить аккунт
+            Я хочу удалить аккаунт
           </label>
           <button
             disabled={!agreement}
@@ -61,6 +67,7 @@ export const DeleteAccount = () => {
             <button
               className="delete-account__btn-submit delete-account__btn-submit_small delete-account__btn-submit_color"
               onClick={() => {
+                console.log('Получить Премиум-подписку')
                 setIsPopupOpen(false);
               }}
             >
@@ -69,6 +76,7 @@ export const DeleteAccount = () => {
             <button
               className="delete-account__btn-submit delete-account__btn-submit_small"
               onClick={() => {
+                handleDeleteAccount();
                 setIsPopupOpen(false);
               }}
             >
