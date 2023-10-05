@@ -195,3 +195,15 @@ export function updatePersonalPassword (values, jwt) {
   })
     .then(res => getResponseData(res))
 }
+
+//Удалить аккаунт
+export function deleteAccount (jwt, id) {
+  return fetch (`${BASE_URL}/users/me/`, {
+    method: 'DELETE',
+    headers: { ...HEADERS, Authorization: `token ${jwt}` },
+    body: JSON.stringify({
+      user_id: id
+    })
+  })
+    .then(res => getResponseData(res))
+}

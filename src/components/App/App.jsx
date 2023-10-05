@@ -17,7 +17,8 @@ import {
   updatePersonalAvatar,
   updatePersonalContacts,
   deletePersonalAvatar,
-  updatePersonalPassword
+  updatePersonalPassword,
+  deleteAccount
 } from '../../utils/auth';
 
 import { getAmountExpert } from '../../utils/api';
@@ -91,7 +92,7 @@ export function App() {
       setCurrentUser({});
       navigate('/catalog');
     });
-  }
+  };
 
   const onSubmitJoin = values => {
     if (values.type === 'client') {
@@ -138,13 +139,13 @@ export function App() {
 
   const onSubmitPersonalAvatar = (value, type) => {
     const jwt = localStorage.getItem('token');
-    updatePersonalAvatar(value,type, jwt)
+    updatePersonalAvatar(value, type, jwt)
       .then(res => {
         console.log(res);
         setCurrentUser(res);
       })
       .catch(err => console.log(err));
-  }
+  };
 
   const onDeletePersonalAvatar = () => {
     const jwt = localStorage.getItem('token');
@@ -154,7 +155,7 @@ export function App() {
         setCurrentUser(res);
       })
       .catch(err => console.log(err));
-  }
+  };
 
   const onSubmitPersonalContacts = values => {
     const jwt = localStorage.getItem('token');
@@ -169,11 +170,22 @@ export function App() {
   const onSubmitPersonalPassword = values => {
     const jwt = localStorage.getItem('token');
     updatePersonalPassword(values, jwt)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const onSubmitDeleteAccount = () => {
+    const jwt = localStorage.getItem('token');
+    const id = currentUser.id;
+    // console.log(jwt, id);
+    deleteAccount(id, jwt)
     .then(res => {
       console.log(res);
     })
     .catch(err => console.log(err));
-  }
+  };
 
   const tokenCheck = () => {
     setIsLoader(true);
@@ -192,7 +204,7 @@ export function App() {
         })
         .finally(() => setIsLoader(false));
     }
-  }
+  };
 
   const onStartCatalog = () => {
     getAmountExpert()
@@ -202,7 +214,7 @@ export function App() {
       .catch(err => {
         console.log('Ошибка:' + err.detail);
       });
-  }
+  };
 
   const signinGoogle = (param, status) => {
     loginGoogle(param, status)
@@ -327,6 +339,7 @@ export function App() {
                 onSubmitPersonalContacts={onSubmitPersonalContacts}
                 onDeletePersonalAvatar={onDeletePersonalAvatar}
                 onSubmitPersonalPassword={onSubmitPersonalPassword}
+                onSubmitDeleteAccount={onSubmitDeleteAccount}
               />
             }
           />
