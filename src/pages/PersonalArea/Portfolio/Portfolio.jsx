@@ -1,6 +1,7 @@
 import './Portfolio.css';
 import photoIcon from '../../../images/photo-icon.svg';
 import videoIcon from '../../../images/video-icon.svg';
+import { DropDownList } from './DropDownList/dropdownlist';
 
 export const Portfolio = () => {
   return (
@@ -19,9 +20,8 @@ export const Portfolio = () => {
         </button>
       </div>
 
-      <div>
-        
-      </div>
+      <DropDownList/>
+
     </article>
   );
 };
