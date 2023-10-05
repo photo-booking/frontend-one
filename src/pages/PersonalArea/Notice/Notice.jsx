@@ -33,6 +33,7 @@ export const Notice = props => {
                 id='website_message'
                 {...register('website_message')}
               />
+              <span className="notice__switch"/>
             </label>
             <label className="notice__label">
               Новые заказы
@@ -41,7 +42,8 @@ export const Notice = props => {
                 type="checkbox"
                 id='website_order'
                 {...register('website_order')}
-              ></input>
+              />
+              <span className="notice__switch"/>
             </label>
             <label className="notice__label">
               Новые отзывы
@@ -50,7 +52,8 @@ export const Notice = props => {
                 type="checkbox"
                 id='website_review'
                 {...register('website_review')}
-              ></input>
+              />
+              <span className="notice__switch"/>
             </label>
           </div>
           <div className="notice__container">
@@ -62,7 +65,8 @@ export const Notice = props => {
                 type="checkbox"
                 id='email_message'
                 {...register('email_message')}
-              ></input>
+              />
+              <span className="notice__switch"/>
             </label>
             <label className="notice__label">
               Новые заказы
@@ -71,7 +75,8 @@ export const Notice = props => {
                 type="checkbox"
                 id='email_order'
                 {...register('email_order')}
-              ></input>
+              />
+              <span className="notice__switch"/>
             </label>
             <label className="notice__label">
               Новые отзывы
@@ -80,7 +85,8 @@ export const Notice = props => {
                 type="checkbox"
                 id='email_review'
                 {...register('email_review')}
-              ></input>
+              />
+              <span className="notice__switch"/>
             </label>
           </div>
           <button className="notice__btn-submit">Сохранить настройки</button>
