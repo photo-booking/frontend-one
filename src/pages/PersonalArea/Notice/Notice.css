@@ -1,0 +1,133 @@
+.notice,
+.notice__form,
+.notice__container {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+}
+
+.notice {
+    row-gap: 28px;
+}
+
+.notice__form {
+    row-gap: 24px;
+}
+
+.notice__container {
+    row-gap: 10px;
+}
+
+.notice__title {
+    color: #0C1200;
+    font-feature-settings: 'ss01' on;
+    font-family: Aneliza;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -0.5px;
+}
+
+.notice__subtitle {
+    color: #0C1200;
+    font-feature-settings: 'ss01' on, 'ss03' on;
+    font-family: Aneliza;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    margin: 0 0 3px;
+}
+
+.notice__label {
+    display: flex;
+    justify-content: space-between;	 
+    color: #0C1200;
+    font-feature-settings: 'ss01' on, 'ss03' on;
+    font-family: Aneliza;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px; 
+    height: 28px;    
+	margin-right: 10px;      
+	position: relative;
+	vertical-align: middle;
+	user-select: none;  
+}
+
+.notice__label .notice__switch {
+	position: relative;	
+	display: inline-block;
+	box-sizing: border-box;			
+    width: 36px;
+    height: 22px;
+	border-radius: 25%/50%;	
+	vertical-align: top;
+	background: #D5D5D6;
+	transition: .2s;
+}
+
+.notice__label .notice__switch::before {
+    content: '';
+	position: absolute;
+	top: 2px;
+	left: 2px;	
+	display: inline-block;
+	width: 18px;	
+	height: 18px;
+	border-radius: 50%;
+	background: white;
+	transition: .15s;
+}
+
+.notice__label .notice__input {
+    display: block;	
+	width: 0;
+	height: 0;	
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+
+.notice__label .notice__input:checked + .notice__switch {
+	background: #91E500;
+}
+
+.notice__label .notice__input:checked + .notice__switch:before {
+	transform:translateX(14px);
+}
+
+.notice__btn-submit {
+    margin-top: 1px;
+    padding: 12px 32px;
+    width: 100%;
+    border-radius: 4px;
+    color: #0C1200;
+    background: #AFFA00;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    font-feature-settings: 'ss01' on;
+    font-family: Aneliza;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+.notice__btn-submit:hover {
+    background: #91E500;
+}
+
+.notice__btn-submit:active {
+    background: #8BDB00;  
+}
+
+.notice__btn-submit_disabled,
+.notice__btn-submit_disabled:hover {
+    background: #E0E0E0;
+    color: #808080;
+    cursor: default;
+}

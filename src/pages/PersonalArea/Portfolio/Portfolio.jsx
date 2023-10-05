@@ -1,3 +1,4 @@
+import '../PersonalArea.css';
 import './Portfolio.css';
 import photoIcon from '../../../images/photo-icon.svg';
 import videoIcon from '../../../images/video-icon.svg';
@@ -5,6 +6,7 @@ import { DropDownList } from './DropDownList/dropdownlist';
 
 export const Portfolio = () => {
   return (
+
     <article className='portfolio'>
       <h1 className='portfolio__title'>Портфолио</h1>
       <p className='portfolio__subtitle'>Эта информация видна всем в вашем профиле</p>
@@ -21,9 +23,6 @@ export const Portfolio = () => {
       </div>
 
       <DropDownList/>
-
-      
-
     </article>
   );
 };

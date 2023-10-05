@@ -12,25 +12,35 @@ import { ProfileReviews } from '../ProfileReviews/ProfileReviews';
 import { OrderServices } from '../../pages/OrderServices/OrderServices';
 
 export const ProfileNav = props => {
-  const { isClient } = props;
+  const {
+    isClient,
+    onSubmitPersonalInfo,
+    onSubmitPersonalAvatar,
+    onSubmitPersonalContacts,
+    onDeletePersonalAvatar,
+    onSubmitPersonalPassword
+  } = props;
 
   //   Верхняя навигация
-  const [profile, setProfile] = React.useState(false);
+  const [profile, setProfile] = React.useState(true);
   const [settings, setSettings] = React.useState(false);
   const [orders, setOrders] = React.useState(false);
   const [review, setReview] = React.useState(false);
 
   //   Боковая навигация - Профиль
-  const [personalInfo, setPersonalInfo] = React.useState(false);
+  const [personalInfo, setPersonalInfo] = React.useState(true);
   const [contacts, setContacts] = React.useState(false);
   const [portfolio, setPortfolio] = React.useState(false);
   const [priceList, setPriceList] = React.useState(false);
 
   //   Боковая навигация - Настройки
-  const [password, setPassword] = React.useState(false);
+  const [password, setPassword] = React.useState(true);
   const [notice, setNotice] = React.useState(false);
   const [vipSubscription, setVipSubscription] = React.useState(false);
   const [deleteAccount, setdeleteAccount] = React.useState(false);
+
+  // Модальное окно - Изменения соранены
+  const [isSavePopupOpen, setIsSavePopupOpen] = React.useState(false);
 
   const buttonClassName = param => {
     return `profile-nav__btn ${param ? 'profile-nav__btn_active' : ''}`;
@@ -234,18 +244,52 @@ export const ProfileNav = props => {
         ) : (
           <></>
         )}
-        {/* для Заказов  пока нет макета */}
+        {/* для Заказов */}
         {orders ? <OrderServices /> : <></>}
-        {/* для Отзывов пока нет макета */}
+        {/* для Отзывов */}
         {review ? <ProfileReviews /> : <></>}
         {/* Отображение компонентов - Профиль*/}
-        {profile && personalInfo ? <PersonalInfo /> : <></>}
-        {profile && contacts ? <Contacts /> : <></>}
+        {profile && personalInfo ? (
+          <PersonalInfo
+            isClient={isClient}
+            onSubmitPersonalInfo={onSubmitPersonalInfo}
+            onSubmitPersonalAvatar={onSubmitPersonalAvatar}
+            onDeletePersonalAvatar={onDeletePersonalAvatar}
+            isSavePopupOpen={isSavePopupOpen}
+            setIsSavePopupOpen={setIsSavePopupOpen}
+          />
+        ) : (
+          <></>
+        )}
+        {profile && contacts ? (
+          <Contacts
+            onSubmitPersonalContacts={onSubmitPersonalContacts}
+            isSavePopupOpen={isSavePopupOpen}
+            setIsSavePopupOpen={setIsSavePopupOpen}
+          />
+        ) : (
+          <></>
+        )}
         {profile && portfolio ? <Portfolio /> : <></>}
         {profile && priceList ? <PriceList /> : <></>}
         {/* Отображение компонентов - Настройки*/}
-        {settings && password ? <Password /> : <></>}
-        {settings && notice ? <Notice /> : <></>}
+        {settings && password ? (
+          <Password
+            onSubmitPersonalPassword={onSubmitPersonalPassword}
+            isSavePopupOpen={isSavePopupOpen}
+            setIsSavePopupOpen={setIsSavePopupOpen}
+          />
+        ) : (
+          <></>
+        )}
+        {settings && notice ? (
+          <Notice
+            isSavePopupOpen={isSavePopupOpen}
+            setIsSavePopupOpen={setIsSavePopupOpen}
+          />
+        ) : (
+          <></>
+        )}
         {settings && vipSubscription ? <VipSubscription /> : <></>}
         {settings && deleteAccount ? <DeleteAccount /> : <></>}
       </section>
