@@ -28,7 +28,14 @@ export const PersonalInfo = props => {
     }
   });
   const watchAllFields = watch();
-  const { isClient, onSubmitPersonalInfo, onSubmitPersonalAvatar, onDeletePersonalAvatar, isSavePopupOpen, setIsSavePopupOpen } = props;
+  const {
+    isClient,
+    onSubmitPersonalInfo,
+    onSubmitPersonalAvatar,
+    onDeletePersonalAvatar,
+    isSavePopupOpen,
+    setIsSavePopupOpen
+  } = props;
 
   const handleSubmitPersonalInfo = values => {
     onSubmitPersonalInfo(values);
@@ -68,8 +75,8 @@ export const PersonalInfo = props => {
               className="personal-info__avatar-image"
             />
 
-            <label className="input-file">
-              <div className="personal-info__avatar-container personal-info__avatar-container_caption">
+            <div className="personal-info__avatar-container personal-info__avatar-container_caption">
+              <label className="input-file">
                 <input
                   type="file"
                   name="avatar"
@@ -88,10 +95,10 @@ export const PersonalInfo = props => {
                 />
 
                 <span className="input-file-btn">Загрузить новый аватар</span>
-                <span className="input-file-text">Размер 800x800px</span>
-                <span className="input-file-text">В формате JPG или PNG</span>
-              </div>
-            </label>
+              </label>
+              <span className="input-file-text">Размер 800x800px</span>
+              <span className="input-file-text">В формате JPG или PNG</span>
+            </div>
             {currentUser.profile_photo ? (
               <button
                 className="personal-info__btn-delete-avatar"
