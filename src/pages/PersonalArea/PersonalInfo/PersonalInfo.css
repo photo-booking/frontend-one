@@ -100,7 +100,7 @@
 	border-radius: 50%;
 	background-color: #E0E0E0;
 	overflow: hidden;
-    object-fit: cover;
+	object-fit: cover;
 }
 
 .personal-info__label {
@@ -199,5 +199,10 @@
 
 .personal-info__btn-delete-avatar:active {
 	background-color: #0C1200;
-	color:  #808080;
+	color: #808080;
+}
+
+textarea {
+	resize: none;
+	height: 108px;
 }
