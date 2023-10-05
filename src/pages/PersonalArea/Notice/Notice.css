@@ -56,19 +56,6 @@
 	vertical-align: middle;
 	user-select: none;  
 }
-/* 
-.notice__input {
-    display: block;	
-	width: 0;
-	height: 0;	
-	position: absolute;
-	z-index: -1;
-	opacity: 0;
-}
-
-.notice__switch {
-
-} */
 
 .notice__label .notice__switch {
 	position: relative;	
@@ -111,8 +98,6 @@
 .notice__label .notice__input:checked + .notice__switch:before {
 	transform:translateX(14px);
 }
-
-
 
 .notice__btn-submit {
     margin-top: 1px;
