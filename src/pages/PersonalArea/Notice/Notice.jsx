@@ -1,7 +1,10 @@
 import './Notice.css';
+import { SavePopup } from '../../../components/SavePopup/SavePopup';
 
-export const Notice = () => {
+export const Notice = (props) => {
+  const {isSavePopupOpen, setIsSavePopupOpen} = props;
   return (
+    <>
     <article className='notice'>
       <h1>Уведомления</h1>
       <form className='notice__form'>
@@ -34,5 +37,12 @@ export const Notice = () => {
         <button>Сохранить настройки</button>
       </form>
     </article>
+    <SavePopup
+        // isSubmitted={isSubmitted}
+        subtitle="Настройки уведомлений сохранены"
+        isSavePopupOpen={isSavePopupOpen}
+        setIsSavePopupOpen={setIsSavePopupOpen}
+      />
+    </>
   );
 };

@@ -39,6 +39,9 @@ export const ProfileNav = props => {
   const [vipSubscription, setVipSubscription] = React.useState(false);
   const [deleteAccount, setdeleteAccount] = React.useState(false);
 
+  // Модальное окно - Изменения соранены
+  const [isSavePopupOpen, setIsSavePopupOpen] = React.useState(false);
+
   const buttonClassName = param => {
     return `profile-nav__btn ${param ? 'profile-nav__btn_active' : ''}`;
   };
@@ -241,9 +244,9 @@ export const ProfileNav = props => {
         ) : (
           <></>
         )}
-        {/* для Заказов  пока нет макета */}
+        {/* для Заказов */}
         {orders ? <OrderServices /> : <></>}
-        {/* для Отзывов пока нет макета */}
+        {/* для Отзывов */}
         {review ? <ProfileReviews /> : <></>}
         {/* Отображение компонентов - Профиль*/}
         {profile && personalInfo ? (
@@ -252,12 +255,18 @@ export const ProfileNav = props => {
             onSubmitPersonalInfo={onSubmitPersonalInfo}
             onSubmitPersonalAvatar={onSubmitPersonalAvatar}
             onDeletePersonalAvatar={onDeletePersonalAvatar}
+            isSavePopupOpen={isSavePopupOpen}
+            setIsSavePopupOpen={setIsSavePopupOpen}
           />
         ) : (
           <></>
         )}
         {profile && contacts ? (
-          <Contacts onSubmitPersonalContacts={onSubmitPersonalContacts} />
+          <Contacts
+            onSubmitPersonalContacts={onSubmitPersonalContacts}
+            isSavePopupOpen={isSavePopupOpen}
+            setIsSavePopupOpen={setIsSavePopupOpen}
+          />
         ) : (
           <></>
         )}
@@ -265,11 +274,22 @@ export const ProfileNav = props => {
         {profile && priceList ? <PriceList /> : <></>}
         {/* Отображение компонентов - Настройки*/}
         {settings && password ? (
-          <Password onSubmitPersonalPassword={onSubmitPersonalPassword} />
+          <Password
+            onSubmitPersonalPassword={onSubmitPersonalPassword}
+            isSavePopupOpen={isSavePopupOpen}
+            setIsSavePopupOpen={setIsSavePopupOpen}
+          />
         ) : (
           <></>
         )}
-        {settings && notice ? <Notice /> : <></>}
+        {settings && notice ? (
+          <Notice
+            isSavePopupOpen={isSavePopupOpen}
+            setIsSavePopupOpen={setIsSavePopupOpen}
+          />
+        ) : (
+          <></>
+        )}
         {settings && vipSubscription ? <VipSubscription /> : <></>}
         {settings && deleteAccount ? <DeleteAccount /> : <></>}
       </section>

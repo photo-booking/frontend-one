@@ -1,9 +1,10 @@
 import '../PersonalArea.css';
 import './PersonalInfo.css';
 import defaultAvatar from '../../../images/Avatar.svg';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import imageToBase64 from 'image-to-base64/browser';
+import { SavePopup } from '../../../components/SavePopup/SavePopup';
 
 import { CurrentUserContext } from '../../../components/context/CurrentUserContext';
 
@@ -14,7 +15,7 @@ export const PersonalInfo = props => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isValid, isDirty }
+    formState: { errors, isValid, isDirty, isSubmitted }
   } = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -27,7 +28,7 @@ export const PersonalInfo = props => {
     }
   });
   const watchAllFields = watch();
-  const { isClient, onSubmitPersonalInfo, onSubmitPersonalAvatar, onDeletePersonalAvatar } = props;
+  const { isClient, onSubmitPersonalInfo, onSubmitPersonalAvatar, onDeletePersonalAvatar, isSavePopupOpen, setIsSavePopupOpen } = props;
 
   const handleSubmitPersonalInfo = values => {
     onSubmitPersonalInfo(values);
@@ -181,14 +182,12 @@ export const PersonalInfo = props => {
           </button>
         </form>
       </article>
-      <article className='save-popup'>
-        <span className='save-popup__icon'/>
-        <div className='save-popup__container'>
-          <h1 className='save-popup__title'>Изменения сохранены</h1>
-          <h2 className='save-popup__subtitle'>Новые данные будут отображаться в профиле</h2>
-        </div>
-        <button className='save-popup__btn-close'></button>
-      </article>
+      <SavePopup
+        isSubmitted={isSubmitted}
+        subtitle="Новые данные будут отображаться в профиле"
+        isSavePopupOpen={isSavePopupOpen}
+        setIsSavePopupOpen={setIsSavePopupOpen}
+      />
     </>
   );
 };
