@@ -37,7 +37,8 @@ profile-nav__side-item:last-of-type {
 }
 
 .profile-nav__side-nav {
-    width: 269px;
+    max-width: 296px;
+    width: 100%;
 }
 
 .profile-nav__side-item {
