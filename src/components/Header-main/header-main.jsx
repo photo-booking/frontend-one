@@ -33,6 +33,10 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
         setisAvatarClick(false);
     };
 
+  
+    const secondName = currentUser.last_name;
+    const secondNameLetter = secondName?.substr(0, 1).toUpperCase();
+
     // const navigateToProfile = (id) => {
     //     setisAvatarClick(false);
     //     isClient ? navigate(`/client/${id}`) : navigate(`/expert/${id}`);
@@ -99,21 +103,17 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
                     </a>
                 </div>
             ) : loggedIn ? (
-                <div className="header-main__logged-in">
-                    <div className="header-main__logged-in_container">
-                        <div className="header-main__user-info">
-                            <p className="header-main__name">{currentUser.first_name}</p>
-                            <div
-                                className="header-main__avatar_box"
-                                onClick={onAvatarClick}
-                            >
-                                <img
-                                    className="header-main__avatar"
-                                    src={profilePhoto}
-                                    alt=""
-                                />
-                            </div>
-                        </div>
+            <div className="header-main__logged-in">
+                <div className="header-main__logged-in_container">
+
+                    <p className="header-main__name">{currentUser.first_name} {secondNameLetter}.</p>
+                    <div className="header-main__avatar_container">
+                    <div className="header-main__avatar_box" onClick={onAvatarClick}>
+                        <img
+                            className="header-main__avatar"
+                            src={profilePhoto}
+                            alt=""
+                        />
 
                         <div
                             className={
@@ -124,7 +124,7 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
                         >
                             <button
                                 className="header-main__popup_link header-main__popup_profile"
-                                onClick={()=> navigateToProfile(currentUser.id)}
+                                onClick={() => navigateToProfile(currentUser.id)}
                             >
                                 Профиль
                             </button>
@@ -135,9 +135,13 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
                                 Выйти
                             </Link>
                         </div>
+
                     </div>
+                    </div>
+
                 </div>
-            ) : (
+            </div>
+             ) : (
                 <div className="header-main__button">
                     <Link
                         to="/sign-in"
@@ -152,7 +156,7 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
                         Зарегистрироваться
                     </Link>
                 </div>
-            )}
+            )}  
         </header>
     );
 };

@@ -151,6 +151,12 @@
     right: 40px;
 }
 
+.header-main__logged-in_container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .header-main__user-info {
     align-items: center;
     column-gap: 12px;
@@ -159,6 +165,7 @@
 
 .header-main__name {
     margin: 0;
+
 }
 
 .header-main__avatar_box {
@@ -166,7 +173,6 @@
     height: 40px;
     border-radius: 50%;
     overflow: hidden;
-    position: relative;
 }
 
 .header-main__avatar {
@@ -178,7 +184,7 @@
 }
 
 
-.header-main__logged-in_container {
+.header-main__avatar_container {
     position: relative;
 }
 
@@ -191,23 +197,26 @@
     justify-content: center;
     position: absolute;
     top: 60px;
-    left: 10px;
+    left: -83px;
     background-color: rgba(255, 255, 255, 1);
     opacity: 0;
     visibility: hidden;
     transition: 0.55s opacity, 0.55s visibility;
+    width: 140px;
 }
 
 .header-main__popup_visible {
     opacity: 1;
     transition: 1s;
     visibility: visible;
+    z-index: 10;
 }
 
 .header-main__popup_link {
     text-decoration: none;
+    width: 100%;
     padding: 11px 16px 13px;
-    width: 108px;
+    box-sizing: border-box;
     text-align: center;
     font-family: Aneliza;
     font-size: 14px;
@@ -232,7 +241,7 @@
     border-bottom: 20px solid white; /* Добавляем треугольник */
     position: absolute; 
     top: -30px;
-    left: 90px;
+    left: 93px;
 }
 
 .header-main__popup_profile:hover::before {
@@ -241,7 +250,7 @@
     border-bottom: 20px solid #E0E0E0; /* Добавляем треугольник */
     position: absolute; 
     top: -30px;
-    left: 90px;
+    left: 93px;
 }
 
 .header-main__popup_profile:hover {
@@ -259,4 +268,6 @@
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px
 }
+
+
 

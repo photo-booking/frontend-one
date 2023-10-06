@@ -1,17 +1,28 @@
-import { useLocation, useNavigate } from 'react-router-dom';
 import './PersonalArea.css';
-import { useState, useContext } from 'react';
-import { CurrentUserContext } from '../../components/context/CurrentUserContext';
 import { ProfileNav } from '../../components/ProfileNav/ProfileNav';
 
-export const PersonalArea = (props) => {
-  const currentUser = useContext(CurrentUserContext);
-  const { isClient } = props;
+export const PersonalArea = props => {
+  const {
+    isClient,
+    onSubmitPersonalInfo,
+    onSubmitPersonalAvatar,
+    onSubmitPersonalContacts,
+    onDeletePersonalAvatar,
+    onSubmitPersonalPassword,
+    onSubmitDeleteAccount
+  } = props;
 
   return (
-    <div className=''>
-      <ProfileNav isClient={isClient}/>
+    <div className="">
+      <ProfileNav
+        isClient={isClient}
+        onSubmitPersonalInfo={onSubmitPersonalInfo}
+        onSubmitPersonalAvatar={onSubmitPersonalAvatar}
+        onSubmitPersonalContacts={onSubmitPersonalContacts}
+        onDeletePersonalAvatar={onDeletePersonalAvatar}
+        onSubmitPersonalPassword={onSubmitPersonalPassword}
+        onSubmitDeleteAccount={onSubmitDeleteAccount}
+      />
     </div>
-    
   );
 };

@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import StickyBox from 'react-sticky-box';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Filter from '../../components/Filter/Filter';
 import { Card } from '../../components/Card/card';
 import { fetchUsers } from '../../services/redusers/users';
 
@@ -93,7 +92,6 @@ export const CatalogExperts = props => {
       setLimit(data.next);
     }
   };
-  
 
   return (
     <>
@@ -106,8 +104,8 @@ export const CatalogExperts = props => {
           <div className={'catalog__container'}>
             <div className="catalog__filter">
               <StickyBox
-              offsetTop={148} 
-              offsetBottom={52}
+                offsetTop={148}
+                offsetBottom={52}
               >
                 <Sorting />
               </StickyBox>

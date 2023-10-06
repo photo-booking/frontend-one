@@ -1,0 +1,74 @@
+.first-screen {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background: linear-gradient(rgba(255, 238, 77, 0.5), rgba(255, 238, 77, 0.14)),
+    linear-gradient(rgba(78, 255, 78, 0.14), rgba(128, 255, 128, 0.3), rgba(77, 255, 77, 0.5)),
+    linear-gradient(rgba(180, 255, 51, 0.14), rgba(180, 255, 51, 0.3));
+}
+
+.first-screen__title {
+    margin: 172px auto 0;
+    max-width: 719px;
+    color: #0C1200;
+    font-weight: 600;
+    font-size: 80px;
+    line-height: 72px;
+    letter-spacing: -0.3rem;
+}
+
+.first-screen__subtitle {
+    font-family: 'Fira Sans';
+    margin: 56px auto 0;
+    max-width: 587px;
+    color: #0C1200;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.05rem;
+}
+
+.first-screen__container-btn {
+    margin: 60px auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+}
+
+.first-screen__btn-find {
+    background-color: #0C1200;
+    border: none;
+    width: 197px;
+    height: 44px;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.first-screen__btn-stay {
+    border: 1px solid #0C1200;
+    width: 203px;
+    height: 44px;
+    color: #0C1200;
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 4px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.first-screen__scroll {
+    margin: 184px auto 52px;
+    width: 146px;
+    background-image: url(../../images/Mouse.svg);
+    background-repeat: no-repeat;
+    background-position: left;
+    text-align: right;
+}
