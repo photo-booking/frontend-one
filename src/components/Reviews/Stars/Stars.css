@@ -1,0 +1,138 @@
+.stars__wrapper {
+  display: flex;
+
+  gap: 20px;
+}
+
+.stars__rating {
+  font-family: 'Aneliza';
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 60px; /* 100% */
+  letter-spacing: -3px;
+  margin: 0;
+}
+
+.stars__wrapper-stars {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stars__specialist-stars {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stars__value {
+  color: #757575;
+  font-family: 'Fira Sans';
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 118.182% */
+  margin: 0;
+}
+
+.stars__title {
+  font-family: 'Fira Sans';
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 118.182% */
+  margin: 28px 0 8px;
+}
+
+.stars__user-stars {
+  display: flex;
+  gap: 8px;
+}
+
+.stars__star:hover {
+  cursor: pointer;
+  transition: color 200ms;
+}
+
+.stars__radio {
+  display: none;
+}
+
+.stars__form {
+  margin-top: 12px;
+  display: none;
+}
+
+.stars__form_visible {
+  display: block;
+}
+
+.stars__wrapper-comment {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 272px;
+  background-color: white;
+  border-radius: 4px;
+  padding: 12px 12px 0;
+}
+
+.stars__wrapper-comment_unactive {
+  background-color: #f2f2f2;
+}
+
+.stars__subtitle {
+  font-family: 'Aneliza';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+  margin: 0;
+}
+
+.stars__comment {
+  all: unset;
+  font-family: 'Aneliza';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.stars__comment_unactive {
+  background-color: #f2f2f2;
+}
+
+.stars__comment-count {
+  color: #757575;
+  text-align: right;
+
+  font-family: 'Aneliza';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+  margin: 0 0 12px;
+}
+
+.stars__button {
+  display: flex;
+  padding: 12px 32px;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin-top: 8px;
+  width: 296px;
+}
+
+.stars__button:hover {
+  cursor: pointer;
+}
+
+.stars__button_active {
+  background-color: #91e500;
+}

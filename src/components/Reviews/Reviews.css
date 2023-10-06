@@ -1,4 +1,4 @@
-.preview-container {
+/* .preview-container {
   text-align: center;
   width: 200px;
   border: 1px solid black;
@@ -7,4 +7,35 @@
 }
 .preview-container:hover {
   cursor: pointer;
+} */
+
+.reviews {
+  padding: 32px 0 80px 0;
+  margin: 0 16px 0 40px;
+  display: flex;
+  flex-direction: column;
+
+  border-top: 1px solid #e0e0e0;
+ 
+
+}
+
+
+.reviews__title {
+  font-family: 'Aneliza';
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 41px; /* 146.429% */
+  letter-spacing: -0.14px;
+  margin: 0 0 35px;
+
+  
+}
+
+
+
+.reviews__content {
+  display: flex;
+  gap: 32px;
 }
