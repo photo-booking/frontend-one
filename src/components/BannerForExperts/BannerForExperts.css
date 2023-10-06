@@ -1,5 +1,10 @@
 .banner-for-experts {
+    background: #FFFFFF;
     margin: 0 auto;
+    padding: 200px 32px 0;
+}
+
+.banner-for-experts__box {
     max-width: 1376px;
     height: 620px;
     border-radius: 12px;

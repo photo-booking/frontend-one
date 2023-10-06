@@ -1,17 +1,19 @@
 import './ExpertsPreview.css';
+import { v4 as uuidv4 } from 'uuid';
 import { ExpertCard } from '../../components/ExpertCard/ExpertCard';
 import { Link } from 'react-router-dom';
 
-export const ExpertsPreview = () => {
+export const ExpertsPreview = (props) => {
     return (
         <section className='experts-preview'>
-            <h1 className='experts-preview__title'>1370 фотографов и видеооператоров</h1>
+            <h1 className='experts-preview__title'>{props.catalogTitle}</h1>
             <div className='experts-preview__container'>
-                <ExpertCard />
-                <ExpertCard />
-                <ExpertCard />
-                <ExpertCard />
-                <ExpertCard />
+                {props.expertsPreview.results.map((expert) => (
+                    <ExpertCard
+                        key={uuidv4()}
+                        expert={expert}
+                    />
+                ))}
             </div>
             <div className='experts-preview__scroll'>
                 <div className='experts-preview__scroll-line'></div>
