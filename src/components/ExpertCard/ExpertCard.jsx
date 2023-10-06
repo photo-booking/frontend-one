@@ -24,7 +24,6 @@ export const ExpertCard = (props) => {
         Object.keys(userInfo).length !==0 &&
         <div className='expert-card'>
             <div className='expert-card__img-container'>
-                <Slider>
                     {userInfo.photos.length > 0 ? (
                         userInfo.photos.map(item => (
                             <img className='expert-card__img'
@@ -40,7 +39,6 @@ export const ExpertCard = (props) => {
                             key={uuidv4()}
                         />
                     )}
-                </Slider>
             </div>
             <div className='expert-card__container'>
                 <div className='expert-card__about'>
