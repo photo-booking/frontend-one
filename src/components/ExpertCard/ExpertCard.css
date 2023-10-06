@@ -7,9 +7,15 @@
     background-color: #FFFFFF;
 }
 
-.expert-card__img {
+.expert-card__img-container {
+    overflow: hidden;
     width: 320px;
-    height: 420px;
+}
+
+.expert-card__img {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
     border-radius: 12px;
 }
 
@@ -84,6 +90,7 @@
 .expert-card__grade {
     width: 79px;
     display: flex;
+    justify-content: space-between;
     gap: 4px;
     align-items: center;
 }

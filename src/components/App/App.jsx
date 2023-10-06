@@ -276,7 +276,12 @@ export function App() {
         <Routes>
           <Route
             path="/"
-            element={<Landing signOut={signOut} />}
+            element={
+              <Landing
+                amountExpert={amountExpert}
+                onStartCatalog={onStartCatalog}
+              />
+            }
           />
           <Route
             path="/sign-up"
