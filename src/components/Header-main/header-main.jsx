@@ -33,7 +33,6 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
         setisAvatarClick(false);
     };
 
-  
     const secondName = currentUser.last_name;
     const secondNameLetter = secondName?.substr(0, 1).toUpperCase();
 
@@ -45,6 +44,7 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
         setisAvatarClick(false);
         navigate(`/personal/${id}`);
     };
+
     return (
         <header
             className={isSignIn || isResetPassword || isSignUp ? 'header-main' : 'header-main_border'}

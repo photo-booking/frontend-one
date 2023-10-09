@@ -13,7 +13,7 @@ export const ExpertsPreview = (props) => {
                         key={uuidv4()}
                         expert={expert}
                     />
-                ))}
+                )).slice(0, 5)}
             </div>
             <div className='experts-preview__scroll'>
                 <div className='experts-preview__scroll-line'></div>
