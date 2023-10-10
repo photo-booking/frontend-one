@@ -50,13 +50,9 @@
   margin-bottom: 44px;
 }
 
-.profile-pricelist__list:last-of-type {
-  margin-bottom: 353px;
-}
 
 .profile-pricelist__list-item {
   display: flex;
-
 
   padding: 24px 36px;
   background-color: #ffffff;
@@ -65,6 +61,7 @@
 
   flex-direction: column;
 
+  position: relative;
 }
 
 .profile-pricelist__label {
@@ -100,5 +97,9 @@
 
 .profile-pricelist__checkbox,
 .profile-pricelist__label {
+  cursor: pointer;
+}
+
+.profile-pricelist__list-item {
   cursor: pointer;
 }
