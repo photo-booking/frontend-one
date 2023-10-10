@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import { CurrentUserContext } from '../context/CurrentUserContext';
 import './App.css';
 
@@ -50,6 +50,7 @@ export function App() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+  let { pathname } = useLocation();
 
   const onSubmitSignin = values => {
     login(values)
@@ -266,13 +267,13 @@ export function App() {
   // const usersInfo = useSelector(state => state.users.data);
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="page">
-        <HeaderMain
+      <div className={pathname !== '/' ? "page" : "page-landing"}>
+        {pathname !== '/' ? <HeaderMain
           isClient={isClient}
           setIsClient={setIsClient}
           loggedIn={loggedIn}
           signOut={signOut}
-        ></HeaderMain>
+        ></HeaderMain> : null}
         <Routes>
           <Route
             path="/"
