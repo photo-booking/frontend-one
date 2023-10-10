@@ -2,8 +2,49 @@ import './PriceList.css';
 import PriceListForm from './PriceListForm/PriceListForm';
 import photoIcon from '../../../images/worker icon_photo.svg';
 import videoIcon from '../../../images/worker icon_video.svg';
+import { useState } from 'react';
+
+const photoTypes = ['Свадебная', 'Love Story', 'Индивидуальная', 'Семейная', 'Fashion', 'Питомцы'];
+const videoTypes = ['Свадебная', 'Love Story', 'Индивидуальная', 'Семейная', 'Fashion', 'Питомцы', 'Интервью', 'Аэросъёмка', 'Стоковая', 'Клипы'];
 
 export const PriceList = () => {
+  const [hoveredPhotoItem, setHoveredPhotoItem] = useState(null);
+  const [hoveredVideoItem, setHoveredVideoItem] = useState(null);
+
+  const handlePhotoItemHover = (index) => {
+    setHoveredPhotoItem(index);
+  };
+
+  const handleVideoItemHover = (index) => {
+    setHoveredVideoItem(index);
+  };
+
+  const generateListItems = (types, namePrefix, hoveredItem, handleItemHover) =>
+    types.map((type, index) => (
+      <li
+        className="profile-pricelist__list-item"
+        key={index}
+        onMouseEnter={() => handleItemHover(index)}
+        onMouseLeave={() => handleItemHover(null)}
+      >
+        <div className="profile-pricelist__checkbox-wraper">
+          <input
+            className="profile-pricelist__checkbox"
+            type="checkbox"
+            name={`${namePrefix}${index}`}
+            id={`${namePrefix}${index}`}
+          />
+          <label
+            className="profile-pricelist__label"
+            htmlFor={`${namePrefix}${index}`}
+          >
+            {type}
+          </label>
+          {hoveredItem === index && <PriceListForm />}
+        </div>
+      </li>
+    ));
+
   return (
     <article className="profile-pricelist">
       <h2 className="profile-pricelist__title">Прайс-лист</h2>
@@ -19,95 +60,7 @@ export const PriceList = () => {
       </div>
 
       <ul className="profile-pricelist__list">
-        <li className="profile-pricelist__list-item">
-          <div className="profile-pricelist__checkbox-wraper">
-            <input
-              className="profile-pricelist__checkbox"
-              type="checkbox"
-              name="choice1"
-              id="choice1"
-            />
-            <label
-              className="profile-pricelist__label"
-              for="choice1"
-            >
-              Свадебная
-            </label>
-          </div>
-          <PriceListForm />
-        </li>
-        <li className="profile-pricelist__list-item">
-          <div className="profile-pricelist__checkbox-wraper">
-            <input
-              className="profile-pricelist__checkbox"
-              type="checkbox"
-              name="choice2"
-              id="choice2"
-            />
-            <label
-              className="profile-pricelist__label"
-              for="choice2"
-            >
-              Love Story
-            </label>
-          </div>
-        </li>
-        <li className="profile-pricelist__list-item">
-          <input
-            className="profile-pricelist__checkbox"
-            type="checkbox"
-            name="choice3"
-            id="choice3"
-          />
-          <label
-            className="profile-pricelist__label"
-            for="choice3"
-          >
-            Индивидуальная
-          </label>
-        </li>
-        <li className="profile-pricelist__list-item">
-          <input
-            className="profile-pricelist__checkbox"
-            type="checkbox"
-            name="choice4"
-            id="choice4"
-          />
-          <label
-            className="profile-pricelist__label"
-            for="choice4"
-          >
-            Семейная
-          </label>
-        </li>
-        <li className="profile-pricelist__list-item">
-          <input
-            className="profile-pricelist__checkbox"
-            type="checkbox"
-            name="choice5"
-            id="choice5"
-          />
-          <label
-            className="profile-pricelist__label"
-            for="choice5"
-          >
-            Fashion
-          </label>
-        </li>
-        <li className="profile-pricelist__list-item">
-          <input
-            className="profile-pricelist__checkbox"
-            type="checkbox"
-            name="choice6"
-            id="choice6"
-          />
-          <label
-            className="profile-pricelist__label"
-            for="choice6"
-          >
-            Питомцы
-          </label>
-        </li>
+        {generateListItems(photoTypes, 'photoChoice', hoveredPhotoItem, handlePhotoItemHover)}
       </ul>
 
       <div className="profile-pricelist__wrapper">
@@ -120,146 +73,7 @@ export const PriceList = () => {
       </div>
 
       <ul className="profile-pricelist__list">
-        <li className="profile-pricelist__list-item">
-          <input
-            className="profile-pricelist__checkbox"
-            type="checkbox"
-            name="choice1"
-            id="choice1"
-          />
-          <label
-            className="profile-pricelist__label"
-            for="choice1"
-          >
-            Свадебная
-          </label>
-        </li>
-        <li className="profile-pricelist__list-item">
-          <input
-            className="profile-pricelist__checkbox"
-            type="checkbox"
-            name="choice1"
-            id="choice1"
-          />
-          <label
-            className="profile-pricelist__label"
-            for="choice1"
-          >
-            Love Story
-          </label>
-        </li>
-        <li className="profile-pricelist__list-item">
-          <input
-            className="profile-pricelist__checkbox"
-            type="checkbox"
-            name="choice1"
-            id="choice1"
-          />
-          <label
-            className="profile-pricelist__label"
-            for="choice1"
-          >
-            Индивидуальная
-          </label>
-        </li>
-        <li className="profile-pricelist__list-item">
-          <input
-            className="profile-pricelist__checkbox"
-            type="checkbox"
-            name="choice1"
-            id="choice1"
-          />
-          <label
-            className="profile-pricelist__label"
-            for="choice1"
-          >
-            Семейная
-          </label>
-        </li>
-        <li className="profile-pricelist__list-item">
-          <input
-            className="profile-pricelist__checkbox"
-            type="checkbox"
-            name="choice1"
-            id="choice1"
-          />
-          <label
-            className="profile-pricelist__label"
-            for="choice1"
-          >
-            Fashion
-          </label>
-        </li>
-        <li className="profile-pricelist__list-item">
-          <input
-            className="profile-pricelist__checkbox"
-            type="checkbox"
-            name="choice1"
-            id="choice1"
-          />
-          <label
-            className="profile-pricelist__label"
-            for="choice1"
-          >
-            Питомцы
-          </label>
-        </li>
-        <li className="profile-pricelist__list-item">
-          <input
-            className="profile-pricelist__checkbox"
-            type="checkbox"
-            name="choice1"
-            id="choice1"
-          />
-          <label
-            className="profile-pricelist__label"
-            for="choice1"
-          >
-            Интервью
-          </label>
-        </li>
-        <li className="profile-pricelist__list-item">
-          <input
-            className="profile-pricelist__checkbox"
-            type="checkbox"
-            name="choice1"
-            id="choice1"
-          />
-          <label
-            className="profile-pricelist__label"
-            for="choice1"
-          >
-            Аэросъёмка
-          </label>
-        </li>
-        <li className="profile-pricelist__list-item">
-          <input
-            className="profile-pricelist__checkbox"
-            type="checkbox"
-            name="choice1"
-            id="choice1"
-          />
-          <label
-            className="profile-pricelist__label"
-            for="choice1"
-          >
-            Стоковая
-          </label>
-        </li>
-        <li className="profile-pricelist__list-item">
-          <input
-            className="profile-pricelist__checkbox"
-            type="checkbox"
-            name="choice1"
-            id="choice1"
-          />
-          <label
-            className="profile-pricelist__label"
-            for="choice1"
-          >
-            Клипы
-          </label>
-        </li>
+        {generateListItems(videoTypes, 'videoChoice', hoveredVideoItem, handleVideoItemHover)}
       </ul>
     </article>
   );
