@@ -58,6 +58,8 @@ export const Signup = props => {
       return 'form-auth__button-pass form-auth__button-pass_show';
     } else if (watchAllFields !== undefined && watchAllFields.password?.length === 0) {
       return 'form-auth__button-pass';
+    }  else {
+      return 'form-auth__button-pass';
     }
   };
 
