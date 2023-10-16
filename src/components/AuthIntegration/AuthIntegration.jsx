@@ -6,7 +6,7 @@ export const AuthIntegration = () => {
   const client_id_google =
     '1091642644631-3nfthndgf7bsge2f1rckiqpqm0ddtpst.apps.googleusercontent.com';
   const client_id_vk = '51732243';
-  const redirect_url = 'https://photo-market.acceleratorpracticum.ru/sign-in';
+  const redirect_url = 'https://photomarket.sytes.net/sign-in';
   return (
     <>
       <LinkSignIn
