@@ -34,7 +34,6 @@ export const Signin = props => {
     props;
   const [showPass, setShowPass] = useState(false);
   const watchAllFields = watch();
-  console.log(watchAllFields)
 
   const formAuthInputClassName = name => {
     return `form-auth__input ${errors[name]?.message ? 'form-auth__input_err' : ''} ${
