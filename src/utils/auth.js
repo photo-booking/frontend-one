@@ -1,4 +1,4 @@
-const BASE_URL = 'https://photo-market.acceleratorpracticum.ru/api'; //my adress
+const BASE_URL = 'https://photomarket.sytes.net/api'; //my adress
 const HEADERS = { 'Content-Type': 'application/json' };
 
 function getResponseData(res) {

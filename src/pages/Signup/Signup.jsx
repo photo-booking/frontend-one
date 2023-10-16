@@ -26,17 +26,10 @@ export const Signup = props => {
   } = useForm({ mode: 'onChange' });
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
-  const { 
-    onSubmitSignup, 
-    onSubmitJoin, 
-    isClient, 
-    setIsClient, 
-    errMessage, 
-    setErrorMessage 
-  } = props;
+  const { onSubmitSignup, onSubmitJoin, isClient, setIsClient, errMessage, setErrorMessage } =
+    props;
   const title = `Зарегистрироваться как ${isClient ? 'заказчик' : 'специалист'}`;
 
-  // const watchType = watch('type', undefined);
   const watchAllFields = watch();
 
   const formAuthInputClassName = name => {
@@ -57,6 +50,16 @@ export const Signup = props => {
       ? 'signup__input-container_check'
       : ''
   } `;
+
+  const buttonPassClassName = () => {
+    if (watchAllFields !== undefined && watchAllFields.password?.length > 0 && showPass) {
+      return 'form-auth__button-pass form-auth__button-pass_hide';
+    } else if (watchAllFields !== undefined && watchAllFields.password?.length > 0 && !showPass) {
+      return 'form-auth__button-pass form-auth__button-pass_show';
+    } else if (watchAllFields !== undefined && watchAllFields.password?.length === 0) {
+      return 'form-auth__button-pass';
+    }
+  };
 
   const buttonTitle = () => {
     let buttonTitle;
@@ -188,18 +191,12 @@ export const Signup = props => {
                       })}
                     />
                     <button
-                      className="form-auth__button_show-pass"
+                      className={buttonPassClassName()}
                       onClick={handleShowPassword}
-                    >
-                      <img
-                        src={showPassImage}
-                        alt="show password"
-                        className="form-auth__"
-                      />
-                    </button>
+                    />
                   </div>
-                  <span className="form-auth__err">{errMessage}</span>
                 </label>
+                <span className="form-auth__err">{errMessage}</span>
               </>
             }
             buttonTitle={'Создать аккаунт'}
