@@ -42,7 +42,19 @@ export const Signin = props => {
         : ''
     }`;
   };
-  // const token = new URLSearchParams(location.search).get("token");
+
+  const buttonPassClassName = () => {
+    if (watchAllFields !== undefined && watchAllFields.password?.length > 0 && showPass) {
+      return 'form-auth__button-pass form-auth__button-pass_hide';
+    } else if (watchAllFields !== undefined && watchAllFields.password?.length > 0 && !showPass) {
+      return 'form-auth__button-pass form-auth__button-pass_show';
+    } else if (watchAllFields !== undefined && watchAllFields.password?.length === 0) {
+      return 'form-auth__button-pass';
+    } else {
+      return 'form-auth__button-pass';
+    }
+  };
+
   const access_token = new URLSearchParams(location.hash).get("access_token");
   const code = new URLSearchParams(location.search).get("code");
   useEffect(() => {
@@ -110,14 +122,9 @@ export const Signin = props => {
                   })}
                 />
                 <button
-                  className="form-auth__button_show-pass"
+                  className={buttonPassClassName()}
                   onClick={handleShowPassword}
-                >
-                  <img
-                    src={showPassImage}
-                    alt="show password"
-                  />
-                </button>
+                />
               </div>
             </label>
             <button

@@ -263,8 +263,6 @@ export function App() {
     dispatch(fetchUsers({ spec: 'all', limit: 1, pageSize: '' }));
   }, []);
 
-  //достаем юзеров из редакса
-  // const usersInfo = useSelector(state => state.users.data);
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className={pathname !== '/' ? "page" : "page-landing"}>
