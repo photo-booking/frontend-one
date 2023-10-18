@@ -5,6 +5,7 @@
     height: 672px;
     border-radius: 12px;
     background-color: #FFFFFF;
+    margin-bottom: 39px;
 }
 
 .expert-card__img-container {
@@ -44,6 +45,11 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 20px;
+    cursor: pointer;
+}
+
+.expert-card__name:hover {
+    opacity: 0.6;
 }
 
 .expert-card__position {
@@ -52,6 +58,11 @@
     font-size: 14px;
     line-height: 20px;
     margin: 0;
+    cursor: pointer;
+}
+
+.expert-card__position:hover {
+    opacity: 0.6;
 }
 
 .expert-card__avatar {

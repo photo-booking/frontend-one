@@ -16,31 +16,33 @@
 }
 
 .experts-preview__container {
+    margin: 0 auto;
     display: flex;
     gap: 32px;
-    overflow-x: scroll;
+    max-width: 100vw;
+    overflow-x: auto;
     white-space: nowrap;
     scroll-behavior: smooth;
 }
 
-.experts-preview__container::-webkit-scrollbar {
+/* .experts-preview__container::-webkit-scrollbar {
     display: none;
-}
+} */
 
-.experts-preview__scroll {
+/* .experts-preview__scroll {
     position: relative;
     width: 1024px;
     margin: 39px auto 0;
     border-top: 2px solid #E0E0E0;
-}
+} */
 
-.experts-preview__scroll-line {
+/* .experts-preview__scroll-line {
     position: absolute;
     top: -2px;
     left: 413px;
     width: 200px;
     border-top: 2px solid #0C1200;
-}
+} */
 
 .experts-preview__link-btn {
     margin: 52px auto 200px;
