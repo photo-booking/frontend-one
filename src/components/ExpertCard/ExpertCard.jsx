@@ -4,9 +4,10 @@ import defaultAvatar from '../../images/Avatar.svg';
 import gradeImg from '../../images/StarIcon.svg';
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Slider } from '../Slider/slider.jsx';
+import { useNavigate } from 'react-router-dom';
 
 export const ExpertCard = (props) => {
+    const navigate = useNavigate();
     const { first_name, last_name, is_photographer, is_video_operator, profile_photo, mediafiles, min_cost, raiting} = props.expert;
     const [userInfo, setUserInfo] = useState({});
 
@@ -19,6 +20,10 @@ export const ExpertCard = (props) => {
         });
         setUserInfo({ photos: photos });
       }, []);
+
+      const navigateProfile = () => {
+        navigate(`/card/${props.expert.id}`, { id: props.expert.id });
+      };
 
     return (
         Object.keys(userInfo).length !==0 &&
@@ -42,7 +47,7 @@ export const ExpertCard = (props) => {
             </div>
             <div className='expert-card__container'>
                 <div className='expert-card__about'>
-                    <div className='expert-card__text-part'>
+                    <div className='expert-card__text-part' onClick={navigateProfile}>
                         <h1 className='expert-card__name'>{first_name} {last_name}</h1>
                         <p className='expert-card__position'>
                         {is_photographer & is_video_operator
