@@ -1,7 +1,8 @@
 .header-landing {
     margin: 0 auto;
-    max-width: 1328px;
     height: 80px;
+    width: 100%;
+    max-width: 1328px;
     border-bottom: 1px solid #0C1200;
     display: flex;
     align-items: center;

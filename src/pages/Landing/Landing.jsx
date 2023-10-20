@@ -5,6 +5,7 @@ import { FirstScreen } from '../../components/FirstScreen/FirstScreen';
 import { ProductFeatures } from '../../components/ProductFeatures/ProductFeatures';
 import { ExpertsPreview } from '../../components/ExpertsPreview/ExpertsPreview';
 import { BannerForExperts } from '../../components/BannerForExperts/BannerForExperts';
+import { FAQ } from '../../components/FAQ/FAQ';
 
 export const Landing = (props) => {
   const usersInfo = useSelector(state => state.users.data);
@@ -48,6 +49,7 @@ export const Landing = (props) => {
             expertsPreview={expertsPreview}
             />
           <BannerForExperts />
+          <FAQ />
         </div>
       )}
     </>
