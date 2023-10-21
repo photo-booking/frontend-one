@@ -21,6 +21,7 @@
 .faq__list {
     margin-top: 60px;
     list-style-type: none;
+    padding-left: 0;
 }
 
 .faq__question {
@@ -44,8 +45,7 @@
     margin-bottom: 28px;
 }
 
-.faq__btn {
-    background-image: url(../../images/minus-icon.svg);
+/* .faq__btn {
     background-color: #F2F2F2;
     background-repeat: no-repeat;
     background-position: center;
@@ -54,3 +54,11 @@
     border: none;
     cursor: pointer;
 }
+
+.faq__btn-plus {
+    background-image: url(../../images/plus-icon.svg);
+}
+
+.faq__btn-minus {
+    background-image: url(../../images/minus-icon.svg);
+} */

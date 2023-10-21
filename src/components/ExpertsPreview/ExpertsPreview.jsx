@@ -1,5 +1,4 @@
 import './ExpertsPreview.css';
-import { v4 as uuidv4 } from 'uuid';
 import { ExpertCard } from '../../components/ExpertCard/ExpertCard';
 import { Link } from 'react-router-dom';
 
@@ -10,7 +9,7 @@ export const ExpertsPreview = (props) => {
             <div className='experts-preview__container'>
                 {props.expertsPreview.results.map((expert) => (
                     <ExpertCard
-                        key={uuidv4()}
+                        key={expert.id}
                         expert={expert}
                     />
                 )).slice(0, 5)}
