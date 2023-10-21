@@ -1,7 +1,9 @@
 .first-screen {
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
     background: linear-gradient(rgba(255, 238, 77, 0.5), rgba(255, 238, 77, 0.14)),
     linear-gradient(rgba(78, 255, 78, 0.14), rgba(128, 255, 128, 0.3), rgba(77, 255, 77, 0.5)),
     linear-gradient(rgba(180, 255, 51, 0.14), rgba(180, 255, 51, 0.3));

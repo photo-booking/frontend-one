@@ -5,6 +5,7 @@ import { FirstScreen } from '../../components/FirstScreen/FirstScreen';
 import { ProductFeatures } from '../../components/ProductFeatures/ProductFeatures';
 import { ExpertsPreview } from '../../components/ExpertsPreview/ExpertsPreview';
 import { BannerForExperts } from '../../components/BannerForExperts/BannerForExperts';
+import { FAQ } from '../../components/FAQ/FAQ';
 
 export const Landing = (props) => {
   const usersInfo = useSelector(state => state.users.data);
@@ -14,7 +15,7 @@ export const Landing = (props) => {
     setExpertsPreview(usersInfo)
   }, [usersInfo]);
 
-  function num_word(value, words) {
+  function setNumWord(value, words) {
     value = Math.abs(value) % 100;
     var num = value % 10;
     if (value > 10 && value < 20) return words[2];
@@ -24,7 +25,7 @@ export const Landing = (props) => {
   }
 
   const returnCatalogTitle = num => {
-    let title = num_word(num, [
+    let title = setNumWord(num, [
       ' фотограф и видеооператор',
       ' фотографа и видеооператора',
       ' фотографов и видеооператоров'
@@ -48,6 +49,7 @@ export const Landing = (props) => {
             expertsPreview={expertsPreview}
             />
           <BannerForExperts />
+          <FAQ />
         </div>
       )}
     </>
