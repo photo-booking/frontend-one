@@ -52,6 +52,17 @@ export function App() {
   const dispatch = useDispatch();
   let { pathname } = useLocation();
 
+  const paddingPage = pathname === '/catalog' ||
+  pathname === '/sign-in' ||
+  pathname === '/sign-up' ||
+  pathname === '/personal/:id' ||
+  pathname === '/card/:id' ||
+  pathname === '/expert/:id/chat' ||
+  pathname === '/client/:id/chat' ||
+  pathname === '/reset-password';
+  const isRoot = pathname === '/';
+  const visible = isRoot || paddingPage;
+
   const onSubmitSignin = values => {
     login(values)
       .then(res => {
@@ -265,7 +276,7 @@ export function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className={pathname !== '/' ? "page" : "page-landing"}>
+      <div className={paddingPage ? "page" : "page-landing"}>
         {pathname !== '/' ? <HeaderMain
           isClient={isClient}
           setIsClient={setIsClient}
@@ -361,7 +372,7 @@ export function App() {
             element={<Page404 />}
           />
         </Routes>
-        <Footer isClient={isClient} />
+        {visible ?  <Footer isClient={isClient} /> : null }
       </div>
     </CurrentUserContext.Provider>
   );
