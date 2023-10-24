@@ -22,13 +22,22 @@ export const Portfolio = () => {
 
   const [isSelected, setIsCelected] = useState([]);
 
+
   const handleChange = (e) => {
-    console.log(e.target.name);
-    // if (e.target.checked) {
-    //   setIsCelected(isSelected.push(e.target.name))
-    //   console.log(isSelected);
-    // }
+    if (e.target.checked) {
+      return setIsCelected([...isSelected, e.target.name])
+    }
+    else {
+      isSelected?.forEach((currentElement, index) => {
+        if (currentElement === e.target.id) {
+          isSelected.splice(index, 1);
+          return setIsCelected(isSelected)
+        }
+      })
+    }
   }
+
+  console.log(isSelected, 'state after all');
 
   const media = [
     'https://media.istockphoto.com/id/1496292974/photo/happy-asian-chinese-young-woman-crossing-road-carrying-skateboard-in-old-town.jpg?s=1024x1024&w=is&k=20&c=KxEElEsWUG6fFQB9a5OLH-BzNK1iRFiqOhA6HV1Shio=',
@@ -67,7 +76,7 @@ export const Portfolio = () => {
         {media.map((item, index) => (
           <div className='portfolio__cards_container' key={index} >
             <img className='portfolio__cards' src={item} />
-            <input className='portfolio__cards_checkbox' type='checkbox' onChange={handleChange} name={index} id={index}></input>
+            <input className='portfolio__cards_checkbox' type='checkbox' onClick={handleChange} name={index} id={index}></input>
             <label htmlFor={index}></label>
           </div>
         ))}
