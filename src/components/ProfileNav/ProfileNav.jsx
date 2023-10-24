@@ -292,7 +292,7 @@ export const ProfileNav = props => {
           <></>
         )}
         {settings && vipSubscription ? <VipSubscription /> : <></>}
-        {settings && deleteAccount ? <DeleteAccount onSubmitDeleteAccount={onSubmitDeleteAccount}/> : <></>}
+        {settings && deleteAccount ? <DeleteAccount onSubmitDeleteAccount={onSubmitDeleteAccount} /> : <></>}
       </section>
     </section>
   );
