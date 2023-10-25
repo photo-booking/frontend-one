@@ -11,7 +11,7 @@ export const BannerForExperts = () => {
                         <p className='banner-for-experts__subtitle'>Фотографам и видеооператорам доступна доска заказов, где можно найти новых клиентов.</p>
                     </div>
                     <Link to='/sign-up'>
-                        <button className='banner-for-experts__btn'>Стать специалистом</button>
+                        <button className='banner-for-experts__btn' type='button'>Стать специалистом</button>
                     </Link>
                 </div>
                 <div className='banner-for-experts__frame-block'>
