@@ -65,7 +65,7 @@ profile-nav__side-item:last-of-type {
     color: #0C1200;
 }
 
-.profile-nave__side-nav-btn {
+.profile-nav__side-nav-btn {
     color: #0C1200;
     font-feature-settings: 'ss01' on;
     font-family: Aneliza;
@@ -80,6 +80,16 @@ profile-nav__side-item:last-of-type {
     padding: 0;
 }
 
-.profile-nave__side-nav-btn_active {
+.profile-nav__side-nav-btn_active {
     border-bottom: 2px solid #91E500;
+}
+
+.profile-nav__side-nav-btn_delete {
+    color: #F77963;
+    padding-top: 24px;
+    border-top: 2px solid #E0E0E0;
+}
+
+.profile-nav__side-nav-btn_delete-active {
+    border-bottom: 2px solid #F77963;
 }

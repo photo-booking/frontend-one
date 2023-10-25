@@ -106,13 +106,15 @@ export const AboutMe = props => {
           </div>
           {/* Кнопки и менюшка с контактами */}
           <div className="about-me__container-contact">
-            <button
+            {props.loggedIn && (<button
               className="about-me__button-chat"
               onClick={() => navigateToChat(param.id)}
             >
               Написать
             </button>
-            <article className="about-me__article-contact">
+            )}
+            {props.loggedIn && 
+            (<article className="about-me__article-contact">
               <button
                 className="about-me__button-contact"
                 onClick={handleContactOpen}
@@ -152,6 +154,7 @@ export const AboutMe = props => {
                 )}
               </div>
             </article>
+            )}
             {/* Кнопка и менюшка поделиться */}
             <article className="about-me__article-share">
               <button
