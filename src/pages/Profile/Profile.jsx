@@ -14,7 +14,8 @@ import { Reviews } from '../../components/Reviews/Reviews';
 
 import './Profile.css';
 
-export const Profile = () => {
+export const Profile = (props) => {
+  const {loggedIn} = props;
   const dispatch = useDispatch();
   const profile = useSelector(state => state.profile.data);
   const [user, setUser] = useState({});
@@ -110,6 +111,7 @@ export const Profile = () => {
     Object.keys(user).length !== 0 && (
       <>
         <AboutMe
+          loggedIn={loggedIn}
           isPhotografer={user.profile.is_photographer}
           isVideoOperator={user.profile.is_video_operator}
           name={user.profile.first_name}
@@ -184,7 +186,7 @@ export const Profile = () => {
         ) : (
           <PricesPage />
         )}
-        <Reviews />
+        <Reviews loggedIn={loggedIn}/>
       </>
     )
   );

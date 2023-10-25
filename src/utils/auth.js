@@ -68,6 +68,7 @@ export function resetPassword(values, param) {
       console.log('пароль сброшен');
     } else {
       console.log('ошибка сервера');
+      return Promise.reject(res);
     }
   });
 }

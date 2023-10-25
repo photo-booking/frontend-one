@@ -47,6 +47,7 @@ const Stars = () => {
   return (
     <div className="stars">
       <div className="stars__wrapper">
+        {/* Здесь рейтинг */}
         <p className="stars__rating">4.8</p>
         <div className="stars__wrapper-stars">
           <div className="stars__specialist-stars">
@@ -54,6 +55,7 @@ const Stars = () => {
               return <FaStar size={20} />;
             })}
           </div>
+          {/* Здесь count */}
           <p className="stars__value">123 оценки</p>
         </div>
       </div>
