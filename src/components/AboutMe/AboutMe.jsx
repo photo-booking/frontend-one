@@ -6,13 +6,15 @@ import icon_telegram from '../../images/contact icons _telegram.svg';
 import icon_email from '../../images/contact icons_email.svg';
 import defaultAvatar from '../../images/Avatar.svg';
 
+import { url } from '../../const/baseUrl';
+
 import './AboutMe.css';
 
 export const AboutMe = props => {
   const navigate = useNavigate();
   const location = useLocation();
   const param = useParams();
-  const baseUrl = 'https://photomarket.sytes.net';
+  const baseUrl = url;
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isLinkCopy, setIsLinkCopy] = useState(false);

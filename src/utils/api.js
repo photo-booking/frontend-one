@@ -1,4 +1,5 @@
-const BASE_URL = 'https://photomarket.sytes.net/api'; //my adress
+import { url } from '../const/baseUrl';
+const BASE_URL = `${url}/api`; //my adress
 const HEADERS = { 'Content-Type': 'application/json' };
 
 function getResponseData(res) {
