@@ -11,9 +11,9 @@ export const Reviews = props => {
   const handleGetReviews = () => {
     onGetReviews(expertId);
   };
-  useEffect(() => {
-    handleGetReviews();
-  }, [reviews]);
+  // useEffect(() => {
+  //   handleGetReviews();
+  // }, []);
 
   return (
     <section className="reviews">
