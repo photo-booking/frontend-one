@@ -112,8 +112,7 @@ export function loginGoogle(param, status) {
     body: JSON.stringify({ eccses_token: param, status: status })
   })
     .then(res => {
-      getResponseData(res);
-      console.log(res);
+      return getResponseData(res);
     })
     .then(res => {
       localStorage.setItem('token', res.auth_token);
