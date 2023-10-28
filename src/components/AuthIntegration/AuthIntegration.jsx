@@ -8,6 +8,7 @@ export const AuthIntegration = () => {
     '1091642644631-3nfthndgf7bsge2f1rckiqpqm0ddtpst.apps.googleusercontent.com';
   const client_id_vk = '51732243';
   const redirect_url = `${url}/sign-in`;
+  // const redirect_url = `http://localhost:3000/sign-in`;
   return (
     <>
       <LinkSignIn
