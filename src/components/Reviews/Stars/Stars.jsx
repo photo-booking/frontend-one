@@ -57,7 +57,7 @@ const Stars = props => {
             })}
           </div>
           {/* Здесь count */}
-          <p className="stars__value">` оценки`</p>
+          <p className="stars__value">{count} оценки</p>
         </div>
       </div>
       {loggedIn ? (

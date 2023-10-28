@@ -15,7 +15,7 @@ import { Reviews } from '../../components/Reviews/Reviews';
 import './Profile.css';
 
 export const Profile = props => {
-  const { loggedIn, onGetReviews } = props;
+  const { loggedIn, onGetReviews, reviews } = props;
   const dispatch = useDispatch();
   const profile = useSelector(state => state.profile.data);
   const [user, setUser] = useState({});
@@ -189,6 +189,7 @@ export const Profile = props => {
         <Reviews
           loggedIn={loggedIn}
           onGetReviews={onGetReviews}
+          reviews={reviews}
         />
       </>
     )

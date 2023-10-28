@@ -48,6 +48,7 @@ export function App() {
   const [errMessage, setErrorMessage] = useState(undefined);
   const [amountExpert, setAmountExpert] = useState(undefined);
   const [isLoader, setIsLoader] = useState(false);
+  const [reviews, setReviews] = useState({});
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -275,7 +276,9 @@ export function App() {
 
   const onGetReviews = expertId => {
     getExpertReviews(expertId)
-      .then(res => console.log(res))
+      .then(res => {
+        setReviews(res);
+      })
       .catch(err => console.log(err));
   };
 
@@ -359,6 +362,7 @@ export function App() {
               <Profile
                 loggedIn={loggedIn}
                 onGetReviews={onGetReviews}
+                reviews={reviews}
               />
             }
           />
