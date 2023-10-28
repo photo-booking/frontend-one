@@ -22,7 +22,7 @@ import {
   deleteAccount
 } from '../../utils/auth';
 
-import { getAmountExpert } from '../../utils/api';
+import { getAmountExpert, getExpertReviews } from '../../utils/api';
 
 import { Signin } from '../../pages/Signin/Signin';
 import { Signup } from '../../pages/Signup/Signup';
@@ -48,6 +48,7 @@ export function App() {
   const [errMessage, setErrorMessage] = useState(undefined);
   const [amountExpert, setAmountExpert] = useState(undefined);
   const [isLoader, setIsLoader] = useState(false);
+  const [reviews, setReviews] = useState({});
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -234,11 +235,12 @@ export function App() {
   const signinGoogle = (param, status) => {
     loginGoogle(param, status)
       .then(res => {
-        console.log(res);
         const jwt = localStorage.getItem('token');
         getUserInfo(jwt)
           .then(res => {
+            console.log(res);
             setCurrentUser(res);
+            setIsClient(res.is_client);
             setLoggedIn(true);
             navigate('/catalog');
           })
@@ -259,6 +261,7 @@ export function App() {
         getUserInfo(jwt)
           .then(res => {
             setCurrentUser(res);
+            setIsClient(res.is_client);
             setLoggedIn(true);
             navigate('/catalog');
           })
@@ -269,6 +272,14 @@ export function App() {
       .catch(err => {
         console.log(err);
       });
+  };
+
+  const onGetReviews = expertId => {
+    getExpertReviews(expertId)
+      .then(res => {
+        setReviews(res);
+      })
+      .catch(err => console.log(err));
   };
 
   useEffect(() => {
@@ -347,7 +358,13 @@ export function App() {
           />
           <Route
             path="/card/:id"
-            element={<Profile loggedIn={loggedIn} />}
+            element={
+              <Profile
+                loggedIn={loggedIn}
+                onGetReviews={onGetReviews}
+                reviews={reviews}
+              />
+            }
           />
           <Route
             path="/personal/:id"
