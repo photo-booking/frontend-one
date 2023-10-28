@@ -13,7 +13,7 @@ export const Reviews = props => {
   };
   useEffect(() => {
     handleGetReviews();
-  }, [reviews]);
+  }, []);
 
   return (
     <section className="reviews">
