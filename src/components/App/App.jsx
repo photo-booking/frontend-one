@@ -194,8 +194,8 @@ export function App() {
   const onSubmitDeleteAccount = () => {
     const jwt = localStorage.getItem('token');
     const id = currentUser.id;
-    // console.log(jwt, id);
-    deleteAccount(id, jwt)
+    console.log(jwt, id);
+    deleteAccount(jwt, id)
       .then(res => {
         console.log(res);
         navigate('/');

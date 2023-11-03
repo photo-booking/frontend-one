@@ -23,7 +23,7 @@ export const Reviews = props => {
           loggedIn={loggedIn}
           count={reviews.count}
         />
-        <ReviewsCardList onGetReviews={onGetReviews} />
+        <ReviewsCardList />
       </div>
     </section>
   );
