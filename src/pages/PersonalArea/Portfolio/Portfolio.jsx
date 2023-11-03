@@ -95,9 +95,10 @@ export const Portfolio = () => {
               const reader = new FileReader();
               reader.readAsDataURL(e.target.files[0]);
               console.log(e.target.files[0]);
+              const name = e.target.files[0].name.substring(0, 23);
               reader.onload = function () {
                 imageToBase64(reader.result)
-                  .then(res => addPhotoToPortfolio(res, type, jwt))
+                  .then(res => addPhotoToPortfolio(res, type, jwt, name))
                   .catch(err => console.log(err));
               };
             }}
