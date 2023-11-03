@@ -8,7 +8,9 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchProfile } from '../../../services/redusers/profile';
-import tick from '../../../images/tickCheckbox.svg';
+import imageToBase64 from 'image-to-base64/browser';
+import { addPhotoToPortfolio } from '../../../utils/auth';
+
 
 export const Portfolio = () => {
 
@@ -20,24 +22,43 @@ export const Portfolio = () => {
     dispatch(fetchProfile(params.id));
   }, []);
 
-  const [isSelected, setIsCelected] = useState([]);
+  // const [isSelected, setIsSelected] = useState([]);
 
+  // const handleChange = (e) => {
+  //   if (e.target.checked) {
+  //     return setIsSelected([...isSelected, e.target.name])
 
-  const handleChange = (e) => {
+  //   }
+  //   else {
+  //     isSelected?.forEach((currentElement, index) => {
+  //       if (currentElement === e.target.id) {
+  //         isSelected.splice(index, 1);
+  //         return setIsSelected(isSelected)
+  //       }
+  //     })
+  //   }
+  // }
+
+  let selectedItem = [];
+
+  const handleSelected = (e) => {
     if (e.target.checked) {
-      return setIsCelected([...isSelected, e.target.name])
+      selectedItem = ([...selectedItem, e.target.name])
+      console.log(selectedItem)
     }
     else {
-      isSelected?.forEach((currentElement, index) => {
+      selectedItem?.forEach((currentElement, index) => {
         if (currentElement === e.target.id) {
-          isSelected.splice(index, 1);
-          return setIsCelected(isSelected)
+          selectedItem.splice(index, 1);
+          console.log(selectedItem);
         }
       })
     }
+    return console.log(selectedItem);
   }
 
-  console.log(isSelected, 'state after all');
+
+
 
   const media = [
     'https://media.istockphoto.com/id/1496292974/photo/happy-asian-chinese-young-woman-crossing-road-carrying-skateboard-in-old-town.jpg?s=1024x1024&w=is&k=20&c=KxEElEsWUG6fFQB9a5OLH-BzNK1iRFiqOhA6HV1Shio=',
@@ -62,6 +83,26 @@ export const Portfolio = () => {
         <button className='portfolio__download-fields'>
           <p className='portfolio__download-fields_text'>Загрузить фото</p>
           <img src={photoIcon} />
+          <input
+            type='file'
+            id='addphoto'
+            accept="image/png, image/jpeg"
+            className='portfolio__input_file'
+            onChange={e => {
+              const jwt = localStorage.getItem('token');
+              const type = e.target.files[0].type;
+              console.log(type);
+              const reader = new FileReader();
+              reader.readAsDataURL(e.target.files[0]);
+              console.log(e.target.files[0]);
+              reader.onload = function () {
+                imageToBase64(reader.result)
+                  .then(res => addPhotoToPortfolio(res, type, jwt))
+                  .catch(err => console.log(err));
+              };
+            }}
+          >
+          </input>
         </button>
         <button className='portfolio__download-fields'>
           <p className='portfolio__download-fields_text'>Загрузить видео</p>
@@ -76,7 +117,7 @@ export const Portfolio = () => {
         {media.map((item, index) => (
           <div className='portfolio__cards_container' key={index} >
             <img className='portfolio__cards' src={item} />
-            <input className='portfolio__cards_checkbox' type='checkbox' onClick={handleChange} name={index} id={index}></input>
+            <input className='portfolio__cards_checkbox' type='checkbox' onChange={handleSelected} name={index} id={index}></input>
             <label htmlFor={index}></label>
           </div>
         ))}
