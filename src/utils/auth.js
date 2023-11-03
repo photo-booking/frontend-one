@@ -210,11 +210,13 @@ export function deleteAccount (jwt, id) {
 
 //Добавить фотографию в портфолио
 export function addPhotoToPortfolio (value, type, jwt) {
-  return fetch (`${BASE_URL}/users/me/`, {
+  return fetch (`${BASE_URL}/media_files/`, {
     method: 'PATCH',
     headers: { ...HEADERS, Authorization: `token ${jwt}` },
     body: JSON.stringify({
-      mediafiles: `data:image/${type};base64,` + value,
+      photo: `data:image/${type};base64,` + value,
+      title: 'это имя пока для всех одно',
+      is_main_photo: true
     })
   })
     .then(res => getResponseData(res))
