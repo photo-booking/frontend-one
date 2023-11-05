@@ -85,3 +85,18 @@ export function getPriceExpert(id) {
     })
     .then(res => console.log(res));
 }
+
+//Добавить фотографию в портфолио
+export function addPhotoToPortfolio (value, type, jwt, name) {
+  return fetch (`${BASE_URL}/media_files/`, {
+    method: 'POST',
+    headers: { ...HEADERS, Authorization: `token ${jwt}` },
+    body: JSON.stringify({
+      photo: `data:image/${type};base64,` + value,
+      title: `${name}`,
+      is_main_photo: 'true'
+    })
+  })
+    .then(res => getResponseData(res))
+    .then(res => console.log('усе отправилось'))
+}

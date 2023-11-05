@@ -4,23 +4,30 @@ import { v4 as uuidv4 } from 'uuid';
 import photoIcon from '../../../images/photo-icon.svg';
 import videoIcon from '../../../images/video-icon.svg';
 import { DropDownList } from './DropDownList/dropdownlist';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchProfile } from '../../../services/redusers/profile';
 import imageToBase64 from 'image-to-base64/browser';
-import { addPhotoToPortfolio } from '../../../utils/auth';
+import { addPhotoToPortfolio } from '../../../utils/api';
+
 
 
 export const Portfolio = () => {
 
   const dispatch = useDispatch();
-
   const params = useParams();
 
   useEffect(() => {
     dispatch(fetchProfile(params.id));
   }, []);
+
+  const userInfo = useSelector(state => state.profile.data);
+  console.log(userInfo.mediafiles, '2222211111');
+  const media = userInfo.mediafiles;
+
+
+
 
   // const [isSelected, setIsSelected] = useState([]);
 
@@ -57,22 +64,6 @@ export const Portfolio = () => {
     return console.log(selectedItem);
   }
 
-
-
-
-  const media = [
-    'https://media.istockphoto.com/id/1496292974/photo/happy-asian-chinese-young-woman-crossing-road-carrying-skateboard-in-old-town.jpg?s=1024x1024&w=is&k=20&c=KxEElEsWUG6fFQB9a5OLH-BzNK1iRFiqOhA6HV1Shio=',
-    'https://media.istockphoto.com/id/1496292974/photo/happy-asian-chinese-young-woman-crossing-road-carrying-skateboard-in-old-town.jpg?s=1024x1024&w=is&k=20&c=KxEElEsWUG6fFQB9a5OLH-BzNK1iRFiqOhA6HV1Shio=',
-    'https://media.istockphoto.com/id/1496292974/photo/happy-asian-chinese-young-woman-crossing-road-carrying-skateboard-in-old-town.jpg?s=1024x1024&w=is&k=20&c=KxEElEsWUG6fFQB9a5OLH-BzNK1iRFiqOhA6HV1Shio=',
-    'https://media.istockphoto.com/id/1496292974/photo/happy-asian-chinese-young-woman-crossing-road-carrying-skateboard-in-old-town.jpg?s=1024x1024&w=is&k=20&c=KxEElEsWUG6fFQB9a5OLH-BzNK1iRFiqOhA6HV1Shio=',
-    'https://media.istockphoto.com/id/1496292974/photo/happy-asian-chinese-young-woman-crossing-road-carrying-skateboard-in-old-town.jpg?s=1024x1024&w=is&k=20&c=KxEElEsWUG6fFQB9a5OLH-BzNK1iRFiqOhA6HV1Shio=',
-    'https://media.istockphoto.com/id/1496292974/photo/happy-asian-chinese-young-woman-crossing-road-carrying-skateboard-in-old-town.jpg?s=1024x1024&w=is&k=20&c=KxEElEsWUG6fFQB9a5OLH-BzNK1iRFiqOhA6HV1Shio=',
-    'https://media.istockphoto.com/id/1496292974/photo/happy-asian-chinese-young-woman-crossing-road-carrying-skateboard-in-old-town.jpg?s=1024x1024&w=is&k=20&c=KxEElEsWUG6fFQB9a5OLH-BzNK1iRFiqOhA6HV1Shio=',
-    'https://media.istockphoto.com/id/1496292974/photo/happy-asian-chinese-young-woman-crossing-road-carrying-skateboard-in-old-town.jpg?s=1024x1024&w=is&k=20&c=KxEElEsWUG6fFQB9a5OLH-BzNK1iRFiqOhA6HV1Shio=',
-    'https://media.istockphoto.com/id/1496292974/photo/happy-asian-chinese-young-woman-crossing-road-carrying-skateboard-in-old-town.jpg?s=1024x1024&w=is&k=20&c=KxEElEsWUG6fFQB9a5OLH-BzNK1iRFiqOhA6HV1Shio=',
-    'https://media.istockphoto.com/id/1496292974/photo/happy-asian-chinese-young-woman-crossing-road-carrying-skateboard-in-old-town.jpg?s=1024x1024&w=is&k=20&c=KxEElEsWUG6fFQB9a5OLH-BzNK1iRFiqOhA6HV1Shio=',
-  ]
-
   return (
 
     <article className='portfolio'>
@@ -91,7 +82,6 @@ export const Portfolio = () => {
             onChange={e => {
               const jwt = localStorage.getItem('token');
               const type = e.target.files[0].type;
-              console.log(type);
               const reader = new FileReader();
               reader.readAsDataURL(e.target.files[0]);
               console.log(e.target.files[0]);
@@ -115,9 +105,9 @@ export const Portfolio = () => {
 
       <div className='portfolio__cards_content'>
 
-        {media.map((item, index) => (
+        {media?.map((item, index) => (
           <div className='portfolio__cards_container' key={index} >
-            <img className='portfolio__cards' src={item} />
+            <img className='portfolio__cards' src={`http://photomarket.sytes.net${item.photo}`} alt={item.title} />
             <input className='portfolio__cards_checkbox' type='checkbox' onChange={handleSelected} name={index} id={index}></input>
             <label htmlFor={index}></label>
           </div>
