@@ -5,6 +5,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import { Slider } from '../Slider/slider.jsx';
 import defaultAvatar from '../../images/Avatar.svg';
+import { url } from '../../const/baseUrl';
 
 import './card.css';
 
@@ -23,6 +24,7 @@ export const Card = ({ user }) => {
       }
     });
     setUserInfo({ user, photos: photos });
+    console.log(userInfo);
   }, []);
 
   const mediafiles = [
@@ -39,9 +41,10 @@ export const Card = ({ user }) => {
                 <img
                   alt={'photo'}
                   className="card__portfolio_item"
-                  src={`https://photo-market.acceleratorpracticum.ru${item}`}
+                  src={`${url}${item}`}
                   key={uuidv4()}
                 />
+                // <div>{item}</div>
               ))
             ) : (
               <img

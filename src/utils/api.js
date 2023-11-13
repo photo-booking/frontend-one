@@ -1,5 +1,5 @@
 import { url } from '../const/baseUrl';
-const BASE_URL = `${url}/api`; //my adress
+export const BASE_URL = `${url}/api`; //my adress
 const HEADERS = { 'Content-Type': 'application/json' };
 
 function getResponseData(res) {
