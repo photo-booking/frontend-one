@@ -94,9 +94,10 @@ export function addPhotoToPortfolio (value, type, jwt, name) {
     body: JSON.stringify({
       photo: `data:image/${type};base64,` + value,
       title: `${name}`,
-      is_main_photo: 'true'
+      is_main_photo: 'false'
     })
   })
     .then(res => getResponseData(res))
     .then(res => console.log('усе отправилось'))
+    .catch(err => console.log(err, 'нихрена не отправилось'))
 }

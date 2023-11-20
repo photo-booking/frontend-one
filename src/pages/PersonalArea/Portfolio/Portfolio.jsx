@@ -9,7 +9,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchProfile } from '../../../services/redusers/profile';
 import imageToBase64 from 'image-to-base64/browser';
-import { addPhotoToPortfolio } from '../../../utils/api';
+import { addPhotoToPortfolio, getExpertProfile } from '../../../utils/api';
+import { fetchAddPhotoToPortfolio } from '../../../services/redusers/portfolio';
 
 
 
@@ -18,14 +19,17 @@ export const Portfolio = () => {
   const dispatch = useDispatch();
   const params = useParams();
 
-  useEffect(() => {
-    dispatch(fetchProfile(params.id));
-  }, []);
 
   const userInfo = useSelector(state => state.profile.data);
   console.log(userInfo.mediafiles, '2222211111');
   const media = userInfo.mediafiles;
 
+  useEffect(() => {
+    dispatch(fetchProfile(params?.id));
+  }, []);
+
+  const portfolio = useSelector(state => state.portfolio.mediafiles);
+  console.log(portfolio, '11111111111111111111111111111');
 
 
 
@@ -64,6 +68,26 @@ export const Portfolio = () => {
     return console.log(selectedItem);
   }
 
+  const handleChange = (e) => {
+    const jwt = localStorage.getItem('token');
+    const type = e.target.files[0].type;
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    console.log(e.target.files[0]);
+    const name = e.target.files[0].name.substring(0, 23);
+    reader.onload = function () {
+      imageToBase64(reader.result)
+        .then(res => {
+          const result = res
+          return result
+        })
+        .then(result => {
+          dispatch(fetchAddPhotoToPortfolio({ result, type, jwt, name }))
+        })
+        .catch(err => console.log(err));
+    };
+  }
+
   return (
 
     <article className='portfolio'>
@@ -79,19 +103,7 @@ export const Portfolio = () => {
             id='addphoto'
             accept="image/png, image/jpeg"
             className='portfolio__input_file'
-            onChange={e => {
-              const jwt = localStorage.getItem('token');
-              const type = e.target.files[0].type;
-              const reader = new FileReader();
-              reader.readAsDataURL(e.target.files[0]);
-              console.log(e.target.files[0]);
-              const name = e.target.files[0].name.substring(0, 23);
-              reader.onload = function () {
-                imageToBase64(reader.result)
-                  .then(res => addPhotoToPortfolio(res, type, jwt, name))
-                  .catch(err => console.log(err));
-              };
-            }}
+            onChange={handleChange}
           >
           </input>
         </button>
