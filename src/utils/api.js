@@ -1,4 +1,5 @@
-const BASE_URL = 'https://photomarket.sytes.net/api'; //my adress
+import { url } from '../const/baseUrl';
+export const BASE_URL = `${url}/api`; //my adress
 const HEADERS = { 'Content-Type': 'application/json' };
 
 function getResponseData(res) {
@@ -44,26 +45,6 @@ export function getCatalog() {
     .then(catalog => catalog);
 }
 
-//Получить массив фотографов и видеооператоров
-// export function getArrayExpert(values, page) {
-//   return fetch(`${BASE_URL}/users/`, {
-//     method: 'POST',
-//     headers: HEADERS,
-//     body: JSON.stringify({
-//       price: values.price,
-//       experts: values.experts,
-//       type: values.type,
-//       price_min: values.price_min,
-//       price_max: values.price_max,
-//       page: page
-//     })
-//   })
-//     .then(res => {
-//       return getResponseData(res);
-//     })
-//     .then(res => console.log(res));
-// }
-
 //Получить информацию Профиля специалиста
 export function getExpertProfile(id) {
   return fetch(`${BASE_URL}/users/${id}/`, {
@@ -86,6 +67,7 @@ export function getPriceExpert(id) {
     .then(res => console.log(res));
 }
 
+
 //Добавить фотографию в портфолио
 export function addPhotoToPortfolio (value, type, jwt, name) {
   return fetch (`${BASE_URL}/media_files/`, {
@@ -100,4 +82,35 @@ export function addPhotoToPortfolio (value, type, jwt, name) {
     .then(res => getResponseData(res))
     .then(res => console.log('усе отправилось'))
     .catch(err => console.log(err, 'нихрена не отправилось'))
+
+//Получить отзывы на специалиста по его id
+export function getExpertReviews(id) {
+  return fetch(`${BASE_URL}/users/${id}/reviews/`, {
+    method: 'GET',
+    headers: HEADERS
+  }).then(res => {
+    return getResponseData(res);
+  });
+}
+
+//Отправить отзыв на специалиста
+export function postExpertReview(expertId, authorId, jwt, values) {
+  return fetch(`${BASE_URL}/users/${expertId}/reviews/`, {
+    method: 'POST',
+    headers: { ...HEADERS, Authorization: `token ${jwt}` },
+    body: JSON.stringify({
+      user: expertId,
+      service_author: authorId,
+      rating: values.rating,
+      description: values.description
+    })
+  }).then(res => {
+    if (res.ok) {
+      console.log('отзыв отправлен');
+    } else {
+      console.log('ошибка сервера');
+      return Promise.reject(res);
+    }
+  });
+
 }

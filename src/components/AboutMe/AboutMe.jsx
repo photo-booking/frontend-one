@@ -6,13 +6,15 @@ import icon_telegram from '../../images/contact icons _telegram.svg';
 import icon_email from '../../images/contact icons_email.svg';
 import defaultAvatar from '../../images/Avatar.svg';
 
+import { url } from '../../const/baseUrl';
+
 import './AboutMe.css';
 
 export const AboutMe = props => {
   const navigate = useNavigate();
   const location = useLocation();
   const param = useParams();
-  const baseUrl = 'https://photo-market.acceleratorpracticum.ru';
+  const baseUrl = url;
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isLinkCopy, setIsLinkCopy] = useState(false);
@@ -106,52 +108,56 @@ export const AboutMe = props => {
           </div>
           {/* Кнопки и менюшка с контактами */}
           <div className="about-me__container-contact">
-            <button
-              className="about-me__button-chat"
-              onClick={() => navigateToChat(param.id)}
-            >
-              Написать
-            </button>
-            <article className="about-me__article-contact">
+            {props.loggedIn && (
               <button
-                className="about-me__button-contact"
-                onClick={handleContactOpen}
+                className="about-me__button-chat"
+                onClick={() => navigateToChat(param.id)}
               >
-                Показать контакты
+                Написать
               </button>
-              <div className={contactMenuClassName}>
-                {props.phone && (
-                  <span className="about-me__contact-span">
-                    <img
-                      className="about-me__contact-icon"
-                      src={icon_telephone}
-                      alt=""
-                    />
-                    <p className="about-me__contact">{props.phone}</p>
-                  </span>
-                )}
-                {props.telegram && (
-                  <span className="about-me__contact-span">
-                    <img
-                      className="about-me__contact-icon"
-                      src={icon_telegram}
-                      alt=""
-                    />
-                    <p className="about-me__contact">{props.telegram}</p>
-                  </span>
-                )}
-                {props.email && (
-                  <span className="about-me__contact-span">
-                    <img
-                      className="about-me__contact-icon"
-                      src={icon_email}
-                      alt=""
-                    />
-                    <p className="about-me__contact">{props.email}</p>
-                  </span>
-                )}
-              </div>
-            </article>
+            )}
+            {props.loggedIn && (
+              <article className="about-me__article-contact">
+                <button
+                  className="about-me__button-contact"
+                  onClick={handleContactOpen}
+                >
+                  Показать контакты
+                </button>
+                <div className={contactMenuClassName}>
+                  {props.phone && (
+                    <span className="about-me__contact-span">
+                      <img
+                        className="about-me__contact-icon"
+                        src={icon_telephone}
+                        alt=""
+                      />
+                      <p className="about-me__contact">{props.phone}</p>
+                    </span>
+                  )}
+                  {props.telegram && (
+                    <span className="about-me__contact-span">
+                      <img
+                        className="about-me__contact-icon"
+                        src={icon_telegram}
+                        alt=""
+                      />
+                      <p className="about-me__contact">{props.telegram}</p>
+                    </span>
+                  )}
+                  {props.email && (
+                    <span className="about-me__contact-span">
+                      <img
+                        className="about-me__contact-icon"
+                        src={icon_email}
+                        alt=""
+                      />
+                      <p className="about-me__contact">{props.email}</p>
+                    </span>
+                  )}
+                </div>
+              </article>
+            )}
             {/* Кнопка и менюшка поделиться */}
             <article className="about-me__article-share">
               <button

@@ -19,6 +19,8 @@ export const ResetPassword = props => {
   // new URLSearchParams(location.search).get("token")
 
   const [searchParam, setSearchParam] = useState(undefined);
+  const [errMessage, setErrorMessage] = useState(undefined);
+  const [equalPass, setEqualPass] = useState(undefined);
 
   const returnSearchParam = () => {
     const param = {
@@ -44,15 +46,16 @@ export const ResetPassword = props => {
   const watchAllFields = watch();
 
   const formAuthInputClassName = name => {
-    return `form-auth__input ${errors[name]?.message ? 'form-auth__input_err' : ''} ${
-      watchAllFields[name]?.length > 0 && errors[name]?.message === undefined
+    console.log(errMessage);
+    return `form-auth__input ${errors[name]?.message || errMessage ? 'form-auth__input_err' : ''} ${
+      watchAllFields[name]?.length > 0 && errors[name]?.message === undefined && !errMessage
         ? 'form-auth__input_ok'
         : ''
     }`;
   };
 
   const compareInputValues = (firstInput, secondInput) => {
-    return watchAllFields[firstInput] === watchAllFields[secondInput];
+    return (watchAllFields[firstInput] === watchAllFields[secondInput]);
   };
 
   const handleSubmitSendEmailToResetPassword = values => {
@@ -61,8 +64,13 @@ export const ResetPassword = props => {
   };
 
   const handleSubmitResetPassword = values => {
-    onSubmitResetPassword(values, searchParam);
-    reset();
+    if (compareInputValues('resetPassword', 'repeatResetPassword')) {
+      onSubmitResetPassword(values, searchParam);
+      reset();
+      setErrorMessage(undefined);
+    } else {
+      setErrorMessage('Пароли не совпадают');
+    }
   };
 
   if (searchParam?.uid === null && searchParam?.token === null && isEmailSend) {
@@ -75,7 +83,8 @@ export const ResetPassword = props => {
         />
         <h1 className="form-auth__title form-auth__title_email">Письмо отправлено</h1>
         <p className="form-auth__subtitle form-auth__subtitle_email">
-          Перейдите по ссылке из письма<br/> и откроется окно для создания нового &nbsp;пароля.
+          Перейдите по ссылке из письма
+          <br /> и откроется окно для создания нового &nbsp;пароля.
         </p>
       </div>
     );
@@ -143,7 +152,9 @@ export const ResetPassword = props => {
     return (
       <div className="form-auth__container">
         <h1 className="form-auth__title form-auth__title_email">Смена пароля</h1>
-        <h2 className="form-auth__subtitle form-auth__subtitle_pass">Придумайте новый пароль и запомните его.</h2>
+        <h2 className="form-auth__subtitle form-auth__subtitle_pass">
+          Придумайте новый пароль и запомните его.
+        </h2>
         <FormAuth
           child={
             <>
@@ -190,6 +201,7 @@ export const ResetPassword = props => {
                   })}
                 />
               </label>
+              <span className="form-auth__err">{errMessage ? errMessage : ''}</span>
             </>
           }
           buttonTitle={'Сменить пароль'}

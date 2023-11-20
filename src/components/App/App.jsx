@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import { CurrentUserContext } from '../context/CurrentUserContext';
+import { ProtectedRoute } from '../ProtectedRoute';
 import './App.css';
 
 import {
@@ -21,7 +22,7 @@ import {
   deleteAccount
 } from '../../utils/auth';
 
-import { getAmountExpert } from '../../utils/api';
+import { getAmountExpert, getExpertReviews } from '../../utils/api';
 
 import { Signin } from '../../pages/Signin/Signin';
 import { Signup } from '../../pages/Signup/Signup';
@@ -47,19 +48,21 @@ export function App() {
   const [errMessage, setErrorMessage] = useState(undefined);
   const [amountExpert, setAmountExpert] = useState(undefined);
   const [isLoader, setIsLoader] = useState(false);
+  const [reviews, setReviews] = useState({});
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
   let { pathname } = useLocation();
 
-  const paddingPage = pathname === '/catalog' ||
-  pathname === '/sign-in' ||
-  pathname === '/sign-up' ||
-  pathname === '/personal/:id' ||
-  pathname === '/card/:id' ||
-  pathname === '/expert/:id/chat' ||
-  pathname === '/client/:id/chat' ||
-  pathname === '/reset-password';
+  const paddingPage =
+    pathname === '/catalog' ||
+    pathname === '/sign-in' ||
+    pathname === '/sign-up' ||
+    pathname === '/personal/:id' ||
+    pathname === '/card/:id' ||
+    pathname === '/expert/:id/chat' ||
+    pathname === '/client/:id/chat' ||
+    pathname === '/reset-password';
   const isRoot = pathname === '/';
   const visible = isRoot || paddingPage;
 
@@ -191,12 +194,13 @@ export function App() {
   const onSubmitDeleteAccount = () => {
     const jwt = localStorage.getItem('token');
     const id = currentUser.id;
-    // console.log(jwt, id);
-    deleteAccount(id, jwt)
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => console.log(err));
+    console.log(jwt, id);
+    deleteAccount(jwt, id)
+      .then(res => {
+        console.log(res);
+        navigate('/');
+      })
+      .catch(err => console.log(err));
   };
 
   const tokenCheck = () => {
@@ -231,11 +235,12 @@ export function App() {
   const signinGoogle = (param, status) => {
     loginGoogle(param, status)
       .then(res => {
-        console.log(res);
         const jwt = localStorage.getItem('token');
         getUserInfo(jwt)
           .then(res => {
+            console.log(res);
             setCurrentUser(res);
+            setIsClient(res.is_client);
             setLoggedIn(true);
             navigate('/catalog');
           })
@@ -256,6 +261,7 @@ export function App() {
         getUserInfo(jwt)
           .then(res => {
             setCurrentUser(res);
+            setIsClient(res.is_client);
             setLoggedIn(true);
             navigate('/catalog');
           })
@@ -268,6 +274,14 @@ export function App() {
       });
   };
 
+  const onGetReviews = expertId => {
+    getExpertReviews(expertId)
+      .then(res => {
+        setReviews(res);
+      })
+      .catch(err => console.log(err));
+  };
+
   useEffect(() => {
     tokenCheck();
     //при первой загрузке запрашиваем только фотографов, как стоит в сортировке по дефолту
@@ -276,13 +290,15 @@ export function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className={paddingPage ? "page" : "page-landing"}>
-        {pathname !== '/' ? <HeaderMain
-          isClient={isClient}
-          setIsClient={setIsClient}
-          loggedIn={loggedIn}
-          signOut={signOut}
-        ></HeaderMain> : null}
+      <div className={paddingPage ? 'page' : 'page-landing'}>
+        {pathname !== '/' ? (
+          <HeaderMain
+            isClient={isClient}
+            setIsClient={setIsClient}
+            loggedIn={loggedIn}
+            signOut={signOut}
+          ></HeaderMain>
+        ) : null}
         <Routes>
           <Route
             path="/"
@@ -342,12 +358,20 @@ export function App() {
           />
           <Route
             path="/card/:id"
-            element={<Profile />}
+            element={
+              <Profile
+                loggedIn={loggedIn}
+                onGetReviews={onGetReviews}
+                reviews={reviews}
+              />
+            }
           />
           <Route
             path="/personal/:id"
             element={
-              <PersonalArea
+              <ProtectedRoute
+                element={PersonalArea}
+                loggedIn={loggedIn}
                 isClient={isClient}
                 onSubmitPersonalInfo={onSubmitPersonalInfo}
                 onSubmitPersonalAvatar={onSubmitPersonalAvatar}
@@ -361,18 +385,28 @@ export function App() {
 
           <Route
             path="/client/:id/chat"
-            element={<ClientChat />}
+            element={
+              <ProtectedRoute
+                element={ClientChat}
+                loggedIn={loggedIn}
+              />
+            }
           />
           <Route
             path="/expert/:id/chat"
-            element={<ExpertChat />}
+            element={
+              <ProtectedRoute
+                element={ExpertChat}
+                loggedIn={loggedIn}
+              />
+            }
           />
           <Route
             path="*"
             element={<Page404 />}
           />
         </Routes>
-        {visible ?  <Footer isClient={isClient} /> : null }
+        {visible ? <Footer isClient={isClient} /> : null}
       </div>
     </CurrentUserContext.Provider>
   );

@@ -2,7 +2,8 @@ import './Stars.css';
 import { FaStar } from 'react-icons/fa';
 import { useState } from 'react';
 
-const Stars = () => {
+const Stars = props => {
+  const { loggedIn, count } = props;
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
 
@@ -47,6 +48,7 @@ const Stars = () => {
   return (
     <div className="stars">
       <div className="stars__wrapper">
+        {/* Здесь рейтинг */}
         <p className="stars__rating">4.8</p>
         <div className="stars__wrapper-stars">
           <div className="stars__specialist-stars">
@@ -54,94 +56,101 @@ const Stars = () => {
               return <FaStar size={20} />;
             })}
           </div>
-          <p className="stars__value">123 оценки</p>
+          {/* Здесь count */}
+          <p className="stars__value">{count} оценки</p>
         </div>
       </div>
-      <h3 className="stars__title">Оцените и напишите отзыв</h3>
+      {loggedIn ? (
+        <>
+          <h3 className="stars__title">Оцените и напишите отзыв</h3>
 
-      <div className="stars__user-stars">
-        {[...Array(5)].map((star, index) => {
-          const ratingValue = index + 1;
-          return (
-            <label>
-              <input
-                type="radio"
-                name="rating"
-                className="stars__radio"
-                value={ratingValue}
-                onClick={() => {
-                  setRating(ratingValue);
-                  setIsFormVisible(true);
-                }}
-              />
-              <FaStar
-                size={50}
-                color={ratingValue <= (hover || rating) ? '#91E500' : '#A1A1A1'}
-                className="stars__star"
-                onMouseEnter={() => setHover(ratingValue)}
-                onMouseLeave={() => setHover(null)}
-              />
-            </label>
-          );
-        })}
-      </div>
-
-      <form className={`stars__form ${isFormVisible ? 'stars__form_visible' : ''}`}>
-        {!submitted && <p className="stars__subtitle">Расскажите о своих впечатлениях</p>}
-        <div
-          className={`stars__wrapper-comment ${
-            isTextBlocked ? 'stars__wrapper-comment_unactive' : ''
-          }`}
-        >
-          <textarea
-            className="stars__comment"
-            name="comment"
-            cols="40"
-            rows="5"
-            value={comment}
-            onChange={handleCommentChange}
-            maxLength={150}
-            required
-            disabled={isTextBlocked}
-          ></textarea>
-          {!submitted && <p className="stars__comment-count">{comment.length}/150</p>}
-        </div>
-        {!submitted && !editing && (
-          <input
-            type="submit"
-            value="Отправить"
-            className={`stars__button ${comment ? 'stars__button_active' : ''}`}
-            disabled={!comment}
-            onClick={handleSubmit}
-          />
-        )}
-        {submitted && !editing && (
-          <div>
-            <input
-              type="submit"
-              value="Изменить"
-              className="stars__button"
-              onClick={handleEdit}
-            />
+          <div className="stars__user-stars">
+            {[...Array(5)].map((star, index) => {
+              const ratingValue = index + 1;
+              return (
+                <label>
+                  <input
+                    type="radio"
+                    name="rating"
+                    className="stars__radio"
+                    value={ratingValue}
+                    onClick={() => {
+                      setRating(ratingValue);
+                      setIsFormVisible(true);
+                    }}
+                  />
+                  <FaStar
+                    size={50}
+                    color={ratingValue <= (hover || rating) ? '#91E500' : '#A1A1A1'}
+                    className="stars__star"
+                    onMouseEnter={() => setHover(ratingValue)}
+                    onMouseLeave={() => setHover(null)}
+                  />
+                </label>
+              );
+            })}
           </div>
-        )}
-        {editing && (
-          <div>
-            <input
-              type="submit"
-              value="Сохранить"
-              className="stars__button stars__button_active"
-              onClick={handleSave}
-            />
-            <button
-              className="stars__button"
-              onClick={handleCancel}
+
+          <form className={`stars__form ${isFormVisible ? 'stars__form_visible' : ''}`}>
+            {!submitted && <p className="stars__subtitle">Расскажите о своих впечатлениях</p>}
+            <div
+              className={`stars__wrapper-comment ${
+                isTextBlocked ? 'stars__wrapper-comment_unactive' : ''
+              }`}
             >
-              Отменить
-            </button>
-          </div>
-        )}
-      </form>
+              <textarea
+                className="stars__comment"
+                name="comment"
+                cols="40"
+                rows="5"
+                value={comment}
+                onChange={handleCommentChange}
+                maxLength={150}
+                required
+                disabled={isTextBlocked}
+              ></textarea>
+              {!submitted && <p className="stars__comment-count">{comment.length}/150</p>}
+            </div>
+            {!submitted && !editing && (
+              <input
+                type="submit"
+                value="Отправить"
+                className={`stars__button ${comment ? 'stars__button_active' : ''}`}
+                disabled={!comment}
+                onClick={handleSubmit}
+              />
+            )}
+            {submitted && !editing && (
+              <div>
+                <input
+                  type="submit"
+                  value="Изменить"
+                  className="stars__button"
+                  onClick={handleEdit}
+                />
+              </div>
+            )}
+            {editing && (
+              <div>
+                <input
+                  type="submit"
+                  value="Сохранить"
+                  className="stars__button stars__button_active"
+                  onClick={handleSave}
+                />
+                <button
+                  className="stars__button"
+                  onClick={handleCancel}
+                >
+                  Отменить
+                </button>
+              </div>
+            )}
+          </form>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

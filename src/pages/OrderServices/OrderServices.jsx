@@ -1,10 +1,18 @@
-import { useNavigate } from 'react-router-dom';
 import './OrderServices.css';
+import oredersNull from '../../images/orders_null.svg';
 
 export const OrderServices = () => {
-  const navigate = useNavigate();
-
+  const orders = [];
   return (
-      <div>Заказы</div>
+    <div className="orders">
+      {orders.length === 0 ? (
+        <img
+          src={oredersNull}
+          alt="is not order"
+        />
+      ) : (
+        <p>Orders</p>
+      )}
+    </div>
   );
 };

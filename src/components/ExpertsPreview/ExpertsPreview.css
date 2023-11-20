@@ -2,6 +2,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .experts-preview__title {
@@ -26,7 +27,6 @@
 }
 
 .experts-preview__container::-webkit-scrollbar {
-  width: 1024px;
   height: 2px;
 }
 
@@ -35,14 +35,31 @@
 }
 
 .experts-preview__container::-webkit-scrollbar-thumb {
-  width: 200px;
-  background-color: #0c1200;
-  border-radius: 20px;
   border: 2px solid #000000;
 }
 
 .experts-preview__link-btn {
   margin: 52px auto 200px;
+}
+
+.experts-preview__mask-left {
+  top: 460px;
+  left: 0;
+  width: 208px;
+  height: 672px;
+  position: absolute;
+  background: linear-gradient(to right, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
+  z-index: 1;
+}
+
+.experts-preview__mask-right {
+  top: 460px;
+  right: 0;
+  width: 208px;
+  height: 672px;
+  position: absolute;
+  background: linear-gradient(to left, rgba(242, 242, 242, 1), rgba(242, 242, 242, 0));
+  z-index: 1;
 }
 
 .experts-preview__btn {

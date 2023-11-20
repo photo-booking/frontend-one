@@ -47,8 +47,14 @@ export const ProfileNav = props => {
     return `profile-nav__btn ${param ? 'profile-nav__btn_active' : ''}`;
   };
   const sideNavButtonClassName = param => {
-    return `profile-nave__side-nav-btn ${param ? 'profile-nave__side-nav-btn_active' : ''}`;
+      return `profile-nav__side-nav-btn ${param ? 'profile-nav__side-nav-btn_active' : ''}`;
   };
+const deleteSideNavButtonClassName = param => {
+  return `profile-nav__side-nav-btn profile-nav__side-nav-btn_delete ${
+    param ? 'profile-nav__side-nav-btn_delete-active' : ''
+  }`;
+}
+
   return (
     <section className="profile-nav">
       {/* Верхняя навигация  */}
@@ -229,7 +235,7 @@ export const ProfileNav = props => {
               )}
               <li className="profile-nav__side-item">
                 <button
-                  className={sideNavButtonClassName(deleteAccount)}
+                  className={deleteSideNavButtonClassName(deleteAccount)}
                   onClick={() => {
                     setPassword(false);
                     setNotice(false);
@@ -292,7 +298,14 @@ export const ProfileNav = props => {
           <></>
         )}
         {settings && vipSubscription ? <VipSubscription /> : <></>}
-        {settings && deleteAccount ? <DeleteAccount onSubmitDeleteAccount={onSubmitDeleteAccount} /> : <></>}
+
+
+        {settings && deleteAccount ? (
+          <DeleteAccount onSubmitDeleteAccount={onSubmitDeleteAccount} />
+        ) : (
+          <></>
+        )}
+
       </section>
     </section>
   );
