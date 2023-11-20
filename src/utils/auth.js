@@ -203,5 +203,7 @@ export function deleteAccount(jwt, id) {
     body: JSON.stringify({
       user_id: id
     })
+
   }).then(res => getResponseData(res));
 }
+

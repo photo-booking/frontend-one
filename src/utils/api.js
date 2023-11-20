@@ -67,6 +67,22 @@ export function getPriceExpert(id) {
     .then(res => console.log(res));
 }
 
+
+//Добавить фотографию в портфолио
+export function addPhotoToPortfolio (value, type, jwt, name) {
+  return fetch (`${BASE_URL}/media_files/`, {
+    method: 'POST',
+    headers: { ...HEADERS, Authorization: `token ${jwt}` },
+    body: JSON.stringify({
+      photo: `data:image/${type};base64,` + value,
+      title: `${name}`,
+      is_main_photo: 'false'
+    })
+  })
+    .then(res => getResponseData(res))
+    .then(res => console.log('усе отправилось'))
+    .catch(err => console.log(err, 'нихрена не отправилось'))
+
 //Получить отзывы на специалиста по его id
 export function getExpertReviews(id) {
   return fetch(`${BASE_URL}/users/${id}/reviews/`, {
@@ -96,4 +112,5 @@ export function postExpertReview(expertId, authorId, jwt, values) {
       return Promise.reject(res);
     }
   });
+
 }

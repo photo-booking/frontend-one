@@ -298,11 +298,14 @@ const deleteSideNavButtonClassName = param => {
           <></>
         )}
         {settings && vipSubscription ? <VipSubscription /> : <></>}
+
+
         {settings && deleteAccount ? (
           <DeleteAccount onSubmitDeleteAccount={onSubmitDeleteAccount} />
         ) : (
           <></>
         )}
+
       </section>
     </section>
   );

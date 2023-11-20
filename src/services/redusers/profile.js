@@ -12,6 +12,7 @@ export const fetchProfile = createAsyncThunk(
   async (id, { rejectWithValue, fulfillWithValue }) => {
     try {
       const data = await getExpertProfile(id);
+
       if (!(typeof data === 'object')) {
         throw new Error('Ошибка. Данные не получены 404');
       }

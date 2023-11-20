@@ -4,5 +4,8 @@
     "files.autoSave": "onFocusChange",
     "editor.codeActionsOnSave": {
 
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
     }
 }
