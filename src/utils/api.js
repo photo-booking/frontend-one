@@ -82,6 +82,8 @@ export function addPhotoToPortfolio (value, type, jwt, name) {
     .then(res => getResponseData(res))
     .then(res => console.log('усе отправилось'))
     .catch(err => console.log(err, 'нихрена не отправилось'))
+}
+
 
 //Получить отзывы на специалиста по его id
 export function getExpertReviews(id) {
@@ -112,5 +114,4 @@ export function postExpertReview(expertId, authorId, jwt, values) {
       return Promise.reject(res);
     }
   });
-
 }
