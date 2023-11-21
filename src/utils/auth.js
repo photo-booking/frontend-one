@@ -203,7 +203,11 @@ export function deleteAccount(jwt, id) {
     body: JSON.stringify({
       user_id: id
     })
-
-  }).then(res => getResponseData(res));
+  }).then(res => {
+    if (res.ok) {
+      console.log('user удален');
+    } else {
+      console.log('ошибка сервера');
+    }
+  });
 }
-
