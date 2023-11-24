@@ -37,7 +37,7 @@ import { HeaderMain } from '../Header-main/header-main';
 import { Footer } from '../Footer/footer';
 import { useDispatch } from 'react-redux';
 import { fetchUsers } from '../../services/redusers/users';
-import { Chat } from '../Chat/Chat';
+import { ExpertChat } from '../../pages/ExpertChat/ExpertChat';
 
 export function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -384,21 +384,11 @@ export function App() {
               />
             }
           />
-          {/* 
-          <Route
-            path="/client/:id/chat"
-            element={
-              <ProtectedRoute
-                element={ClientChat}
-                loggedIn={loggedIn}
-              />
-            }
-          /> */}
           <Route
             path="/expert/:id/chat"
             element={
               <ProtectedRoute
-                element={Chat}
+                element={ExpertChat}
                 loggedIn={loggedIn}
               />
             }
