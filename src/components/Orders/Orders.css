@@ -1,0 +1,54 @@
+.orders {
+  width: fit-content;
+  margin: 20px auto;
+  max-width: 1328px;
+  border-radius: 12px;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.orders__contacts {
+  box-sizing: border-box;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 12px;
+  border-right: 2px solid #F2F2F2;
+}
+
+.orders__input {
+  width: 100%;
+  height: max-content;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background-color: #F2F2F2;
+  padding: 8px 16px 8px 32px;
+  width: 375px;
+  border: none;
+  color: #757575;
+  font-feature-settings: 'ss01' on;
+  /* design/label/medium */
+  font-family: Aneliza;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  /* 142.857% */
+}
+
+.orders__search-container {
+  position: relative;
+}
+
+.orders__search {
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+}

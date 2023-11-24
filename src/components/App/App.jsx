@@ -31,13 +31,13 @@ import { CatalogExperts } from '../../pages/CatalogExperts/CatalogExperts';
 import { Profile } from '../../pages/Profile/Profile';
 import { Landing } from '../../pages/Landing/Landing';
 import { PersonalArea } from '../../pages/PersonalArea/PersonalArea';
-import { ClientChat } from '../../pages/ClientChat/ClientChat';
-import { ExpertChat } from '../../pages/ExpertChat/ExpertChat';
+
 import { Page404 } from '../../pages/404/404';
 import { HeaderMain } from '../Header-main/header-main';
 import { Footer } from '../Footer/footer';
 import { useDispatch } from 'react-redux';
 import { fetchUsers } from '../../services/redusers/users';
+import { ExpertChat } from '../../pages/ExpertChat/ExpertChat';
 
 export function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -381,16 +381,6 @@ export function App() {
                 onDeletePersonalAvatar={onDeletePersonalAvatar}
                 onSubmitPersonalPassword={onSubmitPersonalPassword}
                 onSubmitDeleteAccount={onSubmitDeleteAccount}
-              />
-            }
-          />
-
-          <Route
-            path="/client/:id/chat"
-            element={
-              <ProtectedRoute
-                element={ClientChat}
-                loggedIn={loggedIn}
               />
             }
           />
