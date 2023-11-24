@@ -82,3 +82,11 @@
     line-height: 24px;
     /* 150% */
 }
+
+.message__text_left {
+    text-align: start;
+}
+
+.message__text_right {
+    text-align: end;
+}
