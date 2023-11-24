@@ -1,12 +1,113 @@
-.expertChat-container {
-    width: fit-content;
-    margin: 20px auto;
-}
-.expertChat-container button {
+.expert-сhat {
+  width: fit-content;
   margin: 20px auto;
-  display: block;
-}
-.expertChat-container h1 {
-  text-align: center;
+  max-width: 1328px;
+  border-radius: 12px;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
+.expert-сhat__contacts {
+  box-sizing: border-box;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 12px;
+  border-right: 2px solid #F2F2F2;
+}
+
+.expert-сhat__input {
+  width: 100%;
+  height: max-content;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background-color: #F2F2F2;
+}
+
+.expert-сhat__input_search {
+  padding: 8px 16px 8px 32px;
+  width: 375px;
+  border: none;
+  color: #757575;
+  font-feature-settings: 'ss01' on;
+  /* design/label/medium */
+  font-family: Aneliza;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  /* 142.857% */
+}
+
+.expert-сhat__input_message {
+  padding: 10px 24px;
+  border: 1.5px solid #E0E0E0;
+  align-self: stretch;
+  color: #0C1200;
+  /* design/body/medium */
+  font-family: Fira Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  /* 150% */
+}
+
+.expert-сhat__messages {
+  box-sizing: border-box;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 42px;
+}
+
+.expert-сhat__messages-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.expert-сhat__btn {
+  border-radius: 4px;
+  background: #AFFA00;
+  padding: 12px 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  color: #0C1200;
+  text-align: center;
+  font-feature-settings: 'ss01' on;
+  /* design/label/medium */
+  font-family: Aneliza;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  /* 142.857% */
+}
+
+.expert-сhat__btn:hover {
+  opacity: 0.8;
+}
+
+.expert-сhat__search-container {
+  position: relative;
+}
+
+.expert-сhat__search {
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+}

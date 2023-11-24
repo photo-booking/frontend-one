@@ -384,7 +384,7 @@ export function App() {
               />
             }
           />
-
+          {/* 
           <Route
             path="/client/:id/chat"
             element={
@@ -393,7 +393,7 @@ export function App() {
                 loggedIn={loggedIn}
               />
             }
-          />
+          /> */}
           <Route
             path="/expert/:id/chat"
             element={

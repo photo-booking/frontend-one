@@ -1,0 +1,84 @@
+.message {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.message_left {
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.message_right {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.message__image {
+    width: 72px;
+    height: 72px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.message__container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.message__container_row {
+    flex-direction: row;
+}
+
+.message__container_column {
+    flex-direction: column;
+}
+
+.message__container_left {
+    align-items: flex-start;
+}
+
+.message__container_right {
+    align-items: flex-end;
+}
+
+.message__name {
+    margin: 0;
+    color: #0C1200;
+    font-feature-settings: 'ss01' on;
+    /* design/title/medium */
+    font-family: Aneliza;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    /* 109.091% */
+    letter-spacing: -0.44px;
+}
+
+.message__time {
+    margin: 0;
+    color: #757575;
+    font-feature-settings: 'ss01' on;
+    /* design/label/medium */
+    font-family: Aneliza;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    /* 142.857% */
+}
+
+.message__text {
+    margin: 0;
+    width: 582px;
+    color: #0C1200;
+    /* design/body/medium */
+    font-family: Fira Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 150% */
+}
