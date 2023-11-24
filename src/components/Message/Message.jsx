@@ -1,9 +1,9 @@
 import './Message.css'
-import avatar from "../../../images/Avatar.svg"
+import avatar from "../../images/Avatar.svg"
 import { useState } from 'react'
 
 export const Message = ({ message }) => {
-    const [isExpert, setIsExpert] = useState(true);
+    const [isExpert, setIsExpert] = useState(false);
     const messageClassName = `message ${isExpert ? 'message_left' : 'message_right'}`;
     const messageContainerClassName = `message__container ${isExpert ? "message__container_left" : "message__container_right"}`
     const messageTextClassName = `message__text ${isExpert ? "message__text_left" : "message__text_right"}`
