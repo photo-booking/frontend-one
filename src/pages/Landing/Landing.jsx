@@ -11,7 +11,7 @@ export const Landing = (props) => {
   const usersInfo = useSelector(state => state.users.data);
   const [expertsPreview, setExpertsPreview] = useState([]);
 
-  useEffect(() =>{
+  useEffect(() => {
     setExpertsPreview(usersInfo)
   }, [usersInfo]);
 
@@ -36,18 +36,18 @@ export const Landing = (props) => {
   const catalogTitle = props.amountExpert
     ? returnCatalogTitle(props.amountExpert)
     : '1370 фотографов и видеооператоров'
-  ;
+    ;
 
   return (
     <>
-    {expertsPreview.results && (
+      {expertsPreview.results && (
         <div className={'landing-container'}>
-          <FirstScreen />
+          <FirstScreen loggedIn={props.loggedIn} signOut={props.signOut} />
           <ProductFeatures />
           <ExpertsPreview
             catalogTitle={catalogTitle}
             expertsPreview={expertsPreview}
-            />
+          />
           <BannerForExperts />
           <FAQ />
         </div>

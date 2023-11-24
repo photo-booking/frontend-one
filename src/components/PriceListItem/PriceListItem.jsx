@@ -16,8 +16,9 @@ const PriceListItem = () => {
         <p className="pricelistitem__min-time">от 1 часа</p>
         <p className="pricelistitem__deadline">от 7 дней</p>
         <p className="pricelistitem__price">от 2000&#8381;/час</p>
+        <button className="pricelistitem__btn" onClick={() => console.log('Хочу создать заказ')}>Заказать</button>
       </div>
-      <div className="pricelistitem__line"></div>
+      <div className="pricelistitem__line" />
     </>
   );
 };
