@@ -1,3 +1,8 @@
+.personal-area {
+    margin: 0 auto;
+    max-width: 1408px;
+}
+
 .personal-area__title {
     /* font-feature-settings: 'ss01' on;
     font-family: Aneliza; */
@@ -20,4 +25,3 @@
     /* 142.857% */
     margin: 0;
 }
-

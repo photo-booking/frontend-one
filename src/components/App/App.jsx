@@ -304,6 +304,8 @@ export function App() {
             path="/"
             element={
               <Landing
+                loggedIn={loggedIn}
+                signOut={signOut}
                 amountExpert={amountExpert}
                 onStartCatalog={onStartCatalog}
               />
