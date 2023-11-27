@@ -24,7 +24,7 @@ export const Card = ({ user }) => {
       }
     });
     setUserInfo({ user, photos: photos });
-    console.log(userInfo);
+    // console.log(userInfo);
   }, []);
 
   const mediafiles = [
@@ -67,10 +67,10 @@ export const Card = ({ user }) => {
                 {userInfo.user.is_photographer & userInfo.user.is_video_operator
                   ? 'Фотограф, Видеооператор'
                   : userInfo.user.is_photographer
-                  ? 'Фотограф'
-                  : userInfo.user.is_video_operator
-                  ? 'Видеооператор'
-                  : ''}
+                    ? 'Фотограф'
+                    : userInfo.user.is_video_operator
+                      ? 'Видеооператор'
+                      : ''}
               </p>
             </div>
             <div className="card__avatar_box">

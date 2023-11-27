@@ -52,8 +52,8 @@ const Stars = props => {
         <p className="stars__rating">4.8</p>
         <div className="stars__wrapper-stars">
           <div className="stars__specialist-stars">
-            {[...Array(5)].map(star => {
-              return <FaStar size={20} />;
+            {[...Array(5)].map((__, i) => {
+              return <FaStar size={20} key={i} />;
             })}
           </div>
           {/* Здесь count */}
@@ -68,7 +68,7 @@ const Stars = props => {
             {[...Array(5)].map((star, index) => {
               const ratingValue = index + 1;
               return (
-                <label>
+                <label key={index}>
                   <input
                     type="radio"
                     name="rating"
@@ -94,9 +94,8 @@ const Stars = props => {
           <form className={`stars__form ${isFormVisible ? 'stars__form_visible' : ''}`}>
             {!submitted && <p className="stars__subtitle">Расскажите о своих впечатлениях</p>}
             <div
-              className={`stars__wrapper-comment ${
-                isTextBlocked ? 'stars__wrapper-comment_unactive' : ''
-              }`}
+              className={`stars__wrapper-comment ${isTextBlocked ? 'stars__wrapper-comment_unactive' : ''
+                }`}
             >
               <textarea
                 className="stars__comment"
