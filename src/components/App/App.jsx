@@ -368,7 +368,7 @@ export function App() {
               />
             }
           />
-          {/* <Route
+          <Route
             path="/personal/:id"
             element={
               <ProtectedRoute
@@ -393,27 +393,6 @@ export function App() {
                 loggedIn={loggedIn}
                 tokenCheck={tokenCheck}
               />
-            }
-          /> */}
-          <Route
-            path="/personal/:id"
-            element={<PersonalArea
-              tokenCheck={tokenCheck}
-              loggedIn={loggedIn}
-              isClient={isClient}
-              onSubmitPersonalInfo={onSubmitPersonalInfo}
-              onSubmitPersonalAvatar={onSubmitPersonalAvatar}
-              onSubmitPersonalContacts={onSubmitPersonalContacts}
-              onDeletePersonalAvatar={onDeletePersonalAvatar}
-              onSubmitPersonalPassword={onSubmitPersonalPassword}
-              onSubmitDeleteAccount={onSubmitDeleteAccount}
-            />
-            }
-          />
-          <Route
-            path="/expert/:id/chat"
-            element={
-              <ExpertChat />
             }
           />
           <Route
