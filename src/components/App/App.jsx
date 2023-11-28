@@ -368,7 +368,7 @@ export function App() {
               />
             }
           />
-          {/* <Route
+          <Route
             path="/personal/:id"
             element={
               <ProtectedRoute
@@ -394,8 +394,8 @@ export function App() {
                 tokenCheck={tokenCheck}
               />
             }
-          /> */}
-          <Route
+          />
+          {/* <Route
             path="/personal/:id"
             element={<PersonalArea
               tokenCheck={tokenCheck}
@@ -415,7 +415,7 @@ export function App() {
             element={
               <ExpertChat />
             }
-          />
+          /> */}
           <Route
             path="*"
             element={<Page404 />}
