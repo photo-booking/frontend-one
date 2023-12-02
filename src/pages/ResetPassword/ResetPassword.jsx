@@ -46,12 +46,10 @@ export const ResetPassword = props => {
   const watchAllFields = watch();
 
   const formAuthInputClassName = name => {
-    console.log(errMessage);
-    return `form-auth__input ${errors[name]?.message || errMessage ? 'form-auth__input_err' : ''} ${
-      watchAllFields[name]?.length > 0 && errors[name]?.message === undefined && !errMessage
-        ? 'form-auth__input_ok'
-        : ''
-    }`;
+    return `form-auth__input ${errors[name]?.message || errMessage ? 'form-auth__input_err' : ''} ${watchAllFields[name]?.length > 0 && errors[name]?.message === undefined && !errMessage
+      ? 'form-auth__input_ok'
+      : ''
+      }`;
   };
 
   const compareInputValues = (firstInput, secondInput) => {

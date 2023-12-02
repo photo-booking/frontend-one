@@ -55,6 +55,7 @@ const CardList = () => {
     <section className="reviewsCardList">
       <ul className="reviewsCardList__list">
         {сardsArray.slice(0, numCards).map((card, index) => (
+          //key = {review.id} id отзыва
           <li key={index}>{card}</li>
         ))}
       </ul>

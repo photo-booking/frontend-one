@@ -1,4 +1,5 @@
-const BASE_URL = 'https://photomarket.sytes.net/api'; //my adress
+import { url } from '../const/baseUrl';
+const BASE_URL = `${url}/api`; //my adress
 const HEADERS = { 'Content-Type': 'application/json' };
 
 function getResponseData(res) {
@@ -52,7 +53,7 @@ export function sendEmailToResetPassword(email) {
       return res;
     } else {
       console.log('ошибка сервера');
-      return Promise.reject(res)
+      return Promise.reject(res);
     }
   });
 }
@@ -110,7 +111,9 @@ export function loginGoogle(param, status) {
     headers: HEADERS,
     body: JSON.stringify({ eccses_token: param, status: status })
   })
-    .then(res => getResponseData(res))
+    .then(res => {
+      return getResponseData(res);
+    })
     .then(res => {
       localStorage.setItem('token', res.auth_token);
     });
@@ -141,70 +144,70 @@ export function updatePersonalInfo(values, jwt) {
       about_me: values.aboutMe,
       equipment: values.equipment
     })
-  })
-    .then(res => getResponseData(res))
+  }).then(res => getResponseData(res));
 }
 
 //Обновить аватар в ЛК
-export function updatePersonalAvatar (value, type, jwt) {
-  return fetch (`${BASE_URL}/users/me/`, {
+export function updatePersonalAvatar(value, type, jwt) {
+  return fetch(`${BASE_URL}/users/me/`, {
     method: 'PATCH',
     headers: { ...HEADERS, Authorization: `token ${jwt}` },
     body: JSON.stringify({
-      profile_photo: `data:image/${type};base64,` + value,
+      profile_photo: `data:image/${type};base64,` + value
     })
-  })
-    .then(res => getResponseData(res))
+  }).then(res => getResponseData(res));
 }
 
 //Удалить аватар в ЛК
-export function deletePersonalAvatar (jwt) {
-  return fetch (`${BASE_URL}/users/me/`, {
+export function deletePersonalAvatar(jwt) {
+  return fetch(`${BASE_URL}/users/me/`, {
     method: 'PATCH',
     headers: { ...HEADERS, Authorization: `token ${jwt}` },
     body: JSON.stringify({
       profile_photo: null
     })
-  })
-    .then(res => getResponseData(res))
+  }).then(res => getResponseData(res));
 }
 
 //Обновить контакты в ЛК
-export function updatePersonalContacts (values, jwt) {
-  return fetch (`${BASE_URL}/users/me/`, {
+export function updatePersonalContacts(values, jwt) {
+  return fetch(`${BASE_URL}/users/me/`, {
     method: 'PATCH',
     headers: { ...HEADERS, Authorization: `token ${jwt}` },
     body: JSON.stringify({
       phone: values.phone,
       social_telegram: values.telegram,
-      contact_email: values.email,
+      contact_email: values.email
     })
-  })
-    .then(res => getResponseData(res))
+  }).then(res => getResponseData(res));
 }
 
 //Обновить пароль в ЛК
-export function updatePersonalPassword (values, jwt) {
-  return fetch (`${BASE_URL}/users/set_password/`, {
+export function updatePersonalPassword(values, jwt) {
+  return fetch(`${BASE_URL}/users/set_password/`, {
     method: 'POST',
     headers: { ...HEADERS, Authorization: `token ${jwt}` },
     body: JSON.stringify({
       current_password: values.current_password,
       new_password: values.new_password,
-      re_new_password: values.repeat_new_password,
+      re_new_password: values.repeat_new_password
     })
-  })
-    .then(res => getResponseData(res))
+  }).then(res => getResponseData(res));
 }
 
 //Удалить аккаунт
-export function deleteAccount (jwt, id) {
-  return fetch (`${BASE_URL}/users/me/`, {
+export function deleteAccount(jwt, id) {
+  return fetch(`${BASE_URL}/users/me/`, {
     method: 'DELETE',
     headers: { ...HEADERS, Authorization: `token ${jwt}` },
     body: JSON.stringify({
       user_id: id
     })
-  })
-    .then(res => getResponseData(res))
+  }).then(res => {
+    if (res.ok) {
+      console.log('user удален');
+    } else {
+      console.log('ошибка сервера');
+    }
+  });
 }

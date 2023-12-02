@@ -13,7 +13,7 @@ export const PersonalArea = props => {
   } = props;
 
   return (
-    <div className="">
+    <div className="personal-area">
       <ProfileNav
         isClient={isClient}
         onSubmitPersonalInfo={onSubmitPersonalInfo}

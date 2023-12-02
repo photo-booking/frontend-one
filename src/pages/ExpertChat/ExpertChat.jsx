@@ -1,17 +1,24 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-import './ExpertChat.css';
+import './ExpertChat.css'
+import { Chat } from '../../components/Chat/Chat'
+import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux/es/hooks/useSelector'
+
+
 export const ExpertChat = () => {
-  const navigate = useNavigate();
-  // const { state } = useLocation();
-  // const { name, id } = state;
-  return (
-    <div className={'expertChat-container'}>
-      <h1>Чат</h1>
-      {/* <h1>Чат исполнителя: {name}</h1>
-      <button onClick={() => navigate('/catalog')}>Перейти в каталог</button>
-      <button onClick={() => navigate(`/expert/${id}/orders`, { state: { name, id } })}>
-        Заказы
-      </button> */}
-    </div>
-  );
-};
+    const param = useParams()
+    const users = useSelector((state) => state.users.data.results);
+    let user;
+    if (users) {
+        user = users.find((user) => user.id === Number(param.id));
+    }
+    return (
+        <div className='expert-chat'>
+            {user
+                ?
+                <h1>{`This is chat with ${user.first_name} ${user.last_name}`}</h1>
+                :
+                <h1>User is undefined. Wait please...</h1>}
+            <Chat />
+        </div>
+    )
+}

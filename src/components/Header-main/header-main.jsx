@@ -50,7 +50,7 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
             className={isSignIn || isResetPassword || isSignUp ? 'header-main' : 'header-main_border'}
         >
             <Link
-                to="/catalog"
+                to="/"
                 className="header-main__logo_container"
             >
                 <img
@@ -84,7 +84,7 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
                 <div className="header-main__subtitle">
                     <p className="header-main__find">Хотите найти работу?</p>
                     <a
-                        href="#"
+                        href="/#"
                         className="header-main__reg"
                         onClick={reload}
                     >
@@ -95,7 +95,7 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
                 <div className="header-main__subtitle">
                     <p className="header-main__find">Хотите найти специалиста?</p>
                     <a
-                        href="#"
+                        href="/#"
                         className="header-main__reg"
                         onClick={reload}
                     >
@@ -103,45 +103,45 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
                     </a>
                 </div>
             ) : loggedIn ? (
-            <div className="header-main__logged-in">
-                <div className="header-main__logged-in_container">
+                <div className="header-main__logged-in">
+                    <div className="header-main__logged-in_container">
 
-                    <p className="header-main__name">{currentUser.first_name} {secondNameLetter}.</p>
-                    <div className="header-main__avatar_container">
-                    <div className="header-main__avatar_box" onClick={onAvatarClick}>
-                        <img
-                            className="header-main__avatar"
-                            src={profilePhoto}
-                            alt=""
-                        />
+                        <p className="header-main__name">{currentUser.first_name} {secondNameLetter}.</p>
+                        <div className="header-main__avatar_container">
+                            <div className="header-main__avatar_box" onClick={onAvatarClick}>
+                                <img
+                                    className="header-main__avatar"
+                                    src={profilePhoto}
+                                    alt=""
+                                />
 
-                        <div
-                            className={
-                                !isAvatarClick
-                                    ? 'header-main__popup'
-                                    : 'header-main__popup header-main__popup_visible'
-                            }
-                        >
-                            <button
-                                className="header-main__popup_link header-main__popup_profile"
-                                onClick={() => navigateToProfile(currentUser.id)}
-                            >
-                                Профиль
-                            </button>
-                            <Link
-                                className="header-main__popup_link header-main__popup_logout"
-                                onClick={onLogoutClick}
-                            >
-                                Выйти
-                            </Link>
+                                <div
+                                    className={
+                                        !isAvatarClick
+                                            ? 'header-main__popup'
+                                            : 'header-main__popup header-main__popup_visible'
+                                    }
+                                >
+                                    <button
+                                        className="header-main__popup_link header-main__popup_profile"
+                                        onClick={() => navigateToProfile(currentUser.id)}
+                                    >
+                                        Профиль
+                                    </button>
+                                    <Link
+                                        className="header-main__popup_link header-main__popup_logout"
+                                        onClick={onLogoutClick}
+                                    >
+                                        Выйти
+                                    </Link>
+                                </div>
+
+                            </div>
                         </div>
 
                     </div>
-                    </div>
-
                 </div>
-            </div>
-             ) : (
+            ) : (
                 <div className="header-main__button">
                     <Link
                         to="/sign-in"
@@ -156,7 +156,7 @@ export const HeaderMain = ({ isClient, setIsClient, loggedIn, signOut }) => {
                         Зарегистрироваться
                     </Link>
                 </div>
-            )}  
+            )}
         </header>
     );
 };

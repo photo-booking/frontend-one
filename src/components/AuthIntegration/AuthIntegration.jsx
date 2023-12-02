@@ -1,4 +1,5 @@
 import { LinkSignIn } from '../../components/LinkSignin/LinkSignin';
+import { url } from '../../const/baseUrl';
 import google_logo from '../../images/icon_google.svg';
 import vk_logo from '../../images/icon_vk_auth.svg';
 
@@ -6,7 +7,8 @@ export const AuthIntegration = () => {
   const client_id_google =
     '1091642644631-3nfthndgf7bsge2f1rckiqpqm0ddtpst.apps.googleusercontent.com';
   const client_id_vk = '51732243';
-  const redirect_url = 'https://photomarket.sytes.net/sign-in';
+  const redirect_url = `${url}/sign-in`;
+  // const redirect_url = `http://localhost:3000/sign-in`;
   return (
     <>
       <LinkSignIn

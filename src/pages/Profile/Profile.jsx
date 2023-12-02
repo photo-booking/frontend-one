@@ -11,11 +11,12 @@ import PricesPage from '../PricesPage/PricesPage';
 import { CardInfoProfile } from '../../components/Profile/PhotoCard/CardInfo/CardInfo';
 import { fetchProfile } from '../../services/redusers/profile';
 import { Reviews } from '../../components/Reviews/Reviews';
+import { url } from '../../const/baseUrl';
 
 import './Profile.css';
 
-export const Profile = (props) => {
-  const {loggedIn} = props;
+export const Profile = props => {
+  const { loggedIn, onGetReviews, reviews } = props;
   const dispatch = useDispatch();
   const profile = useSelector(state => state.profile.data);
   const [user, setUser] = useState({});
@@ -148,7 +149,7 @@ export const Profile = (props) => {
                         <PhotoCard
                           id={`photocard${index}`}
                           key={index}
-                          src={`https://photo-market.acceleratorpracticum.ru${img.photo}`}
+                          src={`${url}${img.photo}`}
                           alt={'photo-booking'}
                           onOpenImg={() => onOpenImg(`photocard${index}`)}
                         />
@@ -186,7 +187,11 @@ export const Profile = (props) => {
         ) : (
           <PricesPage />
         )}
-        <Reviews loggedIn={loggedIn}/>
+        <Reviews
+          loggedIn={loggedIn}
+          onGetReviews={onGetReviews}
+          reviews={reviews}
+        />
       </>
     )
   );
