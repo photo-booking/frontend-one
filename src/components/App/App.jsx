@@ -219,9 +219,7 @@ export function App() {
           setLoggedIn(false);
         })
         .finally(() => setIsLoader(false));
-    } else {
-      setLoggedIn(false);
-    }
+    } else { setLoggedIn(false) };
   };
 
   const onStartCatalog = () => {

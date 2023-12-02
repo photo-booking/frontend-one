@@ -6,7 +6,7 @@ import { useState, useContext } from 'react';
 import { CurrentUserContext } from '../context/CurrentUserContext';
 import test from '../../images/avatar-test.jpg';
 
-export const HeaderLanding = props => {
+export const HeaderLanding = (props) => {
   const { loggedIn, signOut } = props;
   const navigate = useNavigate();
   const currentUser = useContext(CurrentUserContext);
@@ -23,7 +23,7 @@ export const HeaderLanding = props => {
     setisAvatarClick(!isAvatarClick);
   };
 
-  const navigateToProfile = id => {
+  const navigateToProfile = (id) => {
     setisAvatarClick(false);
     navigate(`/personal/${id}`);
   };
