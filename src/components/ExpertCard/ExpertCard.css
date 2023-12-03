@@ -1,117 +1,117 @@
 .expert-card {
-    display: flex;
-    flex-direction: column;
-    width: 320px;
-    height: 672px;
-    border-radius: 12px;
-    background-color: #FFFFFF;
-    margin-bottom: 39px;
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  height: 672px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  margin-bottom: 39px;
 }
 
 .expert-card__img-container {
-    overflow: hidden;
-    width: 320px;
+  overflow: hidden;
+  width: 320px;
 }
 
 .expert-card__img {
-    object-fit: cover;
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
+  object-fit: cover;
+  width: 100%;
+  height: 420px;
+  border-radius: 12px;
 }
 
 .expert-card__container {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    max-width: 272px;
-    margin: 24px auto 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 272px;
+  margin: 24px auto 28px;
 }
 
 .expert-card__about {
-    display: flex;
-    justify-content: space-between;
-    width: 272px;
+  display: flex;
+  justify-content: space-between;
+  width: 272px;
 }
 
 .expert-card__text-part {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .expert-card__name {
-    color: #0C1200;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
-    cursor: pointer;
+  color: #0c1200;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
 }
 
 .expert-card__name:hover {
-    opacity: 0.6;
+  opacity: 0.6;
 }
 
 .expert-card__position {
-    color: #757575;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
-    margin: 0;
-    cursor: pointer;
+  color: #757575;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+  cursor: pointer;
 }
 
 .expert-card__position:hover {
-    opacity: 0.6;
+  opacity: 0.6;
 }
 
 .expert-card__avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 100px;
+  width: 48px;
+  height: 48px;
+  border-radius: 100px;
 }
 
 .expert-card__work-type {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    grid-template-rows: auto;
-    gap: 8px 20px;
-    align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  gap: 8px 20px;
+  align-items: center;
 }
 
 .expert-card__work-position {
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
-    background-image: url(../../images/Success-mini.svg);
-    background-repeat: no-repeat;
-    background-position: 0 2px;
-    padding-left: 22px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  background-image: url(../../images/Success-mini.svg);
+  background-repeat: no-repeat;
+  background-position: 0 2px;
+  padding-left: 22px;
 }
 
 .expert-card__check {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Fira Sans';
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Fira Sans';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .expert-card__grade {
-    width: 79px;
-    display: flex;
-    justify-content: space-between;
-    gap: 4px;
-    align-items: center;
+  width: 79px;
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  align-items: center;
 }
 
 .expert-card__grade-img {
-    width: 16px;
-    height: 16px;
-    object-fit: contain;
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
 }
 
 .expert-card__grade-count {
-    color: #757575;
+  color: #757575;
 }

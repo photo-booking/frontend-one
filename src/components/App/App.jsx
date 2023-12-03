@@ -64,7 +64,7 @@ export function App() {
     pathname === '/client/:id/chat' ||
     pathname === '/reset-password';
   const isRoot = pathname === '/';
-  const visible = isRoot || paddingPage;
+  const visibleFooter = isRoot || paddingPage;
 
   const onSubmitSignin = values => {
     login(values)
@@ -291,7 +291,7 @@ export function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className={paddingPage ? 'page' : 'page-landing'}>
-        {pathname !== '/' ? (
+        {paddingPage ? (
           <HeaderMain
             isClient={isClient}
             setIsClient={setIsClient}
@@ -400,7 +400,7 @@ export function App() {
             element={<Page404 />}
           />
         </Routes>
-        {visible ? <Footer isClient={isClient} /> : null}
+        {visibleFooter ? <Footer isClient={isClient} /> : null}
       </div>
     </CurrentUserContext.Provider>
   );

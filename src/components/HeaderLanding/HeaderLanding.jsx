@@ -60,18 +60,19 @@ export const HeaderLanding = (props) => {
         </NavLink>
       </nav>
       <div className="header-landing__btn-container">
-        {!loggedIn ?
-          <><Link
-            to="/sign-in"
-            className="header-landing__btn-signin"
-          >
-            <button
+        {!loggedIn ? (
+          <>
+            <Link
+              to="/sign-in"
               className="header-landing__btn-signin"
-              type="button"
             >
-              Войти
-            </button>
-          </Link>
+              <button
+                className="header-landing__btn-signin"
+                type="button"
+              >
+                Войти
+              </button>
+            </Link>
             <Link
               to="/sign-up"
               className="header-landing__btn-signup"
@@ -82,48 +83,50 @@ export const HeaderLanding = (props) => {
               >
                 Зарегистрироваться
               </button>
-            </Link></>
-          : <>
-            <div className="header-main__logged-in">
-              <div className="header-main__logged-in_container">
+            </Link>
+          </>
+        ) : (
+          <>
+            <div className="header-main__logged-in_container">
+              <p className="header-main__name">
+                {currentUser.first_name} {secondNameLetter}.
+              </p>
+              <div className="header-main__avatar_container">
+                <div
+                  className="header-main__avatar_box"
+                  onClick={onAvatarClick}
+                >
+                  <img
+                    className="header-main__avatar"
+                    src={profilePhoto}
+                    alt=""
+                  />
 
-                <p className="header-main__name">{currentUser.first_name} {secondNameLetter}.</p>
-                <div className="header-main__avatar_container">
-                  <div className="header-main__avatar_box" onClick={onAvatarClick}>
-                    <img
-                      className="header-main__avatar"
-                      src={profilePhoto}
-                      alt=""
-                    />
-
-                    <div
-                      className={
-                        !isAvatarClick
-                          ? 'header-main__popup'
-                          : 'header-main__popup header-main__popup_visible'
-                      }
+                  <div
+                    className={
+                      !isAvatarClick
+                        ? 'header-main__popup'
+                        : 'header-main__popup header-main__popup_visible'
+                    }
+                  >
+                    <button
+                      className="header-main__popup_link header-main__popup_profile"
+                      onClick={() => navigateToProfile(currentUser.id)}
                     >
-                      <button
-                        className="header-main__popup_link header-main__popup_profile"
-                        onClick={() => navigateToProfile(currentUser.id)}
-                      >
-                        Профиль
-                      </button>
-                      <Link
-                        className="header-main__popup_link header-main__popup_logout"
-                        onClick={onLogoutClick}
-                      >
-                        Выйти
-                      </Link>
-                    </div>
-
+                      Профиль
+                    </button>
+                    <Link
+                      className="header-main__popup_link header-main__popup_logout"
+                      onClick={onLogoutClick}
+                    >
+                      Выйти
+                    </Link>
                   </div>
                 </div>
-
               </div>
             </div>
           </>
-        }
+        )}
       </div>
     </header>
   );
