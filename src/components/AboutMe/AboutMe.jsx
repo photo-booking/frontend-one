@@ -111,7 +111,15 @@ export const AboutMe = props => {
             {props.loggedIn && (
               <button
                 className="about-me__button-chat"
-                onClick={() => navigateToChat(param.id)}
+                //fetch POST to /api/chats/check_chat/ with json in body {id: param.id} and token in header
+                // in respoce => chatHistory === res.messages and chat.id === res.pk
+                //then => navigateToChat(chat.id)
+                onClick={async () => {
+                  await props.onGetIdChatAndChatHistory(param.id);
+                  if (props.chatRoom) {
+                    navigateToChat(props.chatRoom);
+                  }
+                }}
               >
                 Написать
               </button>

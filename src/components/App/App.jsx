@@ -24,6 +24,8 @@ import {
 
 import { getAmountExpert, getExpertReviews } from '../../utils/api';
 
+import { getIdChatAndChatHistory } from '../../utils/chat';
+
 import { Signin } from '../../pages/Signin/Signin';
 import { Signup } from '../../pages/Signup/Signup';
 import { ResetPassword } from '../../pages/ResetPassword/ResetPassword';
@@ -49,6 +51,10 @@ export function App() {
   const [amountExpert, setAmountExpert] = useState(undefined);
   const [isLoader, setIsLoader] = useState(false);
   const [reviews, setReviews] = useState({});
+  const [chatHistory, setChatHistory] = useState([]);
+  const [chatRoom, setChatRoom] = useState(undefined);
+  const [currentExpert, setCurrenExpert] = useState(undefined);
+
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -219,7 +225,9 @@ export function App() {
           setLoggedIn(false);
         })
         .finally(() => setIsLoader(false));
-    } else { setLoggedIn(false) };
+    } else {
+      setLoggedIn(false);
+    }
   };
 
   const onStartCatalog = () => {
@@ -278,6 +286,17 @@ export function App() {
     getExpertReviews(expertId)
       .then(res => {
         setReviews(res);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const onGetIdChatAndChatHistory = userId => {
+    const token = localStorage.getItem('token');
+    getIdChatAndChatHistory(token, userId)
+      .then(res => {
+        setChatHistory(res.messages);
+        setChatRoom(res.pk);
+        setCurrenExpert(res.current_users[0]);
       })
       .catch(err => console.log(err));
   };
@@ -365,6 +384,8 @@ export function App() {
                 loggedIn={loggedIn}
                 onGetReviews={onGetReviews}
                 reviews={reviews}
+                onGetIdChatAndChatHistory={onGetIdChatAndChatHistory}
+                chatRoom={chatRoom}
               />
             }
           />
@@ -392,6 +413,8 @@ export function App() {
                 element={ExpertChat}
                 loggedIn={loggedIn}
                 tokenCheck={tokenCheck}
+                chatHistory={chatHistory}
+                currentExpert={currentExpert}
               />
             }
           />

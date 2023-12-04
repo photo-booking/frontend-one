@@ -1,7 +1,9 @@
 .linksContainer {
     display: flex;
-    margin: 48px 56px 32px ;
+    max-width: 1376px;
+    margin: 48px auto 32px;
 }
+
 .linksContainer__profile-button {
     font-size: 28px;
     padding: 0;
@@ -14,9 +16,11 @@
     margin-right: 8px;
     background-color: transparent;
 }
+
 .linksContainer__profile-button:hover {
     cursor: pointer;
 }
+
 .active {
     color: #0C1200;
 }

@@ -16,7 +16,7 @@ import { url } from '../../const/baseUrl';
 import './Profile.css';
 
 export const Profile = props => {
-  const { loggedIn, onGetReviews, reviews } = props;
+  const { loggedIn, onGetReviews, reviews, onGetIdChatAndChatHistory, chatRoom } = props;
   const dispatch = useDispatch();
   const profile = useSelector(state => state.profile.data);
   const [user, setUser] = useState({});
@@ -123,6 +123,8 @@ export const Profile = props => {
           email={user.profile.email}
           equipment={user.profile.equipment}
           photo={user.profile.profile_photo}
+          onGetIdChatAndChatHistory={onGetIdChatAndChatHistory}
+          chatRoom={chatRoom}
         />
         <div id="overlayProfile" />
         <LinksPortfolio
