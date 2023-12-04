@@ -114,11 +114,8 @@ export const AboutMe = props => {
                 //fetch POST to /api/chats/check_chat/ with json in body {id: param.id} and token in header
                 // in respoce => chatHistory === res.messages and chat.id === res.pk
                 //then => navigateToChat(chat.id)
-                onClick={async () => {
-                  await props.onGetIdChatAndChatHistory(param.id);
-                  if (props.chatRoom) {
-                    navigateToChat(props.chatRoom);
-                  }
+                onClick={() => {
+                  props.onGetIdChatAndChatHistory(param.id, navigateToChat);
                 }}
               >
                 Написать

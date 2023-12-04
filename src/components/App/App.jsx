@@ -290,13 +290,16 @@ export function App() {
       .catch(err => console.log(err));
   };
 
-  const onGetIdChatAndChatHistory = userId => {
+  const onGetIdChatAndChatHistory = (userId, navigateToChat) => {
     const token = localStorage.getItem('token');
     getIdChatAndChatHistory(token, userId)
       .then(res => {
         setChatHistory(res.messages);
         setChatRoom(res.pk);
         setCurrenExpert(res.current_users[0]);
+        if (res.pk) {
+          navigateToChat(res.pk);
+        }
       })
       .catch(err => console.log(err));
   };

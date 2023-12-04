@@ -3,6 +3,7 @@ import avatar from '../../../images/Avatar.svg';
 import { useState } from 'react';
 
 export const Message = ({ message }) => {
+  // console.log(message);
   const [isExpert, setIsExpert] = useState(false);
   const messageClassName = `message ${isExpert ? 'message_left' : 'message_right'}`;
   const messageContainerClassName = `message__container ${
@@ -21,8 +22,8 @@ export const Message = ({ message }) => {
       />
       <div className={`${messageContainerClassName} message__container_column`}>
         <div className={`${messageContainerClassName} message__container_row`}>
-          <h2 className="message__name">{message.name}</h2>
-          <p className="message__time">{message.time}</p>
+          <h2 className="message__name">{message.user}</h2>
+          <p className="message__time">{message.created_at}</p>
         </div>
         <p className={messageTextClassName}>{message.text}</p>
       </div>

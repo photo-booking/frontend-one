@@ -3,46 +3,39 @@ import { Messages } from './Messages/Messages';
 import { useState, useContext, useEffect } from 'react';
 import { CurrentUserContext } from '../context/CurrentUserContext';
 
-import { socketUrl } from '../../const/socketUrl';
-import { useParams } from 'react-router-dom';
-
-// const messages = [
-//   { text: 'Hello!', name: 'Kate Polyntseva', time: '12.00' },
-//   { text: 'Hello, world', name: 'Petr Petrov', time: '13.30' },
-//   { text: 'My name is Kate', name: 'Slava Ivanov', time: '15.45' }
-// ];
-
 export const Chat = props => {
-  const { chatHistory } = props;
+  const { chatHistory, wsChanel } = props;
   const currentUser = useContext(CurrentUserContext);
-  const token = localStorage.getItem('token');
-  const param = useParams();
+
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState(chatHistory); //initialState messageHistory from API
+  // const [readyState, setreadyState] = useState(undefined);
 
-  const chatId = param.id;
+  const returnReadyState = wsChanelIn => {
+    if (wsChanelIn && wsChanelIn.readyState) {
+      const readyState = wsChanelIn.readyState;
+      if (readyState === 0) {
+        return 'Socket has been created. The connection is not yet open';
+      } else if (readyState === 1) {
+        return 'The connection is open and ready to communicate';
+      } else if (readyState === 2) {
+        return 'The connection is in the process of closing';
+      } else if (readyState === 3) {
+        return `The connection is closed or couldn't be opened`;
+      }
+    } else {
+      return 'XZZZZZZ';
+    }
+  };
 
-  // const connection = new WebSocket(`${socketUrl}${chatId}/?token=${token}`);
-
-  // connection.onopen = () => {
-  //   alert('соединение установлено');
-  // };
-  // connection.onclose = () => {
-  //   alert('соединение закрыто');
-  // };
-  // connection.onmessage = evt => {
-  //   setMessages([...messages, JSON.parse(evt.data)]);
-  // };
-  // connection.onerror = err => {
-  //   alert(`произошла ошибка ${err}`);
-  // };
-
-  // const sendMessage = message => {
-  //   connection.send(JSON.stringify({ event: 'chat-message', payload: { currentUser, message } }));
-  // };
-
-  const handleSubmit = evt => {
+  const sendMessage = evt => {
     evt.preventDefault();
+    if (!message) {
+      return;
+    }
+    // console.log(message);
+    wsChanel?.send(JSON.stringify({ message }));
+
     // const data = new Date();
     // const newMessage = {
     //   text: message,
@@ -50,19 +43,14 @@ export const Chat = props => {
     //   time: `${data.getHours()}.${data.getMinutes()}`
     // };
     // messages.push(newMessage);
-    console.log(message);
-    // sendMessage(message);
     setMessage('');
   };
 
   return (
     <article className="сhat">
-      <span>The WebSocket is currently {}</span>
+      <span>{returnReadyState(wsChanel)}</span>
       <Messages messages={messages} />
-      <form
-        className="сhat__form"
-        onSubmit={handleSubmit}
-      >
+      <form className="сhat__form">
         <input
           className="сhat__input"
           type="text"
@@ -72,8 +60,8 @@ export const Chat = props => {
         />
         <button
           className="сhat__btn"
-          type="submit"
-          // disabled={}
+          // disabled={wsChanel == null || readyState !== true}
+          onClick={sendMessage}
         >
           Отправить
         </button>
