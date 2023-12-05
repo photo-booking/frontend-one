@@ -24,8 +24,6 @@ import {
 
 import { getAmountExpert, getExpertReviews } from '../../utils/api';
 
-import { getIdChatAndChatHistory } from '../../utils/chat';
-
 import { Signin } from '../../pages/Signin/Signin';
 import { Signup } from '../../pages/Signup/Signup';
 import { ResetPassword } from '../../pages/ResetPassword/ResetPassword';
@@ -51,9 +49,6 @@ export function App() {
   const [amountExpert, setAmountExpert] = useState(undefined);
   const [isLoader, setIsLoader] = useState(false);
   const [reviews, setReviews] = useState({});
-  const [chatHistory, setChatHistory] = useState([]);
-  const [chatRoom, setChatRoom] = useState(undefined);
-  const [currentExpert, setCurrenExpert] = useState(undefined);
 
   const navigate = useNavigate();
 
@@ -290,20 +285,6 @@ export function App() {
       .catch(err => console.log(err));
   };
 
-  const onGetIdChatAndChatHistory = (userId, navigateToChat) => {
-    const token = localStorage.getItem('token');
-    getIdChatAndChatHistory(token, userId)
-      .then(res => {
-        setChatHistory(res.messages);
-        setChatRoom(res.pk);
-        setCurrenExpert(res.current_users[0]);
-        if (res.pk) {
-          navigateToChat(res.pk);
-        }
-      })
-      .catch(err => console.log(err));
-  };
-
   useEffect(() => {
     tokenCheck();
     //при первой загрузке запрашиваем только фотографов, как стоит в сортировке по дефолту
@@ -387,8 +368,6 @@ export function App() {
                 loggedIn={loggedIn}
                 onGetReviews={onGetReviews}
                 reviews={reviews}
-                onGetIdChatAndChatHistory={onGetIdChatAndChatHistory}
-                chatRoom={chatRoom}
               />
             }
           />
@@ -416,8 +395,6 @@ export function App() {
                 element={ExpertChat}
                 loggedIn={loggedIn}
                 tokenCheck={tokenCheck}
-                chatHistory={chatHistory}
-                currentExpert={currentExpert}
               />
             }
           />

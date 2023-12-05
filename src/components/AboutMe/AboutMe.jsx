@@ -115,7 +115,7 @@ export const AboutMe = props => {
                 // in respoce => chatHistory === res.messages and chat.id === res.pk
                 //then => navigateToChat(chat.id)
                 onClick={() => {
-                  props.onGetIdChatAndChatHistory(param.id, navigateToChat);
+                  navigateToChat(param.id);
                 }}
               >
                 Написать

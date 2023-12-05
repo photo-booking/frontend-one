@@ -123,8 +123,6 @@ export const Profile = props => {
           email={user.profile.email}
           equipment={user.profile.equipment}
           photo={user.profile.profile_photo}
-          onGetIdChatAndChatHistory={onGetIdChatAndChatHistory}
-          chatRoom={chatRoom}
         />
         <div id="overlayProfile" />
         <LinksPortfolio

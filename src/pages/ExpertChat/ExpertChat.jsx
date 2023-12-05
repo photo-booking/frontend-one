@@ -1,22 +1,54 @@
 import './ExpertChat.css';
 import { Chat } from '../../components/Chat/Chat';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { socketUrl } from '../../const/socketUrl';
 
-export const ExpertChat = props => {
-  const { chatHistory, currentExpert } = props;
-  const users = useSelector(state => state.users.data.results);
-  let user;
-  if (users) {
-    user = users.find(user => user.email === currentExpert);
-  }
+import { getIdChatAndChatHistory } from '../../utils/chat';
+import { getExpertProfile } from '../../utils/api';
+
+export const ExpertChat = () => {
+  const [chatHistory, setChatHistory] = useState([]);
+  const [currentExpert, setCurrentExpert] = useState({});
+  const [wsChanel, setWsChanel] = useState(null);
+
   const token = localStorage.getItem('token');
   const param = useParams();
-  const chatId = param.id;
+  const currentUserId = param.id;
 
-  const [wsChanel, setWsChanel] = useState(null);
+  const onGetIdChatAndChatHistory = (userId, createConnection) => {
+    const token = localStorage.getItem('token');
+    getIdChatAndChatHistory(token, userId)
+      .then(res => {
+        setChatHistory(res.messages);
+        createConnection(res.pk);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const onGetCurrentExpertInfo = userId => {
+    getExpertProfile(userId)
+      .then(res => {
+        setCurrentExpert(res);
+      })
+      .catch(err => console.log(err));
+  };
+
+  //   const returnReadyState = readyState => {
+  //     console.log(readyState);
+  //     //   const readyState = wsChanelIn.readyState;
+  //     if (readyState === 0) {
+  //       return 'Socket has been created. The connection is not yet open';
+  //     } else if (readyState === 1) {
+  //       return 'The connection is open and ready to communicate';
+  //     } else if (readyState === 2) {
+  //       return 'The connection is in the process of closing';
+  //     } else if (readyState === 3) {
+  //       return `The connection is closed or couldn't be opened`;
+  //     } else {
+  //       return 'XZZZZZZ what`s happend';
+  //     }
+  //   };
 
   useEffect(() => {
     let connection;
@@ -32,35 +64,42 @@ export const ExpertChat = props => {
 
     const onMessage = event => {
       console.log('Message from server ', event.data);
+      //   setChatHistory([...chatHistory, event.data]);
+      console.log([...chatHistory, event.data]);
     };
 
-    const createConnection = () => {
+    const createConnection = chatId => {
       connection?.removeEventListener('close', onClose);
       //   if (connection && connection.readyState <= 1) {
       connection?.close();
       //   }
-      console.log('before constructor');
       connection = new WebSocket(`${socketUrl}${chatId}/?token=${token}`);
-      console.log('after constructor');
       connection?.addEventListener('close', onClose);
       connection?.addEventListener('message', onMessage);
       connection?.addEventListener('open', onOpen);
       setWsChanel(connection);
     };
 
-    createConnection();
+    onGetIdChatAndChatHistory(currentUserId, createConnection);
+    onGetCurrentExpertInfo(currentUserId);
 
     return () => {
       connection?.removeEventListener('close', onClose);
       connection?.removeEventListener('open', onOpen);
       connection?.removeEventListener('message', onMessage);
-      connection.close();
+      connection?.close();
     };
-  }, [chatId, token]);
+  }, [currentUserId, token]);
+
   return (
     <div className="expert-chat">
-      {user ? (
-        <h1>{`This is chat with ${user.first_name}  ${user.last_name}`}</h1>
+      {currentExpert ? (
+        <div
+          style={{ display: 'flex', flexDirection: 'column', rowGap: '20px', alignItems: 'center' }}
+        >
+          <h1>{`This is chat with ${currentExpert.first_name}  ${currentExpert.last_name}`}</h1>
+          {/* <span>{returnReadyState(wsChanel?.readyState)}</span> */}
+        </div>
       ) : (
         <h1>User is undefined. Wait please...</h1>
       )}
@@ -71,20 +110,3 @@ export const ExpertChat = props => {
     </div>
   );
 };
-
-// connection.onopen = () => {
-//   alert('соединение установлено');
-// };
-// connection.onclose = () => {
-//   alert('соединение закрыто');
-// };
-// connection.onmessage = evt => {
-//   setMessages([...messages, JSON.parse(evt.data)]);
-// };
-// connection.onerror = err => {
-//   alert(`произошла ошибка ${err}`);
-// };
-
-// const sendMessage = message => {
-//   connection.send(JSON.stringify({ event: 'chat-message', payload: { currentUser, message } }));
-// };
