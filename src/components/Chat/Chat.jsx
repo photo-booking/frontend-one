@@ -1,36 +1,43 @@
 import './Chat.css';
-import { Message } from "../Message/Message";
-import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
+import { Messages } from './Messages/Messages';
+import { useState, useContext, useEffect } from 'react';
+import { CurrentUserContext } from '../context/CurrentUserContext';
 
+export const Chat = props => {
+  const { chatHistory, wsChanel } = props;
+  const currentUser = useContext(CurrentUserContext);
 
-export const Chat = () => {
-    const [message, setMessage] = useState('');
-    return (
-        <article className='сhat'>
-            <Message message={message} />
-            <Message message={message} />
-            <Message message={message} />
-            <form className="сhat__form">
-                <input
-                    className='сhat__input'
-                    type="text"
-                    value={message}
-                    onChange={(evt) => setMessage(evt.target.value)}
-                    placeholder='Напишите сообщение...' />
-                <button
-                    className="сhat__btn"
-                    type='submit'
-                    onClick={(evt) => {
-                        evt.preventDefault();
-                        console.log(message);
-                        setMessage('')
-                    }
-                    }
-                >
-                    Отправить
-                </button>
-            </form>
-        </article>
-    )
-}
+  const [message, setMessage] = useState('');
+
+  const sendMessage = evt => {
+    evt.preventDefault();
+    if (!message) {
+      return;
+    }
+    wsChanel?.send(JSON.stringify({ message }));
+    // if ok => messages.push(message)
+    setMessage('');
+  };
+
+  return (
+    <article className="сhat">
+      <Messages messages={chatHistory} />
+      <form className="сhat__form">
+        <input
+          className="сhat__input"
+          type="text"
+          value={message}
+          onChange={evt => setMessage(evt.target.value)}
+          placeholder="Напишите сообщение..."
+        />
+        <button
+          className="сhat__btn"
+          // disabled={wsChanel == null || readyState !== true}
+          onClick={sendMessage}
+        >
+          Отправить
+        </button>
+      </form>
+    </article>
+  );
+};

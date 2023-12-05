@@ -1,10 +1,12 @@
 .profileContainer {
     display: flex;
     justify-content: space-between;
-    padding: 0 ;
-    margin: 0 32px 120px 56px;
+    padding: 0;
+    max-width: 1376px;
+    margin: 0 auto 120px;
     /* height: max-content; */
 }
+
 .profileContainer__cardsContainer {
     position: relative;
     display: flex;
@@ -14,6 +16,7 @@
     flex-wrap: wrap;
     height: fit-content;
 }
+
 /* .button-showMore {
     position: absolute;
     bottom: -40px;
@@ -35,22 +38,25 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.45);
+    background: rgba(0, 0, 0, 0.45);
     z-index: 10;
     display: none;
 }
+
 .profileContainer__youtube {
     width: 496px;
     height: 296px;
     position: relative;
-    border-radius: 12px 12px 0 0 ;
+    border-radius: 12px 12px 0 0;
     margin-bottom: 32px;
     align-self: flex-start;
     background-color: #FFFFFF;
 }
+
 .profileContainer__youtube img {
     border-radius: 12px;
 }
+
 .profileContainer__youtube_playContainer {
     width: 40px;
     height: 40px;
@@ -63,11 +69,12 @@
     background-repeat: no-repeat;
     background-position: center center;
 }
-.profileContainer__youtube:hover .photoCardContainerProfile-info  {
+
+.profileContainer__youtube:hover .photoCardContainerProfile-info {
     cursor: pointer;
     display: flex;
 }
-.profileContainer__youtube:hover  {
+
+.profileContainer__youtube:hover {
     background-color: #FFFFFF;
 }
-

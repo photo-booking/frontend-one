@@ -49,6 +49,7 @@ export function App() {
   const [amountExpert, setAmountExpert] = useState(undefined);
   const [isLoader, setIsLoader] = useState(false);
   const [reviews, setReviews] = useState({});
+
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -219,7 +220,9 @@ export function App() {
           setLoggedIn(false);
         })
         .finally(() => setIsLoader(false));
-    } else { setLoggedIn(false) };
+    } else {
+      setLoggedIn(false);
+    }
   };
 
   const onStartCatalog = () => {

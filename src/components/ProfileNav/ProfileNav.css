@@ -1,4 +1,6 @@
-h1 {margin: 0;}
+h1 {
+    margin: 0;
+}
 
 .profile-nav {
     margin: 0 40px 316px;
@@ -16,6 +18,7 @@ h1 {margin: 0;}
 .profile-nav__list {
     list-style-type: none;
     display: flex;
+    flex-direction: row;
     padding: 0;
     margin: 0;
     row-gap: 30px;
