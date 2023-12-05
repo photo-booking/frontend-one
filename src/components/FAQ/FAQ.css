@@ -1,0 +1,25 @@
+.faq {
+  margin: 0 auto;
+}
+
+.faq__container {
+  margin: 200px auto;
+  width: 672px;
+  color: #000000;
+}
+
+.faq__title {
+  max-width: 672px;
+  margin: 0 auto;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 44px;
+  text-align: center;
+  letter-spacing: -0.04rem;
+}
+
+.faq__list {
+  margin-top: 60px;
+  list-style-type: none;
+  padding-left: 0;
+}

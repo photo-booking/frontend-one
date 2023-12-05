@@ -1,0 +1,6 @@
+<svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Radio">
+<circle id="Select SVG / Color" cx="8" cy="10.5" r="5" fill="#0C1200"/>
+<path id="Radio SVG" fill-rule="evenodd" clip-rule="evenodd" d="M8 18.5C12.4183 18.5 16 14.9183 16 10.5C16 6.08172 12.4183 2.5 8 2.5C3.58172 2.5 0 6.08172 0 10.5C0 14.9183 3.58172 18.5 8 18.5ZM8 13.5C9.65685 13.5 11 12.1569 11 10.5C11 8.84315 9.65685 7.5 8 7.5C6.34315 7.5 5 8.84315 5 10.5C5 12.1569 6.34315 13.5 8 13.5Z" fill="#91E500"/>
+</g>
+</svg>

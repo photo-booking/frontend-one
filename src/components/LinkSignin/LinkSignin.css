@@ -1,0 +1,43 @@
+.link-signin {
+    display: flex;
+    align-items: center;
+    width: 360px;
+    height: 40px;
+    border: 1px solid #E6E6E6;
+    border-radius: 4px;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 13px;
+    padding-left: 99px;
+    box-sizing: border-box;
+  }
+
+  .link-signin:last-of-type {
+    margin-bottom: 40px;
+  }
+  
+  .link-signin:hover {
+    border: 1px solid #0C1200;
+  }
+  
+  .link-signin:focus {
+    border: 1px solid #757575;
+    color: #757575;
+  }
+
+  .link-signin__logo {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    padding: 3px 2.7px 3px 3.3px;
+    box-sizing: border-box;
+  }
+  
+  .link-signin__title {
+    margin: 0;
+    font-family: Aneliza;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+  }

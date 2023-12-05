@@ -1,0 +1,32 @@
+.radioButtonProfile {
+    padding: 0;
+    display: none;
+    margin-bottom: 12px;
+}
+.radioButtonProfile+label::before {
+    align-self: flex-start;
+    content: '';
+    display: inline-block;
+    vertical-align: top;
+    width: 16px;
+    height: 20px;
+    margin-right: 8px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../../../../../images/Radio.svg');
+}
+.radioButtonProfileContainer label {
+    display: inline-block;
+    vertical-align: middle;
+    width: max-content;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px
+}
+.radioButtonProfile:checked+label::before {
+    background-image: url('../../../../../images/RadioChecked.svg');
+}
+.radioButtonProfileContainer {
+    margin-bottom: 12px;
+}

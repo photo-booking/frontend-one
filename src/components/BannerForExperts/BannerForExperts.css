@@ -1,0 +1,202 @@
+.banner-for-experts {
+    margin: 0 auto;
+    background: #FFFFFF;
+    padding: 200px 32px;
+}
+
+.banner-for-experts__box {
+    margin: 0 auto;
+    max-width: 1376px;
+    height: 620px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(rgba(255, 238, 77, 0.5), rgba(255, 238, 77, 0.14)),
+    linear-gradient(rgba(78, 255, 78, 0.14), rgba(128, 255, 128, 0.3), rgba(77, 255, 77, 0.5)),
+    linear-gradient(rgba(180, 255, 51, 0.14), rgba(180, 255, 51, 0.3));
+}
+
+.banner-for-experts__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.banner-for-experts__title {
+    color: #0C1200;
+    font-weight: 500;
+    font-size: 60px;
+    line-height: 60px;
+    max-width: 592px;
+    padding-top: 76px;
+    margin-left: 96px;
+    letter-spacing: -0.2rem;
+}
+
+.banner-for-experts__subtitle {
+    color: #0C1200;
+    max-width: 552px;
+    font-family: 'Fira Sans';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    margin-top: 32px;
+    margin-left: 100px;
+    margin-bottom: 0;
+    letter-spacing: 0.08rem;
+}
+
+.banner-for-experts__btn {
+    font-family: 'Aneliza';
+    background-color: #0C1200;
+    width: 203px;
+    height: 44px;
+    border: none;
+    border-radius: 4px;
+    color:#FFFFFF;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: 100px;
+    margin-bottom: 80px;
+    cursor: pointer;
+}
+
+.banner-for-experts__frame-block {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+.banner-for-experts__chart {
+    width: 360px;
+    height: 140px;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    background-image: url(../../images/chart.svg);
+    background-position: 232px 20px;
+    background-repeat: no-repeat;
+    margin-top: 40px;
+}
+
+.banner-for-experts__chart-text {
+    color: #0C1200;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 12px;
+    margin-top: 20px;
+    margin-left: 24px;
+}
+
+.banner-for-experts__chart-count {
+    font-family: 'Fira Sans';
+    color: #0C1200;
+    font-weight: 500;
+    font-size: 50px;
+    line-height: 50px;
+    margin-top: 12px;
+    margin-left: 24px;
+}
+
+.banner-for-experts__statistics {
+    width: 246px;
+    height: 228px;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.banner-for-experts__statistics-signature {
+    width: 111px;
+    padding: 2px 7px 6px 8px;
+    background-color: #F2F2F2;
+    border-radius: 25px;
+    color: #757575;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 12px;
+    margin-top: 24px;
+}
+
+.banner-for-experts__statistics-count {
+    font-family: 'Fira Sans';
+    color: #0C1200;
+    font-weight: 500;
+    font-size: 50px;
+    line-height: 50px;
+    margin-top: 9px;
+}
+
+.banner-for-experts__statistics-text {
+    color: #0C1200;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    margin-top: 5px;
+}
+
+.banner-for-experts__statistics-percent-container {
+    margin: 40px auto 24px;
+    height: 36px;
+    border: 1px solid #F2F2F2;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 4px 5px
+}
+
+.banner-for-experts__statistics-percent-decor {
+    width: 20px;
+    height: 20px;
+    background-color: #D6FFD6;
+    border-radius: 50px;
+    margin-left: 8px;
+    background-image: url(../../images/VectorLanding.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.banner-for-experts__statistics-percent-count {
+    font-family: 'Fira Sans';
+    color: #0C1200;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.banner-for-experts__statistics-percent-text {
+    color: #0C1200;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 12px;
+    margin-right: 12px;
+}
+
+.banner-for-experts__diagram {
+    width: 354px;
+    height: 110px;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    display: flex;
+    background-image: url(../../images/diagram.svg);
+    background-repeat: no-repeat;
+    background-position: 20px 46px;
+}
+
+.banner-for-experts__diagram-text {
+    color: #0C1200;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: -0.03rem;
+    margin-top: 20px;
+    margin-left: 24px;
+}

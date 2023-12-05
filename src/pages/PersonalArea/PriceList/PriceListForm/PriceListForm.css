@@ -1,0 +1,56 @@
+.pricelist__form {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  position: absolute;
+
+  z-index: 10;
+
+  background-color: #ffffff;
+
+  top: 50px;
+  left: 0;
+
+  padding-left: 36px;
+  padding-right: 36px;
+  padding-bottom: 24px;
+
+  border-radius: 12px;
+  
+  
+
+}
+
+.pricelist__form-description {
+  margin: 0 0 16px;
+}
+
+.pricelist__form-input {
+  margin-top: 4px;
+  width: 85%;
+
+  border-radius: 4px;
+  padding: 12px 16px;
+
+  border: 1px solid #e0e0e0;
+}
+
+
+.pricelist__form-button {
+  width: 100%;
+  margin: 0;
+  height: 44px;
+  background-color: #affa00;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.pricelist__form-button:hover {
+  cursor: pointer;
+}
+
+.pricelist__form-button:disabled {
+  background-color: #e0e0e0;
+}
