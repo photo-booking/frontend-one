@@ -15,7 +15,7 @@ export const ExpertsPreview = props => {
               expert={expert}
             />
           ))
-          .slice(0, 5)}
+          .slice(0, 20)}
       </div>
       <div className="experts-preview__mask-right"></div>
       <Link
