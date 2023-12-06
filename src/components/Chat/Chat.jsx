@@ -15,7 +15,6 @@ export const Chat = props => {
       return;
     }
     wsChanel?.send(JSON.stringify({ message }));
-    // if ok => messages.push(message)
     setMessage('');
   };
 
