@@ -1,11 +1,11 @@
 import './Chat.css';
 import { Messages } from './Messages/Messages';
-import { useState, useContext, useEffect } from 'react';
-import { CurrentUserContext } from '../context/CurrentUserContext';
+import { useState } from 'react';
+
 
 export const Chat = props => {
-  const { chatHistory, wsChanel } = props;
-  const currentUser = useContext(CurrentUserContext);
+  const { chatHistory, wsChanel, currentExpert } = props;
+
 
   const [message, setMessage] = useState('');
 
@@ -20,9 +20,9 @@ export const Chat = props => {
 
   return (
     <article className="сhat">
-      <Messages messages={chatHistory} />
+      <Messages messages={chatHistory} currentExpert={currentExpert} />
       <form className="сhat__form">
-        <input
+        <textarea
           className="сhat__input"
           type="text"
           value={message}

@@ -111,6 +111,7 @@ export const ExpertChat = () => {
             <Chat
                 chatHistory={chatHistory}
                 wsChanel={wsChanel}
+                currentExpert={currentExpert}
             />
         </div>
     );

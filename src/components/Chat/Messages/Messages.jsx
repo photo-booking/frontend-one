@@ -1,14 +1,15 @@
 import './Messages.css';
 import { Message } from '../Message/Message';
 
-export const Messages = ({ messages }) => {
+export const Messages = ({ messages, currentExpert }) => {
   return (
-    <ul>
+    <ul className='messages'>
       {messages.map((message) => {
         return (
           <Message
             message={message ? message : null}
             key={message.pk}
+            currentExpert={currentExpert}
           />
         );
       })}
