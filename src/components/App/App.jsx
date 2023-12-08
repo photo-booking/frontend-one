@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation, useParams } from 'react-router-dom';
 import { CurrentUserContext } from '../context/CurrentUserContext';
 import { ProtectedRoute } from '../ProtectedRoute';
 import './App.css';
@@ -55,6 +55,7 @@ export function App() {
   const dispatch = useDispatch();
   let { pathname } = useLocation();
 
+
   const paddingPage =
     pathname === '/catalog' ||
     pathname === '/sign-in' ||
@@ -62,7 +63,6 @@ export function App() {
     pathname === '/personal/:id' ||
     pathname === '/card/:id' ||
     pathname === '/expert/:id/chat' ||
-    pathname === '/client/:id/chat' ||
     pathname === '/reset-password';
   const isRoot = pathname === '/';
   const visibleFooter = isRoot || paddingPage;
@@ -293,8 +293,8 @@ export function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className={paddingPage ? 'page' : 'page-landing'}>
-        {paddingPage ? (
+      <div className={!isRoot ? 'page' : 'page-landing'}>
+        {!isRoot ? (
           <HeaderMain
             isClient={isClient}
             setIsClient={setIsClient}
