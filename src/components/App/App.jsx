@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes, useNavigate, useLocation, useParams } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import { CurrentUserContext } from '../context/CurrentUserContext';
 import { ProtectedRoute } from '../ProtectedRoute';
 import './App.css';
