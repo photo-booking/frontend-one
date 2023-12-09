@@ -55,14 +55,13 @@ export function App() {
   const dispatch = useDispatch();
   let { pathname } = useLocation();
 
-
   const paddingPage =
     pathname === '/catalog' ||
     pathname === '/sign-in' ||
     pathname === '/sign-up' ||
-    pathname === '/personal/:id' ||
-    pathname === '/card/:id' ||
-    pathname === '/expert/:id/chat' ||
+    pathname === `/personal/${currentUser.id}` ||
+    pathname === `/card/${currentUser.id}` ||
+    pathname === `/expert/${currentUser.id}/chat` ||
     pathname === '/reset-password';
   const isRoot = pathname === '/';
   const visibleFooter = isRoot || paddingPage;
@@ -293,8 +292,8 @@ export function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className={!isRoot ? 'page' : 'page-landing'}>
-        {!isRoot ? (
+      <div className={paddingPage ? 'page' : 'page-landing'}>
+        {paddingPage ? (
           <HeaderMain
             isClient={isClient}
             setIsClient={setIsClient}
