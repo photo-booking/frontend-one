@@ -59,10 +59,9 @@ export function App() {
     pathname === '/catalog' ||
     pathname === '/sign-in' ||
     pathname === '/sign-up' ||
-    pathname === '/personal/:id' ||
-    pathname === '/card/:id' ||
-    pathname === '/expert/:id/chat' ||
-    pathname === '/client/:id/chat' ||
+    pathname === `/personal/${currentUser.id}` ||
+    pathname === `/card/${currentUser.id}` ||
+    pathname === `/expert/${currentUser.id}/chat` ||
     pathname === '/reset-password';
   const isRoot = pathname === '/';
   const visibleFooter = isRoot || paddingPage;
