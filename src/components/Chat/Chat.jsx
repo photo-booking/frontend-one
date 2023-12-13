@@ -1,6 +1,6 @@
 import './Chat.css';
 import { Messages } from './Messages/Messages';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 export const Chat = props => {
@@ -14,13 +14,13 @@ export const Chat = props => {
     if (!message) {
       return;
     }
-    wsChanel?.send(JSON.stringify({ message }));
+    wsChanel?.send(JSON.stringify({ message, type: 'chat_message' }));
     setMessage('');
   };
 
   return (
     <article className="сhat">
-      <Messages messages={chatHistory} currentExpert={currentExpert} />
+      <Messages messages={chatHistory} currentExpert={currentExpert} wsChanel={wsChanel} />
       <form className="сhat__form">
         <textarea
           className="сhat__input"
