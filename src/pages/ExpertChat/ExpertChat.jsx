@@ -20,7 +20,8 @@ export const ExpertChat = () => {
         const token = localStorage.getItem('token');
         getIdChatAndChatHistory(token, userId)
             .then(res => {
-                setChatHistory(res.messages);
+                const chatMessagesSorting = res.messages.sort((firstItem, secondItem) => firstItem.pk - secondItem.pk)
+                setChatHistory(chatMessagesSorting);
                 createConnection(res.pk);
             })
             .catch(err => console.log(err));
@@ -65,11 +66,15 @@ export const ExpertChat = () => {
         const onMessage = event => {
             setChatHistory((oldArray) => {
                 const newMessage = JSON.parse(event.data);
-                const messageInHistory = oldArray.find((elem) => elem.pk === newMessage.pk)
-                if (!messageInHistory) {
+                const messageIndexInHistory = oldArray.findIndex((elem) => elem.pk === newMessage.pk)
+                console.log(messageIndexInHistory);
+                if (messageIndexInHistory === -1) {
                     const newChatHistory = [...oldArray, newMessage]
                     return newChatHistory
-                } else { return oldArray }
+                } else {
+                    oldArray[messageIndexInHistory] = newMessage;
+                    return oldArray;
+                }
             });
         };
 

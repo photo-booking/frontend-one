@@ -27,6 +27,7 @@
     display: flex;
     justify-content: center;
     gap: 12px;
+    position: relative;
 }
 
 .message__container_row {
@@ -85,9 +86,8 @@
     line-height: 24px;
     /* 150% */
     box-sizing: border-box;
-    padding: 10px;
+    padding: 20px;
     border-radius: 15px;
-
 }
 
 .message__text_left {
@@ -98,4 +98,17 @@
 .message__text_right {
     text-align: end;
     background-color: lightgray;
+}
+
+.message__notification {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    bottom: 5px;
+    right: 8px;
+    visibility: hidden;
+}
+
+.message__notification_visible {
+    visibility: visible;
 }
