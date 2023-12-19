@@ -3,8 +3,9 @@ import { useState } from 'react';
 
 export const CheckboxProfile = props => {
   const [isChecked, setIsChecked] = useState(false);
-  const onChange = () => {
-    setIsChecked(!isChecked);
+  const onChange = (e) => {
+    setIsChecked(e.target.checked);
+    console.log(`${props.checkboxLabel} : ${e.target.checked}`)
   };
   return (
     <>
@@ -14,7 +15,7 @@ export const CheckboxProfile = props => {
           type="checkbox"
           id={props.checkboxId}
           checked={isChecked}
-          onChange={onChange}
+          onChange={e => onChange(e)}
         />
         <label
           htmlFor={props.checkboxId}

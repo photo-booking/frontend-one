@@ -16,6 +16,7 @@
     letter-spacing: -1.4px;
     margin-top: 148px;
     margin-bottom: 232px;
+    margin-right: 120px;
     border-bottom: 1px dotted black;
 }
 
@@ -72,5 +73,6 @@
     width: 208px;
     display: flex;
     flex-direction: column;
-    justify-content: "flex-start"
+    justify-content: flex-start;
+    margin-right: 120px;
 }
