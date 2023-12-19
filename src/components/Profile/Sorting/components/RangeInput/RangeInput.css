@@ -19,6 +19,11 @@
     appearance: none;
     margin: 0;
 }
+
+.rangeinput__slider_input:first-of-type {
+    z-index: 10;
+}
+
 /* Специальные правила для браузеров на движках WebKit/Blink */
 .rangeinput__slider_input::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -27,7 +32,8 @@
     border-radius: 50%;
     background: #000000;
     cursor: pointer;
-    margin-top: -6px;  /*  нужно указать значение для поля в Chrome, но в Firefox и IE это происходит автоматически */
+    margin-top: -6px;
+    /*  нужно указать значение для поля в Chrome, но в Firefox и IE это происходит автоматически */
 }
 
 /* Тоже самое для Firefox */
@@ -43,34 +49,37 @@
 .rangeinput__slider_input::-ms-track {
     width: 100%;
     cursor: pointer;
-    background: transparent; /* Скрывает слайдер, чтобы можно было добавить собственные стили.  */
+    background: transparent;
+    /* Скрывает слайдер, чтобы можно было добавить собственные стили.  */
 
     border-color: transparent;
     color: transparent;
 }
 
-/* .slider__input::-webkit-slider-thumb:hover {
+.rangeinput__slider_input::-webkit-slider-thumb:hover,
+.rangeinput__slider_input::-moz-range-thumb:hover,
+.rangeinput__slider_input::-ms-track:hover {
     background: #91E500;
-} */
+}
 
-/* .slider__input::-webkit-slider-runnable-track {
+.slider__input::-webkit-slider-runnable-track {
     width: 100%;
     height: 4px;
     cursor: pointer;
-    background:rgba(1, 1, 1, 0);
+    background: rgba(1, 1, 1, 0);
     border-radius: 1.3px;
-} */
+}
 
-/* .slider__input::-moz-range-track {
+.slider__input::-moz-range-track {
     width: 100%;
     height: 4px;
     cursor: pointer;
 
     background: #3071a9;
     border-radius: 1.3px;
-} */
+}
 
-/* .slider__input::-ms-track {
+.slider__input::-ms-track {
     width: 100%;
     height: 4px;
     cursor: pointer;
@@ -78,15 +87,15 @@
     border-color: transparent;
     border-width: 16px 0;
     color: transparent;
-} */
+}
 
-/* .slider__input::-ms-fill-lower {
+.slider__input::-ms-fill-lower {
     background: #2a6495;
     border: 0.2px solid #010101;
     border-radius: 2.6px;
-} */
+}
 
-/* .values__container {
+.values__container {
     width: 100%;
     height: 44px;
     background-color: white;
@@ -98,24 +107,24 @@
 
 .values__container:last-child {
     margin-top: 0;
-} */
+}
 
-/* .values__info {
+.values__info {
     margin: 12px 16px;
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
-} */
+}
 
-/* .values__meaning {
+.values__meaning {
     margin: 12px 0;
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
     color: #757575;
-} */
+}
 
-/* .meaning__input {
+.meaning__input {
     width: 60%;
     border: 0;
     text-align: center;
@@ -124,9 +133,8 @@
     font-size: 16px;
     line-height: 20px;
     color: #757575;
-} */
+}
 
-/* .meaning__input:hover {
+.meaning__input:hover {
     color: #000000;
-} */
-
+}

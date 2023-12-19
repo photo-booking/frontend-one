@@ -8,8 +8,9 @@ export const RangeInput = props => {
     if (minCost > +maxCost) {
       setMinCost(e.target.value);
       setMaxCost(e.target.value);
+    } else {
+      setMinCost(e.target.value);
     }
-    setMinCost(e.target.value);
   };
 
   const sliderTwo = e => {
@@ -76,7 +77,7 @@ export const RangeInput = props => {
               min="350"
               max="2500"
               value={minCost}
-              onChange={inputMinValue}
+              onChange={e => inputMinValue(e)}
               onBlur={sendSortingRequest}
               id="slider-1-meaning"
               className="meaning__input"
@@ -90,7 +91,7 @@ export const RangeInput = props => {
               min="50"
               max="2500"
               value={maxCost}
-              onChange={inputMaxValue}
+              onChange={e => inputMaxValue(e)}
               onBlur={sendSortingRequest}
               id="slider-2-meaning"
               className="meaning__input"

@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 
 export const Sorting = props => {
   const [checkedPrice, setCheckedPrice] = useState('Высокая стоимость');
-  const [checkedMainFilter, setCheckedMainFilter] = useState('Высокая стоимость');
+  const [checkedMainFilter, setCheckedMainFilter] = useState('Все');
 
   const checkBox = [
     'Свадебная',
