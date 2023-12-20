@@ -6,6 +6,7 @@ import './Sorting.css';
 import { useLocation } from 'react-router-dom';
 
 export const Sorting = props => {
+
   const [checkedPrice, setCheckedPrice] = useState('Высокая стоимость');
   const [checkedMainFilter, setCheckedMainFilter] = useState('Все');
 
@@ -36,8 +37,9 @@ export const Sorting = props => {
   const onChangeMainFilter = e => {
     setCheckedMainFilter(e.target.value);
   };
+
   return (
-    <div className={'sortingContainer'}>
+    <div className={'sortingContainer'} >
       <div className="sortingContainer__title">Сортировка</div>
       <div className={'sortingContainer__sorting-price'}>
         {radioPrice.map(el => (

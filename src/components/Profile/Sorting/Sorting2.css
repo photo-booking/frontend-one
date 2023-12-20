@@ -1,0 +1,126 @@
+.sorting-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 208px;
+}
+
+.sorting-form h1,
+.sorting-form h2 {
+    margin: 0;
+}
+
+.sorting-form h1 {
+    padding-bottom: 8px;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.sorting-form h2 {
+    padding-bottom: 4px;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    color: #757575;
+    text-transform: uppercase;
+}
+
+.sorting-form span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sorting-form__input {
+    appearance: none;
+    cursor: pointer;
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #0C1200;
+    background: none;
+}
+
+.sorting-form__input_round {
+    border-radius: 50%;
+}
+
+.sorting-form__input_round:checked {
+    border: 5px solid #91E500;
+    background: #0C1200;
+}
+
+.sorting-form__input_square {
+    border-radius: 5px;
+}
+
+.sorting-form__input_square:checked {
+    background-position: center;
+    background-image: url(../../../images/checkbox_hecked.svg);
+}
+
+.sorting-form__price-conteiner {
+    box-sizing: border-box;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+    background: #FFF;
+    font-feature-settings: 'ss03' on;
+    font-family: Fira Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.sorting-form__price-conteiner p {
+    margin: 0;
+}
+
+.sorting-form__price-conteiner input[type='number'] {
+    color: #757575;
+    text-align: center;
+    font-feature-settings: 'ss03' on;
+    font-family: Fira Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    border: none;
+}
+
+
+.sorting-form__submit {
+    background-color: #AFFA00;
+    border-radius: 4px;
+    border: none;
+    color: #0C1200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Aneliza';
+    font-feature-settings: 'ss01' on;
+    padding: 12px 28px;
+    margin-top: 12px;
+}
+
+.sorting-form__submit:hover {
+    background-color: #91E500;
+    cursor: pointer;
+}
+
+.sorting-form__submit:focus {
+    background-color: #8BDB00;
+}
+
+.sorting-form__submit_disabled,
+.sorting-form__submit_disabled:hover {
+    background-color: #E0E0E0;
+    color: #808080;
+    cursor: default;
+}

@@ -21,7 +21,6 @@ export function getAmountExpert() {
 
 //Получаем users всех пользователей
 export function getUsers(spec, limit, pageSize) {
-  // console.log(spec, limit, pageSize);
   return fetch(
     `${BASE_URL}/users/?spec=${spec}&limit=${limit}${pageSize ? `&page_size=${pageSize}` : ''}`,
     {
@@ -67,10 +66,9 @@ export function getPriceExpert(id) {
     .then(res => console.log(res));
 }
 
-
 //Добавить фотографию в портфолио
-export function addPhotoToPortfolio (value, type, jwt, name) {
-  return fetch (`${BASE_URL}/media_files/`, {
+export function addPhotoToPortfolio(value, type, jwt, name) {
+  return fetch(`${BASE_URL}/media_files/`, {
     method: 'POST',
     headers: { ...HEADERS, Authorization: `token ${jwt}` },
     body: JSON.stringify({
@@ -81,9 +79,8 @@ export function addPhotoToPortfolio (value, type, jwt, name) {
   })
     .then(res => getResponseData(res))
     .then(res => console.log('усе отправилось'))
-    .catch(err => console.log(err, 'нихрена не отправилось'))
+    .catch(err => console.log(err, 'нихрена не отправилось'));
 }
-
 
 //Получить отзывы на специалиста по его id
 export function getExpertReviews(id) {
@@ -114,4 +111,17 @@ export function postExpertReview(expertId, authorId, jwt, values) {
       return Promise.reject(res);
     }
   });
+}
+
+//Получаем массив отсортированных специлистов
+export function filterUsers(values) {
+  return fetch(`${BASE_URL}/users/?cpec=${values.filter}`, {
+    method: 'GET',
+    HEADERS
+  })
+    .then(res => getResponseData(res))
+    .then(res => {
+      console.log(res);
+      return res;
+    });
 }

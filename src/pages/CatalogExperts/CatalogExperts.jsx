@@ -8,7 +8,8 @@ import { fetchUsers } from '../../services/redusers/users';
 
 import './CatalogExperts.css';
 import { catalogActions } from '../../services/redusers/catalog';
-import { Sorting } from '../../components/Profile/Sorting/Sorting';
+// import { Sorting } from '../../components/Profile/Sorting/Sorting';
+import { Sorting2 } from '../../components/Profile/Sorting/Sorting2';
 
 export const CatalogExperts = props => {
   const { amountExpert, onStartCatalog } = props;
@@ -107,7 +108,8 @@ export const CatalogExperts = props => {
                 offsetTop={148}
                 offsetBottom={52}
               >
-                <Sorting />
+                {/* <Sorting /> */}
+                <Sorting2 />
               </StickyBox>
             </div>
             <div className="catalog__box">
