@@ -292,8 +292,8 @@ export function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className={paddingPage ? 'page' : 'page-landing'}>
-        {paddingPage ? (
+      <div className={!isRoot ? 'page' : 'page-landing'}>
+        {!isRoot ? (
           <HeaderMain
             isClient={isClient}
             setIsClient={setIsClient}
