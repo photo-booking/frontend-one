@@ -1,0 +1,255 @@
+.filter-form {
+  max-width: 208px;
+}
+
+.fild {
+  width: 175px;
+  margin: 0 0 24px;
+  border: 0;
+  padding: 0;
+}
+
+.fild:first-child {
+  margin-bottom:32px;
+}
+
+.input:last-child {
+  margin-bottom: 0;
+}
+
+.filter__type {
+  margin: 0 0 20px;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 24px;
+}
+
+.filter__category {
+  margin: 0 0 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 20px;
+  color:#757575;
+}
+
+ /* ползуки цены  */
+.slider-range {
+  position: relative;
+  height: 16px;
+  margin-top: 20px;
+}
+
+.slider-range__track {
+  width: 100%;
+  border-radius: 10px;
+  height: 4px;
+  background-color: #e3e3e3;
+  position: absolute;
+}
+
+.slider__input {
+  width: 100%;
+  background: transparent;
+  position: absolute;
+  appearance: none;
+ margin: 0;
+}
+ 
+/* Специальные правила для браузеров на движках WebKit/Blink */
+.slider__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #000000;
+  cursor: pointer; 
+  margin-top: -6px;  /*  нужно указать значение для поля в Chrome, но в Firefox и IE это происходит автоматически */
+}
+
+/* Тоже самое для Firefox */
+.slider__input::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 3px;
+  background: #000000;
+  cursor: pointer;
+}
+
+/* Тоже самое для IE */
+.slider__input::-ms-track {
+  width: 100%;
+  cursor: pointer; 
+  background: transparent; /* Скрывает слайдер, чтобы можно было добавить собственные стили.  */
+  
+  border-color: transparent;
+  color: transparent; 
+}
+
+.slider__input::-webkit-slider-thumb:hover {
+  background: #91E500;
+}
+
+.slider__input::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background:rgba(1, 1, 1, 0);
+  border-radius: 1.3px;
+}
+
+.slider__input::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+
+  background: #3071a9;
+  border-radius: 1.3px;
+}
+  
+.slider__input::-ms-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+
+.slider__input::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+} 
+
+.values__container { 
+  width: 100%;
+  height: 44px;
+  background-color: white;
+  border-radius: 5px;
+  margin: 14px 0 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.values__container:last-child {
+  margin-top: 0;
+}
+
+.values__info {
+  margin: 12px 16px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.values__meaning {
+  margin: 12px 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #757575;
+}
+
+.meaning__input {
+  width: 60%;
+  border: 0;
+  text-align: center;
+  padding: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #757575;
+}
+
+.meaning__input:hover {
+  color: #000000;
+}
+  
+/* чекбоксы */
+
+.checkbox{
+  display: none;
+}
+
+.checkbox-label {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 12px;
+  display: block;
+  width: max-content;
+}
+
+.checkbox-label:last-child {
+  margin-bottom: 0;
+}
+
+.checkbox:disabled +  .checkbox-label{
+  color: #A1A1A1;
+}
+.checkbox:disabled +  .checkbox-label::before{
+  border: 1px solid #A1A1A1;
+}
+
+/* временное решение */
+/* .checkbox:checked:disabled + .checkbox-label::before{
+  background-repeat: no-repeat;
+  background-position: center;
+  background: #A1A1A1;
+} */
+/*  */
+
+.checkbox-label::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin-right: 8px;
+  padding: 0;
+}
+.checkbox:checked + .checkbox-label::before{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(../../images/checkbox_hecked.svg);
+}
+
+/* радиокнопки */
+
+.ratio {
+  display: none;
+}
+
+.ratio-label {
+  display: block;
+  width: max-content;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 12px;
+}
+
+.ratio-label:last-child {
+  margin-bottom: 0;
+}
+
+.ratio-label::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  margin-right: 8px;
+  padding: 0;
+}
+
+.ratio:checked + .ratio-label::before{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(../../images/ratio-checked.svg);
+  border-color: #91E500;
+}

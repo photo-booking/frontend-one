@@ -1,0 +1,18 @@
+.pricelist {
+  max-width: 1376px;
+  margin: 0 auto 180px;
+}
+
+.pricelist__headlines {
+  margin-bottom: 24px;
+  margin-left: 76px;
+  display: grid;
+  gap: 36px;
+  grid-template-columns: 240px 220px 140px 248px;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: #757575;
+}

@@ -1,0 +1,7 @@
+@import url(./vendor/fonts/fonts.css);
+body {
+  margin: 0;
+  background-color: #F2F2F2;
+  font-family: 'Aneliza';
+  font-feature-settings: 'ss01' on;
+}

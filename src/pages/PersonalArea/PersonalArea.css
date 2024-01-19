@@ -1,0 +1,27 @@
+.personal-area {
+    margin: 0 auto;
+    max-width: 1408px;
+}
+
+.personal-area__title {
+    /* font-feature-settings: 'ss01' on;
+    font-family: Aneliza; */
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    /* 109.091% */
+    letter-spacing: -0.5px;
+    margin: 0 0 12px 0;
+}
+
+.personal-area__subtitle {
+    /* font-feature-settings: 'ss01' on;
+    font-family: Aneliza; */
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    /* 142.857% */
+    margin: 0;
+}
