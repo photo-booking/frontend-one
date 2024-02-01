@@ -88,6 +88,10 @@
     position: relative;
 }
 
+.portfolio__cards_container:hover  .portfolio__cards_delete {
+    display: block;
+}
+
 .portfolio__cards {
     object-fit: cover;
     width: 100%;
@@ -127,4 +131,24 @@
 .portfolio__cards_checkbox:checked+label::before {
     background-image: url('../../../images/tickCheckbox.svg');
     background-color: black;
+}
+
+.portfolio__cards_delete {
+    position: absolute;
+    top: -7px;
+    right: 0;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    background-color: black;
+    background-image: url(../../../images/delete.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.5s;
+    cursor: pointer;
+    display: none;
+}
+
+.portfolio__cards_delete:hover {
+    transform: scale(1.2);
 }

@@ -1,6 +1,5 @@
 import '../PersonalArea.css';
 import './Portfolio.css';
-import { v4 as uuidv4 } from 'uuid';
 import photoIcon from '../../../images/photo-icon.svg';
 import videoIcon from '../../../images/video-icon.svg';
 import { DropDownList } from './DropDownList/dropdownlist';
@@ -9,8 +8,9 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchProfile } from '../../../services/redusers/profile';
 import imageToBase64 from 'image-to-base64/browser';
-import { addPhotoToPortfolio, getExpertProfile } from '../../../utils/api';
-import { fetchAddPhotoToPortfolio } from '../../../services/redusers/portfolio';
+import { addPhotoToPortfolio, deletePhotoToPortfolio, getExpertProfile } from '../../../utils/api';
+// import { createPortfolio } from '../../../services/redusers/portfolio';
+// import { fetchAddPhotoToPortfolio } from '../../../services/redusers/portfolio';
 
 
 
@@ -19,37 +19,31 @@ export const Portfolio = () => {
   const dispatch = useDispatch();
   const params = useParams();
 
+  const [photo, setPhoto] = useState([]);
 
-  const userInfo = useSelector(state => state.profile.data);
-  console.log(userInfo.mediafiles, '2222211111');
-  const media = userInfo.mediafiles;
 
   useEffect(() => {
-    dispatch(fetchProfile(params?.id));
+    // dispatch(fetchProfile(params?.id));
+    getExpertProfile(params?.id)
+      .then(res => setPhoto(res.mediafiles))
+      .catch(err => console.log(err));
   }, []);
 
-  const portfolio = useSelector(state => state.portfolio.mediafiles);
-  console.log(portfolio, '11111111111111111111111111111');
+  // getExpertProfile(params?.id)
+  //   .then(res => setPhoto(res.mediafiles))
+  //   .catch(err => console.log(err));
+
+
+  // const userInfo = useSelector(state => state.profile.data);
+  // console.log(userInfo.mediafiles, '2222211111');
+  // const media = userInfo.mediafiles;
+  // setPhoto(media)
+  // console.log('photo', photo);
 
 
 
-  // const [isSelected, setIsSelected] = useState([]);
 
-  // const handleChange = (e) => {
-  //   if (e.target.checked) {
-  //     return setIsSelected([...isSelected, e.target.name])
-
-  //   }
-  //   else {
-  //     isSelected?.forEach((currentElement, index) => {
-  //       if (currentElement === e.target.id) {
-  //         isSelected.splice(index, 1);
-  //         return setIsSelected(isSelected)
-  //       }
-  //     })
-  //   }
-  // }
-
+  // select photo
   let selectedItem = [];
 
   const handleSelected = (e) => {
@@ -68,24 +62,46 @@ export const Portfolio = () => {
     return console.log(selectedItem);
   }
 
-  const handleChange = (e) => {
+  // Add new photo to portfolio
+  const handleAdd = (e) => {
     const jwt = localStorage.getItem('token');
     const type = e.target.files[0].type;
     const reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
-    console.log(e.target.files[0]);
     const name = e.target.files[0].name.substring(0, 23);
     reader.onload = function () {
       imageToBase64(reader.result)
         .then(res => {
-          const result = res
+          const result = res;
           return result
         })
         .then(result => {
-          dispatch(fetchAddPhotoToPortfolio({ result, type, jwt, name }))
+          addPhotoToPortfolio(result, type, jwt, name)
+            .then(res => {
+              photo.push(res)
+              setPhoto([...photo])
+              console.log(res)
+            })
+            .then(res => console.log('добавили фото'))
+            .catch(err => console.log(err))
+          // dispatch(fetchProfile(params?.id));
         })
         .catch(err => console.log(err));
     };
+  }
+
+
+  const handleDelete = (e) => {
+    const jwt = localStorage.getItem('token');
+    console.log(e.target.id);
+    const id = Number(e.target.id);
+    console.log(typeof id);
+    deletePhotoToPortfolio(id, jwt)
+      .then(res => {
+        setPhoto(photo.filter(item => item.id !== id))
+      })
+      .catch(err => console.log(err, 'не удалилась'))
+
   }
 
   return (
@@ -103,7 +119,8 @@ export const Portfolio = () => {
             id='addphoto'
             accept="image/png, image/jpeg"
             className='portfolio__input_file'
-            onChange={handleChange}
+            onChange={handleAdd}
+            multiple
           >
           </input>
         </button>
@@ -117,8 +134,9 @@ export const Portfolio = () => {
 
       <div className='portfolio__cards_content'>
 
-        {media?.map((item, index) => (
-          <div className='portfolio__cards_container' key={index} >
+        {photo?.map((item, index) => (
+          <div className='portfolio__cards_container' key={item.id} >
+            <div id={item.id} className='portfolio__cards_delete' onClick={handleDelete}></div>
             <img className='portfolio__cards' src={`http://photomarket.sytes.net${item.photo}`} alt={item.title} />
             <input className='portfolio__cards_checkbox' type='checkbox' onChange={handleSelected} name={index} id={index}></input>
             <label htmlFor={index}></label>

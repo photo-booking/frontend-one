@@ -80,9 +80,25 @@ export function addPhotoToPortfolio (value, type, jwt, name) {
     })
   })
     .then(res => getResponseData(res))
-    .then(res => console.log('усе отправилось'))
-    .catch(err => console.log(err, 'нихрена не отправилось'))
+    // .then(res => console.log(res, 'усе отправилось'))
+    // .catch(err => console.log(err, 'нихрена не отправилось'))
 }
+
+
+
+//Удалить фотографию из портфолио
+export function deletePhotoToPortfolio (id, jwt) {
+  return fetch (`${BASE_URL}/media_files/${id}`, {
+    method: 'DELETE',
+    headers: { ...HEADERS, Authorization: `token ${jwt}` },
+    body: JSON.stringify({    
+    })
+  })
+    // .then(res => getResponseData(res))
+    // .then(res => console.log(res, 'удалили'))
+    // .catch(err => console.log(err, 'нихрена не удалили'))
+}
+
 
 
 //Получить отзывы на специалиста по его id
@@ -114,4 +130,5 @@ export function postExpertReview(expertId, authorId, jwt, values) {
       return Promise.reject(res);
     }
   });
+
 }
