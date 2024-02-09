@@ -9,14 +9,14 @@ import { useEffect, useState } from 'react';
 import { fetchProfile } from '../../../services/redusers/profile';
 import imageToBase64 from 'image-to-base64/browser';
 import { addPhotoToPortfolio, deletePhotoToPortfolio, getExpertProfile } from '../../../utils/api';
-// import { createPortfolio } from '../../../services/redusers/portfolio';
-// import { fetchAddPhotoToPortfolio } from '../../../services/redusers/portfolio';
+import { CardInfoProfile } from '../../../components/Profile/PhotoCard/CardInfo/CardInfo';
+import { PortfolioPhotoInfo } from './PortfolioPhotoInfo/PortfolioPhotoInfo';
+
 
 
 
 export const Portfolio = () => {
 
-  const dispatch = useDispatch();
   const params = useParams();
 
   const [photo, setPhoto] = useState([]);
@@ -28,19 +28,6 @@ export const Portfolio = () => {
       .then(res => setPhoto(res.mediafiles))
       .catch(err => console.log(err));
   }, []);
-
-  // getExpertProfile(params?.id)
-  //   .then(res => setPhoto(res.mediafiles))
-  //   .catch(err => console.log(err));
-
-
-  // const userInfo = useSelector(state => state.profile.data);
-  // console.log(userInfo.mediafiles, '2222211111');
-  // const media = userInfo.mediafiles;
-  // setPhoto(media)
-  // console.log('photo', photo);
-
-
 
 
   // select photo
@@ -90,7 +77,7 @@ export const Portfolio = () => {
     };
   }
 
-
+  // Remove photo from portfolio
   const handleDelete = (e) => {
     const jwt = localStorage.getItem('token');
     console.log(e.target.id);
@@ -138,8 +125,10 @@ export const Portfolio = () => {
           <div className='portfolio__cards_container' key={item.id} >
             <div id={item.id} className='portfolio__cards_delete' onClick={handleDelete}></div>
             <img className='portfolio__cards' src={`http://photomarket.sytes.net${item.photo}`} alt={item.title} />
-            <input className='portfolio__cards_checkbox' type='checkbox' onChange={handleSelected} name={index} id={index}></input>
-            <label htmlFor={index}></label>
+            <input className='portfolio__cards_checkbox' type='checkbox' onChange={handleSelected} name={index} id={`${index}-type`}></input>
+            <label htmlFor={`${index}-type`}></label>
+
+            <PortfolioPhotoInfo />
           </div>
         ))}
 

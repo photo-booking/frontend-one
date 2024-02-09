@@ -84,19 +84,34 @@
 .portfolio__cards_container {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
     position: relative;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+.portfolio__cards_container:hover {
+   background-color: white;
+}
+
+.portfolio__cards_container:hover .photo-info {
+    display: block;
 }
 
 .portfolio__cards_container:hover  .portfolio__cards_delete {
     display: block;
 }
 
+
 .portfolio__cards {
     object-fit: cover;
     width: 100%;
     height: 100%;
     border-radius: 10px;
+}
+
+.portfolio__cards:hover {
+    z-index: 4;
 }
 
 .portfolio__cards_checkbox {

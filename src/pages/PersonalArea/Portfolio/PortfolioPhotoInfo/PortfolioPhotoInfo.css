@@ -1,0 +1,42 @@
+.photo-info {
+    width: calc(100% - 32px);
+    /* height: 93px; */
+    background-color: white;
+    border-radius: 0 0 12px 12px;
+    position: absolute;
+    top: 190px;
+    left: 0;
+    z-index: 1;
+    padding: 15.5px 16px 20.5px;
+    display: none;
+}
+
+.photo-info:hover {
+    z-index: 2;
+}
+
+
+.photo-info__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.photo-info__type-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.photo-info__type-name_icon {
+    width: 24px;
+    height: 24px;
+}
+
+.photo-info__type-name_text {
+    margin: 0;
+}
+
+.photo-info__price {
+    margin: 0;
+}
