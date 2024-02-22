@@ -125,8 +125,12 @@ export const Portfolio = () => {
           <div className='portfolio__cards_container' key={item.id} >
             <div id={item.id} className='portfolio__cards_delete' onClick={handleDelete}></div>
             <img className='portfolio__cards' src={`http://photomarket.sytes.net${item.photo}`} alt={item.title} />
-            <input className='portfolio__cards_checkbox' type='checkbox' onChange={handleSelected} name={index} id={`${index}-type`}></input>
-            <label htmlFor={`${index}-type`}></label>
+            <input className='portfolio__cards_checkbox' type='checkbox' onChange={handleSelected} name={`${index}`} id={`${index}`}></input>
+            <label htmlFor={`${index}`}></label>
+            <div>
+              <input className='portfolio__cards_main-photo' type='checkbox' onChange={handleSelected} name={`${index}-main`} id={`${index}-main`}></input>
+              <label className='portfolio__cards_info' htmlFor={`${index}-main`}></label>
+            </div>
 
             <PortfolioPhotoInfo />
           </div>

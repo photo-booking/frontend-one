@@ -141,12 +141,56 @@
     justify-content: center;
     background-repeat: no-repeat;
     background-position: center center;
+    cursor: pointer;
 }
 
 .portfolio__cards_checkbox:checked+label::before {
     background-image: url('../../../images/tickCheckbox.svg');
     background-color: black;
 }
+
+
+.portfolio__cards_main-photo {
+    margin: 0;
+    position: absolute;
+    top: 142px;
+    left: 20px;
+    width: 28px;
+    height: 28px;
+    opacity: 0;
+}
+
+
+.portfolio__cards_main-photo+label::before {
+    content: '';
+    margin: 0;
+    position: absolute;
+    top: 142px;
+    left: 20px;
+    width: 28px;
+    height: 28px;
+    background-color: transparent;
+    background-image: url(../../../images/Icons_star.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+}
+
+.portfolio__cards_main-photo:checked+label::before {
+    background-image: url(../../../images/icon_star_full.svg);
+}
+
+.portfolio__cards_main-photo+label:hover {
+
+}
+
+
+.portfolio__cards_info {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 
 .portfolio__cards_delete {
     position: absolute;
